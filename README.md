@@ -16,7 +16,7 @@ https://raw.githubusercontent.com/api-search/messaging/main/_apis/mailchimp/apis
 ## Timestamps
 
 - **Created:** 2023/11/23 
-- **Modified:** 2025-01-01 
+- **Modified:** 2025-08-04 
 
 ## APIs
 
@@ -34,19 +34,16 @@ database, manage audiences and campaigns, and more.
 
 #### Tags:
 
- - About, Abuse, Accounts, Actions, Activities, Activity, Ad, Ads, Advice, Answers, Applications, Archive, Authorized, Automated, Automation, Automations, Batches, Campaigns, Cancels, Carts, Categories, Chatter, Checklist, Child, Chimp, Click, Clicked, Clients, Code, Codes, Connected, Contacts, Content, Conversations, Customers, Customize, Data, Default, Details, Domains, Ecommerce, Eep, Eepurl, Emails, Events, Exports, Facebook, Feedback, Feeds, Fields, Files, Folders, Forms, Goal, Goals, Growth, Hash, History, Images, Information, Installations, Interest, Interests, Items, Journeys, Landing, Latest, Line, Lines, Links, Locations, Managers, Members, Merge, Messages, Months, Names, Notes, Opened, Operation, Orders, Outreach, Page, Pages, Pause, Performance, Permanent, Pings, Products, Promo, Publish, Questions, Queues, Recent, Recipients, Removed, Replicate, Reporting, Reports, Resend, Resources, Resume, Root, Rss, Rules, Schedules, Scripts, Search, Segments, Send, Sending, Sent, Sets, Settings, Signup, Sites, Statistics, Status, Steps, Store, Stored, Stores, Subscribe, Subscribers, Survey, Surveys, Tags, Templates, Tests, Top, Triggers, URL, Unpublish, Unschedule, Unsubscribe, Unsubscribed, Variants, Verified, Verify, View, Webhooks, Workflows
+ - Marketing, Newsletters
 
 #### Properties
 
 - [Documentation](https://mailchimp.com/developer/marketing/docs/fundamentals/)
-- [OpenAPI](openapi/mailchimp-openapi-original.yml)
+- [OpenAPI](properties/mailchimp-marketing-api-openapi.yml)
 - [Integrations](https://mailchimp.com/developer/marketing/docs/integrations/)
 - [Errors](https://mailchimp.com/developer/marketing/docs/errors/)
 ### Mailchimp Transactional API
-
-Mailchimp Transactional is a powerful email delivery service that lets you
-send personalized, one-to-one emails like password resets, order
-confirmations, and welcome messages. 
+Mailchimp Transactional is a powerful email delivery service that lets you send personalized, one-to-one emails like password resets, order confirmations, and welcome messages. 
 
 **Human URL:** [https://mailchimp.com/developer/transactional/](https://mailchimp.com/developer/transactional/)
 
@@ -65,7 +62,6 @@ confirmations, and welcome messages.
 https://mailchimp.com/developer/transactional/docs/authentication-delivery/)
 - [Webhooks](https://mailchimp.com/developer/transactional/docs/webhooks/)
 ### MailChimp Open Commerce
-
 An open source, API-first, modular commerce stack made for technical,
 growth-minded retailers. Use our open source platform to build the
 e-commerce solution that fits your business, on your own servers or in the
