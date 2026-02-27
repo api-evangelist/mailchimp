@@ -1,22 +1,17 @@
 # Mailchimp (mailchimp)
-
-Mailchimp's developer tools provide everything you need to integrate your data
-with intelligent marketing tools and event-driven transactional email.
+Marketing automation platform and email marketing service for managing mailing lists and creating email campaigns
 
 **URL:** [Visit APIs.json URL](
 https://raw.githubusercontent.com/api-search/messaging/main/_apis/mailchimp/apis.md)
 
-## Scope
-
-
 ## Tags:
 
- - Email, Newsletters
+ - Email, Newsletters, T1, automation, campaigns, email, marketing, newsletters
 
 ## Timestamps
 
 - **Created:** 2023/11/23 
-- **Modified:** 2025-08-04 
+- **Modified:** 2025-09-05 
 
 ## APIs
 
@@ -29,8 +24,6 @@ database, manage audiences and campaigns, and more.
 
 **Human URL:** [https://mailchimp.com/developer/marketing/](https://mailchimp.com/developer/marketing/)
 
-**Base URL:** [https://api.example.com](https://api.example.com)
-
 
 #### Tags:
 
@@ -42,17 +35,11 @@ database, manage audiences and campaigns, and more.
 - [OpenAPI](properties/mailchimp-marketing-api-openapi.yml)
 - [Integrations](https://mailchimp.com/developer/marketing/docs/integrations/)
 - [Errors](https://mailchimp.com/developer/marketing/docs/errors/)
+
 ### Mailchimp Transactional API
 Mailchimp Transactional is a powerful email delivery service that lets you send personalized, one-to-one emails like password resets, order confirmations, and welcome messages. 
 
 **Human URL:** [https://mailchimp.com/developer/transactional/](https://mailchimp.com/developer/transactional/)
-
-**Base URL:** [https://api.example.com](https://api.example.com)
-
-
-#### Tags:
-
- - No Tags
 
 #### Properties
 
@@ -61,6 +48,7 @@ Mailchimp Transactional is a powerful email delivery service that lets you send 
 - [Authentication](
 https://mailchimp.com/developer/transactional/docs/authentication-delivery/)
 - [Webhooks](https://mailchimp.com/developer/transactional/docs/webhooks/)
+
 ### MailChimp Open Commerce
 An open source, API-first, modular commerce stack made for technical,
 growth-minded retailers. Use our open source platform to build the
@@ -68,13 +56,6 @@ e-commerce solution that fits your business, on your own servers or in the
 cloud.
 
 **Human URL:** [https://mailchimp.com/developer/open-commerce/](https://mailchimp.com/developer/open-commerce/)
-
-**Base URL:** [https://api.example.com](https://api.example.com)
-
-
-#### Tags:
-
- - No Tags
 
 #### Properties
 
@@ -89,10 +70,18 @@ cloud.
 - [Change Log](https://mailchimp.com/developer/release-notes/)
 - [Blog](https://mailchimp.com/developer/blog/)
 - [Plans](https://mailchimp.com/pricing/marketing/)
+- [SDKs](https://mailchimp.com/developer/marketing/guides/client-libraries-and-sdks/)
+- [Status](https://status.mailchimp.com/)
+- [Support](https://mailchimp.com/contact/)
+- [Terms](https://mailchimp.com/legal/terms/)
+- [Privacy](https://mailchimp.com/legal/privacy/)
+- [SignUp](https://login.mailchimp.com/signup/)
 
 ## Maintainers
 
 **FN:** API Evangelist
 
 **Email:** info@apievangelist.com
+**FN:** MailChimp
 
+**Email:** api@mailchimp.com
