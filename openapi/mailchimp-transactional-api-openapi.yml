@@ -1,1 +1,4190 @@
-{}
+openapi: 3.1.0
+info:
+  title: Mailchimp Transactional API
+  version: 1.0.0
+  description: >-
+    The Mailchimp Transactional API (formerly Mandrill) enables sending
+    personalized, one-to-one transactional emails such as password resets,
+    order confirmations, and welcome messages. It provides high-deliverability
+    email infrastructure with detailed analytics, templates, and webhook support.
+  contact:
+    name: Mailchimp API Support
+    email: apihelp@mailchimp.com
+    url: https://mailchimp.com/developer/transactional/
+  license:
+    name: Mailchimp API Use Policy
+    url: https://mailchimp.com/legal/api_use/
+  termsOfService: https://mailchimp.com/legal/terms/
+
+servers:
+  - url: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional (Mandrill) Production API
+
+security:
+  - apiKey: []
+
+tags:
+  - name: Messages
+    description: Send and search transactional messages, and retrieve message details.
+  - name: Templates
+    description: >-
+      Manage reusable email templates stored on the Mandrill server for use
+      when sending transactional messages.
+  - name: Tags
+    description: Manage tags and retrieve tag-level statistics for sent messages.
+  - name: Senders
+    description: >-
+      Retrieve sender information and statistics for verified sending domains
+      and email addresses.
+  - name: Users
+    description: Retrieve information about the authenticated Mandrill account.
+  - name: Webhooks
+    description: Manage webhooks that receive event notifications for sent messages.
+  - name: Subaccounts
+    description: >-
+      Manage subaccounts for organizing sending and reporting within a single
+      Mandrill account.
+  - name: Rejects
+    description: >-
+      Manage the rejection blacklist, which prevents delivery to addresses
+      that have previously bounced or been reported as spam.
+  - name: Allowlists
+    description: >-
+      Manage the allowlist of email addresses that bypass the rejection
+      blacklist.
+  - name: IPs
+    description: Manage dedicated IP addresses associated with the account.
+  - name: Exports
+    description: Request and download data exports for messages, rejects, and allowlists.
+  - name: Metadata
+    description: >-
+      Manage custom metadata fields that can be attached to messages for
+      tracking and filtering.
+
+paths:
+  /messages/send:
+    post:
+      operationId: postMessagesSend
+      summary: Send a transactional email
+      description: >-
+        Send a new transactional message through Mandrill. Supports HTML and
+        plain-text content, inline images, attachments, merge variables,
+        metadata, and per-recipient customization.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - message
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                message:
+                  $ref: '#/components/schemas/MessagePayload'
+                async:
+                  type: boolean
+                  description: >-
+                    Enable background sending mode optimized for bulk sending.
+                    In async mode, the response will not include per-recipient
+                    status, and failures will be handled by retry or webhook.
+                  default: false
+                ip_pool:
+                  type: string
+                  description: >-
+                    The name of the dedicated IP pool that should be used to
+                    send this message.
+                send_at:
+                  type: string
+                  format: date-time
+                  description: >-
+                    Schedule the message for future delivery. The date/time
+                    must be in UTC and formatted as YYYY-MM-DD HH:MM:SS.
+                    Messages can be scheduled up to 7 days in advance.
+      responses:
+        '200':
+          description: >-
+            An array of sending results, one per recipient. Each object
+            contains the email address, status, reject reason (if any),
+            and the message ID.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendResult'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/send-template:
+    post:
+      operationId: postMessagesSendTemplate
+      summary: Send an email using a template
+      description: >-
+        Send a new transactional message using a stored template. Template
+        content blocks can be overridden with the template_content parameter.
+        Merge variables in the template are populated from the message object.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - template_name
+                - template_content
+                - message
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                template_name:
+                  type: string
+                  description: >-
+                    The slug or name of the template stored in Mandrill to
+                    use for this message.
+                template_content:
+                  type: array
+                  description: >-
+                    An array of objects with name/content pairs for injecting
+                    content into editable regions defined in the template
+                    using mc:edit attributes.
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the mc:edit content block to set.
+                      content:
+                        type: string
+                        description: The HTML content to replace the block with.
+                message:
+                  $ref: '#/components/schemas/MessagePayload'
+                async:
+                  type: boolean
+                  default: false
+                  description: Enable background sending mode.
+                ip_pool:
+                  type: string
+                  description: The name of the dedicated IP pool to use.
+                send_at:
+                  type: string
+                  format: date-time
+                  description: Schedule message for future delivery in UTC.
+      responses:
+        '200':
+          description: An array of sending results, one per recipient.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendResult'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/search:
+    post:
+      operationId: postMessagesSearch
+      summary: Search sent messages
+      description: >-
+        Search recently sent messages and return matching results. You can
+        filter by sending status, sender, tags, recipient, subject, and
+        date range. Results are limited to the last 7 days.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                query:
+                  type: string
+                  description: >-
+                    Search terms to filter results. Supports full-text
+                    search across message subject and email addresses.
+                date_from:
+                  type: string
+                  format: date-time
+                  description: Start date for the search range (UTC).
+                date_to:
+                  type: string
+                  format: date-time
+                  description: End date for the search range (UTC).
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Tags that must be present on matching messages.
+                senders:
+                  type: array
+                  items:
+                    type: string
+                  description: Sender addresses to filter by.
+                api_keys:
+                  type: array
+                  items:
+                    type: string
+                  description: API keys to filter by for subaccount isolation.
+                limit:
+                  type: integer
+                  default: 100
+                  description: Maximum number of results to return (max 1000).
+      responses:
+        '200':
+          description: An array of message info objects matching the search criteria.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/search-time-series:
+    post:
+      operationId: postMessagesSearchTimeSeries
+      summary: Search message time series
+      description: >-
+        Search the content of recently sent messages and return aggregated
+        hourly statistics for matching messages over time.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                query:
+                  type: string
+                  description: Search terms to filter results.
+                date_from:
+                  type: string
+                  format: date-time
+                  description: Start date for the search range (UTC).
+                date_to:
+                  type: string
+                  format: date-time
+                  description: End date for the search range (UTC).
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Tags that must be present on matching messages.
+                senders:
+                  type: array
+                  items:
+                    type: string
+                  description: Sender addresses to filter by.
+      responses:
+        '200':
+          description: An array of time series data points with hourly statistics.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeSeries'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/info:
+    post:
+      operationId: postMessagesInfo
+      summary: Get message info
+      description: >-
+        Get the information for a single recently sent message including
+        delivery status, open/click tracking, and metadata.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique message ID returned from a send call.
+      responses:
+        '200':
+          description: Detailed information about the message.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageDetail'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/content:
+    post:
+      operationId: postMessagesContent
+      summary: Get message content
+      description: >-
+        Get the full content of a recently sent message including the HTML
+        body, text body, headers, and attachments.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique message ID.
+      responses:
+        '200':
+          description: The full content of the message.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageContent'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/parse:
+    post:
+      operationId: postMessagesParse
+      summary: Parse a raw MIME message
+      description: >-
+        Parse the full MIME document for an email message, returning the
+        subject, recipients, HTML body, text body, headers, and attachments.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - raw_message
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                raw_message:
+                  type: string
+                  description: The full MIME document of the message to parse.
+      responses:
+        '200':
+          description: The parsed message content.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParsedMessage'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/send-raw:
+    post:
+      operationId: postMessagesSendRaw
+      summary: Send a raw MIME message
+      description: >-
+        Take a raw MIME document and send it exactly as provided. Mandrill
+        will not modify the message content, but will track opens and clicks
+        if the appropriate headers are included.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - raw_message
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                raw_message:
+                  type: string
+                  description: The full MIME document of the message to send.
+                from_email:
+                  type: string
+                  format: email
+                  description: >-
+                    Override the from address in the raw message. If not
+                    specified, the from address in the raw message is used.
+                from_name:
+                  type: string
+                  description: Override the from name in the raw message.
+                to:
+                  type: array
+                  items:
+                    type: string
+                    format: email
+                  description: >-
+                    Override the recipients in the raw message. If not
+                    provided, recipients from the MIME headers are used.
+                async:
+                  type: boolean
+                  default: false
+                  description: Enable background sending mode.
+                ip_pool:
+                  type: string
+                  description: The name of the dedicated IP pool to use.
+                send_at:
+                  type: string
+                  format: date-time
+                  description: Schedule message for future delivery in UTC.
+                return_path_domain:
+                  type: string
+                  description: Custom domain for the return-path header.
+      responses:
+        '200':
+          description: An array of sending results, one per recipient.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SendResult'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/list-scheduled:
+    post:
+      operationId: postMessagesListScheduled
+      summary: List scheduled messages
+      description: >-
+        Get a list of messages that are scheduled for future delivery. Messages
+        can be scheduled up to 7 days in advance.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                to:
+                  type: string
+                  format: email
+                  description: >-
+                    Optional recipient email address to restrict results to
+                    messages scheduled for a specific recipient.
+      responses:
+        '200':
+          description: An array of scheduled message objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ScheduledMessage'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/cancel-scheduled:
+    post:
+      operationId: postMessagesCancelScheduled
+      summary: Cancel a scheduled message
+      description: >-
+        Cancel a message that has been scheduled for future delivery. The
+        message must not have already been sent.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique ID of the scheduled message to cancel.
+      responses:
+        '200':
+          description: The details of the cancelled scheduled message.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledMessage'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /messages/reschedule:
+    post:
+      operationId: postMessagesReschedule
+      summary: Reschedule a message
+      description: >-
+        Reschedule a message that was previously scheduled for future delivery
+        to a new date and time.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+                - send_at
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique ID of the scheduled message to reschedule.
+                send_at:
+                  type: string
+                  format: date-time
+                  description: The new date and time to send the message in UTC.
+      responses:
+        '200':
+          description: The updated scheduled message details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledMessage'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/add:
+    post:
+      operationId: postTemplatesAdd
+      summary: Add a new template
+      description: >-
+        Create a new template on the Mandrill server. Templates can contain
+        merge variables and mc:edit content blocks for dynamic content
+        injection at send time.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The name for the new template (must be unique).
+                from_email:
+                  type: string
+                  format: email
+                  description: Default from address for the template.
+                from_name:
+                  type: string
+                  description: Default from name for the template.
+                subject:
+                  type: string
+                  description: Default subject line for the template.
+                code:
+                  type: string
+                  description: The HTML code for the template with mc:edit regions.
+                text:
+                  type: string
+                  description: Default text part of messages sent with this template.
+                publish:
+                  type: boolean
+                  default: true
+                  description: Whether to publish the template immediately.
+                labels:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of up to 10 labels to organize templates.
+      responses:
+        '200':
+          description: The newly created template object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/info:
+    post:
+      operationId: postTemplatesInfo
+      summary: Get template info
+      description: >-
+        Get the details for a specific template, including its code, default
+        values, and publish status.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The name of the existing template.
+      responses:
+        '200':
+          description: The template details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/update:
+    post:
+      operationId: postTemplatesUpdate
+      summary: Update a template
+      description: >-
+        Update an existing template with new values for any of its fields.
+        Only the fields you include in the request body will be updated.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The name of the existing template to update.
+                from_email:
+                  type: string
+                  format: email
+                  description: Updated default from address.
+                from_name:
+                  type: string
+                  description: Updated default from name.
+                subject:
+                  type: string
+                  description: Updated default subject line.
+                code:
+                  type: string
+                  description: Updated HTML code for the template.
+                text:
+                  type: string
+                  description: Updated default text part.
+                publish:
+                  type: boolean
+                  description: Whether to publish the updated template immediately.
+                labels:
+                  type: array
+                  items:
+                    type: string
+                  description: Updated array of labels.
+      responses:
+        '200':
+          description: The updated template details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/publish:
+    post:
+      operationId: postTemplatesPublish
+      summary: Publish a template
+      description: >-
+        Publish the most recent draft of an existing template, making it
+        available for sending.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The name of the template to publish.
+      responses:
+        '200':
+          description: The published template details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/delete:
+    post:
+      operationId: postTemplatesDelete
+      summary: Delete a template
+      description: >-
+        Permanently delete a template from the account. This action cannot
+        be undone.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The name of the template to delete.
+      responses:
+        '200':
+          description: The deleted template details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/list:
+    post:
+      operationId: postTemplatesList
+      summary: List templates
+      description: Get a list of all templates available in the account.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                label:
+                  type: string
+                  description: >-
+                    Optional label to filter results. Only templates with the
+                    given label will be returned.
+      responses:
+        '200':
+          description: An array of template info objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TemplateInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/time-series:
+    post:
+      operationId: postTemplatesTimeSeries
+      summary: Get template time series
+      description: >-
+        Return the recent sending history for a template, aggregated by
+        hourly time slots.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The name of the existing template.
+      responses:
+        '200':
+          description: An array of time series data for the template.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeSeries'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /templates/render:
+    post:
+      operationId: postTemplatesRender
+      summary: Render a template
+      description: >-
+        Render a template with the provided merge variables and template
+        content, returning the final HTML that would be sent.
+      tags:
+        - Templates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - template_name
+                - template_content
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                template_name:
+                  type: string
+                  description: The name of the template to render.
+                template_content:
+                  type: array
+                  description: Content blocks to inject into mc:edit regions.
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The name of the content block.
+                      content:
+                        type: string
+                        description: The content to inject.
+                merge_vars:
+                  type: array
+                  description: Merge variables to use during rendering.
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: The merge variable name.
+                      content:
+                        type: string
+                        description: The merge variable value.
+      responses:
+        '200':
+          description: The rendered template HTML.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  html:
+                    type: string
+                    description: The rendered HTML of the template.
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /tags/list:
+    post:
+      operationId: postTagsList
+      summary: List tags
+      description: >-
+        Get all the tags that have been used in the account, along with
+        aggregate sending statistics for each tag.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of tag objects with statistics.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /tags/info:
+    post:
+      operationId: postTagsInfo
+      summary: Get tag info
+      description: >-
+        Return more detailed information about a single tag including
+        aggregate statistics.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - tag
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                tag:
+                  type: string
+                  description: The tag name to retrieve information for.
+      responses:
+        '200':
+          description: Detailed information about the tag.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /tags/delete:
+    post:
+      operationId: postTagsDelete
+      summary: Delete a tag
+      description: >-
+        Delete a tag permanently. Deleting a tag removes it from all messages
+        that have been tagged with it, and permanently removes the tag
+        statistics.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - tag
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                tag:
+                  type: string
+                  description: The tag name to delete.
+      responses:
+        '200':
+          description: The deleted tag object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /tags/time-series:
+    post:
+      operationId: postTagsTimeSeries
+      summary: Get tag time series
+      description: >-
+        Return the recent sending history for a tag, aggregated by hourly
+        time slots.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - tag
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                tag:
+                  type: string
+                  description: The tag name to retrieve time series for.
+      responses:
+        '200':
+          description: An array of time series data for the tag.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeSeries'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /tags/all-time-series:
+    post:
+      operationId: postTagsAllTimeSeries
+      summary: Get all tags time series
+      description: >-
+        Return hourly aggregated statistics for all tags in the account
+        over the last 30 days.
+      tags:
+        - Tags
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of time series data points.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeSeries'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /senders/list:
+    post:
+      operationId: postSendersList
+      summary: List senders
+      description: >-
+        Get the list of all sender email addresses that have been used in
+        the account, with aggregate statistics for each sender.
+      tags:
+        - Senders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of sender objects with statistics.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SenderInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /senders/domains:
+    post:
+      operationId: postSendersDomains
+      summary: List sender domains
+      description: >-
+        Get the list of sender domains that have been configured for the
+        account, including DKIM and SPF verification status.
+      tags:
+        - Senders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of sender domain objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SenderDomain'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /senders/add-domain:
+    post:
+      operationId: postSendersAddDomain
+      summary: Add a sender domain
+      description: Add a new sender domain to the account for verification.
+      tags:
+        - Senders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - domain
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                domain:
+                  type: string
+                  description: The domain name to add.
+      responses:
+        '200':
+          description: The newly added domain details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SenderDomain'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /senders/check-domain:
+    post:
+      operationId: postSendersCheckDomain
+      summary: Check a sender domain
+      description: >-
+        Check the DNS settings for a sender domain to verify DKIM and SPF
+        configuration status.
+      tags:
+        - Senders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - domain
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                domain:
+                  type: string
+                  description: The domain name to check.
+      responses:
+        '200':
+          description: The updated domain verification status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SenderDomain'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /senders/verify-domain:
+    post:
+      operationId: postSendersVerifyDomain
+      summary: Verify a sender domain
+      description: >-
+        Send a verification email to the specified mailbox at the domain to
+        confirm domain ownership.
+      tags:
+        - Senders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - domain
+                - mailbox
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                domain:
+                  type: string
+                  description: The domain name to verify.
+                mailbox:
+                  type: string
+                  description: >-
+                    The mailbox at the domain to which the verification email
+                    will be sent (e.g., postmaster).
+      responses:
+        '200':
+          description: Verification status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The verification status.
+                  domain:
+                    type: string
+                    description: The domain being verified.
+                  email:
+                    type: string
+                    description: >-
+                      The email address where the verification message
+                      was sent.
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /senders/info:
+    post:
+      operationId: postSendersInfo
+      summary: Get sender info
+      description: >-
+        Get detailed information for a single sender address, including
+        aggregate sending statistics.
+      tags:
+        - Senders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - address
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                address:
+                  type: string
+                  format: email
+                  description: The email address of the sender to retrieve info for.
+      responses:
+        '200':
+          description: The sender details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SenderInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /senders/time-series:
+    post:
+      operationId: postSendersTimeSeries
+      summary: Get sender time series
+      description: >-
+        Return the recent sending history for a sender address, aggregated
+        by hourly time slots.
+      tags:
+        - Senders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - address
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                address:
+                  type: string
+                  format: email
+                  description: The sender address for time series data.
+      responses:
+        '200':
+          description: An array of time series data for the sender.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimeSeries'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /users/info:
+    post:
+      operationId: postUsersInfo
+      summary: Get user info
+      description: >-
+        Return the information about the API-connected user, including
+        username, reputation, hourly quota, and account-level statistics.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: Account information for the authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /users/ping:
+    post:
+      operationId: postUsersPing
+      summary: Ping the API
+      description: >-
+        Validate an API key and respond to a ping. Returns the string PONG!
+        if the API key is valid.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: A successful ping response.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: PONG!
+                description: The string PONG! confirming a valid API key.
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /users/senders:
+    post:
+      operationId: postUsersSenders
+      summary: List account senders
+      description: >-
+        Return the senders that have tried to use this account, both verified
+        and unverified.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of sender objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SenderInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /webhooks/list:
+    post:
+      operationId: postWebhooksList
+      summary: List webhooks
+      description: Get the list of all configured webhooks for the account.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of webhook objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WebhookInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /webhooks/add:
+    post:
+      operationId: postWebhooksAdd
+      summary: Add a webhook
+      description: >-
+        Create a new webhook. Mandrill will attempt a HEAD request to the
+        provided URL to verify the webhook endpoint.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - url
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                url:
+                  type: string
+                  format: uri
+                  description: The URL the webhook should POST event batches to.
+                description:
+                  type: string
+                  description: An optional description of the webhook.
+                events:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - send
+                      - hard_bounce
+                      - soft_bounce
+                      - open
+                      - click
+                      - spam
+                      - unsub
+                      - reject
+                      - deferral
+                  description: >-
+                    The message events that should trigger the webhook. If
+                    empty, all events will be sent.
+      responses:
+        '200':
+          description: The newly created webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /webhooks/info:
+    post:
+      operationId: postWebhooksInfo
+      summary: Get webhook info
+      description: Get the details for a specific webhook by its unique ID.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: integer
+                  description: The unique identifier of the webhook.
+      responses:
+        '200':
+          description: The webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /webhooks/update:
+    post:
+      operationId: postWebhooksUpdate
+      summary: Update a webhook
+      description: Update the URL, description, or events for an existing webhook.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+                - url
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: integer
+                  description: The unique identifier of the webhook to update.
+                url:
+                  type: string
+                  format: uri
+                  description: The new URL for the webhook.
+                description:
+                  type: string
+                  description: Updated description.
+                events:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - send
+                      - hard_bounce
+                      - soft_bounce
+                      - open
+                      - click
+                      - spam
+                      - unsub
+                      - reject
+                      - deferral
+                  description: Updated list of events that trigger the webhook.
+      responses:
+        '200':
+          description: The updated webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /webhooks/delete:
+    post:
+      operationId: postWebhooksDelete
+      summary: Delete a webhook
+      description: Permanently delete a webhook by its unique ID.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: integer
+                  description: The unique identifier of the webhook to delete.
+      responses:
+        '200':
+          description: The deleted webhook details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /subaccounts/list:
+    post:
+      operationId: postSubaccountsList
+      summary: List subaccounts
+      description: Get the list of subaccounts defined for the account.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                q:
+                  type: string
+                  description: Optional prefix to filter subaccounts by ID or name.
+      responses:
+        '200':
+          description: An array of subaccount objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubaccountInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /subaccounts/add:
+    post:
+      operationId: postSubaccountsAdd
+      summary: Add a subaccount
+      description: Create a new subaccount under the main account.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: A unique identifier for the new subaccount (max 255 chars).
+                name:
+                  type: string
+                  description: An optional display name for the subaccount.
+                notes:
+                  type: string
+                  description: Optional notes about the subaccount.
+                custom_quota:
+                  type: integer
+                  description: >-
+                    An optional manual hourly quota for the subaccount. If
+                    not specified, the subaccount shares the parent
+                    account quota.
+      responses:
+        '200':
+          description: The newly created subaccount details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubaccountInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /subaccounts/info:
+    post:
+      operationId: postSubaccountsInfo
+      summary: Get subaccount info
+      description: Get detailed information about a specific subaccount.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique identifier for the subaccount.
+      responses:
+        '200':
+          description: The subaccount details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubaccountInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /subaccounts/update:
+    post:
+      operationId: postSubaccountsUpdate
+      summary: Update a subaccount
+      description: Update an existing subaccount's name, notes, or quota.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique identifier of the subaccount.
+                name:
+                  type: string
+                  description: Updated display name.
+                notes:
+                  type: string
+                  description: Updated notes.
+                custom_quota:
+                  type: integer
+                  description: Updated manual hourly quota.
+      responses:
+        '200':
+          description: The updated subaccount details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubaccountInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /subaccounts/delete:
+    post:
+      operationId: postSubaccountsDelete
+      summary: Delete a subaccount
+      description: Permanently delete a subaccount. Any future email for the subaccount will be sent from the primary account.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique identifier of the subaccount to delete.
+      responses:
+        '200':
+          description: The deleted subaccount details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubaccountInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /subaccounts/pause:
+    post:
+      operationId: postSubaccountsPause
+      summary: Pause a subaccount
+      description: >-
+        Pause a subaccount's sending. Any future messages sent through the
+        subaccount will be queued but not delivered until the subaccount
+        is resumed.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique identifier of the subaccount to pause.
+      responses:
+        '200':
+          description: The paused subaccount details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubaccountInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /subaccounts/resume:
+    post:
+      operationId: postSubaccountsResume
+      summary: Resume a subaccount
+      description: >-
+        Resume a paused subaccount, allowing it to send messages again.
+      tags:
+        - Subaccounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique identifier of the subaccount to resume.
+      responses:
+        '200':
+          description: The resumed subaccount details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubaccountInfo'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /rejects/list:
+    post:
+      operationId: postRejectsList
+      summary: List rejections
+      description: >-
+        Retrieve all entries in the rejection blacklist. These are email
+        addresses that have previously hard-bounced or been reported as
+        spam, and will be automatically rejected.
+      tags:
+        - Rejects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                email:
+                  type: string
+                  format: email
+                  description: Optional email address or prefix to filter results.
+                include_expired:
+                  type: boolean
+                  default: false
+                  description: Whether to include expired rejections.
+                subaccount:
+                  type: string
+                  description: Optional subaccount ID to restrict results.
+      responses:
+        '200':
+          description: An array of rejection entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RejectEntry'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /rejects/add:
+    post:
+      operationId: postRejectsAdd
+      summary: Add a rejection
+      description: >-
+        Manually add an email address to the rejection blacklist. Messages
+        to this address will be rejected.
+      tags:
+        - Rejects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - email
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                email:
+                  type: string
+                  format: email
+                  description: The email address to block.
+                comment:
+                  type: string
+                  description: An optional comment about why the address was blacklisted.
+                subaccount:
+                  type: string
+                  description: Optional subaccount to restrict the rejection to.
+      responses:
+        '200':
+          description: Details about the newly added rejection.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: The email address that was added.
+                  added:
+                    type: boolean
+                    description: Whether the address was added to the blacklist.
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /rejects/delete:
+    post:
+      operationId: postRejectsDelete
+      summary: Delete a rejection
+      description: >-
+        Remove an email address from the rejection blacklist, allowing
+        messages to be delivered to it again.
+      tags:
+        - Rejects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - email
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                email:
+                  type: string
+                  format: email
+                  description: The email address to remove from the blacklist.
+                subaccount:
+                  type: string
+                  description: Optional subaccount that the rejection applies to.
+      responses:
+        '200':
+          description: Details about the removed rejection.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: The email address that was removed.
+                  deleted:
+                    type: boolean
+                    description: Whether the address was removed from the blacklist.
+                  subaccount:
+                    type: string
+                    description: The subaccount blacklist the deletion applied to.
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /allowlists/list:
+    post:
+      operationId: postAllowlistsList
+      summary: List allowlist entries
+      description: >-
+        Get all email addresses on the account allowlist. Allowlisted
+        addresses bypass the rejection blacklist.
+      tags:
+        - Allowlists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                email:
+                  type: string
+                  format: email
+                  description: Optional email address or prefix to filter results.
+      responses:
+        '200':
+          description: An array of allowlist entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AllowlistEntry'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /allowlists/add:
+    post:
+      operationId: postAllowlistsAdd
+      summary: Add an allowlist entry
+      description: >-
+        Add an email address to the allowlist, allowing messages to bypass
+        the rejection blacklist.
+      tags:
+        - Allowlists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - email
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                email:
+                  type: string
+                  format: email
+                  description: The email address to add to the allowlist.
+                comment:
+                  type: string
+                  description: An optional comment about why the address was allowlisted.
+      responses:
+        '200':
+          description: Details about the allowlist addition.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: The email address added.
+                  added:
+                    type: boolean
+                    description: Whether the address was added.
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /allowlists/delete:
+    post:
+      operationId: postAllowlistsDelete
+      summary: Delete an allowlist entry
+      description: >-
+        Remove an email address from the allowlist. The address will no
+        longer bypass the rejection blacklist.
+      tags:
+        - Allowlists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - email
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                email:
+                  type: string
+                  format: email
+                  description: The email address to remove from the allowlist.
+      responses:
+        '200':
+          description: Details about the allowlist removal.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    description: The email address removed.
+                  deleted:
+                    type: boolean
+                    description: Whether the address was removed.
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /ips/list:
+    post:
+      operationId: postIpsList
+      summary: List dedicated IPs
+      description: >-
+        Get the list of dedicated IP addresses associated with the account,
+        including their pool assignments, warmup status, and sending
+        statistics.
+      tags:
+        - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of dedicated IP objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DedicatedIP'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /ips/info:
+    post:
+      operationId: postIpsInfo
+      summary: Get IP info
+      description: Get detailed information about a specific dedicated IP address.
+      tags:
+        - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - ip
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                ip:
+                  type: string
+                  description: The dedicated IP address.
+      responses:
+        '200':
+          description: The dedicated IP details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DedicatedIP'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /ips/list-pools:
+    post:
+      operationId: postIpsListPools
+      summary: List IP pools
+      description: >-
+        Get the list of IP pools defined for the account, with the IPs
+        assigned to each pool.
+      tags:
+        - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of IP pool objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IPPool'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /ips/create-pool:
+    post:
+      operationId: postIpsCreatePool
+      summary: Create an IP pool
+      description: Create a new IP pool for organizing dedicated IPs.
+      tags:
+        - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - pool
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                pool:
+                  type: string
+                  description: The name of the new pool.
+      responses:
+        '200':
+          description: The newly created IP pool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPPool'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /ips/delete-pool:
+    post:
+      operationId: postIpsDeletePool
+      summary: Delete an IP pool
+      description: >-
+        Delete an IP pool. IPs in the pool will be moved to the default
+        pool if one exists.
+      tags:
+        - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - pool
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                pool:
+                  type: string
+                  description: The name of the pool to delete.
+      responses:
+        '200':
+          description: Deletion confirmation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pool:
+                    type: string
+                    description: The name of the pool that was deleted.
+                  deleted:
+                    type: boolean
+                    description: Whether the pool was deleted.
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /exports/info:
+    post:
+      operationId: postExportsInfo
+      summary: Get export info
+      description: Get information about an individual data export job.
+      tags:
+        - Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - id
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                id:
+                  type: string
+                  description: The unique identifier for the export job.
+      responses:
+        '200':
+          description: The export job details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /exports/list:
+    post:
+      operationId: postExportsList
+      summary: List exports
+      description: Get a list of all data export jobs for the account.
+      tags:
+        - Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of export job objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExportJob'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /exports/rejects:
+    post:
+      operationId: postExportsRejects
+      summary: Export rejections
+      description: >-
+        Start a new export job for the account's rejection blacklist.
+        When complete, a download URL is provided.
+      tags:
+        - Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                notify_email:
+                  type: string
+                  format: email
+                  description: Email address to notify when the export is ready.
+      responses:
+        '200':
+          description: The export job details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /exports/allowlist:
+    post:
+      operationId: postExportsAllowlist
+      summary: Export allowlist
+      description: >-
+        Start a new export job for the account's allowlist. When complete,
+        a download URL is provided.
+      tags:
+        - Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                notify_email:
+                  type: string
+                  format: email
+                  description: Email address to notify when the export is ready.
+      responses:
+        '200':
+          description: The export job details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /exports/activity:
+    post:
+      operationId: postExportsActivity
+      summary: Export message activity
+      description: >-
+        Start a new export job for message activity history. The export
+        includes detailed message logs for the specified date range.
+      tags:
+        - Exports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                notify_email:
+                  type: string
+                  format: email
+                  description: Email address to notify when the export is ready.
+                date_from:
+                  type: string
+                  format: date-time
+                  description: Start date for the activity export (UTC).
+                date_to:
+                  type: string
+                  format: date-time
+                  description: End date for the activity export (UTC).
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  description: Tags to filter the activity export.
+                senders:
+                  type: array
+                  items:
+                    type: string
+                  description: Sender addresses to filter the export.
+                states:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - sent
+                      - rejected
+                      - bounced
+                      - soft-bounced
+                      - spam
+                      - unsub
+                  description: Message states to include in the export.
+                api_keys:
+                  type: array
+                  items:
+                    type: string
+                  description: API keys to filter the export for subaccount isolation.
+      responses:
+        '200':
+          description: The export job details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /metadata/list:
+    post:
+      operationId: postMetadataList
+      summary: List metadata fields
+      description: >-
+        Get the list of custom metadata fields defined for the account.
+        Metadata fields can be attached to messages for tracking.
+      tags:
+        - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+      responses:
+        '200':
+          description: An array of metadata field objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MetadataField'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /metadata/add:
+    post:
+      operationId: postMetadataAdd
+      summary: Add a metadata field
+      description: >-
+        Add a new custom metadata field that can be indexed and used for
+        filtering in message searches.
+      tags:
+        - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The unique name of the metadata field.
+                view_template:
+                  type: string
+                  description: >-
+                    Mustache template to control how the metadata is displayed
+                    in the Mandrill UI.
+      responses:
+        '200':
+          description: The newly created metadata field.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataField'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /metadata/update:
+    post:
+      operationId: postMetadataUpdate
+      summary: Update a metadata field
+      description: Update an existing metadata field's display template.
+      tags:
+        - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The unique name of the metadata field to update.
+                view_template:
+                  type: string
+                  description: Updated Mustache template for displaying the metadata.
+      responses:
+        '200':
+          description: The updated metadata field.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataField'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+  /metadata/delete:
+    post:
+      operationId: postMetadataDelete
+      summary: Delete a metadata field
+      description: >-
+        Permanently delete a metadata field. Metadata attached to messages
+        using this field will no longer be searchable.
+      tags:
+        - Metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - key
+                - name
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                name:
+                  type: string
+                  description: The unique name of the metadata field to delete.
+      responses:
+        '200':
+          description: The deleted metadata field.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetadataField'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-MC-ApiKey
+      description: >-
+        Mandrill uses API key authentication. The key is passed in the
+        JSON request body as the "key" parameter for every call, or
+        alternatively via the X-MC-ApiKey header.
+
+  responses:
+    ValidationError:
+      description: The request parameters were invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidKeyError:
+      description: The provided API key is not valid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    GeneralError:
+      description: An unexpected error occurred on the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    Error:
+      type: object
+      description: A standard error response from the Mandrill API.
+      properties:
+        status:
+          type: string
+          enum:
+            - error
+          description: Always "error" for error responses.
+        code:
+          type: integer
+          description: The numeric error code.
+        name:
+          type: string
+          description: The name/type of the error (e.g., Invalid_Key, ValidationError).
+        message:
+          type: string
+          description: A human-readable description of the error.
+
+    MessagePayload:
+      type: object
+      description: >-
+        The message object containing all parameters for a transactional
+        email, including recipients, content, attachments, and tracking
+        options.
+      properties:
+        html:
+          type: string
+          description: The full HTML content of the message.
+        text:
+          type: string
+          description: The full plain-text content of the message.
+        subject:
+          type: string
+          description: The message subject line.
+        from_email:
+          type: string
+          format: email
+          description: The sender email address.
+        from_name:
+          type: string
+          description: The sender display name.
+        to:
+          type: array
+          description: An array of recipient objects.
+          items:
+            type: object
+            required:
+              - email
+            properties:
+              email:
+                type: string
+                format: email
+                description: The recipient email address.
+              name:
+                type: string
+                description: The recipient display name.
+              type:
+                type: string
+                enum:
+                  - to
+                  - cc
+                  - bcc
+                default: to
+                description: The recipient type (to, cc, or bcc).
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Optional extra headers to add to the message (e.g., Reply-To).
+        important:
+          type: boolean
+          default: false
+          description: Whether this message is important and should be delivered ahead of non-important messages.
+        track_opens:
+          type: boolean
+          description: Whether to enable open tracking for this message.
+        track_clicks:
+          type: boolean
+          description: Whether to enable click tracking for this message.
+        auto_text:
+          type: boolean
+          description: >-
+            Whether to automatically generate a plain-text version from
+            the HTML content.
+        auto_html:
+          type: boolean
+          description: >-
+            Whether to automatically generate HTML from the plain-text
+            content.
+        inline_css:
+          type: boolean
+          description: >-
+            Whether to automatically inline all CSS styles from style
+            blocks in the HTML content.
+        url_strip_qs:
+          type: boolean
+          description: Whether to strip query strings from URLs when aggregating tracked click data.
+        preserve_recipients:
+          type: boolean
+          description: Whether to show all recipients in the To header of each email.
+        view_content_link:
+          type: boolean
+          description: Whether to include a View Content Link in the Mandrill dashboard for this message.
+        bcc_address:
+          type: string
+          format: email
+          description: An optional address to BCC on the message.
+        tracking_domain:
+          type: string
+          description: A custom domain to use for tracking opens and clicks.
+        signing_domain:
+          type: string
+          description: A custom domain to use for DKIM signing instead of the default.
+        return_path_domain:
+          type: string
+          description: A custom domain to use for the return-path header.
+        merge:
+          type: boolean
+          default: true
+          description: Whether to evaluate merge tags in the message.
+        merge_language:
+          type: string
+          enum:
+            - mailchimp
+            - handlebars
+          default: mailchimp
+          description: The merge tag language to use (Mailchimp or Handlebars).
+        global_merge_vars:
+          type: array
+          description: Global merge variables applied to all recipients.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The global merge variable name.
+              content:
+                type: string
+                description: The global merge variable value.
+        merge_vars:
+          type: array
+          description: Per-recipient merge variables.
+          items:
+            type: object
+            properties:
+              rcpt:
+                type: string
+                format: email
+                description: The recipient email address.
+              vars:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The merge variable name.
+                    content:
+                      type: string
+                      description: The merge variable value.
+        tags:
+          type: array
+          items:
+            type: string
+          description: An array of string tags to apply to this message for analytics.
+        subaccount:
+          type: string
+          description: The unique ID of a subaccount for this message.
+        google_analytics_domains:
+          type: array
+          items:
+            type: string
+          description: An array of domains for which Google Analytics tracking parameters will be appended.
+        google_analytics_campaign:
+          type: string
+          description: The utm_campaign tracking parameter for Google Analytics.
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Key-value metadata to associate with the message.
+        recipient_metadata:
+          type: array
+          description: Per-recipient metadata.
+          items:
+            type: object
+            properties:
+              rcpt:
+                type: string
+                format: email
+                description: The recipient email address.
+              values:
+                type: object
+                additionalProperties:
+                  type: string
+                description: Key-value metadata for this recipient.
+        attachments:
+          type: array
+          description: An array of file attachments.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: The MIME type of the attachment.
+              name:
+                type: string
+                description: The file name of the attachment.
+              content:
+                type: string
+                description: Base64-encoded content of the attachment.
+        images:
+          type: array
+          description: An array of inline images referenced with "cid:" in the HTML content.
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: The MIME type of the image (e.g., image/png).
+              name:
+                type: string
+                description: The Content-ID of the image, referenced as "cid:name" in HTML.
+              content:
+                type: string
+                description: Base64-encoded content of the image.
+
+    SendResult:
+      type: object
+      description: The result of sending a message to a single recipient.
+      properties:
+        email:
+          type: string
+          format: email
+          description: The recipient email address.
+        status:
+          type: string
+          enum:
+            - sent
+            - queued
+            - scheduled
+            - rejected
+            - invalid
+          description: The sending status for this recipient.
+        reject_reason:
+          type: string
+          enum:
+            - hard-bounce
+            - soft-bounce
+            - spam
+            - unsub
+            - custom
+            - invalid-sender
+            - invalid
+            - test-mode-limit
+            - unsigned
+            - rule
+          description: The reason the message was rejected, if applicable.
+        queued_reason:
+          type: string
+          description: The reason the message was queued instead of sent immediately.
+        _id:
+          type: string
+          description: The unique message ID for this recipient's message.
+
+    MessageInfo:
+      type: object
+      description: Summary information about a sent message.
+      properties:
+        ts:
+          type: integer
+          description: The Unix timestamp when the message was sent.
+        _id:
+          type: string
+          description: The unique message ID.
+        sender:
+          type: string
+          format: email
+          description: The sender email address.
+        template:
+          type: string
+          description: The template slug used, if any.
+        subject:
+          type: string
+          description: The subject line of the message.
+        email:
+          type: string
+          format: email
+          description: The recipient email address.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags applied to the message.
+        opens:
+          type: integer
+          description: The number of times the message was opened.
+        opens_detail:
+          type: array
+          items:
+            type: object
+            properties:
+              ts:
+                type: integer
+                description: Unix timestamp of the open event.
+              ip:
+                type: string
+                description: IP address from which the message was opened.
+              location:
+                type: string
+                description: Approximate geographic location of the open.
+              ua:
+                type: string
+                description: User agent string of the client.
+          description: Detailed open tracking events.
+        clicks:
+          type: integer
+          description: The number of link clicks in the message.
+        clicks_detail:
+          type: array
+          items:
+            type: object
+            properties:
+              ts:
+                type: integer
+                description: Unix timestamp of the click event.
+              url:
+                type: string
+                description: The URL that was clicked.
+              ip:
+                type: string
+                description: IP address of the clicker.
+              location:
+                type: string
+                description: Approximate geographic location of the click.
+              ua:
+                type: string
+                description: User agent string of the client.
+          description: Detailed click tracking events.
+        state:
+          type: string
+          enum:
+            - sent
+            - bounced
+            - rejected
+            - soft-bounced
+            - spam
+            - unsub
+          description: The current state of the message.
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom metadata attached to the message.
+
+    MessageDetail:
+      type: object
+      description: Detailed information about a specific message.
+      allOf:
+        - $ref: '#/components/schemas/MessageInfo'
+        - type: object
+          properties:
+            smtp_events:
+              type: array
+              description: SMTP event log for the message delivery.
+              items:
+                type: object
+                properties:
+                  ts:
+                    type: integer
+                    description: Unix timestamp of the SMTP event.
+                  type:
+                    type: string
+                    description: The type of SMTP event.
+                  diag:
+                    type: string
+                    description: Diagnostic information from the receiving server.
+            resends:
+              type: array
+              description: A list of resend attempts for this message.
+              items:
+                type: object
+                properties:
+                  ts:
+                    type: integer
+                    description: Unix timestamp of the resend.
+
+    MessageContent:
+      type: object
+      description: The full content of a sent message.
+      properties:
+        ts:
+          type: integer
+          description: Unix timestamp of when the message was sent.
+        _id:
+          type: string
+          description: The unique message ID.
+        from_email:
+          type: string
+          format: email
+          description: The sender email address.
+        from_name:
+          type: string
+          description: The sender display name.
+        subject:
+          type: string
+          description: The message subject line.
+        to:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              description: Recipient email address.
+            name:
+              type: string
+              description: Recipient display name.
+          description: The primary recipient.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags applied to the message.
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: The full message headers.
+        text:
+          type: string
+          description: The plain-text body of the message.
+        html:
+          type: string
+          description: The HTML body of the message.
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The attachment file name.
+              type:
+                type: string
+                description: The MIME type of the attachment.
+              content:
+                type: string
+                description: Base64-encoded attachment content.
+          description: File attachments included in the message.
+
+    ParsedMessage:
+      type: object
+      description: A parsed MIME message.
+      properties:
+        subject:
+          type: string
+          description: The parsed subject line.
+        from_email:
+          type: string
+          format: email
+          description: The parsed sender email address.
+        from_name:
+          type: string
+          description: The parsed sender name.
+        to:
+          type: array
+          items:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+              name:
+                type: string
+          description: Parsed recipient list.
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: All parsed headers.
+        text:
+          type: string
+          description: The plain-text body.
+        html:
+          type: string
+          description: The HTML body.
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              content:
+                type: string
+          description: Parsed file attachments.
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              content:
+                type: string
+          description: Parsed inline images.
+
+    ScheduledMessage:
+      type: object
+      description: A message scheduled for future delivery.
+      properties:
+        _id:
+          type: string
+          description: The unique scheduled message ID.
+        created_at:
+          type: string
+          format: date-time
+          description: When the scheduled message was created.
+        send_at:
+          type: string
+          format: date-time
+          description: When the message is scheduled to be sent.
+        from_email:
+          type: string
+          format: email
+          description: The sender email address.
+        to:
+          type: string
+          format: email
+          description: The recipient email address.
+        subject:
+          type: string
+          description: The message subject line.
+
+    TemplateInfo:
+      type: object
+      description: Information about a Mandrill template.
+      properties:
+        slug:
+          type: string
+          description: The URL-safe slug for the template.
+        name:
+          type: string
+          description: The display name of the template.
+        labels:
+          type: array
+          items:
+            type: string
+          description: Labels applied to the template for organization.
+        code:
+          type: string
+          description: The HTML code of the template.
+        subject:
+          type: string
+          description: The default subject line.
+        from_email:
+          type: string
+          format: email
+          description: The default from address.
+        from_name:
+          type: string
+          description: The default from name.
+        text:
+          type: string
+          description: The default text content.
+        publish_name:
+          type: string
+          description: The name of the published version.
+        publish_code:
+          type: string
+          description: The HTML code of the published version.
+        publish_subject:
+          type: string
+          description: The subject of the published version.
+        publish_from_email:
+          type: string
+          format: email
+          description: The from address of the published version.
+        publish_from_name:
+          type: string
+          description: The from name of the published version.
+        publish_text:
+          type: string
+          description: The text content of the published version.
+        published_at:
+          type: string
+          format: date-time
+          description: When the template was last published.
+        created_at:
+          type: string
+          format: date-time
+          description: When the template was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the template was last updated.
+
+    TagInfo:
+      type: object
+      description: Information and statistics for a message tag.
+      properties:
+        tag:
+          type: string
+          description: The tag name.
+        reputation:
+          type: integer
+          description: The reputation score for the tag (0-100).
+        sent:
+          type: integer
+          description: Total number of messages sent with this tag.
+        hard_bounces:
+          type: integer
+          description: Total hard bounces for messages with this tag.
+        soft_bounces:
+          type: integer
+          description: Total soft bounces for messages with this tag.
+        rejects:
+          type: integer
+          description: Total rejects for messages with this tag.
+        complaints:
+          type: integer
+          description: Total spam complaints for messages with this tag.
+        unsubs:
+          type: integer
+          description: Total unsubscribes for messages with this tag.
+        opens:
+          type: integer
+          description: Total opens for messages with this tag.
+        clicks:
+          type: integer
+          description: Total clicks for messages with this tag.
+        unique_opens:
+          type: integer
+          description: Unique opens for messages with this tag.
+        unique_clicks:
+          type: integer
+          description: Unique clicks for messages with this tag.
+
+    SenderInfo:
+      type: object
+      description: Information and statistics for a sender address.
+      properties:
+        address:
+          type: string
+          format: email
+          description: The sender email address.
+        created_at:
+          type: string
+          format: date-time
+          description: When the sender was first used.
+        sent:
+          type: integer
+          description: Total number of messages sent from this address.
+        hard_bounces:
+          type: integer
+          description: Total hard bounces.
+        soft_bounces:
+          type: integer
+          description: Total soft bounces.
+        rejects:
+          type: integer
+          description: Total rejects.
+        complaints:
+          type: integer
+          description: Total spam complaints.
+        unsubs:
+          type: integer
+          description: Total unsubscribes.
+        opens:
+          type: integer
+          description: Total opens.
+        clicks:
+          type: integer
+          description: Total clicks.
+        unique_opens:
+          type: integer
+          description: Unique opens.
+        unique_clicks:
+          type: integer
+          description: Unique clicks.
+
+    SenderDomain:
+      type: object
+      description: Information about a configured sender domain.
+      properties:
+        domain:
+          type: string
+          description: The domain name.
+        created_at:
+          type: string
+          format: date-time
+          description: When the domain was added.
+        last_tested_at:
+          type: string
+          format: date-time
+          description: When the domain settings were last tested.
+        spf:
+          type: object
+          description: SPF verification details.
+          properties:
+            valid:
+              type: boolean
+              description: Whether the SPF record is valid.
+            valid_after:
+              type: string
+              format: date-time
+              description: When the SPF record was verified.
+            error:
+              type: string
+              description: Any SPF verification error.
+        dkim:
+          type: object
+          description: DKIM verification details.
+          properties:
+            valid:
+              type: boolean
+              description: Whether the DKIM record is valid.
+            valid_after:
+              type: string
+              format: date-time
+              description: When the DKIM record was verified.
+            error:
+              type: string
+              description: Any DKIM verification error.
+        verified_at:
+          type: string
+          format: date-time
+          description: When the domain ownership was verified.
+        valid_signing:
+          type: boolean
+          description: Whether the domain can be used for DKIM signing.
+
+    TimeSeries:
+      type: object
+      description: An hourly time series data point with sending statistics.
+      properties:
+        time:
+          type: string
+          format: date-time
+          description: The hour this data point covers (UTC).
+        sent:
+          type: integer
+          description: Number of messages sent.
+        hard_bounces:
+          type: integer
+          description: Number of hard bounces.
+        soft_bounces:
+          type: integer
+          description: Number of soft bounces.
+        rejects:
+          type: integer
+          description: Number of rejects.
+        complaints:
+          type: integer
+          description: Number of spam complaints.
+        unsubs:
+          type: integer
+          description: Number of unsubscribes.
+        opens:
+          type: integer
+          description: Number of opens.
+        unique_opens:
+          type: integer
+          description: Number of unique opens.
+        clicks:
+          type: integer
+          description: Number of clicks.
+        unique_clicks:
+          type: integer
+          description: Number of unique clicks.
+
+    UserInfo:
+      type: object
+      description: Account-level information for the authenticated Mandrill user.
+      properties:
+        username:
+          type: string
+          description: The account username.
+        created_at:
+          type: string
+          format: date-time
+          description: When the account was created.
+        public_id:
+          type: string
+          description: A unique public identifier for the account.
+        reputation:
+          type: integer
+          description: The account sending reputation (0-100).
+        hourly_quota:
+          type: integer
+          description: The hourly email sending quota.
+        backlog:
+          type: integer
+          description: The number of messages in the send queue.
+        stats:
+          type: object
+          description: Account-level sending statistics.
+          properties:
+            today:
+              $ref: '#/components/schemas/AccountStats'
+            last_7_days:
+              $ref: '#/components/schemas/AccountStats'
+            last_30_days:
+              $ref: '#/components/schemas/AccountStats'
+            last_60_days:
+              $ref: '#/components/schemas/AccountStats'
+            last_90_days:
+              $ref: '#/components/schemas/AccountStats'
+            all_time:
+              $ref: '#/components/schemas/AccountStats'
+
+    AccountStats:
+      type: object
+      description: Aggregate sending statistics for a time period.
+      properties:
+        sent:
+          type: integer
+          description: Total messages sent.
+        hard_bounces:
+          type: integer
+          description: Total hard bounces.
+        soft_bounces:
+          type: integer
+          description: Total soft bounces.
+        rejects:
+          type: integer
+          description: Total rejections.
+        complaints:
+          type: integer
+          description: Total spam complaints.
+        unsubs:
+          type: integer
+          description: Total unsubscribes.
+        opens:
+          type: integer
+          description: Total opens.
+        unique_opens:
+          type: integer
+          description: Unique opens.
+        clicks:
+          type: integer
+          description: Total clicks.
+        unique_clicks:
+          type: integer
+          description: Unique clicks.
+
+    WebhookInfo:
+      type: object
+      description: Information about a configured webhook.
+      properties:
+        id:
+          type: integer
+          description: The unique webhook identifier.
+        url:
+          type: string
+          format: uri
+          description: The webhook URL.
+        description:
+          type: string
+          description: A description of the webhook.
+        auth_key:
+          type: string
+          description: >-
+            The key used to generate webhook signatures for verifying
+            webhook authenticity.
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - send
+              - hard_bounce
+              - soft_bounce
+              - open
+              - click
+              - spam
+              - unsub
+              - reject
+              - deferral
+          description: The events that trigger this webhook.
+        created_at:
+          type: string
+          format: date-time
+          description: When the webhook was created.
+        last_sent_at:
+          type: string
+          format: date-time
+          description: When the webhook last fired.
+        batches_sent:
+          type: integer
+          description: Total number of event batches sent.
+        events_sent:
+          type: integer
+          description: Total number of events sent.
+        last_error:
+          type: string
+          description: The last error received from the webhook URL.
+
+    SubaccountInfo:
+      type: object
+      description: Information about a subaccount.
+      properties:
+        id:
+          type: string
+          description: The unique subaccount identifier.
+        name:
+          type: string
+          description: The display name of the subaccount.
+        notes:
+          type: string
+          description: Notes about the subaccount.
+        custom_quota:
+          type: integer
+          description: The manual hourly quota, if set.
+        status:
+          type: string
+          enum:
+            - active
+            - paused
+          description: The current status of the subaccount.
+        reputation:
+          type: integer
+          description: The subaccount sending reputation (0-100).
+        created_at:
+          type: string
+          format: date-time
+          description: When the subaccount was created.
+        first_sent_at:
+          type: string
+          format: date-time
+          description: When the subaccount first sent a message.
+        sent_weekly:
+          type: integer
+          description: Messages sent in the last week.
+        sent_monthly:
+          type: integer
+          description: Messages sent in the last month.
+        sent_total:
+          type: integer
+          description: Total messages sent.
+
+    RejectEntry:
+      type: object
+      description: An entry in the rejection blacklist.
+      properties:
+        email:
+          type: string
+          format: email
+          description: The rejected email address.
+        reason:
+          type: string
+          enum:
+            - hard-bounce
+            - soft-bounce
+            - spam
+            - unsub
+            - custom
+          description: The reason the address is on the blacklist.
+        detail:
+          type: string
+          description: Extended details about the rejection.
+        created_at:
+          type: string
+          format: date-time
+          description: When the entry was added to the blacklist.
+        last_event_at:
+          type: string
+          format: date-time
+          description: When the last event occurred for this address.
+        expires_at:
+          type: string
+          format: date-time
+          description: When the rejection expires (if applicable).
+        expired:
+          type: boolean
+          description: Whether the rejection has expired.
+        subaccount:
+          type: string
+          description: The subaccount this rejection applies to, if any.
+        sender:
+          type: object
+          properties:
+            address:
+              type: string
+              format: email
+            created_at:
+              type: string
+              format: date-time
+            sent:
+              type: integer
+            hard_bounces:
+              type: integer
+            soft_bounces:
+              type: integer
+            rejects:
+              type: integer
+            complaints:
+              type: integer
+            unsubs:
+              type: integer
+            opens:
+              type: integer
+            clicks:
+              type: integer
+          description: Sender statistics associated with the rejection.
+
+    AllowlistEntry:
+      type: object
+      description: An entry in the sending allowlist.
+      properties:
+        email:
+          type: string
+          format: email
+          description: The allowlisted email address.
+        detail:
+          type: string
+          description: Details or comment about why the address is allowlisted.
+        created_at:
+          type: string
+          format: date-time
+          description: When the entry was added to the allowlist.
+
+    DedicatedIP:
+      type: object
+      description: Information about a dedicated IP address.
+      properties:
+        ip:
+          type: string
+          description: The dedicated IP address.
+        created_at:
+          type: string
+          format: date-time
+          description: When the IP was provisioned.
+        pool:
+          type: string
+          description: The IP pool this address belongs to.
+        domain:
+          type: string
+          description: The reverse DNS domain for the IP.
+        custom_dns:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether custom reverse DNS is enabled.
+            valid:
+              type: boolean
+              description: Whether the custom DNS is valid.
+            error:
+              type: string
+              description: Any DNS error.
+          description: Custom DNS settings for the IP.
+        warmup:
+          type: object
+          properties:
+            warming_up:
+              type: boolean
+              description: Whether the IP is currently in warmup mode.
+            start_at:
+              type: string
+              format: date-time
+              description: When the warmup started.
+            end_at:
+              type: string
+              format: date-time
+              description: When the warmup is expected to end.
+          description: IP warmup status.
+
+    IPPool:
+      type: object
+      description: An IP pool grouping dedicated IPs.
+      properties:
+        name:
+          type: string
+          description: The pool name.
+        created_at:
+          type: string
+          format: date-time
+          description: When the pool was created.
+        ips:
+          type: array
+          items:
+            $ref: '#/components/schemas/DedicatedIP'
+          description: The dedicated IPs in this pool.
+
+    ExportJob:
+      type: object
+      description: Information about a data export job.
+      properties:
+        id:
+          type: string
+          description: The unique export job ID.
+        created_at:
+          type: string
+          format: date-time
+          description: When the export was created.
+        type:
+          type: string
+          enum:
+            - activity
+            - reject
+            - whitelist
+          description: The type of data being exported.
+        finished_at:
+          type: string
+          format: date-time
+          description: When the export completed.
+        state:
+          type: string
+          enum:
+            - waiting
+            - working
+            - complete
+            - error
+            - expired
+          description: The current state of the export.
+        result_url:
+          type: string
+          format: uri
+          description: The URL to download the export file (when complete).
+
+    MetadataField:
+      type: object
+      description: A custom metadata field definition.
+      properties:
+        name:
+          type: string
+          description: The unique name of the metadata field.
+        state:
+          type: string
+          enum:
+            - active
+            - delete
+            - index
+          description: The current state of the field.
+        view_template:
+          type: string
+          description: The Mustache template for displaying the field in the UI.

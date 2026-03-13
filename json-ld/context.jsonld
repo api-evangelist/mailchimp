@@ -1,0 +1,228 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "mailchimp": "https://mailchimp.com/developer/marketing/api/",
+    "mc": "https://mailchimp.com/ontology/",
+
+    "Campaign": {
+      "@id": "mc:Campaign",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "type": "schema:additionalType",
+        "status": "schema:creativeWorkStatus",
+        "create_time": "schema:dateCreated",
+        "send_time": "schema:datePublished",
+        "archive_url": "schema:url",
+        "subject_line": "schema:headline",
+        "preview_text": "schema:abstract",
+        "from_name": "schema:author",
+        "reply_to": "schema:replyToUrl",
+        "emails_sent": "schema:commentCount",
+        "recipients": {
+          "@id": "schema:audience",
+          "@context": {
+            "list_id": "schema:identifier",
+            "list_name": "schema:name",
+            "recipient_count": "schema:audienceSize"
+          }
+        },
+        "settings": {
+          "@id": "mc:campaignSettings",
+          "@context": {
+            "subject_line": "schema:headline",
+            "preview_text": "schema:abstract",
+            "title": "schema:name",
+            "from_name": "schema:author",
+            "reply_to": "schema:replyToUrl",
+            "template_id": "schema:isBasedOn"
+          }
+        },
+        "tracking": {
+          "@id": "mc:campaignTracking",
+          "@context": {
+            "opens": "schema:interactionStatistic",
+            "html_clicks": "schema:interactionStatistic",
+            "google_analytics": "schema:identifier"
+          }
+        },
+        "report_summary": {
+          "@id": "mc:campaignReport",
+          "@context": {
+            "opens": "schema:interactionStatistic",
+            "unique_opens": "schema:interactionStatistic",
+            "open_rate": "schema:interactionStatistic",
+            "clicks": "schema:interactionStatistic",
+            "click_rate": "schema:interactionStatistic"
+          }
+        }
+      }
+    },
+
+    "Audience": {
+      "@id": "mc:Audience",
+      "@type": "schema:Audience",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "date_created": "schema:dateCreated",
+        "permission_reminder": "schema:description",
+        "subscribe_url_short": "schema:url",
+        "subscribe_url_long": "schema:url",
+        "visibility": "schema:accessMode",
+        "double_optin": "mc:doubleOptin",
+        "email_type_option": "mc:emailTypeOption",
+        "contact": {
+          "@id": "schema:contactPoint",
+          "@type": "schema:PostalAddress",
+          "@context": {
+            "company": "schema:name",
+            "address1": "schema:streetAddress",
+            "address2": "schema:streetAddress",
+            "city": "schema:addressLocality",
+            "state": "schema:addressRegion",
+            "zip": "schema:postalCode",
+            "country": "schema:addressCountry",
+            "phone": "schema:telephone"
+          }
+        },
+        "campaign_defaults": {
+          "@id": "mc:campaignDefaults",
+          "@context": {
+            "from_name": "schema:author",
+            "from_email": "schema:email",
+            "subject": "schema:headline",
+            "language": "schema:inLanguage"
+          }
+        },
+        "stats": {
+          "@id": "mc:audienceStats",
+          "@context": {
+            "member_count": "schema:audienceSize",
+            "total_contacts": "schema:audienceSize",
+            "campaign_count": "schema:numberOfItems",
+            "open_rate": "schema:interactionStatistic",
+            "click_rate": "schema:interactionStatistic"
+          }
+        }
+      }
+    },
+
+    "Member": {
+      "@id": "mc:Member",
+      "@type": "schema:Person",
+      "@context": {
+        "id": "schema:identifier",
+        "email_address": "schema:email",
+        "full_name": "schema:name",
+        "status": "mc:subscriptionStatus",
+        "language": "schema:knowsLanguage",
+        "vip": "mc:vipStatus",
+        "timestamp_signup": "schema:dateCreated",
+        "timestamp_opt": "schema:dateModified",
+        "last_changed": "schema:dateModified",
+        "ip_signup": "mc:signupIpAddress",
+        "member_rating": "schema:ratingValue",
+        "email_client": "mc:emailClient",
+        "source": "schema:isBasedOn",
+        "location": {
+          "@id": "schema:homeLocation",
+          "@type": "schema:GeoCoordinates",
+          "@context": {
+            "latitude": "schema:latitude",
+            "longitude": "schema:longitude",
+            "country_code": "schema:addressCountry",
+            "timezone": "schema:timezone",
+            "region": "schema:addressRegion"
+          }
+        },
+        "merge_fields": "mc:mergeFields",
+        "interests": "schema:interestCount",
+        "tags": {
+          "@id": "schema:keywords",
+          "@context": {
+            "id": "schema:identifier",
+            "name": "schema:name"
+          }
+        },
+        "stats": {
+          "@id": "mc:memberStats",
+          "@context": {
+            "avg_open_rate": "schema:interactionStatistic",
+            "avg_click_rate": "schema:interactionStatistic",
+            "ecommerce_data": {
+              "@id": "mc:ecommerceData",
+              "@context": {
+                "total_revenue": "schema:totalPrice",
+                "number_of_orders": "schema:orderQuantity",
+                "currency_code": "schema:priceCurrency"
+              }
+            }
+          }
+        },
+        "marketing_permissions": "mc:marketingPermissions",
+        "sms_phone_number": "schema:telephone",
+        "sms_subscription_status": "mc:smsSubscriptionStatus"
+      }
+    },
+
+    "Template": {
+      "@id": "mc:Template",
+      "@type": "schema:CreativeWork",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "type": "schema:additionalType",
+        "category": "schema:genre",
+        "date_created": "schema:dateCreated",
+        "date_edited": "schema:dateModified",
+        "created_by": "schema:creator",
+        "edited_by": "schema:editor",
+        "active": "mc:isActive",
+        "folder_id": "schema:isPartOf",
+        "thumbnail": "schema:thumbnailUrl",
+        "share_url": "schema:url",
+        "content_type": "schema:encodingFormat",
+        "responsive": "mc:isResponsive",
+        "drag_and_drop": "mc:isDragAndDrop",
+        "html": "schema:text",
+        "sections": "schema:hasPart"
+      }
+    },
+
+    "TransactionalMessage": {
+      "@id": "mc:TransactionalMessage",
+      "@type": "schema:EmailMessage",
+      "@context": {
+        "_id": "schema:identifier",
+        "subject": "schema:headline",
+        "from_email": "schema:sender",
+        "from_name": "schema:author",
+        "html": "schema:text",
+        "text": "schema:text",
+        "to": {
+          "@id": "schema:recipient",
+          "@context": {
+            "email": "schema:email",
+            "name": "schema:name",
+            "type": "schema:additionalType"
+          }
+        },
+        "tags": "schema:keywords",
+        "metadata": "schema:additionalProperty",
+        "attachments": {
+          "@id": "schema:associatedMedia",
+          "@context": {
+            "type": "schema:encodingFormat",
+            "name": "schema:name",
+            "content": "schema:contentUrl"
+          }
+        },
+        "track_opens": "mc:trackOpens",
+        "track_clicks": "mc:trackClicks",
+        "send_at": "schema:datePublished",
+        "subaccount": "mc:subaccount"
+      }
+    }
+  }
+}

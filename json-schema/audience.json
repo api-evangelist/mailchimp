@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/messaging/mailchimp/json-schema/audience.json",
+  "title": "Mailchimp Audience (List)",
+  "description": "A Mailchimp audience (also known as a list). Audiences contain subscribers who have opted in to receive correspondence from you or your organization. They hold contact information, segmentation data, campaign defaults, and compliance settings.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A string that uniquely identifies this list.",
+      "readOnly": true
+    },
+    "web_id": {
+      "type": "integer",
+      "description": "The ID used in the Mailchimp web application.",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the list/audience."
+    },
+    "contact": {
+      "type": "object",
+      "description": "Contact information displayed in campaign footers to comply with international spam laws.",
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "The company name for the list."
+        },
+        "address1": {
+          "type": "string",
+          "description": "The street address for the list contact."
+        },
+        "address2": {
+          "type": "string",
+          "description": "The second line of the street address."
+        },
+        "city": {
+          "type": "string",
+          "description": "The city for the list contact."
+        },
+        "state": {
+          "type": "string",
+          "description": "The state for the list contact."
+        },
+        "zip": {
+          "type": "string",
+          "description": "The postal or zip code for the list contact."
+        },
+        "country": {
+          "type": "string",
+          "description": "A two-character ISO 3166 country code. Defaults to US if invalid.",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number for the list contact."
+        }
+      },
+      "required": ["company", "address1", "city", "state", "zip", "country"]
+    },
+    "permission_reminder": {
+      "type": "string",
+      "description": "The permission reminder for the list, reminding subscribers how they signed up."
+    },
+    "use_archive_bar": {
+      "type": "boolean",
+      "description": "Whether campaigns for this list use the Archive Bar in archives by default.",
+      "default": false
+    },
+    "campaign_defaults": {
+      "type": "object",
+      "description": "Default values for campaigns created for this list.",
+      "properties": {
+        "from_name": {
+          "type": "string",
+          "description": "The default from name for campaigns sent to this list."
+        },
+        "from_email": {
+          "type": "string",
+          "format": "email",
+          "description": "The default from email for campaigns sent to this list."
+        },
+        "subject": {
+          "type": "string",
+          "description": "The default subject line for campaigns sent to this list."
+        },
+        "language": {
+          "type": "string",
+          "description": "The default language for this list's forms."
+        }
+      },
+      "required": ["from_name", "from_email", "subject", "language"]
+    },
+    "notify_on_subscribe": {
+      "type": "string",
+      "description": "The email address to send subscribe notifications to. Set to empty string to disable."
+    },
+    "notify_on_unsubscribe": {
+      "type": "string",
+      "description": "The email address to send unsubscribe notifications to. Set to empty string to disable."
+    },
+    "date_created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time that this list was created in ISO 8601 format.",
+      "readOnly": true
+    },
+    "list_rating": {
+      "type": "integer",
+      "description": "An auto-generated activity score for the list (0-5).",
+      "minimum": 0,
+      "maximum": 5,
+      "readOnly": true
+    },
+    "email_type_option": {
+      "type": "boolean",
+      "description": "Whether the list supports multiple email formats (HTML and plain-text). When true, subscribers can choose their preferred format."
+    },
+    "subscribe_url_short": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL-shortened version of this list's subscribe form.",
+      "readOnly": true
+    },
+    "subscribe_url_long": {
+      "type": "string",
+      "format": "uri",
+      "description": "The full version of this list's subscribe form URL.",
+      "readOnly": true
+    },
+    "beamer_address": {
+      "type": "string",
+      "description": "The list's Email Beamer address for creating campaigns via email.",
+      "readOnly": true
+    },
+    "visibility": {
+      "type": "string",
+      "description": "Legacy visibility setting. No longer used.",
+      "enum": ["pub", "prv"]
+    },
+    "double_optin": {
+      "type": "boolean",
+      "description": "Whether to require the subscriber to confirm subscription via email.",
+      "default": false
+    },
+    "has_welcome": {
+      "type": "boolean",
+      "description": "Whether this list has a welcome automation connected.",
+      "default": false
+    },
+    "marketing_permissions": {
+      "type": "boolean",
+      "description": "Whether the list has marketing permissions (GDPR) enabled.",
+      "default": false
+    },
+    "modules": {
+      "type": "array",
+      "description": "Any list-specific modules installed for this list.",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true
+    },
+    "stats": {
+      "type": "object",
+      "description": "Stats for the list, including subscriber counts and campaign performance.",
+      "readOnly": true,
+      "properties": {
+        "member_count": {
+          "type": "integer",
+          "description": "The number of active members in the list."
+        },
+        "total_contacts": {
+          "type": "integer",
+          "description": "The number of contacts in the list, including subscribed, unsubscribed, pending, cleaned, and transactional contacts."
+        },
+        "unsubscribe_count": {
+          "type": "integer",
+          "description": "The number of members who have unsubscribed from the list."
+        },
+        "cleaned_count": {
+          "type": "integer",
+          "description": "The number of members cleaned from the list (hard bounced)."
+        },
+        "member_count_since_send": {
+          "type": "integer",
+          "description": "The number of active members in the list since the last campaign was sent."
+        },
+        "unsubscribe_count_since_send": {
+          "type": "integer",
+          "description": "The number of members who have unsubscribed since the last campaign was sent."
+        },
+        "cleaned_count_since_send": {
+          "type": "integer",
+          "description": "The number of members cleaned from the list since the last campaign was sent."
+        },
+        "campaign_count": {
+          "type": "integer",
+          "description": "The number of campaigns in any status that use this list."
+        },
+        "campaign_last_sent": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time the last campaign was sent to this list in ISO 8601 format."
+        },
+        "merge_field_count": {
+          "type": "integer",
+          "description": "The number of merge fields for this list (not including EMAIL)."
+        },
+        "avg_sub_rate": {
+          "type": "number",
+          "description": "The average number of subscriptions per month for the list."
+        },
+        "avg_unsub_rate": {
+          "type": "number",
+          "description": "The average number of unsubscriptions per month for the list."
+        },
+        "target_sub_rate": {
+          "type": "number",
+          "description": "The target number of subscriptions per month for the list to keep it growing."
+        },
+        "open_rate": {
+          "type": "number",
+          "description": "The average open rate (a percentage represented as a number between 0 and 100) per campaign for the list."
+        },
+        "click_rate": {
+          "type": "number",
+          "description": "The average click rate (a percentage represented as a number between 0 and 100) per campaign for the list."
+        },
+        "last_sub_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time of the last subscribe in ISO 8601 format."
+        },
+        "last_unsub_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time of the last unsubscribe in ISO 8601 format."
+        }
+      }
+    }
+  },
+  "required": ["name", "contact", "permission_reminder", "campaign_defaults", "email_type_option"],
+  "additionalProperties": true
+}

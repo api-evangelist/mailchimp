@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/messaging/mailchimp/json-schema/template.json",
+  "title": "Mailchimp Template",
+  "description": "A Mailchimp email template. Templates are reusable email layouts that can be used across campaigns. They can be user-created, base templates provided by Mailchimp, or gallery templates. Templates support drag-and-drop editing, responsive design, and custom HTML.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The individual ID for the template.",
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of template (user, base, or gallery).",
+      "enum": ["user", "base", "gallery"],
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the template."
+    },
+    "drag_and_drop": {
+      "type": "boolean",
+      "description": "Whether the template uses the drag and drop editor.",
+      "readOnly": true
+    },
+    "responsive": {
+      "type": "boolean",
+      "description": "Whether the template contains media queries to make it responsive.",
+      "readOnly": true
+    },
+    "category": {
+      "type": "string",
+      "description": "If available, the category the template is listed in.",
+      "readOnly": true
+    },
+    "date_created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the template was created in ISO 8601 format.",
+      "readOnly": true
+    },
+    "date_edited": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the template was edited in ISO 8601 format.",
+      "readOnly": true
+    },
+    "created_by": {
+      "type": "string",
+      "description": "The login name of the template's creator.",
+      "readOnly": true
+    },
+    "edited_by": {
+      "type": "string",
+      "description": "The login name of who last edited the template.",
+      "readOnly": true
+    },
+    "active": {
+      "type": "boolean",
+      "description": "User templates are not deleted but rather marked as inactive. Returns whether the template is still active.",
+      "readOnly": true
+    },
+    "folder_id": {
+      "type": "string",
+      "description": "The ID of the folder the template is currently in."
+    },
+    "thumbnail": {
+      "type": "string",
+      "format": "uri",
+      "description": "If available, the URL for a thumbnail of the template.",
+      "readOnly": true
+    },
+    "share_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL used for template sharing.",
+      "readOnly": true
+    },
+    "content_type": {
+      "type": "string",
+      "description": "How the template's content is put together. 'template' for legacy editor, 'multichannel' for new editor, 'html' for code-your-own.",
+      "enum": ["template", "multichannel", "html"],
+      "readOnly": true
+    },
+    "html": {
+      "type": "string",
+      "description": "The raw HTML source of the template. Available when fetching individual template content."
+    },
+    "sections": {
+      "type": "object",
+      "description": "A dictionary of content sections within the template. Keys are section names, values are the HTML content. Only available for templates with editable content areas.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": true
+}

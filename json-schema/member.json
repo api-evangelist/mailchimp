@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/messaging/mailchimp/json-schema/member.json",
+  "title": "Mailchimp List Member",
+  "description": "A member (subscriber/contact) of a Mailchimp audience/list. Represents an individual who is currently or has been previously subscribed to a list, including members who have bounced or unsubscribed.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The MD5 hash of the lowercase version of the list member's email address. This serves as the unique identifier for a member within a list.",
+      "readOnly": true
+    },
+    "email_address": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for the subscriber."
+    },
+    "unique_email_id": {
+      "type": "string",
+      "description": "An identifier for the address across all of Mailchimp.",
+      "readOnly": true
+    },
+    "contact_id": {
+      "type": "string",
+      "description": "A contact identifier that is agnostic of email address. As Mailchimp evolves beyond email, contacts may exist without an email address.",
+      "readOnly": true
+    },
+    "full_name": {
+      "type": "string",
+      "description": "The contact's full name.",
+      "readOnly": true
+    },
+    "web_id": {
+      "type": "integer",
+      "description": "The ID used in the Mailchimp web application.",
+      "readOnly": true
+    },
+    "email_type": {
+      "type": "string",
+      "description": "Type of email this member asked to get ('html' or 'text')."
+    },
+    "status": {
+      "type": "string",
+      "description": "Subscriber's current status.",
+      "enum": ["subscribed", "unsubscribed", "cleaned", "pending", "transactional", "archived"]
+    },
+    "unsubscribe_reason": {
+      "type": "string",
+      "description": "A subscriber's reason for unsubscribing."
+    },
+    "consents_to_one_to_one_messaging": {
+      "type": "boolean",
+      "description": "Indicates whether a contact consents to 1:1 messaging.",
+      "readOnly": true
+    },
+    "sms_phone_number": {
+      "type": "string",
+      "description": "A US phone number for SMS contact."
+    },
+    "sms_subscription_status": {
+      "type": "string",
+      "description": "The status of an SMS subscription.",
+      "enum": ["subscribed", "unsubscribed", "nonsubscribed", "pending"]
+    },
+    "sms_subscription_last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The datetime when the SMS subscription was last updated."
+    },
+    "merge_fields": {
+      "type": "object",
+      "description": "A dictionary of merge fields where the keys are the merge tags (e.g., FNAME, LNAME). Values are the corresponding merge field values.",
+      "additionalProperties": true
+    },
+    "interests": {
+      "type": "object",
+      "description": "The key of this object's properties is the ID of the interest in question, and the value is a boolean indicating whether the member is in that interest group.",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "stats": {
+      "type": "object",
+      "description": "Open and click rates for this subscriber.",
+      "readOnly": true,
+      "properties": {
+        "avg_open_rate": {
+          "type": "number",
+          "description": "A subscriber's average open rate.",
+          "readOnly": true
+        },
+        "avg_click_rate": {
+          "type": "number",
+          "description": "A subscriber's average clickthrough rate.",
+          "readOnly": true
+        },
+        "ecommerce_data": {
+          "type": "object",
+          "description": "Ecommerce stats for the list member if the list is attached to a store.",
+          "readOnly": true,
+          "properties": {
+            "total_revenue": {
+              "type": "number",
+              "description": "The total revenue the list member has brought in."
+            },
+            "number_of_orders": {
+              "type": "number",
+              "description": "The total number of orders placed by the list member."
+            },
+            "currency_code": {
+              "type": "string",
+              "description": "The three-letter ISO 4217 code for the currency that the store accepts."
+            }
+          }
+        }
+      }
+    },
+    "ip_signup": {
+      "type": "string",
+      "description": "IP address the subscriber signed up from.",
+      "readOnly": true
+    },
+    "timestamp_signup": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the subscriber signed up for the list in ISO 8601 format.",
+      "readOnly": true
+    },
+    "ip_opt": {
+      "type": "string",
+      "description": "The IP address the subscriber used to confirm their opt-in status.",
+      "readOnly": true
+    },
+    "timestamp_opt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the subscriber confirmed their opt-in status in ISO 8601 format.",
+      "readOnly": true
+    },
+    "member_rating": {
+      "type": "integer",
+      "description": "Star rating for this member, between 1 and 5.",
+      "minimum": 1,
+      "maximum": 5,
+      "readOnly": true
+    },
+    "last_changed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the member's info was last changed in ISO 8601 format.",
+      "readOnly": true
+    },
+    "language": {
+      "type": "string",
+      "description": "If set/detected, the subscriber's language."
+    },
+    "vip": {
+      "type": "boolean",
+      "description": "VIP status for subscriber."
+    },
+    "email_client": {
+      "type": "string",
+      "description": "The list member's email client.",
+      "readOnly": true
+    },
+    "location": {
+      "type": "object",
+      "description": "Subscriber location information.",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "The location latitude."
+        },
+        "longitude": {
+          "type": "number",
+          "description": "The location longitude."
+        },
+        "gmtoff": {
+          "type": "integer",
+          "description": "The time difference in hours from GMT.",
+          "readOnly": true
+        },
+        "dstoff": {
+          "type": "integer",
+          "description": "The offset for timezones where daylight saving time is observed.",
+          "readOnly": true
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The unique code for the location country.",
+          "readOnly": true
+        },
+        "timezone": {
+          "type": "string",
+          "description": "The timezone for the location.",
+          "readOnly": true
+        },
+        "region": {
+          "type": "string",
+          "description": "The region for the location.",
+          "readOnly": true
+        }
+      }
+    },
+    "marketing_permissions": {
+      "type": "array",
+      "description": "The marketing permissions for the subscriber.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "marketing_permission_id": {
+            "type": "string",
+            "description": "The ID for the marketing permission."
+          },
+          "text": {
+            "type": "string",
+            "description": "The text of the marketing permission."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether the subscriber has opted in to this permission."
+          }
+        }
+      }
+    },
+    "last_note": {
+      "type": "object",
+      "description": "The most recent note added about this member.",
+      "readOnly": true,
+      "properties": {
+        "note_id": {
+          "type": "integer",
+          "description": "The note ID."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date and time the note was created in ISO 8601 format."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "The author of the note."
+        },
+        "note": {
+          "type": "string",
+          "description": "The content of the note."
+        }
+      }
+    },
+    "source": {
+      "type": "string",
+      "description": "The source from which the subscriber was added to this list.",
+      "readOnly": true
+    },
+    "tags_count": {
+      "type": "integer",
+      "description": "The number of tags applied to this member.",
+      "readOnly": true
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags applied to the member for additional segmentation and organization.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The tag ID."
+          },
+          "name": {
+            "type": "string",
+            "description": "The tag name."
+          }
+        }
+      },
+      "readOnly": true
+    },
+    "list_id": {
+      "type": "string",
+      "description": "The list ID that this member belongs to.",
+      "readOnly": true
+    }
+  },
+  "required": ["email_address", "status"],
+  "additionalProperties": true
+}
