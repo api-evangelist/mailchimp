@@ -24,43 +24,41 @@ security:
   - apiKey: []
 
 tags:
-  - name: Messages
-    description: Send and search transactional messages, and retrieve message details.
-  - name: Templates
-    description: >-
-      Manage reusable email templates stored on the Mandrill server for use
-      when sending transactional messages.
-  - name: Tags
-    description: Manage tags and retrieve tag-level statistics for sent messages.
-  - name: Senders
-    description: >-
-      Retrieve sender information and statistics for verified sending domains
-      and email addresses.
-  - name: Users
-    description: Retrieve information about the authenticated Mandrill account.
-  - name: Webhooks
-    description: Manage webhooks that receive event notifications for sent messages.
-  - name: Subaccounts
-    description: >-
-      Manage subaccounts for organizing sending and reporting within a single
-      Mandrill account.
-  - name: Rejects
-    description: >-
-      Manage the rejection blacklist, which prevents delivery to addresses
-      that have previously bounced or been reported as spam.
   - name: Allowlists
     description: >-
       Manage the allowlist of email addresses that bypass the rejection
       blacklist.
-  - name: IPs
-    description: Manage dedicated IP addresses associated with the account.
   - name: Exports
     description: Request and download data exports for messages, rejects, and allowlists.
+  - name: IPs
+    description: Manage dedicated IP addresses associated with the account.
+  - name: Messages
+    description: Send and search transactional messages, and retrieve message details.
   - name: Metadata
     description: >-
       Manage custom metadata fields that can be attached to messages for
       tracking and filtering.
 
+  - name: Rejects
+    description: >-
+      Manage the rejection blacklist, which prevents delivery to addresses
+      that have previously bounced or been reported as spam.
+  - name: Senders
+    description: >-
+      Retrieve sender information and statistics for verified sending domains
+      and email addresses.
+  - name: Subaccounts
+    description: >-
+      Manage subaccounts for organizing sending and reporting within a single
+      Mandrill account.
+  - name: Templates
+    description: >-
+      Manage reusable email templates stored on the Mandrill server for use
+      when sending transactional messages.
+  - name: Users
+    description: Retrieve information about the authenticated Mandrill account.
+  - name: Webhooks
+    description: Manage webhooks that receive event notifications for sent messages.
 paths:
   /messages/send:
     post:
@@ -1044,8 +1042,7 @@ paths:
       description: >-
         Get all the tags that have been used in the account, along with
         aggregate sending statistics for each tag.
-      tags:
-        - Tags
+      tags: []
       requestBody:
         required: true
         content:
@@ -1081,8 +1078,7 @@ paths:
       description: >-
         Return more detailed information about a single tag including
         aggregate statistics.
-      tags:
-        - Tags
+      tags: []
       requestBody:
         required: true
         content:
@@ -1121,8 +1117,7 @@ paths:
         Delete a tag permanently. Deleting a tag removes it from all messages
         that have been tagged with it, and permanently removes the tag
         statistics.
-      tags:
-        - Tags
+      tags: []
       requestBody:
         required: true
         content:
@@ -1160,8 +1155,7 @@ paths:
       description: >-
         Return the recent sending history for a tag, aggregated by hourly
         time slots.
-      tags:
-        - Tags
+      tags: []
       requestBody:
         required: true
         content:
@@ -1201,8 +1195,7 @@ paths:
       description: >-
         Return hourly aggregated statistics for all tags in the account
         over the last 30 days.
-      tags:
-        - Tags
+      tags: []
       requestBody:
         required: true
         content:
