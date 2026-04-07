@@ -65,7 +65,7 @@ paths:
   /messages/send:
     post:
       operationId: postMessagesSend
-      summary: Send a transactional email
+      summary: Mailchimp Send a transactional email
       description: >-
         Send a new transactional message through Mandrill. Supports HTML and
         plain-text content, inline images, attachments, merge variables,
@@ -128,7 +128,7 @@ paths:
   /messages/send-template:
     post:
       operationId: postMessagesSendTemplate
-      summary: Send an email using a template
+      summary: Mailchimp Send an email using a template
       description: >-
         Send a new transactional message using a stored template. Template
         content blocks can be overridden with the template_content parameter.
@@ -202,7 +202,7 @@ paths:
   /messages/search:
     post:
       operationId: postMessagesSearch
-      summary: Search sent messages
+      summary: Mailchimp Search sent messages
       description: >-
         Search recently sent messages and return matching results. You can
         filter by sending status, sender, tags, recipient, subject, and
@@ -272,7 +272,7 @@ paths:
   /messages/search-time-series:
     post:
       operationId: postMessagesSearchTimeSeries
-      summary: Search message time series
+      summary: Mailchimp Search message time series
       description: >-
         Search the content of recently sent messages and return aggregated
         hourly statistics for matching messages over time.
@@ -330,7 +330,7 @@ paths:
   /messages/info:
     post:
       operationId: postMessagesInfo
-      summary: Get message info
+      summary: Mailchimp Get message info
       description: >-
         Get the information for a single recently sent message including
         delivery status, open/click tracking, and metadata.
@@ -369,7 +369,7 @@ paths:
   /messages/content:
     post:
       operationId: postMessagesContent
-      summary: Get message content
+      summary: Mailchimp Get message content
       description: >-
         Get the full content of a recently sent message including the HTML
         body, text body, headers, and attachments.
@@ -408,7 +408,7 @@ paths:
   /messages/parse:
     post:
       operationId: postMessagesParse
-      summary: Parse a raw MIME message
+      summary: Mailchimp Parse a raw MIME message
       description: >-
         Parse the full MIME document for an email message, returning the
         subject, recipients, HTML body, text body, headers, and attachments.
@@ -447,7 +447,7 @@ paths:
   /messages/send-raw:
     post:
       operationId: postMessagesSendRaw
-      summary: Send a raw MIME message
+      summary: Mailchimp Send a raw MIME message
       description: >-
         Take a raw MIME document and send it exactly as provided. Mandrill
         will not modify the message content, but will track opens and clicks
@@ -520,7 +520,7 @@ paths:
   /messages/list-scheduled:
     post:
       operationId: postMessagesListScheduled
-      summary: List scheduled messages
+      summary: Mailchimp List scheduled messages
       description: >-
         Get a list of messages that are scheduled for future delivery. Messages
         can be scheduled up to 7 days in advance.
@@ -563,7 +563,7 @@ paths:
   /messages/cancel-scheduled:
     post:
       operationId: postMessagesCancelScheduled
-      summary: Cancel a scheduled message
+      summary: Mailchimp Cancel a scheduled message
       description: >-
         Cancel a message that has been scheduled for future delivery. The
         message must not have already been sent.
@@ -602,7 +602,7 @@ paths:
   /messages/reschedule:
     post:
       operationId: postMessagesReschedule
-      summary: Reschedule a message
+      summary: Mailchimp Reschedule a message
       description: >-
         Reschedule a message that was previously scheduled for future delivery
         to a new date and time.
@@ -646,7 +646,7 @@ paths:
   /templates/add:
     post:
       operationId: postTemplatesAdd
-      summary: Add a new template
+      summary: Mailchimp Add a new template
       description: >-
         Create a new template on the Mandrill server. Templates can contain
         merge variables and mc:edit content blocks for dynamic content
@@ -711,7 +711,7 @@ paths:
   /templates/info:
     post:
       operationId: postTemplatesInfo
-      summary: Get template info
+      summary: Mailchimp Get template info
       description: >-
         Get the details for a specific template, including its code, default
         values, and publish status.
@@ -750,7 +750,7 @@ paths:
   /templates/update:
     post:
       operationId: postTemplatesUpdate
-      summary: Update a template
+      summary: Mailchimp Update a template
       description: >-
         Update an existing template with new values for any of its fields.
         Only the fields you include in the request body will be updated.
@@ -813,7 +813,7 @@ paths:
   /templates/publish:
     post:
       operationId: postTemplatesPublish
-      summary: Publish a template
+      summary: Mailchimp Publish a template
       description: >-
         Publish the most recent draft of an existing template, making it
         available for sending.
@@ -852,7 +852,7 @@ paths:
   /templates/delete:
     post:
       operationId: postTemplatesDelete
-      summary: Delete a template
+      summary: Mailchimp Delete a template
       description: >-
         Permanently delete a template from the account. This action cannot
         be undone.
@@ -891,7 +891,7 @@ paths:
   /templates/list:
     post:
       operationId: postTemplatesList
-      summary: List templates
+      summary: Mailchimp List templates
       description: Get a list of all templates available in the account.
       tags:
         - Templates
@@ -931,7 +931,7 @@ paths:
   /templates/time-series:
     post:
       operationId: postTemplatesTimeSeries
-      summary: Get template time series
+      summary: Mailchimp Get template time series
       description: >-
         Return the recent sending history for a template, aggregated by
         hourly time slots.
@@ -972,7 +972,7 @@ paths:
   /templates/render:
     post:
       operationId: postTemplatesRender
-      summary: Render a template
+      summary: Mailchimp Render a template
       description: >-
         Render a template with the provided merge variables and template
         content, returning the final HTML that would be sent.
@@ -1040,7 +1040,7 @@ paths:
   /tags/list:
     post:
       operationId: postTagsList
-      summary: List tags
+      summary: Mailchimp List tags
       description: >-
         Get all the tags that have been used in the account, along with
         aggregate sending statistics for each tag.
@@ -1077,7 +1077,7 @@ paths:
   /tags/info:
     post:
       operationId: postTagsInfo
-      summary: Get tag info
+      summary: Mailchimp Get tag info
       description: >-
         Return more detailed information about a single tag including
         aggregate statistics.
@@ -1116,7 +1116,7 @@ paths:
   /tags/delete:
     post:
       operationId: postTagsDelete
-      summary: Delete a tag
+      summary: Mailchimp Delete a tag
       description: >-
         Delete a tag permanently. Deleting a tag removes it from all messages
         that have been tagged with it, and permanently removes the tag
@@ -1156,7 +1156,7 @@ paths:
   /tags/time-series:
     post:
       operationId: postTagsTimeSeries
-      summary: Get tag time series
+      summary: Mailchimp Get tag time series
       description: >-
         Return the recent sending history for a tag, aggregated by hourly
         time slots.
@@ -1197,7 +1197,7 @@ paths:
   /tags/all-time-series:
     post:
       operationId: postTagsAllTimeSeries
-      summary: Get all tags time series
+      summary: Mailchimp Get all tags time series
       description: >-
         Return hourly aggregated statistics for all tags in the account
         over the last 30 days.
@@ -1234,7 +1234,7 @@ paths:
   /senders/list:
     post:
       operationId: postSendersList
-      summary: List senders
+      summary: Mailchimp List senders
       description: >-
         Get the list of all sender email addresses that have been used in
         the account, with aggregate statistics for each sender.
@@ -1271,7 +1271,7 @@ paths:
   /senders/domains:
     post:
       operationId: postSendersDomains
-      summary: List sender domains
+      summary: Mailchimp List sender domains
       description: >-
         Get the list of sender domains that have been configured for the
         account, including DKIM and SPF verification status.
@@ -1308,7 +1308,7 @@ paths:
   /senders/add-domain:
     post:
       operationId: postSendersAddDomain
-      summary: Add a sender domain
+      summary: Mailchimp Add a sender domain
       description: Add a new sender domain to the account for verification.
       tags:
         - Senders
@@ -1345,7 +1345,7 @@ paths:
   /senders/check-domain:
     post:
       operationId: postSendersCheckDomain
-      summary: Check a sender domain
+      summary: Mailchimp Check a sender domain
       description: >-
         Check the DNS settings for a sender domain to verify DKIM and SPF
         configuration status.
@@ -1384,7 +1384,7 @@ paths:
   /senders/verify-domain:
     post:
       operationId: postSendersVerifyDomain
-      summary: Verify a sender domain
+      summary: Mailchimp Verify a sender domain
       description: >-
         Send a verification email to the specified mailbox at the domain to
         confirm domain ownership.
@@ -1441,7 +1441,7 @@ paths:
   /senders/info:
     post:
       operationId: postSendersInfo
-      summary: Get sender info
+      summary: Mailchimp Get sender info
       description: >-
         Get detailed information for a single sender address, including
         aggregate sending statistics.
@@ -1481,7 +1481,7 @@ paths:
   /senders/time-series:
     post:
       operationId: postSendersTimeSeries
-      summary: Get sender time series
+      summary: Mailchimp Get sender time series
       description: >-
         Return the recent sending history for a sender address, aggregated
         by hourly time slots.
@@ -1523,7 +1523,7 @@ paths:
   /users/info:
     post:
       operationId: postUsersInfo
-      summary: Get user info
+      summary: Mailchimp Get user info
       description: >-
         Return the information about the API-connected user, including
         username, reputation, hourly quota, and account-level statistics.
@@ -1558,7 +1558,7 @@ paths:
   /users/ping:
     post:
       operationId: postUsersPing
-      summary: Ping the API
+      summary: Mailchimp Ping the API
       description: >-
         Validate an API key and respond to a ping. Returns the string PONG!
         if the API key is valid.
@@ -1593,7 +1593,7 @@ paths:
   /users/senders:
     post:
       operationId: postUsersSenders
-      summary: List account senders
+      summary: Mailchimp List account senders
       description: >-
         Return the senders that have tried to use this account, both verified
         and unverified.
@@ -1630,7 +1630,7 @@ paths:
   /webhooks/list:
     post:
       operationId: postWebhooksList
-      summary: List webhooks
+      summary: Mailchimp List webhooks
       description: Get the list of all configured webhooks for the account.
       tags:
         - Webhooks
@@ -1665,7 +1665,7 @@ paths:
   /webhooks/add:
     post:
       operationId: postWebhooksAdd
-      summary: Add a webhook
+      summary: Mailchimp Add a webhook
       description: >-
         Create a new webhook. Mandrill will attempt a HEAD request to the
         provided URL to verify the webhook endpoint.
@@ -1725,7 +1725,7 @@ paths:
   /webhooks/info:
     post:
       operationId: postWebhooksInfo
-      summary: Get webhook info
+      summary: Mailchimp Get webhook info
       description: Get the details for a specific webhook by its unique ID.
       tags:
         - Webhooks
@@ -1762,7 +1762,7 @@ paths:
   /webhooks/update:
     post:
       operationId: postWebhooksUpdate
-      summary: Update a webhook
+      summary: Mailchimp Update a webhook
       description: Update the URL, description, or events for an existing webhook.
       tags:
         - Webhooks
@@ -1822,7 +1822,7 @@ paths:
   /webhooks/delete:
     post:
       operationId: postWebhooksDelete
-      summary: Delete a webhook
+      summary: Mailchimp Delete a webhook
       description: Permanently delete a webhook by its unique ID.
       tags:
         - Webhooks
@@ -1859,7 +1859,7 @@ paths:
   /subaccounts/list:
     post:
       operationId: postSubaccountsList
-      summary: List subaccounts
+      summary: Mailchimp List subaccounts
       description: Get the list of subaccounts defined for the account.
       tags:
         - Subaccounts
@@ -1897,7 +1897,7 @@ paths:
   /subaccounts/add:
     post:
       operationId: postSubaccountsAdd
-      summary: Add a subaccount
+      summary: Mailchimp Add a subaccount
       description: Create a new subaccount under the main account.
       tags:
         - Subaccounts
@@ -1946,7 +1946,7 @@ paths:
   /subaccounts/info:
     post:
       operationId: postSubaccountsInfo
-      summary: Get subaccount info
+      summary: Mailchimp Get subaccount info
       description: Get detailed information about a specific subaccount.
       tags:
         - Subaccounts
@@ -1983,7 +1983,7 @@ paths:
   /subaccounts/update:
     post:
       operationId: postSubaccountsUpdate
-      summary: Update a subaccount
+      summary: Mailchimp Update a subaccount
       description: Update an existing subaccount's name, notes, or quota.
       tags:
         - Subaccounts
@@ -2029,7 +2029,7 @@ paths:
   /subaccounts/delete:
     post:
       operationId: postSubaccountsDelete
-      summary: Delete a subaccount
+      summary: Mailchimp Delete a subaccount
       description: Permanently delete a subaccount. Any future email for the subaccount will be sent from the primary account.
       tags:
         - Subaccounts
@@ -2066,7 +2066,7 @@ paths:
   /subaccounts/pause:
     post:
       operationId: postSubaccountsPause
-      summary: Pause a subaccount
+      summary: Mailchimp Pause a subaccount
       description: >-
         Pause a subaccount's sending. Any future messages sent through the
         subaccount will be queued but not delivered until the subaccount
@@ -2106,7 +2106,7 @@ paths:
   /subaccounts/resume:
     post:
       operationId: postSubaccountsResume
-      summary: Resume a subaccount
+      summary: Mailchimp Resume a subaccount
       description: >-
         Resume a paused subaccount, allowing it to send messages again.
       tags:
@@ -2144,7 +2144,7 @@ paths:
   /rejects/list:
     post:
       operationId: postRejectsList
-      summary: List rejections
+      summary: Mailchimp List rejections
       description: >-
         Retrieve all entries in the rejection blacklist. These are email
         addresses that have previously hard-bounced or been reported as
@@ -2193,7 +2193,7 @@ paths:
   /rejects/add:
     post:
       operationId: postRejectsAdd
-      summary: Add a rejection
+      summary: Mailchimp Add a rejection
       description: >-
         Manually add an email address to the rejection blacklist. Messages
         to this address will be rejected.
@@ -2246,7 +2246,7 @@ paths:
   /rejects/delete:
     post:
       operationId: postRejectsDelete
-      summary: Delete a rejection
+      summary: Mailchimp Delete a rejection
       description: >-
         Remove an email address from the rejection blacklist, allowing
         messages to be delivered to it again.
@@ -2299,7 +2299,7 @@ paths:
   /allowlists/list:
     post:
       operationId: postAllowlistsList
-      summary: List allowlist entries
+      summary: Mailchimp List allowlist entries
       description: >-
         Get all email addresses on the account allowlist. Allowlisted
         addresses bypass the rejection blacklist.
@@ -2340,7 +2340,7 @@ paths:
   /allowlists/add:
     post:
       operationId: postAllowlistsAdd
-      summary: Add an allowlist entry
+      summary: Mailchimp Add an allowlist entry
       description: >-
         Add an email address to the allowlist, allowing messages to bypass
         the rejection blacklist.
@@ -2390,7 +2390,7 @@ paths:
   /allowlists/delete:
     post:
       operationId: postAllowlistsDelete
-      summary: Delete an allowlist entry
+      summary: Mailchimp Delete an allowlist entry
       description: >-
         Remove an email address from the allowlist. The address will no
         longer bypass the rejection blacklist.
@@ -2437,7 +2437,7 @@ paths:
   /ips/list:
     post:
       operationId: postIpsList
-      summary: List dedicated IPs
+      summary: Mailchimp List dedicated IPs
       description: >-
         Get the list of dedicated IP addresses associated with the account,
         including their pool assignments, warmup status, and sending
@@ -2475,7 +2475,7 @@ paths:
   /ips/info:
     post:
       operationId: postIpsInfo
-      summary: Get IP info
+      summary: Mailchimp Get IP info
       description: Get detailed information about a specific dedicated IP address.
       tags:
         - IPs
@@ -2512,7 +2512,7 @@ paths:
   /ips/list-pools:
     post:
       operationId: postIpsListPools
-      summary: List IP pools
+      summary: Mailchimp List IP pools
       description: >-
         Get the list of IP pools defined for the account, with the IPs
         assigned to each pool.
@@ -2549,7 +2549,7 @@ paths:
   /ips/create-pool:
     post:
       operationId: postIpsCreatePool
-      summary: Create an IP pool
+      summary: Mailchimp Create an IP pool
       description: Create a new IP pool for organizing dedicated IPs.
       tags:
         - IPs
@@ -2586,7 +2586,7 @@ paths:
   /ips/delete-pool:
     post:
       operationId: postIpsDeletePool
-      summary: Delete an IP pool
+      summary: Mailchimp Delete an IP pool
       description: >-
         Delete an IP pool. IPs in the pool will be moved to the default
         pool if one exists.
@@ -2632,7 +2632,7 @@ paths:
   /exports/info:
     post:
       operationId: postExportsInfo
-      summary: Get export info
+      summary: Mailchimp Get export info
       description: Get information about an individual data export job.
       tags:
         - Exports
@@ -2669,7 +2669,7 @@ paths:
   /exports/list:
     post:
       operationId: postExportsList
-      summary: List exports
+      summary: Mailchimp List exports
       description: Get a list of all data export jobs for the account.
       tags:
         - Exports
@@ -2704,7 +2704,7 @@ paths:
   /exports/rejects:
     post:
       operationId: postExportsRejects
-      summary: Export rejections
+      summary: Mailchimp Export rejections
       description: >-
         Start a new export job for the account's rejection blacklist.
         When complete, a download URL is provided.
@@ -2743,7 +2743,7 @@ paths:
   /exports/allowlist:
     post:
       operationId: postExportsAllowlist
-      summary: Export allowlist
+      summary: Mailchimp Export allowlist
       description: >-
         Start a new export job for the account's allowlist. When complete,
         a download URL is provided.
@@ -2782,7 +2782,7 @@ paths:
   /exports/activity:
     post:
       operationId: postExportsActivity
-      summary: Export message activity
+      summary: Mailchimp Export message activity
       description: >-
         Start a new export job for message activity history. The export
         includes detailed message logs for the specified date range.
@@ -2856,7 +2856,7 @@ paths:
   /metadata/list:
     post:
       operationId: postMetadataList
-      summary: List metadata fields
+      summary: Mailchimp List metadata fields
       description: >-
         Get the list of custom metadata fields defined for the account.
         Metadata fields can be attached to messages for tracking.
@@ -2893,7 +2893,7 @@ paths:
   /metadata/add:
     post:
       operationId: postMetadataAdd
-      summary: Add a metadata field
+      summary: Mailchimp Add a metadata field
       description: >-
         Add a new custom metadata field that can be indexed and used for
         filtering in message searches.
@@ -2937,7 +2937,7 @@ paths:
   /metadata/update:
     post:
       operationId: postMetadataUpdate
-      summary: Update a metadata field
+      summary: Mailchimp Update a metadata field
       description: Update an existing metadata field's display template.
       tags:
         - Metadata
@@ -2977,7 +2977,7 @@ paths:
   /metadata/delete:
     post:
       operationId: postMetadataDelete
-      summary: Delete a metadata field
+      summary: Mailchimp Delete a metadata field
       description: >-
         Permanently delete a metadata field. Metadata attached to messages
         using this field will no longer be searchable.
