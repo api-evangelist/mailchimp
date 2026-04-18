@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SenderDomain",
+  "type": "object",
+  "description": "Information about a configured sender domain.",
+  "properties": {
+    "domain": {
+      "type": "string",
+      "description": "The domain name."
+    },
+    "created_at": {
+      "type": "string",
+      "description": "When the domain was added."
+    },
+    "last_tested_at": {
+      "type": "string",
+      "description": "When the domain settings were last tested."
+    },
+    "spf": {
+      "type": "object",
+      "description": "SPF verification details."
+    },
+    "dkim": {
+      "type": "object",
+      "description": "DKIM verification details."
+    },
+    "verified_at": {
+      "type": "string",
+      "description": "When the domain ownership was verified."
+    },
+    "valid_signing": {
+      "type": "boolean",
+      "description": "Whether the domain can be used for DKIM signing."
+    }
+  }
+}

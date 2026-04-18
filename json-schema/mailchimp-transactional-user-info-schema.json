@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UserInfo",
+  "type": "object",
+  "description": "Account-level information for the authenticated Mandrill user.",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "The account username."
+    },
+    "created_at": {
+      "type": "string",
+      "description": "When the account was created."
+    },
+    "public_id": {
+      "type": "string",
+      "description": "A unique public identifier for the account."
+    },
+    "reputation": {
+      "type": "integer",
+      "description": "The account sending reputation (0-100)."
+    },
+    "hourly_quota": {
+      "type": "integer",
+      "description": "The hourly email sending quota."
+    },
+    "backlog": {
+      "type": "integer",
+      "description": "The number of messages in the send queue."
+    },
+    "stats": {
+      "type": "object",
+      "description": "Account-level sending statistics."
+    }
+  }
+}

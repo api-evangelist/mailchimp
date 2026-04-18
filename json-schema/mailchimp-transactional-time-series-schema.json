@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TimeSeries",
+  "type": "object",
+  "description": "An hourly time series data point with sending statistics.",
+  "properties": {
+    "time": {
+      "type": "string",
+      "description": "The hour this data point covers (UTC)."
+    },
+    "sent": {
+      "type": "integer",
+      "description": "Number of messages sent."
+    },
+    "hard_bounces": {
+      "type": "integer",
+      "description": "Number of hard bounces."
+    },
+    "soft_bounces": {
+      "type": "integer",
+      "description": "Number of soft bounces."
+    },
+    "rejects": {
+      "type": "integer",
+      "description": "Number of rejects."
+    },
+    "complaints": {
+      "type": "integer",
+      "description": "Number of spam complaints."
+    },
+    "unsubs": {
+      "type": "integer",
+      "description": "Number of unsubscribes."
+    },
+    "opens": {
+      "type": "integer",
+      "description": "Number of opens."
+    },
+    "unique_opens": {
+      "type": "integer",
+      "description": "Number of unique opens."
+    },
+    "clicks": {
+      "type": "integer",
+      "description": "Number of clicks."
+    },
+    "unique_clicks": {
+      "type": "integer",
+      "description": "Number of unique clicks."
+    }
+  }
+}

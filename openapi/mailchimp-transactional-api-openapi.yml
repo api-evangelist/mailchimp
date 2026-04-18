@@ -17,59 +17,59 @@ info:
   termsOfService: https://mailchimp.com/legal/terms/
 
 servers:
-  - url: https://mandrillapp.com/api/1.0
-    description: Mailchimp Transactional (Mandrill) Production API
+- url: https://mandrillapp.com/api/1.0
+  description: Mailchimp Transactional (Mandrill) Production API
 
 security:
-  - apiKey: []
+- apiKey: []
 
 tags:
-  - name: Allowlists
-    description: >-
-      Manage the allowlist of email addresses that bypass the rejection
-      blacklist.
-  - name: Exports
-    description: Request and download data exports for messages, rejects, and allowlists.
-  - name: IPs
-    description: Manage dedicated IP addresses associated with the account.
-  - name: Messages
-    description: Send and search transactional messages, and retrieve message details.
-  - name: Metadata
-    description: >-
-      Manage custom metadata fields that can be attached to messages for
-      tracking and filtering.
+- name: Allowlists
+  description: >-
+    Manage the allowlist of email addresses that bypass the rejection
+    blacklist.
+- name: Exports
+  description: Request and download data exports for messages, rejects, and allowlists.
+- name: IPs
+  description: Manage dedicated IP addresses associated with the account.
+- name: Messages
+  description: Send and search transactional messages, and retrieve message details.
+- name: Metadata
+  description: >-
+    Manage custom metadata fields that can be attached to messages for
+    tracking and filtering.
 
-  - name: Rejects
-    description: >-
-      Manage the rejection blacklist, which prevents delivery to addresses
-      that have previously bounced or been reported as spam.
-  - name: Senders
-    description: >-
-      Retrieve sender information and statistics for verified sending domains
-      and email addresses.
-  - name: Subaccounts
-    description: >-
-      Manage subaccounts for organizing sending and reporting within a single
-      Mandrill account.
-  - name: Templates
-    description: >-
-      Manage reusable email templates stored on the Mandrill server for use
-      when sending transactional messages.
-  - name: Users
-    description: Retrieve information about the authenticated Mandrill account.
-  - name: Webhooks
-    description: Manage webhooks that receive event notifications for sent messages.
+- name: Rejects
+  description: >-
+    Manage the rejection blacklist, which prevents delivery to addresses
+    that have previously bounced or been reported as spam.
+- name: Senders
+  description: >-
+    Retrieve sender information and statistics for verified sending domains
+    and email addresses.
+- name: Subaccounts
+  description: >-
+    Manage subaccounts for organizing sending and reporting within a single
+    Mandrill account.
+- name: Templates
+  description: >-
+    Manage reusable email templates stored on the Mandrill server for use
+    when sending transactional messages.
+- name: Users
+  description: Retrieve information about the authenticated Mandrill account.
+- name: Webhooks
+  description: Manage webhooks that receive event notifications for sent messages.
 paths:
   /messages/send:
     post:
       operationId: postMessagesSend
-      summary: Mailchimp Send a transactional email
+      summary: Mailchimp Send a Transactional Email
       description: >-
         Send a new transactional message through Mandrill. Supports HTML and
         plain-text content, inline images, attachments, merge variables,
         metadata, and per-recipient customization.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -77,8 +77,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - message
+              - key
+              - message
               properties:
                 key:
                   type: string
@@ -104,6 +104,65 @@ paths:
                     Schedule the message for future delivery. The date/time
                     must be in UTC and formatted as YYYY-MM-DD HH:MM:SS.
                     Messages can be scheduled up to 7 days in advance.
+            examples:
+              PostmessagessendRequestExample:
+                summary: Default postMessagesSend request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  message:
+                    html: example_value
+                    text: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    to:
+                    - email: user@example.com
+                      name: Example Title
+                      type: to
+                    headers: example_value
+                    important: true
+                    track_opens: true
+                    track_clicks: true
+                    auto_text: true
+                    auto_html: true
+                    inline_css: true
+                    url_strip_qs: https://www.example.com
+                    preserve_recipients: true
+                    view_content_link: true
+                    bcc_address: example_value
+                    tracking_domain: example_value
+                    signing_domain: example_value
+                    return_path_domain: example_value
+                    merge: true
+                    merge_language: mailchimp
+                    global_merge_vars:
+                    - name: Example Title
+                      content: example_value
+                    merge_vars:
+                    - rcpt: example_value
+                      vars: {}
+                    tags:
+                    - example_value
+                    subaccount: example_value
+                    google_analytics_domains:
+                    - example_value
+                    google_analytics_campaign: example_value
+                    metadata: example_value
+                    recipient_metadata:
+                    - rcpt: example_value
+                      values: example_value
+                    attachments:
+                    - type: example_value
+                      name: Example Title
+                      content: example_value
+                    images:
+                    - type: example_value
+                      name: Example Title
+                      content: example_value
+                  async: true
+                  ip_pool: example_value
+                  send_at: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: >-
@@ -116,6 +175,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SendResult'
+              examples:
+                Postmessagessend200Example:
+                  summary: Default postMessagesSend 200 response
+                  x-microcks-default: true
+                  value:
+                  - email: user@example.com
+                    status: sent
+                    reject_reason: hard-bounce
+                    queued_reason: example_value
+                    _id: '500123'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -123,16 +192,19 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/send-template:
     post:
       operationId: postMessagesSendTemplate
-      summary: Mailchimp Send an email using a template
+      summary: Mailchimp Send an Email Using a Template
       description: >-
         Send a new transactional message using a stored template. Template
         content blocks can be overridden with the template_content parameter.
         Merge variables in the template are populated from the message object.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -140,10 +212,10 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - template_name
-                - template_content
-                - message
+              - key
+              - template_name
+              - template_content
+              - message
               properties:
                 key:
                   type: string
@@ -181,6 +253,69 @@ paths:
                   type: string
                   format: date-time
                   description: Schedule message for future delivery in UTC.
+            examples:
+              PostmessagessendtemplateRequestExample:
+                summary: Default postMessagesSendTemplate request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  template_name: example_value
+                  template_content:
+                  - name: Example Title
+                    content: example_value
+                  message:
+                    html: example_value
+                    text: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    to:
+                    - email: user@example.com
+                      name: Example Title
+                      type: to
+                    headers: example_value
+                    important: true
+                    track_opens: true
+                    track_clicks: true
+                    auto_text: true
+                    auto_html: true
+                    inline_css: true
+                    url_strip_qs: https://www.example.com
+                    preserve_recipients: true
+                    view_content_link: true
+                    bcc_address: example_value
+                    tracking_domain: example_value
+                    signing_domain: example_value
+                    return_path_domain: example_value
+                    merge: true
+                    merge_language: mailchimp
+                    global_merge_vars:
+                    - name: Example Title
+                      content: example_value
+                    merge_vars:
+                    - rcpt: example_value
+                      vars: {}
+                    tags:
+                    - example_value
+                    subaccount: example_value
+                    google_analytics_domains:
+                    - example_value
+                    google_analytics_campaign: example_value
+                    metadata: example_value
+                    recipient_metadata:
+                    - rcpt: example_value
+                      values: example_value
+                    attachments:
+                    - type: example_value
+                      name: Example Title
+                      content: example_value
+                    images:
+                    - type: example_value
+                      name: Example Title
+                      content: example_value
+                  async: true
+                  ip_pool: example_value
+                  send_at: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: An array of sending results, one per recipient.
@@ -190,6 +325,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SendResult'
+              examples:
+                Postmessagessendtemplate200Example:
+                  summary: Default postMessagesSendTemplate 200 response
+                  x-microcks-default: true
+                  value:
+                  - email: user@example.com
+                    status: sent
+                    reject_reason: hard-bounce
+                    queued_reason: example_value
+                    _id: '500123'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -197,16 +342,19 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/search:
     post:
       operationId: postMessagesSearch
-      summary: Mailchimp Search sent messages
+      summary: Mailchimp Search Sent Messages
       description: >-
         Search recently sent messages and return matching results. You can
         filter by sending status, sender, tags, recipient, subject, and
         date range. Results are limited to the last 7 days.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -214,7 +362,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -251,6 +399,22 @@ paths:
                   type: integer
                   default: 100
                   description: Maximum number of results to return (max 1000).
+            examples:
+              PostmessagessearchRequestExample:
+                summary: Default postMessagesSearch request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  query: example_value
+                  date_from: '2026-01-15T10:30:00Z'
+                  date_to: '2026-01-15T10:30:00Z'
+                  tags:
+                  - example_value
+                  senders:
+                  - example_value
+                  api_keys:
+                  - example_value
+                  limit: 10
       responses:
         '200':
           description: An array of message info objects matching the search criteria.
@@ -260,6 +424,34 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/MessageInfo'
+              examples:
+                Postmessagessearch200Example:
+                  summary: Default postMessagesSearch 200 response
+                  x-microcks-default: true
+                  value:
+                  - ts: 10
+                    _id: '500123'
+                    sender: example_value
+                    template: example_value
+                    subject: example_value
+                    email: user@example.com
+                    tags:
+                    - example_value
+                    opens: 10
+                    opens_detail:
+                    - ts: 10
+                      ip: example_value
+                      location: example_value
+                      ua: example_value
+                    clicks: 10
+                    clicks_detail:
+                    - ts: 10
+                      url: https://www.example.com
+                      ip: example_value
+                      location: example_value
+                      ua: example_value
+                    state: sent
+                    metadata: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -267,15 +459,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/search-time-series:
     post:
       operationId: postMessagesSearchTimeSeries
-      summary: Mailchimp Search message time series
+      summary: Mailchimp Search Message Time Series
       description: >-
         Search the content of recently sent messages and return aggregated
         hourly statistics for matching messages over time.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -283,7 +478,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -309,6 +504,19 @@ paths:
                   items:
                     type: string
                   description: Sender addresses to filter by.
+            examples:
+              PostmessagessearchtimeseriesRequestExample:
+                summary: Default postMessagesSearchTimeSeries request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  query: example_value
+                  date_from: '2026-01-15T10:30:00Z'
+                  date_to: '2026-01-15T10:30:00Z'
+                  tags:
+                  - example_value
+                  senders:
+                  - example_value
       responses:
         '200':
           description: An array of time series data points with hourly statistics.
@@ -318,6 +526,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TimeSeries'
+              examples:
+                Postmessagessearchtimeseries200Example:
+                  summary: Default postMessagesSearchTimeSeries 200 response
+                  x-microcks-default: true
+                  value:
+                  - time: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    unique_opens: 10
+                    clicks: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -325,15 +549,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/info:
     post:
       operationId: postMessagesInfo
-      summary: Mailchimp Get message info
+      summary: Mailchimp Get Message Info
       description: >-
         Get the information for a single recently sent message including
         delivery status, open/click tracking, and metadata.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -341,8 +568,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -350,6 +577,13 @@ paths:
                 id:
                   type: string
                   description: The unique message ID returned from a send call.
+            examples:
+              PostmessagesinfoRequestExample:
+                summary: Default postMessagesInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: Detailed information about the message.
@@ -357,6 +591,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MessageDetail'
+              examples:
+                Postmessagesinfo200Example:
+                  summary: Default postMessagesInfo 200 response
+                  x-microcks-default: true
+                  value: {}
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -364,15 +603,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/content:
     post:
       operationId: postMessagesContent
-      summary: Mailchimp Get message content
+      summary: Mailchimp Get Message Content
       description: >-
         Get the full content of a recently sent message including the HTML
         body, text body, headers, and attachments.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -380,8 +622,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -389,6 +631,13 @@ paths:
                 id:
                   type: string
                   description: The unique message ID.
+            examples:
+              PostmessagescontentRequestExample:
+                summary: Default postMessagesContent request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The full content of the message.
@@ -396,6 +645,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MessageContent'
+              examples:
+                Postmessagescontent200Example:
+                  summary: Default postMessagesContent 200 response
+                  x-microcks-default: true
+                  value:
+                    ts: 10
+                    _id: '500123'
+                    from_email: user@example.com
+                    from_name: example_value
+                    subject: example_value
+                    to:
+                      email: user@example.com
+                      name: Example Title
+                    tags:
+                    - example_value
+                    headers: example_value
+                    text: example_value
+                    html: example_value
+                    attachments:
+                    - name: Example Title
+                      type: example_value
+                      content: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -403,15 +674,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/parse:
     post:
       operationId: postMessagesParse
-      summary: Mailchimp Parse a raw MIME message
+      summary: Mailchimp Parse a Raw Mime Message
       description: >-
         Parse the full MIME document for an email message, returning the
         subject, recipients, HTML body, text body, headers, and attachments.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -419,8 +693,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - raw_message
+              - key
+              - raw_message
               properties:
                 key:
                   type: string
@@ -428,6 +702,13 @@ paths:
                 raw_message:
                   type: string
                   description: The full MIME document of the message to parse.
+            examples:
+              PostmessagesparseRequestExample:
+                summary: Default postMessagesParse request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  raw_message: example_value
       responses:
         '200':
           description: The parsed message content.
@@ -435,6 +716,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ParsedMessage'
+              examples:
+                Postmessagesparse200Example:
+                  summary: Default postMessagesParse 200 response
+                  x-microcks-default: true
+                  value:
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    to:
+                    - email: user@example.com
+                      name: Example Title
+                    headers: example_value
+                    text: example_value
+                    html: example_value
+                    attachments:
+                    - name: Example Title
+                      type: example_value
+                      content: example_value
+                    images:
+                    - name: Example Title
+                      type: example_value
+                      content: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -442,16 +745,19 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/send-raw:
     post:
       operationId: postMessagesSendRaw
-      summary: Mailchimp Send a raw MIME message
+      summary: Mailchimp Send a Raw Mime Message
       description: >-
         Take a raw MIME document and send it exactly as provided. Mandrill
         will not modify the message content, but will track opens and clicks
         if the appropriate headers are included.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -459,8 +765,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - raw_message
+              - key
+              - raw_message
               properties:
                 key:
                   type: string
@@ -499,6 +805,21 @@ paths:
                 return_path_domain:
                   type: string
                   description: Custom domain for the return-path header.
+            examples:
+              PostmessagessendrawRequestExample:
+                summary: Default postMessagesSendRaw request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  raw_message: example_value
+                  from_email: user@example.com
+                  from_name: example_value
+                  to:
+                  - example_value
+                  async: true
+                  ip_pool: example_value
+                  send_at: '2026-01-15T10:30:00Z'
+                  return_path_domain: example_value
       responses:
         '200':
           description: An array of sending results, one per recipient.
@@ -508,6 +829,16 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SendResult'
+              examples:
+                Postmessagessendraw200Example:
+                  summary: Default postMessagesSendRaw 200 response
+                  x-microcks-default: true
+                  value:
+                  - email: user@example.com
+                    status: sent
+                    reject_reason: hard-bounce
+                    queued_reason: example_value
+                    _id: '500123'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -515,15 +846,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/list-scheduled:
     post:
       operationId: postMessagesListScheduled
-      summary: Mailchimp List scheduled messages
+      summary: Mailchimp List Scheduled Messages
       description: >-
         Get a list of messages that are scheduled for future delivery. Messages
         can be scheduled up to 7 days in advance.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -531,7 +865,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -542,6 +876,13 @@ paths:
                   description: >-
                     Optional recipient email address to restrict results to
                     messages scheduled for a specific recipient.
+            examples:
+              PostmessageslistscheduledRequestExample:
+                summary: Default postMessagesListScheduled request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  to: example_value
       responses:
         '200':
           description: An array of scheduled message objects.
@@ -551,6 +892,17 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ScheduledMessage'
+              examples:
+                Postmessageslistscheduled200Example:
+                  summary: Default postMessagesListScheduled 200 response
+                  x-microcks-default: true
+                  value:
+                  - _id: '500123'
+                    created_at: '2026-01-15T10:30:00Z'
+                    send_at: '2026-01-15T10:30:00Z'
+                    from_email: user@example.com
+                    to: example_value
+                    subject: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -558,15 +910,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/cancel-scheduled:
     post:
       operationId: postMessagesCancelScheduled
-      summary: Mailchimp Cancel a scheduled message
+      summary: Mailchimp Cancel a Scheduled Message
       description: >-
         Cancel a message that has been scheduled for future delivery. The
         message must not have already been sent.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -574,8 +929,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -583,6 +938,13 @@ paths:
                 id:
                   type: string
                   description: The unique ID of the scheduled message to cancel.
+            examples:
+              PostmessagescancelscheduledRequestExample:
+                summary: Default postMessagesCancelScheduled request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The details of the cancelled scheduled message.
@@ -590,6 +952,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScheduledMessage'
+              examples:
+                Postmessagescancelscheduled200Example:
+                  summary: Default postMessagesCancelScheduled 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: '500123'
+                    created_at: '2026-01-15T10:30:00Z'
+                    send_at: '2026-01-15T10:30:00Z'
+                    from_email: user@example.com
+                    to: example_value
+                    subject: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -597,15 +970,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /messages/reschedule:
     post:
       operationId: postMessagesReschedule
-      summary: Mailchimp Reschedule a message
+      summary: Mailchimp Reschedule a Message
       description: >-
         Reschedule a message that was previously scheduled for future delivery
         to a new date and time.
       tags:
-        - Messages
+      - Messages
       requestBody:
         required: true
         content:
@@ -613,9 +989,9 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
-                - send_at
+              - key
+              - id
+              - send_at
               properties:
                 key:
                   type: string
@@ -627,6 +1003,14 @@ paths:
                   type: string
                   format: date-time
                   description: The new date and time to send the message in UTC.
+            examples:
+              PostmessagesrescheduleRequestExample:
+                summary: Default postMessagesReschedule request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
+                  send_at: '2026-01-15T10:30:00Z'
       responses:
         '200':
           description: The updated scheduled message details.
@@ -634,6 +1018,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ScheduledMessage'
+              examples:
+                Postmessagesreschedule200Example:
+                  summary: Default postMessagesReschedule 200 response
+                  x-microcks-default: true
+                  value:
+                    _id: '500123'
+                    created_at: '2026-01-15T10:30:00Z'
+                    send_at: '2026-01-15T10:30:00Z'
+                    from_email: user@example.com
+                    to: example_value
+                    subject: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -641,16 +1036,19 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/add:
     post:
       operationId: postTemplatesAdd
-      summary: Mailchimp Add a new template
+      summary: Mailchimp Add a New Template
       description: >-
         Create a new template on the Mandrill server. Templates can contain
         merge variables and mc:edit content blocks for dynamic content
         injection at send time.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -658,8 +1056,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -692,6 +1090,21 @@ paths:
                   items:
                     type: string
                   description: Array of up to 10 labels to organize templates.
+            examples:
+              PosttemplatesaddRequestExample:
+                summary: Default postTemplatesAdd request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
+                  from_email: user@example.com
+                  from_name: example_value
+                  subject: example_value
+                  code: example_value
+                  text: example_value
+                  publish: true
+                  labels:
+                  - example_value
       responses:
         '200':
           description: The newly created template object.
@@ -699,6 +1112,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemplateInfo'
+              examples:
+                Posttemplatesadd200Example:
+                  summary: Default postTemplatesAdd 200 response
+                  x-microcks-default: true
+                  value:
+                    slug: example_value
+                    name: Example Title
+                    labels:
+                    - example_value
+                    code: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    text: example_value
+                    publish_name: example_value
+                    publish_code: example_value
+                    publish_subject: example_value
+                    publish_from_email: user@example.com
+                    publish_from_name: example_value
+                    publish_text: example_value
+                    published_at: '2026-01-15T10:30:00Z'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -706,15 +1142,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/info:
     post:
       operationId: postTemplatesInfo
-      summary: Mailchimp Get template info
+      summary: Mailchimp Get Template Info
       description: >-
         Get the details for a specific template, including its code, default
         values, and publish status.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -722,8 +1161,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -731,6 +1170,13 @@ paths:
                 name:
                   type: string
                   description: The name of the existing template.
+            examples:
+              PosttemplatesinfoRequestExample:
+                summary: Default postTemplatesInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
       responses:
         '200':
           description: The template details.
@@ -738,6 +1184,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemplateInfo'
+              examples:
+                Posttemplatesinfo200Example:
+                  summary: Default postTemplatesInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    slug: example_value
+                    name: Example Title
+                    labels:
+                    - example_value
+                    code: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    text: example_value
+                    publish_name: example_value
+                    publish_code: example_value
+                    publish_subject: example_value
+                    publish_from_email: user@example.com
+                    publish_from_name: example_value
+                    publish_text: example_value
+                    published_at: '2026-01-15T10:30:00Z'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -745,15 +1214,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/update:
     post:
       operationId: postTemplatesUpdate
-      summary: Mailchimp Update a template
+      summary: Mailchimp Update a Template
       description: >-
         Update an existing template with new values for any of its fields.
         Only the fields you include in the request body will be updated.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -761,8 +1233,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -794,6 +1266,21 @@ paths:
                   items:
                     type: string
                   description: Updated array of labels.
+            examples:
+              PosttemplatesupdateRequestExample:
+                summary: Default postTemplatesUpdate request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
+                  from_email: user@example.com
+                  from_name: example_value
+                  subject: example_value
+                  code: example_value
+                  text: example_value
+                  publish: true
+                  labels:
+                  - example_value
       responses:
         '200':
           description: The updated template details.
@@ -801,6 +1288,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemplateInfo'
+              examples:
+                Posttemplatesupdate200Example:
+                  summary: Default postTemplatesUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    slug: example_value
+                    name: Example Title
+                    labels:
+                    - example_value
+                    code: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    text: example_value
+                    publish_name: example_value
+                    publish_code: example_value
+                    publish_subject: example_value
+                    publish_from_email: user@example.com
+                    publish_from_name: example_value
+                    publish_text: example_value
+                    published_at: '2026-01-15T10:30:00Z'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -808,15 +1318,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/publish:
     post:
       operationId: postTemplatesPublish
-      summary: Mailchimp Publish a template
+      summary: Mailchimp Publish a Template
       description: >-
         Publish the most recent draft of an existing template, making it
         available for sending.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -824,8 +1337,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -833,6 +1346,13 @@ paths:
                 name:
                   type: string
                   description: The name of the template to publish.
+            examples:
+              PosttemplatespublishRequestExample:
+                summary: Default postTemplatesPublish request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
       responses:
         '200':
           description: The published template details.
@@ -840,6 +1360,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemplateInfo'
+              examples:
+                Posttemplatespublish200Example:
+                  summary: Default postTemplatesPublish 200 response
+                  x-microcks-default: true
+                  value:
+                    slug: example_value
+                    name: Example Title
+                    labels:
+                    - example_value
+                    code: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    text: example_value
+                    publish_name: example_value
+                    publish_code: example_value
+                    publish_subject: example_value
+                    publish_from_email: user@example.com
+                    publish_from_name: example_value
+                    publish_text: example_value
+                    published_at: '2026-01-15T10:30:00Z'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -847,15 +1390,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/delete:
     post:
       operationId: postTemplatesDelete
-      summary: Mailchimp Delete a template
+      summary: Mailchimp Delete a Template
       description: >-
         Permanently delete a template from the account. This action cannot
         be undone.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -863,8 +1409,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -872,6 +1418,13 @@ paths:
                 name:
                   type: string
                   description: The name of the template to delete.
+            examples:
+              PosttemplatesdeleteRequestExample:
+                summary: Default postTemplatesDelete request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
       responses:
         '200':
           description: The deleted template details.
@@ -879,6 +1432,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemplateInfo'
+              examples:
+                Posttemplatesdelete200Example:
+                  summary: Default postTemplatesDelete 200 response
+                  x-microcks-default: true
+                  value:
+                    slug: example_value
+                    name: Example Title
+                    labels:
+                    - example_value
+                    code: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    text: example_value
+                    publish_name: example_value
+                    publish_code: example_value
+                    publish_subject: example_value
+                    publish_from_email: user@example.com
+                    publish_from_name: example_value
+                    publish_text: example_value
+                    published_at: '2026-01-15T10:30:00Z'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -886,13 +1462,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/list:
     post:
       operationId: postTemplatesList
-      summary: Mailchimp List templates
+      summary: Mailchimp List Templates
       description: Get a list of all templates available in the account.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -900,7 +1479,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -910,6 +1489,13 @@ paths:
                   description: >-
                     Optional label to filter results. Only templates with the
                     given label will be returned.
+            examples:
+              PosttemplateslistRequestExample:
+                summary: Default postTemplatesList request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  label: Example Title
       responses:
         '200':
           description: An array of template info objects.
@@ -919,6 +1505,29 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TemplateInfo'
+              examples:
+                Posttemplateslist200Example:
+                  summary: Default postTemplatesList 200 response
+                  x-microcks-default: true
+                  value:
+                  - slug: example_value
+                    name: Example Title
+                    labels:
+                    - example_value
+                    code: example_value
+                    subject: example_value
+                    from_email: user@example.com
+                    from_name: example_value
+                    text: example_value
+                    publish_name: example_value
+                    publish_code: example_value
+                    publish_subject: example_value
+                    publish_from_email: user@example.com
+                    publish_from_name: example_value
+                    publish_text: example_value
+                    published_at: '2026-01-15T10:30:00Z'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -926,15 +1535,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/time-series:
     post:
       operationId: postTemplatesTimeSeries
-      summary: Mailchimp Get template time series
+      summary: Mailchimp Get Template Time Series
       description: >-
         Return the recent sending history for a template, aggregated by
         hourly time slots.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -942,8 +1554,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -951,6 +1563,13 @@ paths:
                 name:
                   type: string
                   description: The name of the existing template.
+            examples:
+              PosttemplatestimeseriesRequestExample:
+                summary: Default postTemplatesTimeSeries request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
       responses:
         '200':
           description: An array of time series data for the template.
@@ -960,6 +1579,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TimeSeries'
+              examples:
+                Posttemplatestimeseries200Example:
+                  summary: Default postTemplatesTimeSeries 200 response
+                  x-microcks-default: true
+                  value:
+                  - time: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    unique_opens: 10
+                    clicks: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -967,15 +1602,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /templates/render:
     post:
       operationId: postTemplatesRender
-      summary: Mailchimp Render a template
+      summary: Mailchimp Render a Template
       description: >-
         Render a template with the provided merge variables and template
         content, returning the final HTML that would be sent.
       tags:
-        - Templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -983,9 +1621,9 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - template_name
-                - template_content
+              - key
+              - template_name
+              - template_content
               properties:
                 key:
                   type: string
@@ -1017,6 +1655,19 @@ paths:
                       content:
                         type: string
                         description: The merge variable value.
+            examples:
+              PosttemplatesrenderRequestExample:
+                summary: Default postTemplatesRender request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  template_name: example_value
+                  template_content:
+                  - name: Example Title
+                    content: example_value
+                  merge_vars:
+                  - name: Example Title
+                    content: example_value
       responses:
         '200':
           description: The rendered template HTML.
@@ -1028,6 +1679,12 @@ paths:
                   html:
                     type: string
                     description: The rendered HTML of the template.
+              examples:
+                Posttemplatesrender200Example:
+                  summary: Default postTemplatesRender 200 response
+                  x-microcks-default: true
+                  value:
+                    html: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1035,10 +1692,13 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tags/list:
     post:
       operationId: postTagsList
-      summary: Mailchimp List tags
+      summary: Mailchimp List Tags
       description: >-
         Get all the tags that have been used in the account, along with
         aggregate sending statistics for each tag.
@@ -1050,11 +1710,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PosttagslistRequestExample:
+                summary: Default postTagsList request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of tag objects with statistics.
@@ -1064,6 +1730,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TagInfo'
+              examples:
+                Posttagslist200Example:
+                  summary: Default postTagsList 200 response
+                  x-microcks-default: true
+                  value:
+                  - tag: example_value
+                    reputation: 10
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    clicks: 10
+                    unique_opens: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1071,10 +1754,13 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tags/info:
     post:
       operationId: postTagsInfo
-      summary: Mailchimp Get tag info
+      summary: Mailchimp Get Tag Info
       description: >-
         Return more detailed information about a single tag including
         aggregate statistics.
@@ -1086,8 +1772,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - tag
+              - key
+              - tag
               properties:
                 key:
                   type: string
@@ -1095,6 +1781,13 @@ paths:
                 tag:
                   type: string
                   description: The tag name to retrieve information for.
+            examples:
+              PosttagsinfoRequestExample:
+                summary: Default postTagsInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  tag: example_value
       responses:
         '200':
           description: Detailed information about the tag.
@@ -1102,6 +1795,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagInfo'
+              examples:
+                Posttagsinfo200Example:
+                  summary: Default postTagsInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    tag: example_value
+                    reputation: 10
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    clicks: 10
+                    unique_opens: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1109,10 +1819,13 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tags/delete:
     post:
       operationId: postTagsDelete
-      summary: Mailchimp Delete a tag
+      summary: Mailchimp Delete a Tag
       description: >-
         Delete a tag permanently. Deleting a tag removes it from all messages
         that have been tagged with it, and permanently removes the tag
@@ -1125,8 +1838,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - tag
+              - key
+              - tag
               properties:
                 key:
                   type: string
@@ -1134,6 +1847,13 @@ paths:
                 tag:
                   type: string
                   description: The tag name to delete.
+            examples:
+              PosttagsdeleteRequestExample:
+                summary: Default postTagsDelete request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  tag: example_value
       responses:
         '200':
           description: The deleted tag object.
@@ -1141,6 +1861,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagInfo'
+              examples:
+                Posttagsdelete200Example:
+                  summary: Default postTagsDelete 200 response
+                  x-microcks-default: true
+                  value:
+                    tag: example_value
+                    reputation: 10
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    clicks: 10
+                    unique_opens: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1148,10 +1885,13 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tags/time-series:
     post:
       operationId: postTagsTimeSeries
-      summary: Mailchimp Get tag time series
+      summary: Mailchimp Get Tag Time Series
       description: >-
         Return the recent sending history for a tag, aggregated by hourly
         time slots.
@@ -1163,8 +1903,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - tag
+              - key
+              - tag
               properties:
                 key:
                   type: string
@@ -1172,6 +1912,13 @@ paths:
                 tag:
                   type: string
                   description: The tag name to retrieve time series for.
+            examples:
+              PosttagstimeseriesRequestExample:
+                summary: Default postTagsTimeSeries request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  tag: example_value
       responses:
         '200':
           description: An array of time series data for the tag.
@@ -1181,6 +1928,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TimeSeries'
+              examples:
+                Posttagstimeseries200Example:
+                  summary: Default postTagsTimeSeries 200 response
+                  x-microcks-default: true
+                  value:
+                  - time: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    unique_opens: 10
+                    clicks: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1188,10 +1951,13 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /tags/all-time-series:
     post:
       operationId: postTagsAllTimeSeries
-      summary: Mailchimp Get all tags time series
+      summary: Mailchimp Get All Tags Time Series
       description: >-
         Return hourly aggregated statistics for all tags in the account
         over the last 30 days.
@@ -1203,11 +1969,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PosttagsalltimeseriesRequestExample:
+                summary: Default postTagsAllTimeSeries request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of time series data points.
@@ -1217,6 +1989,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TimeSeries'
+              examples:
+                Posttagsalltimeseries200Example:
+                  summary: Default postTagsAllTimeSeries 200 response
+                  x-microcks-default: true
+                  value:
+                  - time: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    unique_opens: 10
+                    clicks: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1224,15 +2012,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /senders/list:
     post:
       operationId: postSendersList
-      summary: Mailchimp List senders
+      summary: Mailchimp List Senders
       description: >-
         Get the list of all sender email addresses that have been used in
         the account, with aggregate statistics for each sender.
       tags:
-        - Senders
+      - Senders
       requestBody:
         required: true
         content:
@@ -1240,11 +2031,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostsenderslistRequestExample:
+                summary: Default postSendersList request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of sender objects with statistics.
@@ -1254,6 +2051,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SenderInfo'
+              examples:
+                Postsenderslist200Example:
+                  summary: Default postSendersList 200 response
+                  x-microcks-default: true
+                  value:
+                  - address: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    clicks: 10
+                    unique_opens: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1261,15 +2075,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /senders/domains:
     post:
       operationId: postSendersDomains
-      summary: Mailchimp List sender domains
+      summary: Mailchimp List Sender Domains
       description: >-
         Get the list of sender domains that have been configured for the
         account, including DKIM and SPF verification status.
       tags:
-        - Senders
+      - Senders
       requestBody:
         required: true
         content:
@@ -1277,11 +2094,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostsendersdomainsRequestExample:
+                summary: Default postSendersDomains request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of sender domain objects.
@@ -1291,6 +2114,24 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SenderDomain'
+              examples:
+                Postsendersdomains200Example:
+                  summary: Default postSendersDomains 200 response
+                  x-microcks-default: true
+                  value:
+                  - domain: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_tested_at: '2026-01-15T10:30:00Z'
+                    spf:
+                      valid: '500123'
+                      valid_after: '2026-01-15T10:30:00Z'
+                      error: example_value
+                    dkim:
+                      valid: '500123'
+                      valid_after: '2026-01-15T10:30:00Z'
+                      error: example_value
+                    verified_at: '2026-01-15T10:30:00Z'
+                    valid_signing: true
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1298,13 +2139,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /senders/add-domain:
     post:
       operationId: postSendersAddDomain
-      summary: Mailchimp Add a sender domain
+      summary: Mailchimp Add a Sender Domain
       description: Add a new sender domain to the account for verification.
       tags:
-        - Senders
+      - Senders
       requestBody:
         required: true
         content:
@@ -1312,8 +2156,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - domain
+              - key
+              - domain
               properties:
                 key:
                   type: string
@@ -1321,6 +2165,13 @@ paths:
                 domain:
                   type: string
                   description: The domain name to add.
+            examples:
+              PostsendersadddomainRequestExample:
+                summary: Default postSendersAddDomain request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  domain: example_value
       responses:
         '200':
           description: The newly added domain details.
@@ -1328,6 +2179,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SenderDomain'
+              examples:
+                Postsendersadddomain200Example:
+                  summary: Default postSendersAddDomain 200 response
+                  x-microcks-default: true
+                  value:
+                    domain: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_tested_at: '2026-01-15T10:30:00Z'
+                    spf:
+                      valid: '500123'
+                      valid_after: '2026-01-15T10:30:00Z'
+                      error: example_value
+                    dkim:
+                      valid: '500123'
+                      valid_after: '2026-01-15T10:30:00Z'
+                      error: example_value
+                    verified_at: '2026-01-15T10:30:00Z'
+                    valid_signing: true
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1335,15 +2204,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /senders/check-domain:
     post:
       operationId: postSendersCheckDomain
-      summary: Mailchimp Check a sender domain
+      summary: Mailchimp Check a Sender Domain
       description: >-
         Check the DNS settings for a sender domain to verify DKIM and SPF
         configuration status.
       tags:
-        - Senders
+      - Senders
       requestBody:
         required: true
         content:
@@ -1351,8 +2223,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - domain
+              - key
+              - domain
               properties:
                 key:
                   type: string
@@ -1360,6 +2232,13 @@ paths:
                 domain:
                   type: string
                   description: The domain name to check.
+            examples:
+              PostsenderscheckdomainRequestExample:
+                summary: Default postSendersCheckDomain request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  domain: example_value
       responses:
         '200':
           description: The updated domain verification status.
@@ -1367,6 +2246,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SenderDomain'
+              examples:
+                Postsenderscheckdomain200Example:
+                  summary: Default postSendersCheckDomain 200 response
+                  x-microcks-default: true
+                  value:
+                    domain: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_tested_at: '2026-01-15T10:30:00Z'
+                    spf:
+                      valid: '500123'
+                      valid_after: '2026-01-15T10:30:00Z'
+                      error: example_value
+                    dkim:
+                      valid: '500123'
+                      valid_after: '2026-01-15T10:30:00Z'
+                      error: example_value
+                    verified_at: '2026-01-15T10:30:00Z'
+                    valid_signing: true
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1374,15 +2271,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /senders/verify-domain:
     post:
       operationId: postSendersVerifyDomain
-      summary: Mailchimp Verify a sender domain
+      summary: Mailchimp Verify a Sender Domain
       description: >-
         Send a verification email to the specified mailbox at the domain to
         confirm domain ownership.
       tags:
-        - Senders
+      - Senders
       requestBody:
         required: true
         content:
@@ -1390,9 +2290,9 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - domain
-                - mailbox
+              - key
+              - domain
+              - mailbox
               properties:
                 key:
                   type: string
@@ -1405,6 +2305,14 @@ paths:
                   description: >-
                     The mailbox at the domain to which the verification email
                     will be sent (e.g., postmaster).
+            examples:
+              PostsendersverifydomainRequestExample:
+                summary: Default postSendersVerifyDomain request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  domain: example_value
+                  mailbox: example_value
       responses:
         '200':
           description: Verification status.
@@ -1424,6 +2332,14 @@ paths:
                     description: >-
                       The email address where the verification message
                       was sent.
+              examples:
+                Postsendersverifydomain200Example:
+                  summary: Default postSendersVerifyDomain 200 response
+                  x-microcks-default: true
+                  value:
+                    status: example_value
+                    domain: example_value
+                    email: user@example.com
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1431,15 +2347,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /senders/info:
     post:
       operationId: postSendersInfo
-      summary: Mailchimp Get sender info
+      summary: Mailchimp Get Sender Info
       description: >-
         Get detailed information for a single sender address, including
         aggregate sending statistics.
       tags:
-        - Senders
+      - Senders
       requestBody:
         required: true
         content:
@@ -1447,8 +2366,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - address
+              - key
+              - address
               properties:
                 key:
                   type: string
@@ -1457,6 +2376,13 @@ paths:
                   type: string
                   format: email
                   description: The email address of the sender to retrieve info for.
+            examples:
+              PostsendersinfoRequestExample:
+                summary: Default postSendersInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  address: example_value
       responses:
         '200':
           description: The sender details.
@@ -1464,6 +2390,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SenderInfo'
+              examples:
+                Postsendersinfo200Example:
+                  summary: Default postSendersInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    address: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    clicks: 10
+                    unique_opens: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1471,15 +2414,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /senders/time-series:
     post:
       operationId: postSendersTimeSeries
-      summary: Mailchimp Get sender time series
+      summary: Mailchimp Get Sender Time Series
       description: >-
         Return the recent sending history for a sender address, aggregated
         by hourly time slots.
       tags:
-        - Senders
+      - Senders
       requestBody:
         required: true
         content:
@@ -1487,8 +2433,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - address
+              - key
+              - address
               properties:
                 key:
                   type: string
@@ -1497,6 +2443,13 @@ paths:
                   type: string
                   format: email
                   description: The sender address for time series data.
+            examples:
+              PostsenderstimeseriesRequestExample:
+                summary: Default postSendersTimeSeries request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  address: example_value
       responses:
         '200':
           description: An array of time series data for the sender.
@@ -1506,6 +2459,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TimeSeries'
+              examples:
+                Postsenderstimeseries200Example:
+                  summary: Default postSendersTimeSeries 200 response
+                  x-microcks-default: true
+                  value:
+                  - time: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    unique_opens: 10
+                    clicks: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1513,15 +2482,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /users/info:
     post:
       operationId: postUsersInfo
-      summary: Mailchimp Get user info
+      summary: Mailchimp Get User Info
       description: >-
         Return the information about the API-connected user, including
         username, reputation, hourly quota, and account-level statistics.
       tags:
-        - Users
+      - Users
       requestBody:
         required: true
         content:
@@ -1529,11 +2501,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostusersinfoRequestExample:
+                summary: Default postUsersInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: Account information for the authenticated user.
@@ -1541,6 +2519,84 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserInfo'
+              examples:
+                Postusersinfo200Example:
+                  summary: Default postUsersInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    username: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    public_id: '500123'
+                    reputation: 10
+                    hourly_quota: https://www.example.com
+                    backlog: 10
+                    stats:
+                      today:
+                        sent: 10
+                        hard_bounces: 10
+                        soft_bounces: 10
+                        rejects: 10
+                        complaints: 10
+                        unsubs: 10
+                        opens: 10
+                        unique_opens: 10
+                        clicks: 10
+                        unique_clicks: 10
+                      last_7_days:
+                        sent: 10
+                        hard_bounces: 10
+                        soft_bounces: 10
+                        rejects: 10
+                        complaints: 10
+                        unsubs: 10
+                        opens: 10
+                        unique_opens: 10
+                        clicks: 10
+                        unique_clicks: 10
+                      last_30_days:
+                        sent: 10
+                        hard_bounces: 10
+                        soft_bounces: 10
+                        rejects: 10
+                        complaints: 10
+                        unsubs: 10
+                        opens: 10
+                        unique_opens: 10
+                        clicks: 10
+                        unique_clicks: 10
+                      last_60_days:
+                        sent: 10
+                        hard_bounces: 10
+                        soft_bounces: 10
+                        rejects: 10
+                        complaints: 10
+                        unsubs: 10
+                        opens: 10
+                        unique_opens: 10
+                        clicks: 10
+                        unique_clicks: 10
+                      last_90_days:
+                        sent: 10
+                        hard_bounces: 10
+                        soft_bounces: 10
+                        rejects: 10
+                        complaints: 10
+                        unsubs: 10
+                        opens: 10
+                        unique_opens: 10
+                        clicks: 10
+                        unique_clicks: 10
+                      all_time:
+                        sent: 10
+                        hard_bounces: 10
+                        soft_bounces: 10
+                        rejects: 10
+                        complaints: 10
+                        unsubs: 10
+                        opens: 10
+                        unique_opens: 10
+                        clicks: 10
+                        unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1548,15 +2604,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /users/ping:
     post:
       operationId: postUsersPing
-      summary: Mailchimp Ping the API
+      summary: Mailchimp Ping the Api
       description: >-
         Validate an API key and respond to a ping. Returns the string PONG!
         if the API key is valid.
       tags:
-        - Users
+      - Users
       requestBody:
         required: true
         content:
@@ -1564,11 +2623,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostuserspingRequestExample:
+                summary: Default postUsersPing request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: A successful ping response.
@@ -1578,20 +2643,28 @@ paths:
                 type: string
                 example: PONG!
                 description: The string PONG! confirming a valid API key.
+              examples:
+                Postusersping200Example:
+                  summary: Default postUsersPing 200 response
+                  x-microcks-default: true
+                  value: example_value
         '401':
           $ref: '#/components/responses/InvalidKeyError'
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /users/senders:
     post:
       operationId: postUsersSenders
-      summary: Mailchimp List account senders
+      summary: Mailchimp List Account Senders
       description: >-
         Return the senders that have tried to use this account, both verified
         and unverified.
       tags:
-        - Users
+      - Users
       requestBody:
         required: true
         content:
@@ -1599,11 +2672,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostuserssendersRequestExample:
+                summary: Default postUsersSenders request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of sender objects.
@@ -1613,6 +2692,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SenderInfo'
+              examples:
+                Postuserssenders200Example:
+                  summary: Default postUsersSenders 200 response
+                  x-microcks-default: true
+                  value:
+                  - address: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    sent: 10
+                    hard_bounces: 10
+                    soft_bounces: 10
+                    rejects: 10
+                    complaints: 10
+                    unsubs: 10
+                    opens: 10
+                    clicks: 10
+                    unique_opens: 10
+                    unique_clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1620,13 +2716,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /webhooks/list:
     post:
       operationId: postWebhooksList
-      summary: Mailchimp List webhooks
+      summary: Mailchimp List Webhooks
       description: Get the list of all configured webhooks for the account.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -1634,11 +2733,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostwebhookslistRequestExample:
+                summary: Default postWebhooksList request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of webhook objects.
@@ -1648,6 +2753,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/WebhookInfo'
+              examples:
+                Postwebhookslist200Example:
+                  summary: Default postWebhooksList 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    url: https://www.example.com
+                    description: A sample description.
+                    auth_key: example_value
+                    events:
+                    - send
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_sent_at: '2026-01-15T10:30:00Z'
+                    batches_sent: 10
+                    events_sent: 10
+                    last_error: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1655,15 +2776,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /webhooks/add:
     post:
       operationId: postWebhooksAdd
-      summary: Mailchimp Add a webhook
+      summary: Mailchimp Add a Webhook
       description: >-
         Create a new webhook. Mandrill will attempt a HEAD request to the
         provided URL to verify the webhook endpoint.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -1671,8 +2795,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - url
+              - key
+              - url
               properties:
                 key:
                   type: string
@@ -1689,18 +2813,28 @@ paths:
                   items:
                     type: string
                     enum:
-                      - send
-                      - hard_bounce
-                      - soft_bounce
-                      - open
-                      - click
-                      - spam
-                      - unsub
-                      - reject
-                      - deferral
+                    - send
+                    - hard_bounce
+                    - soft_bounce
+                    - open
+                    - click
+                    - spam
+                    - unsub
+                    - reject
+                    - deferral
                   description: >-
                     The message events that should trigger the webhook. If
                     empty, all events will be sent.
+            examples:
+              PostwebhooksaddRequestExample:
+                summary: Default postWebhooksAdd request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  url: https://www.example.com
+                  description: A sample description.
+                  events:
+                  - send
       responses:
         '200':
           description: The newly created webhook details.
@@ -1708,6 +2842,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookInfo'
+              examples:
+                Postwebhooksadd200Example:
+                  summary: Default postWebhooksAdd 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    url: https://www.example.com
+                    description: A sample description.
+                    auth_key: example_value
+                    events:
+                    - send
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_sent_at: '2026-01-15T10:30:00Z'
+                    batches_sent: 10
+                    events_sent: 10
+                    last_error: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1715,13 +2865,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /webhooks/info:
     post:
       operationId: postWebhooksInfo
-      summary: Mailchimp Get webhook info
+      summary: Mailchimp Get Webhook Info
       description: Get the details for a specific webhook by its unique ID.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -1729,8 +2882,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -1738,6 +2891,13 @@ paths:
                 id:
                   type: integer
                   description: The unique identifier of the webhook.
+            examples:
+              PostwebhooksinfoRequestExample:
+                summary: Default postWebhooksInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The webhook details.
@@ -1745,6 +2905,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookInfo'
+              examples:
+                Postwebhooksinfo200Example:
+                  summary: Default postWebhooksInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    url: https://www.example.com
+                    description: A sample description.
+                    auth_key: example_value
+                    events:
+                    - send
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_sent_at: '2026-01-15T10:30:00Z'
+                    batches_sent: 10
+                    events_sent: 10
+                    last_error: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1752,13 +2928,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /webhooks/update:
     post:
       operationId: postWebhooksUpdate
-      summary: Mailchimp Update a webhook
+      summary: Mailchimp Update a Webhook
       description: Update the URL, description, or events for an existing webhook.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -1766,9 +2945,9 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
-                - url
+              - key
+              - id
+              - url
               properties:
                 key:
                   type: string
@@ -1788,16 +2967,27 @@ paths:
                   items:
                     type: string
                     enum:
-                      - send
-                      - hard_bounce
-                      - soft_bounce
-                      - open
-                      - click
-                      - spam
-                      - unsub
-                      - reject
-                      - deferral
+                    - send
+                    - hard_bounce
+                    - soft_bounce
+                    - open
+                    - click
+                    - spam
+                    - unsub
+                    - reject
+                    - deferral
                   description: Updated list of events that trigger the webhook.
+            examples:
+              PostwebhooksupdateRequestExample:
+                summary: Default postWebhooksUpdate request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
+                  url: https://www.example.com
+                  description: A sample description.
+                  events:
+                  - send
       responses:
         '200':
           description: The updated webhook details.
@@ -1805,6 +2995,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookInfo'
+              examples:
+                Postwebhooksupdate200Example:
+                  summary: Default postWebhooksUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    url: https://www.example.com
+                    description: A sample description.
+                    auth_key: example_value
+                    events:
+                    - send
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_sent_at: '2026-01-15T10:30:00Z'
+                    batches_sent: 10
+                    events_sent: 10
+                    last_error: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1812,13 +3018,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /webhooks/delete:
     post:
       operationId: postWebhooksDelete
-      summary: Mailchimp Delete a webhook
+      summary: Mailchimp Delete a Webhook
       description: Permanently delete a webhook by its unique ID.
       tags:
-        - Webhooks
+      - Webhooks
       requestBody:
         required: true
         content:
@@ -1826,8 +3035,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -1835,6 +3044,13 @@ paths:
                 id:
                   type: integer
                   description: The unique identifier of the webhook to delete.
+            examples:
+              PostwebhooksdeleteRequestExample:
+                summary: Default postWebhooksDelete request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The deleted webhook details.
@@ -1842,6 +3058,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookInfo'
+              examples:
+                Postwebhooksdelete200Example:
+                  summary: Default postWebhooksDelete 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    url: https://www.example.com
+                    description: A sample description.
+                    auth_key: example_value
+                    events:
+                    - send
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_sent_at: '2026-01-15T10:30:00Z'
+                    batches_sent: 10
+                    events_sent: 10
+                    last_error: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1849,13 +3081,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subaccounts/list:
     post:
       operationId: postSubaccountsList
-      summary: Mailchimp List subaccounts
+      summary: Mailchimp List Subaccounts
       description: Get the list of subaccounts defined for the account.
       tags:
-        - Subaccounts
+      - Subaccounts
       requestBody:
         required: true
         content:
@@ -1863,7 +3098,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -1871,6 +3106,13 @@ paths:
                 q:
                   type: string
                   description: Optional prefix to filter subaccounts by ID or name.
+            examples:
+              PostsubaccountslistRequestExample:
+                summary: Default postSubaccountsList request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  q: example_value
       responses:
         '200':
           description: An array of subaccount objects.
@@ -1880,6 +3122,22 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SubaccountInfo'
+              examples:
+                Postsubaccountslist200Example:
+                  summary: Default postSubaccountsList 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    name: Example Title
+                    notes: example_value
+                    custom_quota: 10
+                    status: active
+                    reputation: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    first_sent_at: '2026-01-15T10:30:00Z'
+                    sent_weekly: 10
+                    sent_monthly: 10
+                    sent_total: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1887,13 +3145,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subaccounts/add:
     post:
       operationId: postSubaccountsAdd
-      summary: Mailchimp Add a subaccount
+      summary: Mailchimp Add a Subaccount
       description: Create a new subaccount under the main account.
       tags:
-        - Subaccounts
+      - Subaccounts
       requestBody:
         required: true
         content:
@@ -1901,8 +3162,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -1922,6 +3183,16 @@ paths:
                     An optional manual hourly quota for the subaccount. If
                     not specified, the subaccount shares the parent
                     account quota.
+            examples:
+              PostsubaccountsaddRequestExample:
+                summary: Default postSubaccountsAdd request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
+                  name: Example Title
+                  notes: example_value
+                  custom_quota: 10
       responses:
         '200':
           description: The newly created subaccount details.
@@ -1929,6 +3200,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubaccountInfo'
+              examples:
+                Postsubaccountsadd200Example:
+                  summary: Default postSubaccountsAdd 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    notes: example_value
+                    custom_quota: 10
+                    status: active
+                    reputation: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    first_sent_at: '2026-01-15T10:30:00Z'
+                    sent_weekly: 10
+                    sent_monthly: 10
+                    sent_total: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1936,13 +3223,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subaccounts/info:
     post:
       operationId: postSubaccountsInfo
-      summary: Mailchimp Get subaccount info
+      summary: Mailchimp Get Subaccount Info
       description: Get detailed information about a specific subaccount.
       tags:
-        - Subaccounts
+      - Subaccounts
       requestBody:
         required: true
         content:
@@ -1950,8 +3240,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -1959,6 +3249,13 @@ paths:
                 id:
                   type: string
                   description: The unique identifier for the subaccount.
+            examples:
+              PostsubaccountsinfoRequestExample:
+                summary: Default postSubaccountsInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The subaccount details.
@@ -1966,6 +3263,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubaccountInfo'
+              examples:
+                Postsubaccountsinfo200Example:
+                  summary: Default postSubaccountsInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    notes: example_value
+                    custom_quota: 10
+                    status: active
+                    reputation: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    first_sent_at: '2026-01-15T10:30:00Z'
+                    sent_weekly: 10
+                    sent_monthly: 10
+                    sent_total: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -1973,13 +3286,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subaccounts/update:
     post:
       operationId: postSubaccountsUpdate
-      summary: Mailchimp Update a subaccount
+      summary: Mailchimp Update a Subaccount
       description: Update an existing subaccount's name, notes, or quota.
       tags:
-        - Subaccounts
+      - Subaccounts
       requestBody:
         required: true
         content:
@@ -1987,8 +3303,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -2005,6 +3321,16 @@ paths:
                 custom_quota:
                   type: integer
                   description: Updated manual hourly quota.
+            examples:
+              PostsubaccountsupdateRequestExample:
+                summary: Default postSubaccountsUpdate request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
+                  name: Example Title
+                  notes: example_value
+                  custom_quota: 10
       responses:
         '200':
           description: The updated subaccount details.
@@ -2012,6 +3338,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubaccountInfo'
+              examples:
+                Postsubaccountsupdate200Example:
+                  summary: Default postSubaccountsUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    notes: example_value
+                    custom_quota: 10
+                    status: active
+                    reputation: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    first_sent_at: '2026-01-15T10:30:00Z'
+                    sent_weekly: 10
+                    sent_monthly: 10
+                    sent_total: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2019,13 +3361,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subaccounts/delete:
     post:
       operationId: postSubaccountsDelete
-      summary: Mailchimp Delete a subaccount
+      summary: Mailchimp Delete a Subaccount
       description: Permanently delete a subaccount. Any future email for the subaccount will be sent from the primary account.
       tags:
-        - Subaccounts
+      - Subaccounts
       requestBody:
         required: true
         content:
@@ -2033,8 +3378,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -2042,6 +3387,13 @@ paths:
                 id:
                   type: string
                   description: The unique identifier of the subaccount to delete.
+            examples:
+              PostsubaccountsdeleteRequestExample:
+                summary: Default postSubaccountsDelete request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The deleted subaccount details.
@@ -2049,6 +3401,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubaccountInfo'
+              examples:
+                Postsubaccountsdelete200Example:
+                  summary: Default postSubaccountsDelete 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    notes: example_value
+                    custom_quota: 10
+                    status: active
+                    reputation: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    first_sent_at: '2026-01-15T10:30:00Z'
+                    sent_weekly: 10
+                    sent_monthly: 10
+                    sent_total: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2056,16 +3424,19 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subaccounts/pause:
     post:
       operationId: postSubaccountsPause
-      summary: Mailchimp Pause a subaccount
+      summary: Mailchimp Pause a Subaccount
       description: >-
         Pause a subaccount's sending. Any future messages sent through the
         subaccount will be queued but not delivered until the subaccount
         is resumed.
       tags:
-        - Subaccounts
+      - Subaccounts
       requestBody:
         required: true
         content:
@@ -2073,8 +3444,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -2082,6 +3453,13 @@ paths:
                 id:
                   type: string
                   description: The unique identifier of the subaccount to pause.
+            examples:
+              PostsubaccountspauseRequestExample:
+                summary: Default postSubaccountsPause request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The paused subaccount details.
@@ -2089,6 +3467,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubaccountInfo'
+              examples:
+                Postsubaccountspause200Example:
+                  summary: Default postSubaccountsPause 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    notes: example_value
+                    custom_quota: 10
+                    status: active
+                    reputation: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    first_sent_at: '2026-01-15T10:30:00Z'
+                    sent_weekly: 10
+                    sent_monthly: 10
+                    sent_total: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2096,14 +3490,17 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /subaccounts/resume:
     post:
       operationId: postSubaccountsResume
-      summary: Mailchimp Resume a subaccount
+      summary: Mailchimp Resume a Subaccount
       description: >-
         Resume a paused subaccount, allowing it to send messages again.
       tags:
-        - Subaccounts
+      - Subaccounts
       requestBody:
         required: true
         content:
@@ -2111,8 +3508,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -2120,6 +3517,13 @@ paths:
                 id:
                   type: string
                   description: The unique identifier of the subaccount to resume.
+            examples:
+              PostsubaccountsresumeRequestExample:
+                summary: Default postSubaccountsResume request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The resumed subaccount details.
@@ -2127,6 +3531,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubaccountInfo'
+              examples:
+                Postsubaccountsresume200Example:
+                  summary: Default postSubaccountsResume 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    notes: example_value
+                    custom_quota: 10
+                    status: active
+                    reputation: 10
+                    created_at: '2026-01-15T10:30:00Z'
+                    first_sent_at: '2026-01-15T10:30:00Z'
+                    sent_weekly: 10
+                    sent_monthly: 10
+                    sent_total: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2134,16 +3554,19 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /rejects/list:
     post:
       operationId: postRejectsList
-      summary: Mailchimp List rejections
+      summary: Mailchimp List Rejections
       description: >-
         Retrieve all entries in the rejection blacklist. These are email
         addresses that have previously hard-bounced or been reported as
         spam, and will be automatically rejected.
       tags:
-        - Rejects
+      - Rejects
       requestBody:
         required: true
         content:
@@ -2151,7 +3574,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -2167,6 +3590,15 @@ paths:
                 subaccount:
                   type: string
                   description: Optional subaccount ID to restrict results.
+            examples:
+              PostrejectslistRequestExample:
+                summary: Default postRejectsList request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  email: user@example.com
+                  include_expired: true
+                  subaccount: example_value
       responses:
         '200':
           description: An array of rejection entries.
@@ -2176,6 +3608,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RejectEntry'
+              examples:
+                Postrejectslist200Example:
+                  summary: Default postRejectsList 200 response
+                  x-microcks-default: true
+                  value:
+                  - email: user@example.com
+                    reason: hard-bounce
+                    detail: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    last_event_at: '2026-01-15T10:30:00Z'
+                    expires_at: '2026-01-15T10:30:00Z'
+                    expired: true
+                    subaccount: example_value
+                    sender:
+                      address: example_value
+                      created_at: '2026-01-15T10:30:00Z'
+                      sent: 10
+                      hard_bounces: 10
+                      soft_bounces: 10
+                      rejects: 10
+                      complaints: 10
+                      unsubs: 10
+                      opens: 10
+                      clicks: 10
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2183,15 +3639,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /rejects/add:
     post:
       operationId: postRejectsAdd
-      summary: Mailchimp Add a rejection
+      summary: Mailchimp Add a Rejection
       description: >-
         Manually add an email address to the rejection blacklist. Messages
         to this address will be rejected.
       tags:
-        - Rejects
+      - Rejects
       requestBody:
         required: true
         content:
@@ -2199,8 +3658,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - email
+              - key
+              - email
               properties:
                 key:
                   type: string
@@ -2215,6 +3674,15 @@ paths:
                 subaccount:
                   type: string
                   description: Optional subaccount to restrict the rejection to.
+            examples:
+              PostrejectsaddRequestExample:
+                summary: Default postRejectsAdd request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  email: user@example.com
+                  comment: example_value
+                  subaccount: example_value
       responses:
         '200':
           description: Details about the newly added rejection.
@@ -2229,6 +3697,13 @@ paths:
                   added:
                     type: boolean
                     description: Whether the address was added to the blacklist.
+              examples:
+                Postrejectsadd200Example:
+                  summary: Default postRejectsAdd 200 response
+                  x-microcks-default: true
+                  value:
+                    email: user@example.com
+                    added: true
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2236,15 +3711,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /rejects/delete:
     post:
       operationId: postRejectsDelete
-      summary: Mailchimp Delete a rejection
+      summary: Mailchimp Delete a Rejection
       description: >-
         Remove an email address from the rejection blacklist, allowing
         messages to be delivered to it again.
       tags:
-        - Rejects
+      - Rejects
       requestBody:
         required: true
         content:
@@ -2252,8 +3730,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - email
+              - key
+              - email
               properties:
                 key:
                   type: string
@@ -2265,6 +3743,14 @@ paths:
                 subaccount:
                   type: string
                   description: Optional subaccount that the rejection applies to.
+            examples:
+              PostrejectsdeleteRequestExample:
+                summary: Default postRejectsDelete request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  email: user@example.com
+                  subaccount: example_value
       responses:
         '200':
           description: Details about the removed rejection.
@@ -2282,6 +3768,14 @@ paths:
                   subaccount:
                     type: string
                     description: The subaccount blacklist the deletion applied to.
+              examples:
+                Postrejectsdelete200Example:
+                  summary: Default postRejectsDelete 200 response
+                  x-microcks-default: true
+                  value:
+                    email: user@example.com
+                    deleted: true
+                    subaccount: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2289,15 +3783,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /allowlists/list:
     post:
       operationId: postAllowlistsList
-      summary: Mailchimp List allowlist entries
+      summary: Mailchimp List Allowlist Entries
       description: >-
         Get all email addresses on the account allowlist. Allowlisted
         addresses bypass the rejection blacklist.
       tags:
-        - Allowlists
+      - Allowlists
       requestBody:
         required: true
         content:
@@ -2305,7 +3802,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -2314,6 +3811,13 @@ paths:
                   type: string
                   format: email
                   description: Optional email address or prefix to filter results.
+            examples:
+              PostallowlistslistRequestExample:
+                summary: Default postAllowlistsList request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  email: user@example.com
       responses:
         '200':
           description: An array of allowlist entries.
@@ -2323,6 +3827,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/AllowlistEntry'
+              examples:
+                Postallowlistslist200Example:
+                  summary: Default postAllowlistsList 200 response
+                  x-microcks-default: true
+                  value:
+                  - email: user@example.com
+                    detail: example_value
+                    created_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2330,15 +3842,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /allowlists/add:
     post:
       operationId: postAllowlistsAdd
-      summary: Mailchimp Add an allowlist entry
+      summary: Mailchimp Add an Allowlist Entry
       description: >-
         Add an email address to the allowlist, allowing messages to bypass
         the rejection blacklist.
       tags:
-        - Allowlists
+      - Allowlists
       requestBody:
         required: true
         content:
@@ -2346,8 +3861,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - email
+              - key
+              - email
               properties:
                 key:
                   type: string
@@ -2359,6 +3874,14 @@ paths:
                 comment:
                   type: string
                   description: An optional comment about why the address was allowlisted.
+            examples:
+              PostallowlistsaddRequestExample:
+                summary: Default postAllowlistsAdd request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  email: user@example.com
+                  comment: example_value
       responses:
         '200':
           description: Details about the allowlist addition.
@@ -2373,6 +3896,13 @@ paths:
                   added:
                     type: boolean
                     description: Whether the address was added.
+              examples:
+                Postallowlistsadd200Example:
+                  summary: Default postAllowlistsAdd 200 response
+                  x-microcks-default: true
+                  value:
+                    email: user@example.com
+                    added: true
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2380,15 +3910,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /allowlists/delete:
     post:
       operationId: postAllowlistsDelete
-      summary: Mailchimp Delete an allowlist entry
+      summary: Mailchimp Delete an Allowlist Entry
       description: >-
         Remove an email address from the allowlist. The address will no
         longer bypass the rejection blacklist.
       tags:
-        - Allowlists
+      - Allowlists
       requestBody:
         required: true
         content:
@@ -2396,8 +3929,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - email
+              - key
+              - email
               properties:
                 key:
                   type: string
@@ -2406,6 +3939,13 @@ paths:
                   type: string
                   format: email
                   description: The email address to remove from the allowlist.
+            examples:
+              PostallowlistsdeleteRequestExample:
+                summary: Default postAllowlistsDelete request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  email: user@example.com
       responses:
         '200':
           description: Details about the allowlist removal.
@@ -2420,6 +3960,13 @@ paths:
                   deleted:
                     type: boolean
                     description: Whether the address was removed.
+              examples:
+                Postallowlistsdelete200Example:
+                  summary: Default postAllowlistsDelete 200 response
+                  x-microcks-default: true
+                  value:
+                    email: user@example.com
+                    deleted: true
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2427,16 +3974,19 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ips/list:
     post:
       operationId: postIpsList
-      summary: Mailchimp List dedicated IPs
+      summary: Mailchimp List Dedicated Ips
       description: >-
         Get the list of dedicated IP addresses associated with the account,
         including their pool assignments, warmup status, and sending
         statistics.
       tags:
-        - IPs
+      - IPs
       requestBody:
         required: true
         content:
@@ -2444,11 +3994,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostipslistRequestExample:
+                summary: Default postIpsList request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of dedicated IP objects.
@@ -2458,6 +4014,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DedicatedIP'
+              examples:
+                Postipslist200Example:
+                  summary: Default postIpsList 200 response
+                  x-microcks-default: true
+                  value:
+                  - ip: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    pool: example_value
+                    domain: example_value
+                    custom_dns:
+                      enabled: true
+                      valid: '500123'
+                      error: example_value
+                    warmup:
+                      warming_up: true
+                      start_at: '2026-01-15T10:30:00Z'
+                      end_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2465,13 +4038,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ips/info:
     post:
       operationId: postIpsInfo
-      summary: Mailchimp Get IP info
+      summary: Mailchimp Get Ip Info
       description: Get detailed information about a specific dedicated IP address.
       tags:
-        - IPs
+      - IPs
       requestBody:
         required: true
         content:
@@ -2479,8 +4055,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - ip
+              - key
+              - ip
               properties:
                 key:
                   type: string
@@ -2488,6 +4064,13 @@ paths:
                 ip:
                   type: string
                   description: The dedicated IP address.
+            examples:
+              PostipsinfoRequestExample:
+                summary: Default postIpsInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  ip: example_value
       responses:
         '200':
           description: The dedicated IP details.
@@ -2495,6 +4078,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DedicatedIP'
+              examples:
+                Postipsinfo200Example:
+                  summary: Default postIpsInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    ip: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    pool: example_value
+                    domain: example_value
+                    custom_dns:
+                      enabled: true
+                      valid: '500123'
+                      error: example_value
+                    warmup:
+                      warming_up: true
+                      start_at: '2026-01-15T10:30:00Z'
+                      end_at: '2026-01-15T10:30:00Z'
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2502,15 +4102,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ips/list-pools:
     post:
       operationId: postIpsListPools
-      summary: Mailchimp List IP pools
+      summary: Mailchimp List Ip Pools
       description: >-
         Get the list of IP pools defined for the account, with the IPs
         assigned to each pool.
       tags:
-        - IPs
+      - IPs
       requestBody:
         required: true
         content:
@@ -2518,11 +4121,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostipslistpoolsRequestExample:
+                summary: Default postIpsListPools request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of IP pool objects.
@@ -2532,6 +4141,15 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/IPPool'
+              examples:
+                Postipslistpools200Example:
+                  summary: Default postIpsListPools 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    created_at: '2026-01-15T10:30:00Z'
+                    ips:
+                    - {}
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2539,13 +4157,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ips/create-pool:
     post:
       operationId: postIpsCreatePool
-      summary: Mailchimp Create an IP pool
+      summary: Mailchimp Create an Ip Pool
       description: Create a new IP pool for organizing dedicated IPs.
       tags:
-        - IPs
+      - IPs
       requestBody:
         required: true
         content:
@@ -2553,8 +4174,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - pool
+              - key
+              - pool
               properties:
                 key:
                   type: string
@@ -2562,6 +4183,13 @@ paths:
                 pool:
                   type: string
                   description: The name of the new pool.
+            examples:
+              PostipscreatepoolRequestExample:
+                summary: Default postIpsCreatePool request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  pool: example_value
       responses:
         '200':
           description: The newly created IP pool.
@@ -2569,6 +4197,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IPPool'
+              examples:
+                Postipscreatepool200Example:
+                  summary: Default postIpsCreatePool 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    created_at: '2026-01-15T10:30:00Z'
+                    ips:
+                    - ip: example_value
+                      created_at: '2026-01-15T10:30:00Z'
+                      pool: example_value
+                      domain: example_value
+                      custom_dns: {}
+                      warmup: {}
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2576,15 +4218,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /ips/delete-pool:
     post:
       operationId: postIpsDeletePool
-      summary: Mailchimp Delete an IP pool
+      summary: Mailchimp Delete an Ip Pool
       description: >-
         Delete an IP pool. IPs in the pool will be moved to the default
         pool if one exists.
       tags:
-        - IPs
+      - IPs
       requestBody:
         required: true
         content:
@@ -2592,8 +4237,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - pool
+              - key
+              - pool
               properties:
                 key:
                   type: string
@@ -2601,6 +4246,13 @@ paths:
                 pool:
                   type: string
                   description: The name of the pool to delete.
+            examples:
+              PostipsdeletepoolRequestExample:
+                summary: Default postIpsDeletePool request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  pool: example_value
       responses:
         '200':
           description: Deletion confirmation.
@@ -2615,6 +4267,13 @@ paths:
                   deleted:
                     type: boolean
                     description: Whether the pool was deleted.
+              examples:
+                Postipsdeletepool200Example:
+                  summary: Default postIpsDeletePool 200 response
+                  x-microcks-default: true
+                  value:
+                    pool: example_value
+                    deleted: true
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2622,13 +4281,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /exports/info:
     post:
       operationId: postExportsInfo
-      summary: Mailchimp Get export info
+      summary: Mailchimp Get Export Info
       description: Get information about an individual data export job.
       tags:
-        - Exports
+      - Exports
       requestBody:
         required: true
         content:
@@ -2636,8 +4298,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - id
+              - key
+              - id
               properties:
                 key:
                   type: string
@@ -2645,6 +4307,13 @@ paths:
                 id:
                   type: string
                   description: The unique identifier for the export job.
+            examples:
+              PostexportsinfoRequestExample:
+                summary: Default postExportsInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  id: abc123
       responses:
         '200':
           description: The export job details.
@@ -2652,6 +4321,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportJob'
+              examples:
+                Postexportsinfo200Example:
+                  summary: Default postExportsInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    created_at: '2026-01-15T10:30:00Z'
+                    type: activity
+                    finished_at: '2026-01-15T10:30:00Z'
+                    state: waiting
+                    result_url: https://www.example.com
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2659,13 +4339,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /exports/list:
     post:
       operationId: postExportsList
-      summary: Mailchimp List exports
+      summary: Mailchimp List Exports
       description: Get a list of all data export jobs for the account.
       tags:
-        - Exports
+      - Exports
       requestBody:
         required: true
         content:
@@ -2673,11 +4356,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostexportslistRequestExample:
+                summary: Default postExportsList request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of export job objects.
@@ -2687,6 +4376,17 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ExportJob'
+              examples:
+                Postexportslist200Example:
+                  summary: Default postExportsList 200 response
+                  x-microcks-default: true
+                  value:
+                  - id: abc123
+                    created_at: '2026-01-15T10:30:00Z'
+                    type: activity
+                    finished_at: '2026-01-15T10:30:00Z'
+                    state: waiting
+                    result_url: https://www.example.com
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2694,15 +4394,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /exports/rejects:
     post:
       operationId: postExportsRejects
-      summary: Mailchimp Export rejections
+      summary: Mailchimp Export Rejections
       description: >-
         Start a new export job for the account's rejection blacklist.
         When complete, a download URL is provided.
       tags:
-        - Exports
+      - Exports
       requestBody:
         required: true
         content:
@@ -2710,7 +4413,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -2719,6 +4422,13 @@ paths:
                   type: string
                   format: email
                   description: Email address to notify when the export is ready.
+            examples:
+              PostexportsrejectsRequestExample:
+                summary: Default postExportsRejects request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  notify_email: user@example.com
       responses:
         '200':
           description: The export job details.
@@ -2726,6 +4436,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportJob'
+              examples:
+                Postexportsrejects200Example:
+                  summary: Default postExportsRejects 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    created_at: '2026-01-15T10:30:00Z'
+                    type: activity
+                    finished_at: '2026-01-15T10:30:00Z'
+                    state: waiting
+                    result_url: https://www.example.com
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2733,15 +4454,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /exports/allowlist:
     post:
       operationId: postExportsAllowlist
-      summary: Mailchimp Export allowlist
+      summary: Mailchimp Export Allowlist
       description: >-
         Start a new export job for the account's allowlist. When complete,
         a download URL is provided.
       tags:
-        - Exports
+      - Exports
       requestBody:
         required: true
         content:
@@ -2749,7 +4473,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -2758,6 +4482,13 @@ paths:
                   type: string
                   format: email
                   description: Email address to notify when the export is ready.
+            examples:
+              PostexportsallowlistRequestExample:
+                summary: Default postExportsAllowlist request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  notify_email: user@example.com
       responses:
         '200':
           description: The export job details.
@@ -2765,6 +4496,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportJob'
+              examples:
+                Postexportsallowlist200Example:
+                  summary: Default postExportsAllowlist 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    created_at: '2026-01-15T10:30:00Z'
+                    type: activity
+                    finished_at: '2026-01-15T10:30:00Z'
+                    state: waiting
+                    result_url: https://www.example.com
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2772,15 +4514,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /exports/activity:
     post:
       operationId: postExportsActivity
-      summary: Mailchimp Export message activity
+      summary: Mailchimp Export Message Activity
       description: >-
         Start a new export job for message activity history. The export
         includes detailed message logs for the specified date range.
       tags:
-        - Exports
+      - Exports
       requestBody:
         required: true
         content:
@@ -2788,7 +4533,7 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
@@ -2820,18 +4565,35 @@ paths:
                   items:
                     type: string
                     enum:
-                      - sent
-                      - rejected
-                      - bounced
-                      - soft-bounced
-                      - spam
-                      - unsub
+                    - sent
+                    - rejected
+                    - bounced
+                    - soft-bounced
+                    - spam
+                    - unsub
                   description: Message states to include in the export.
                 api_keys:
                   type: array
                   items:
                     type: string
                   description: API keys to filter the export for subaccount isolation.
+            examples:
+              PostexportsactivityRequestExample:
+                summary: Default postExportsActivity request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  notify_email: user@example.com
+                  date_from: '2026-01-15T10:30:00Z'
+                  date_to: '2026-01-15T10:30:00Z'
+                  tags:
+                  - example_value
+                  senders:
+                  - example_value
+                  states:
+                  - sent
+                  api_keys:
+                  - example_value
       responses:
         '200':
           description: The export job details.
@@ -2839,6 +4601,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ExportJob'
+              examples:
+                Postexportsactivity200Example:
+                  summary: Default postExportsActivity 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    created_at: '2026-01-15T10:30:00Z'
+                    type: activity
+                    finished_at: '2026-01-15T10:30:00Z'
+                    state: waiting
+                    result_url: https://www.example.com
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2846,15 +4619,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metadata/list:
     post:
       operationId: postMetadataList
-      summary: Mailchimp List metadata fields
+      summary: Mailchimp List Metadata Fields
       description: >-
         Get the list of custom metadata fields defined for the account.
         Metadata fields can be attached to messages for tracking.
       tags:
-        - Metadata
+      - Metadata
       requestBody:
         required: true
         content:
@@ -2862,11 +4638,17 @@ paths:
             schema:
               type: object
               required:
-                - key
+              - key
               properties:
                 key:
                   type: string
                   description: A valid Mandrill API key.
+            examples:
+              PostmetadatalistRequestExample:
+                summary: Default postMetadataList request
+                x-microcks-default: true
+                value:
+                  key: example_value
       responses:
         '200':
           description: An array of metadata field objects.
@@ -2876,6 +4658,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/MetadataField'
+              examples:
+                Postmetadatalist200Example:
+                  summary: Default postMetadataList 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    state: active
+                    view_template: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2883,15 +4673,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metadata/add:
     post:
       operationId: postMetadataAdd
-      summary: Mailchimp Add a metadata field
+      summary: Mailchimp Add a Metadata Field
       description: >-
         Add a new custom metadata field that can be indexed and used for
         filtering in message searches.
       tags:
-        - Metadata
+      - Metadata
       requestBody:
         required: true
         content:
@@ -2899,8 +4692,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -2913,6 +4706,14 @@ paths:
                   description: >-
                     Mustache template to control how the metadata is displayed
                     in the Mandrill UI.
+            examples:
+              PostmetadataaddRequestExample:
+                summary: Default postMetadataAdd request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
+                  view_template: example_value
       responses:
         '200':
           description: The newly created metadata field.
@@ -2920,6 +4721,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetadataField'
+              examples:
+                Postmetadataadd200Example:
+                  summary: Default postMetadataAdd 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    state: active
+                    view_template: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2927,13 +4736,16 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metadata/update:
     post:
       operationId: postMetadataUpdate
-      summary: Mailchimp Update a metadata field
+      summary: Mailchimp Update a Metadata Field
       description: Update an existing metadata field's display template.
       tags:
-        - Metadata
+      - Metadata
       requestBody:
         required: true
         content:
@@ -2941,8 +4753,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -2953,6 +4765,14 @@ paths:
                 view_template:
                   type: string
                   description: Updated Mustache template for displaying the metadata.
+            examples:
+              PostmetadataupdateRequestExample:
+                summary: Default postMetadataUpdate request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
+                  view_template: example_value
       responses:
         '200':
           description: The updated metadata field.
@@ -2960,6 +4780,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetadataField'
+              examples:
+                Postmetadataupdate200Example:
+                  summary: Default postMetadataUpdate 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    state: active
+                    view_template: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -2967,15 +4795,18 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /metadata/delete:
     post:
       operationId: postMetadataDelete
-      summary: Mailchimp Delete a metadata field
+      summary: Mailchimp Delete a Metadata Field
       description: >-
         Permanently delete a metadata field. Metadata attached to messages
         using this field will no longer be searchable.
       tags:
-        - Metadata
+      - Metadata
       requestBody:
         required: true
         content:
@@ -2983,8 +4814,8 @@ paths:
             schema:
               type: object
               required:
-                - key
-                - name
+              - key
+              - name
               properties:
                 key:
                   type: string
@@ -2992,6 +4823,13 @@ paths:
                 name:
                   type: string
                   description: The unique name of the metadata field to delete.
+            examples:
+              PostmetadatadeleteRequestExample:
+                summary: Default postMetadataDelete request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  name: Example Title
       responses:
         '200':
           description: The deleted metadata field.
@@ -2999,6 +4837,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MetadataField'
+              examples:
+                Postmetadatadelete200Example:
+                  summary: Default postMetadataDelete 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    state: active
+                    view_template: example_value
         '400':
           $ref: '#/components/responses/ValidationError'
         '401':
@@ -3006,6 +4852,9 @@ paths:
         '500':
           $ref: '#/components/responses/GeneralError'
 
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     apiKey:
@@ -3045,18 +4894,22 @@ components:
         status:
           type: string
           enum:
-            - error
+          - error
           description: Always "error" for error responses.
+          example: error
         code:
           type: integer
           description: The numeric error code.
+          example: 10
         name:
           type: string
           description: The name/type of the error (e.g., Invalid_Key, ValidationError).
+          example: Example Title
         message:
           type: string
           description: A human-readable description of the error.
 
+          example: example_value
     MessagePayload:
       type: object
       description: >-
@@ -3067,26 +4920,31 @@ components:
         html:
           type: string
           description: The full HTML content of the message.
+          example: example_value
         text:
           type: string
           description: The full plain-text content of the message.
+          example: example_value
         subject:
           type: string
           description: The message subject line.
+          example: example_value
         from_email:
           type: string
           format: email
           description: The sender email address.
+          example: user@example.com
         from_name:
           type: string
           description: The sender display name.
+          example: example_value
         to:
           type: array
           description: An array of recipient objects.
           items:
             type: object
             required:
-              - email
+            - email
             properties:
               email:
                 type: string
@@ -3098,74 +4956,91 @@ components:
               type:
                 type: string
                 enum:
-                  - to
-                  - cc
-                  - bcc
+                - to
+                - cc
+                - bcc
                 default: to
                 description: The recipient type (to, cc, or bcc).
+          example: []
         headers:
           type: object
           additionalProperties:
             type: string
           description: Optional extra headers to add to the message (e.g., Reply-To).
+          example: example_value
         important:
           type: boolean
           default: false
           description: Whether this message is important and should be delivered ahead of non-important messages.
+          example: true
         track_opens:
           type: boolean
           description: Whether to enable open tracking for this message.
+          example: true
         track_clicks:
           type: boolean
           description: Whether to enable click tracking for this message.
+          example: true
         auto_text:
           type: boolean
           description: >-
             Whether to automatically generate a plain-text version from
             the HTML content.
+          example: true
         auto_html:
           type: boolean
           description: >-
             Whether to automatically generate HTML from the plain-text
             content.
+          example: true
         inline_css:
           type: boolean
           description: >-
             Whether to automatically inline all CSS styles from style
             blocks in the HTML content.
+          example: true
         url_strip_qs:
           type: boolean
           description: Whether to strip query strings from URLs when aggregating tracked click data.
+          example: https://www.example.com
         preserve_recipients:
           type: boolean
           description: Whether to show all recipients in the To header of each email.
+          example: true
         view_content_link:
           type: boolean
           description: Whether to include a View Content Link in the Mandrill dashboard for this message.
+          example: true
         bcc_address:
           type: string
           format: email
           description: An optional address to BCC on the message.
+          example: example_value
         tracking_domain:
           type: string
           description: A custom domain to use for tracking opens and clicks.
+          example: example_value
         signing_domain:
           type: string
           description: A custom domain to use for DKIM signing instead of the default.
+          example: example_value
         return_path_domain:
           type: string
           description: A custom domain to use for the return-path header.
+          example: example_value
         merge:
           type: boolean
           default: true
           description: Whether to evaluate merge tags in the message.
+          example: true
         merge_language:
           type: string
           enum:
-            - mailchimp
-            - handlebars
+          - mailchimp
+          - handlebars
           default: mailchimp
           description: The merge tag language to use (Mailchimp or Handlebars).
+          example: mailchimp
         global_merge_vars:
           type: array
           description: Global merge variables applied to all recipients.
@@ -3178,6 +5053,7 @@ components:
               content:
                 type: string
                 description: The global merge variable value.
+          example: []
         merge_vars:
           type: array
           description: Per-recipient merge variables.
@@ -3199,27 +5075,33 @@ components:
                     content:
                       type: string
                       description: The merge variable value.
+          example: []
         tags:
           type: array
           items:
             type: string
           description: An array of string tags to apply to this message for analytics.
+          example: []
         subaccount:
           type: string
           description: The unique ID of a subaccount for this message.
+          example: example_value
         google_analytics_domains:
           type: array
           items:
             type: string
           description: An array of domains for which Google Analytics tracking parameters will be appended.
+          example: []
         google_analytics_campaign:
           type: string
           description: The utm_campaign tracking parameter for Google Analytics.
+          example: example_value
         metadata:
           type: object
           additionalProperties:
             type: string
           description: Key-value metadata to associate with the message.
+          example: example_value
         recipient_metadata:
           type: array
           description: Per-recipient metadata.
@@ -3235,6 +5117,7 @@ components:
                 additionalProperties:
                   type: string
                 description: Key-value metadata for this recipient.
+          example: []
         attachments:
           type: array
           description: An array of file attachments.
@@ -3250,6 +5133,7 @@ components:
               content:
                 type: string
                 description: Base64-encoded content of the attachment.
+          example: []
         images:
           type: array
           description: An array of inline images referenced with "cid:" in the HTML content.
@@ -3266,6 +5150,7 @@ components:
                 type: string
                 description: Base64-encoded content of the image.
 
+          example: []
     SendResult:
       type: object
       description: The result of sending a message to a single recipient.
@@ -3274,36 +5159,41 @@ components:
           type: string
           format: email
           description: The recipient email address.
+          example: user@example.com
         status:
           type: string
           enum:
-            - sent
-            - queued
-            - scheduled
-            - rejected
-            - invalid
+          - sent
+          - queued
+          - scheduled
+          - rejected
+          - invalid
           description: The sending status for this recipient.
+          example: sent
         reject_reason:
           type: string
           enum:
-            - hard-bounce
-            - soft-bounce
-            - spam
-            - unsub
-            - custom
-            - invalid-sender
-            - invalid
-            - test-mode-limit
-            - unsigned
-            - rule
+          - hard-bounce
+          - soft-bounce
+          - spam
+          - unsub
+          - custom
+          - invalid-sender
+          - invalid
+          - test-mode-limit
+          - unsigned
+          - rule
           description: The reason the message was rejected, if applicable.
+          example: hard-bounce
         queued_reason:
           type: string
           description: The reason the message was queued instead of sent immediately.
+          example: example_value
         _id:
           type: string
           description: The unique message ID for this recipient's message.
 
+          example: '500123'
     MessageInfo:
       type: object
       description: Summary information about a sent message.
@@ -3311,31 +5201,39 @@ components:
         ts:
           type: integer
           description: The Unix timestamp when the message was sent.
+          example: 10
         _id:
           type: string
           description: The unique message ID.
+          example: '500123'
         sender:
           type: string
           format: email
           description: The sender email address.
+          example: example_value
         template:
           type: string
           description: The template slug used, if any.
+          example: example_value
         subject:
           type: string
           description: The subject line of the message.
+          example: example_value
         email:
           type: string
           format: email
           description: The recipient email address.
+          example: user@example.com
         tags:
           type: array
           items:
             type: string
           description: Tags applied to the message.
+          example: []
         opens:
           type: integer
           description: The number of times the message was opened.
+          example: 10
         opens_detail:
           type: array
           items:
@@ -3354,9 +5252,11 @@ components:
                 type: string
                 description: User agent string of the client.
           description: Detailed open tracking events.
+          example: []
         clicks:
           type: integer
           description: The number of link clicks in the message.
+          example: 10
         clicks_detail:
           type: array
           items:
@@ -3378,53 +5278,56 @@ components:
                 type: string
                 description: User agent string of the client.
           description: Detailed click tracking events.
+          example: []
         state:
           type: string
           enum:
-            - sent
-            - bounced
-            - rejected
-            - soft-bounced
-            - spam
-            - unsub
+          - sent
+          - bounced
+          - rejected
+          - soft-bounced
+          - spam
+          - unsub
           description: The current state of the message.
+          example: sent
         metadata:
           type: object
           additionalProperties:
             type: string
           description: Custom metadata attached to the message.
 
+          example: example_value
     MessageDetail:
       type: object
       description: Detailed information about a specific message.
       allOf:
-        - $ref: '#/components/schemas/MessageInfo'
-        - type: object
-          properties:
-            smtp_events:
-              type: array
-              description: SMTP event log for the message delivery.
-              items:
-                type: object
-                properties:
-                  ts:
-                    type: integer
-                    description: Unix timestamp of the SMTP event.
-                  type:
-                    type: string
-                    description: The type of SMTP event.
-                  diag:
-                    type: string
-                    description: Diagnostic information from the receiving server.
-            resends:
-              type: array
-              description: A list of resend attempts for this message.
-              items:
-                type: object
-                properties:
-                  ts:
-                    type: integer
-                    description: Unix timestamp of the resend.
+      - $ref: '#/components/schemas/MessageInfo'
+      - type: object
+        properties:
+          smtp_events:
+            type: array
+            description: SMTP event log for the message delivery.
+            items:
+              type: object
+              properties:
+                ts:
+                  type: integer
+                  description: Unix timestamp of the SMTP event.
+                type:
+                  type: string
+                  description: The type of SMTP event.
+                diag:
+                  type: string
+                  description: Diagnostic information from the receiving server.
+          resends:
+            type: array
+            description: A list of resend attempts for this message.
+            items:
+              type: object
+              properties:
+                ts:
+                  type: integer
+                  description: Unix timestamp of the resend.
 
     MessageContent:
       type: object
@@ -3433,19 +5336,24 @@ components:
         ts:
           type: integer
           description: Unix timestamp of when the message was sent.
+          example: 10
         _id:
           type: string
           description: The unique message ID.
+          example: '500123'
         from_email:
           type: string
           format: email
           description: The sender email address.
+          example: user@example.com
         from_name:
           type: string
           description: The sender display name.
+          example: example_value
         subject:
           type: string
           description: The message subject line.
+          example: example_value
         to:
           type: object
           properties:
@@ -3457,22 +5365,27 @@ components:
               type: string
               description: Recipient display name.
           description: The primary recipient.
+          example: example_value
         tags:
           type: array
           items:
             type: string
           description: Tags applied to the message.
+          example: []
         headers:
           type: object
           additionalProperties:
             type: string
           description: The full message headers.
+          example: example_value
         text:
           type: string
           description: The plain-text body of the message.
+          example: example_value
         html:
           type: string
           description: The HTML body of the message.
+          example: example_value
         attachments:
           type: array
           items:
@@ -3489,6 +5402,7 @@ components:
                 description: Base64-encoded attachment content.
           description: File attachments included in the message.
 
+          example: []
     ParsedMessage:
       type: object
       description: A parsed MIME message.
@@ -3496,13 +5410,16 @@ components:
         subject:
           type: string
           description: The parsed subject line.
+          example: example_value
         from_email:
           type: string
           format: email
           description: The parsed sender email address.
+          example: user@example.com
         from_name:
           type: string
           description: The parsed sender name.
+          example: example_value
         to:
           type: array
           items:
@@ -3514,17 +5431,21 @@ components:
               name:
                 type: string
           description: Parsed recipient list.
+          example: []
         headers:
           type: object
           additionalProperties:
             type: string
           description: All parsed headers.
+          example: example_value
         text:
           type: string
           description: The plain-text body.
+          example: example_value
         html:
           type: string
           description: The HTML body.
+          example: example_value
         attachments:
           type: array
           items:
@@ -3537,6 +5458,7 @@ components:
               content:
                 type: string
           description: Parsed file attachments.
+          example: []
         images:
           type: array
           items:
@@ -3550,6 +5472,7 @@ components:
                 type: string
           description: Parsed inline images.
 
+          example: []
     ScheduledMessage:
       type: object
       description: A message scheduled for future delivery.
@@ -3557,26 +5480,32 @@ components:
         _id:
           type: string
           description: The unique scheduled message ID.
+          example: '500123'
         created_at:
           type: string
           format: date-time
           description: When the scheduled message was created.
+          example: '2026-01-15T10:30:00Z'
         send_at:
           type: string
           format: date-time
           description: When the message is scheduled to be sent.
+          example: '2026-01-15T10:30:00Z'
         from_email:
           type: string
           format: email
           description: The sender email address.
+          example: user@example.com
         to:
           type: string
           format: email
           description: The recipient email address.
+          example: example_value
         subject:
           type: string
           description: The message subject line.
 
+          example: example_value
     TemplateInfo:
       type: object
       description: Information about a Mandrill template.
@@ -3584,62 +5513,79 @@ components:
         slug:
           type: string
           description: The URL-safe slug for the template.
+          example: example_value
         name:
           type: string
           description: The display name of the template.
+          example: Example Title
         labels:
           type: array
           items:
             type: string
           description: Labels applied to the template for organization.
+          example: []
         code:
           type: string
           description: The HTML code of the template.
+          example: example_value
         subject:
           type: string
           description: The default subject line.
+          example: example_value
         from_email:
           type: string
           format: email
           description: The default from address.
+          example: user@example.com
         from_name:
           type: string
           description: The default from name.
+          example: example_value
         text:
           type: string
           description: The default text content.
+          example: example_value
         publish_name:
           type: string
           description: The name of the published version.
+          example: example_value
         publish_code:
           type: string
           description: The HTML code of the published version.
+          example: example_value
         publish_subject:
           type: string
           description: The subject of the published version.
+          example: example_value
         publish_from_email:
           type: string
           format: email
           description: The from address of the published version.
+          example: user@example.com
         publish_from_name:
           type: string
           description: The from name of the published version.
+          example: example_value
         publish_text:
           type: string
           description: The text content of the published version.
+          example: example_value
         published_at:
           type: string
           format: date-time
           description: When the template was last published.
+          example: '2026-01-15T10:30:00Z'
         created_at:
           type: string
           format: date-time
           description: When the template was created.
+          example: '2026-01-15T10:30:00Z'
         updated_at:
           type: string
           format: date-time
           description: When the template was last updated.
 
+          example: '2026-01-15T10:30:00Z'
     TagInfo:
       type: object
       description: Information and statistics for a message tag.
@@ -3647,40 +5593,52 @@ components:
         tag:
           type: string
           description: The tag name.
+          example: example_value
         reputation:
           type: integer
           description: The reputation score for the tag (0-100).
+          example: 10
         sent:
           type: integer
           description: Total number of messages sent with this tag.
+          example: 10
         hard_bounces:
           type: integer
           description: Total hard bounces for messages with this tag.
+          example: 10
         soft_bounces:
           type: integer
           description: Total soft bounces for messages with this tag.
+          example: 10
         rejects:
           type: integer
           description: Total rejects for messages with this tag.
+          example: 10
         complaints:
           type: integer
           description: Total spam complaints for messages with this tag.
+          example: 10
         unsubs:
           type: integer
           description: Total unsubscribes for messages with this tag.
+          example: 10
         opens:
           type: integer
           description: Total opens for messages with this tag.
+          example: 10
         clicks:
           type: integer
           description: Total clicks for messages with this tag.
+          example: 10
         unique_opens:
           type: integer
           description: Unique opens for messages with this tag.
+          example: 10
         unique_clicks:
           type: integer
           description: Unique clicks for messages with this tag.
 
+          example: 10
     SenderInfo:
       type: object
       description: Information and statistics for a sender address.
@@ -3689,41 +5647,53 @@ components:
           type: string
           format: email
           description: The sender email address.
+          example: example_value
         created_at:
           type: string
           format: date-time
           description: When the sender was first used.
+          example: '2026-01-15T10:30:00Z'
         sent:
           type: integer
           description: Total number of messages sent from this address.
+          example: 10
         hard_bounces:
           type: integer
           description: Total hard bounces.
+          example: 10
         soft_bounces:
           type: integer
           description: Total soft bounces.
+          example: 10
         rejects:
           type: integer
           description: Total rejects.
+          example: 10
         complaints:
           type: integer
           description: Total spam complaints.
+          example: 10
         unsubs:
           type: integer
           description: Total unsubscribes.
+          example: 10
         opens:
           type: integer
           description: Total opens.
+          example: 10
         clicks:
           type: integer
           description: Total clicks.
+          example: 10
         unique_opens:
           type: integer
           description: Unique opens.
+          example: 10
         unique_clicks:
           type: integer
           description: Unique clicks.
 
+          example: 10
     SenderDomain:
       type: object
       description: Information about a configured sender domain.
@@ -3731,14 +5701,17 @@ components:
         domain:
           type: string
           description: The domain name.
+          example: example_value
         created_at:
           type: string
           format: date-time
           description: When the domain was added.
+          example: '2026-01-15T10:30:00Z'
         last_tested_at:
           type: string
           format: date-time
           description: When the domain settings were last tested.
+          example: '2026-01-15T10:30:00Z'
         spf:
           type: object
           description: SPF verification details.
@@ -3753,6 +5726,7 @@ components:
             error:
               type: string
               description: Any SPF verification error.
+          example: example_value
         dkim:
           type: object
           description: DKIM verification details.
@@ -3767,14 +5741,17 @@ components:
             error:
               type: string
               description: Any DKIM verification error.
+          example: example_value
         verified_at:
           type: string
           format: date-time
           description: When the domain ownership was verified.
+          example: '2026-01-15T10:30:00Z'
         valid_signing:
           type: boolean
           description: Whether the domain can be used for DKIM signing.
 
+          example: true
     TimeSeries:
       type: object
       description: An hourly time series data point with sending statistics.
@@ -3783,37 +5760,48 @@ components:
           type: string
           format: date-time
           description: The hour this data point covers (UTC).
+          example: '2026-01-15T10:30:00Z'
         sent:
           type: integer
           description: Number of messages sent.
+          example: 10
         hard_bounces:
           type: integer
           description: Number of hard bounces.
+          example: 10
         soft_bounces:
           type: integer
           description: Number of soft bounces.
+          example: 10
         rejects:
           type: integer
           description: Number of rejects.
+          example: 10
         complaints:
           type: integer
           description: Number of spam complaints.
+          example: 10
         unsubs:
           type: integer
           description: Number of unsubscribes.
+          example: 10
         opens:
           type: integer
           description: Number of opens.
+          example: 10
         unique_opens:
           type: integer
           description: Number of unique opens.
+          example: 10
         clicks:
           type: integer
           description: Number of clicks.
+          example: 10
         unique_clicks:
           type: integer
           description: Number of unique clicks.
 
+          example: 10
     UserInfo:
       type: object
       description: Account-level information for the authenticated Mandrill user.
@@ -3821,22 +5809,28 @@ components:
         username:
           type: string
           description: The account username.
+          example: example_value
         created_at:
           type: string
           format: date-time
           description: When the account was created.
+          example: '2026-01-15T10:30:00Z'
         public_id:
           type: string
           description: A unique public identifier for the account.
+          example: '500123'
         reputation:
           type: integer
           description: The account sending reputation (0-100).
+          example: 10
         hourly_quota:
           type: integer
           description: The hourly email sending quota.
+          example: https://www.example.com
         backlog:
           type: integer
           description: The number of messages in the send queue.
+          example: 10
         stats:
           type: object
           description: Account-level sending statistics.
@@ -3854,6 +5848,7 @@ components:
             all_time:
               $ref: '#/components/schemas/AccountStats'
 
+          example: example_value
     AccountStats:
       type: object
       description: Aggregate sending statistics for a time period.
@@ -3861,34 +5856,44 @@ components:
         sent:
           type: integer
           description: Total messages sent.
+          example: 10
         hard_bounces:
           type: integer
           description: Total hard bounces.
+          example: 10
         soft_bounces:
           type: integer
           description: Total soft bounces.
+          example: 10
         rejects:
           type: integer
           description: Total rejections.
+          example: 10
         complaints:
           type: integer
           description: Total spam complaints.
+          example: 10
         unsubs:
           type: integer
           description: Total unsubscribes.
+          example: 10
         opens:
           type: integer
           description: Total opens.
+          example: 10
         unique_opens:
           type: integer
           description: Unique opens.
+          example: 10
         clicks:
           type: integer
           description: Total clicks.
+          example: 10
         unique_clicks:
           type: integer
           description: Unique clicks.
 
+          example: 10
     WebhookInfo:
       type: object
       description: Information about a configured webhook.
@@ -3896,51 +5901,61 @@ components:
         id:
           type: integer
           description: The unique webhook identifier.
+          example: abc123
         url:
           type: string
           format: uri
           description: The webhook URL.
+          example: https://www.example.com
         description:
           type: string
           description: A description of the webhook.
+          example: A sample description.
         auth_key:
           type: string
           description: >-
             The key used to generate webhook signatures for verifying
             webhook authenticity.
+          example: example_value
         events:
           type: array
           items:
             type: string
             enum:
-              - send
-              - hard_bounce
-              - soft_bounce
-              - open
-              - click
-              - spam
-              - unsub
-              - reject
-              - deferral
+            - send
+            - hard_bounce
+            - soft_bounce
+            - open
+            - click
+            - spam
+            - unsub
+            - reject
+            - deferral
           description: The events that trigger this webhook.
+          example: []
         created_at:
           type: string
           format: date-time
           description: When the webhook was created.
+          example: '2026-01-15T10:30:00Z'
         last_sent_at:
           type: string
           format: date-time
           description: When the webhook last fired.
+          example: '2026-01-15T10:30:00Z'
         batches_sent:
           type: integer
           description: Total number of event batches sent.
+          example: 10
         events_sent:
           type: integer
           description: Total number of events sent.
+          example: 10
         last_error:
           type: string
           description: The last error received from the webhook URL.
 
+          example: example_value
     SubaccountInfo:
       type: object
       description: Information about a subaccount.
@@ -3948,42 +5963,53 @@ components:
         id:
           type: string
           description: The unique subaccount identifier.
+          example: abc123
         name:
           type: string
           description: The display name of the subaccount.
+          example: Example Title
         notes:
           type: string
           description: Notes about the subaccount.
+          example: example_value
         custom_quota:
           type: integer
           description: The manual hourly quota, if set.
+          example: 10
         status:
           type: string
           enum:
-            - active
-            - paused
+          - active
+          - paused
           description: The current status of the subaccount.
+          example: active
         reputation:
           type: integer
           description: The subaccount sending reputation (0-100).
+          example: 10
         created_at:
           type: string
           format: date-time
           description: When the subaccount was created.
+          example: '2026-01-15T10:30:00Z'
         first_sent_at:
           type: string
           format: date-time
           description: When the subaccount first sent a message.
+          example: '2026-01-15T10:30:00Z'
         sent_weekly:
           type: integer
           description: Messages sent in the last week.
+          example: 10
         sent_monthly:
           type: integer
           description: Messages sent in the last month.
+          example: 10
         sent_total:
           type: integer
           description: Total messages sent.
 
+          example: 10
     RejectEntry:
       type: object
       description: An entry in the rejection blacklist.
@@ -3992,36 +6018,44 @@ components:
           type: string
           format: email
           description: The rejected email address.
+          example: user@example.com
         reason:
           type: string
           enum:
-            - hard-bounce
-            - soft-bounce
-            - spam
-            - unsub
-            - custom
+          - hard-bounce
+          - soft-bounce
+          - spam
+          - unsub
+          - custom
           description: The reason the address is on the blacklist.
+          example: hard-bounce
         detail:
           type: string
           description: Extended details about the rejection.
+          example: example_value
         created_at:
           type: string
           format: date-time
           description: When the entry was added to the blacklist.
+          example: '2026-01-15T10:30:00Z'
         last_event_at:
           type: string
           format: date-time
           description: When the last event occurred for this address.
+          example: '2026-01-15T10:30:00Z'
         expires_at:
           type: string
           format: date-time
           description: When the rejection expires (if applicable).
+          example: '2026-01-15T10:30:00Z'
         expired:
           type: boolean
           description: Whether the rejection has expired.
+          example: true
         subaccount:
           type: string
           description: The subaccount this rejection applies to, if any.
+          example: example_value
         sender:
           type: object
           properties:
@@ -4049,6 +6083,7 @@ components:
               type: integer
           description: Sender statistics associated with the rejection.
 
+          example: example_value
     AllowlistEntry:
       type: object
       description: An entry in the sending allowlist.
@@ -4057,14 +6092,17 @@ components:
           type: string
           format: email
           description: The allowlisted email address.
+          example: user@example.com
         detail:
           type: string
           description: Details or comment about why the address is allowlisted.
+          example: example_value
         created_at:
           type: string
           format: date-time
           description: When the entry was added to the allowlist.
 
+          example: '2026-01-15T10:30:00Z'
     DedicatedIP:
       type: object
       description: Information about a dedicated IP address.
@@ -4072,16 +6110,20 @@ components:
         ip:
           type: string
           description: The dedicated IP address.
+          example: example_value
         created_at:
           type: string
           format: date-time
           description: When the IP was provisioned.
+          example: '2026-01-15T10:30:00Z'
         pool:
           type: string
           description: The IP pool this address belongs to.
+          example: example_value
         domain:
           type: string
           description: The reverse DNS domain for the IP.
+          example: example_value
         custom_dns:
           type: object
           properties:
@@ -4095,6 +6137,7 @@ components:
               type: string
               description: Any DNS error.
           description: Custom DNS settings for the IP.
+          example: example_value
         warmup:
           type: object
           properties:
@@ -4111,6 +6154,7 @@ components:
               description: When the warmup is expected to end.
           description: IP warmup status.
 
+          example: example_value
     IPPool:
       type: object
       description: An IP pool grouping dedicated IPs.
@@ -4118,16 +6162,19 @@ components:
         name:
           type: string
           description: The pool name.
+          example: Example Title
         created_at:
           type: string
           format: date-time
           description: When the pool was created.
+          example: '2026-01-15T10:30:00Z'
         ips:
           type: array
           items:
             $ref: '#/components/schemas/DedicatedIP'
           description: The dedicated IPs in this pool.
 
+          example: []
     ExportJob:
       type: object
       description: Information about a data export job.
@@ -4135,35 +6182,41 @@ components:
         id:
           type: string
           description: The unique export job ID.
+          example: abc123
         created_at:
           type: string
           format: date-time
           description: When the export was created.
+          example: '2026-01-15T10:30:00Z'
         type:
           type: string
           enum:
-            - activity
-            - reject
-            - whitelist
+          - activity
+          - reject
+          - whitelist
           description: The type of data being exported.
+          example: activity
         finished_at:
           type: string
           format: date-time
           description: When the export completed.
+          example: '2026-01-15T10:30:00Z'
         state:
           type: string
           enum:
-            - waiting
-            - working
-            - complete
-            - error
-            - expired
+          - waiting
+          - working
+          - complete
+          - error
+          - expired
           description: The current state of the export.
+          example: waiting
         result_url:
           type: string
           format: uri
           description: The URL to download the export file (when complete).
 
+          example: https://www.example.com
     MetadataField:
       type: object
       description: A custom metadata field definition.
@@ -4171,13 +6224,16 @@ components:
         name:
           type: string
           description: The unique name of the metadata field.
+          example: Example Title
         state:
           type: string
           enum:
-            - active
-            - delete
-            - index
+          - active
+          - delete
+          - index
           description: The current state of the field.
+          example: active
         view_template:
           type: string
           description: The Mustache template for displaying the field in the UI.
+          example: example_value

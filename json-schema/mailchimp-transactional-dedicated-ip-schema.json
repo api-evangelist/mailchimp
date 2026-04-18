@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DedicatedIP",
+  "type": "object",
+  "description": "Information about a dedicated IP address.",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "description": "The dedicated IP address."
+    },
+    "created_at": {
+      "type": "string",
+      "description": "When the IP was provisioned."
+    },
+    "pool": {
+      "type": "string",
+      "description": "The IP pool this address belongs to."
+    },
+    "domain": {
+      "type": "string",
+      "description": "The reverse DNS domain for the IP."
+    },
+    "custom_dns": {
+      "type": "object",
+      "description": "Custom DNS settings for the IP."
+    },
+    "warmup": {
+      "type": "object",
+      "description": "IP warmup status."
+    }
+  }
+}

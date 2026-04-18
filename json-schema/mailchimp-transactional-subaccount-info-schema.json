@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SubaccountInfo",
+  "type": "object",
+  "description": "Information about a subaccount.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique subaccount identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the subaccount."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Notes about the subaccount."
+    },
+    "custom_quota": {
+      "type": "integer",
+      "description": "The manual hourly quota, if set."
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the subaccount."
+    },
+    "reputation": {
+      "type": "integer",
+      "description": "The subaccount sending reputation (0-100)."
+    },
+    "created_at": {
+      "type": "string",
+      "description": "When the subaccount was created."
+    },
+    "first_sent_at": {
+      "type": "string",
+      "description": "When the subaccount first sent a message."
+    },
+    "sent_weekly": {
+      "type": "integer",
+      "description": "Messages sent in the last week."
+    },
+    "sent_monthly": {
+      "type": "integer",
+      "description": "Messages sent in the last month."
+    },
+    "sent_total": {
+      "type": "integer",
+      "description": "Total messages sent."
+    }
+  }
+}

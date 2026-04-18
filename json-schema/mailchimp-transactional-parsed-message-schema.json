@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ParsedMessage",
+  "type": "object",
+  "description": "A parsed MIME message.",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "description": "The parsed subject line."
+    },
+    "from_email": {
+      "type": "string",
+      "description": "The parsed sender email address."
+    },
+    "from_name": {
+      "type": "string",
+      "description": "The parsed sender name."
+    },
+    "to": {
+      "type": "array",
+      "description": "Parsed recipient list."
+    },
+    "headers": {
+      "type": "object",
+      "description": "All parsed headers."
+    },
+    "text": {
+      "type": "string",
+      "description": "The plain-text body."
+    },
+    "html": {
+      "type": "string",
+      "description": "The HTML body."
+    },
+    "attachments": {
+      "type": "array",
+      "description": "Parsed file attachments."
+    },
+    "images": {
+      "type": "array",
+      "description": "Parsed inline images."
+    }
+  }
+}

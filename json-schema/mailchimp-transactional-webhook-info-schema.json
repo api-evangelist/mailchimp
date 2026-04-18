@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WebhookInfo",
+  "type": "object",
+  "description": "Information about a configured webhook.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique webhook identifier."
+    },
+    "url": {
+      "type": "string",
+      "description": "The webhook URL."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the webhook."
+    },
+    "auth_key": {
+      "type": "string",
+      "description": "The key used to generate webhook signatures for verifying webhook authenticity."
+    },
+    "events": {
+      "type": "array",
+      "description": "The events that trigger this webhook."
+    },
+    "created_at": {
+      "type": "string",
+      "description": "When the webhook was created."
+    },
+    "last_sent_at": {
+      "type": "string",
+      "description": "When the webhook last fired."
+    },
+    "batches_sent": {
+      "type": "integer",
+      "description": "Total number of event batches sent."
+    },
+    "events_sent": {
+      "type": "integer",
+      "description": "Total number of events sent."
+    },
+    "last_error": {
+      "type": "string",
+      "description": "The last error received from the webhook URL."
+    }
+  }
+}

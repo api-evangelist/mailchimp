@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Error",
+  "type": "object",
+  "description": "A standard error response from the Mandrill API.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Always \"error\" for error responses."
+    },
+    "code": {
+      "type": "integer",
+      "description": "The numeric error code."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name/type of the error (e.g., Invalid_Key, ValidationError)."
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable description of the error."
+    }
+  }
+}

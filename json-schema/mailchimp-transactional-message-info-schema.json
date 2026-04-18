@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MessageInfo",
+  "type": "object",
+  "description": "Summary information about a sent message.",
+  "properties": {
+    "ts": {
+      "type": "integer",
+      "description": "The Unix timestamp when the message was sent."
+    },
+    "_id": {
+      "type": "string",
+      "description": "The unique message ID."
+    },
+    "sender": {
+      "type": "string",
+      "description": "The sender email address."
+    },
+    "template": {
+      "type": "string",
+      "description": "The template slug used, if any."
+    },
+    "subject": {
+      "type": "string",
+      "description": "The subject line of the message."
+    },
+    "email": {
+      "type": "string",
+      "description": "The recipient email address."
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags applied to the message."
+    },
+    "opens": {
+      "type": "integer",
+      "description": "The number of times the message was opened."
+    },
+    "opens_detail": {
+      "type": "array",
+      "description": "Detailed open tracking events."
+    },
+    "clicks": {
+      "type": "integer",
+      "description": "The number of link clicks in the message."
+    },
+    "clicks_detail": {
+      "type": "array",
+      "description": "Detailed click tracking events."
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the message."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Custom metadata attached to the message."
+    }
+  }
+}

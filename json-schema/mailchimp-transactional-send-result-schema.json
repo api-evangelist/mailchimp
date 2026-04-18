@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SendResult",
+  "type": "object",
+  "description": "The result of sending a message to a single recipient.",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "The recipient email address."
+    },
+    "status": {
+      "type": "string",
+      "description": "The sending status for this recipient."
+    },
+    "reject_reason": {
+      "type": "string",
+      "description": "The reason the message was rejected, if applicable."
+    },
+    "queued_reason": {
+      "type": "string",
+      "description": "The reason the message was queued instead of sent immediately."
+    },
+    "_id": {
+      "type": "string",
+      "description": "The unique message ID for this recipient's message."
+    }
+  }
+}

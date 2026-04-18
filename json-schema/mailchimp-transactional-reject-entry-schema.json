@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RejectEntry",
+  "type": "object",
+  "description": "An entry in the rejection blacklist.",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "The rejected email address."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The reason the address is on the blacklist."
+    },
+    "detail": {
+      "type": "string",
+      "description": "Extended details about the rejection."
+    },
+    "created_at": {
+      "type": "string",
+      "description": "When the entry was added to the blacklist."
+    },
+    "last_event_at": {
+      "type": "string",
+      "description": "When the last event occurred for this address."
+    },
+    "expires_at": {
+      "type": "string",
+      "description": "When the rejection expires (if applicable)."
+    },
+    "expired": {
+      "type": "boolean",
+      "description": "Whether the rejection has expired."
+    },
+    "subaccount": {
+      "type": "string",
+      "description": "The subaccount this rejection applies to, if any."
+    },
+    "sender": {
+      "type": "object",
+      "description": "Sender statistics associated with the rejection."
+    }
+  }
+}

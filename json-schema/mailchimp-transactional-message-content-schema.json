@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MessageContent",
+  "type": "object",
+  "description": "The full content of a sent message.",
+  "properties": {
+    "ts": {
+      "type": "integer",
+      "description": "Unix timestamp of when the message was sent."
+    },
+    "_id": {
+      "type": "string",
+      "description": "The unique message ID."
+    },
+    "from_email": {
+      "type": "string",
+      "description": "The sender email address."
+    },
+    "from_name": {
+      "type": "string",
+      "description": "The sender display name."
+    },
+    "subject": {
+      "type": "string",
+      "description": "The message subject line."
+    },
+    "to": {
+      "type": "object",
+      "description": "The primary recipient."
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags applied to the message."
+    },
+    "headers": {
+      "type": "object",
+      "description": "The full message headers."
+    },
+    "text": {
+      "type": "string",
+      "description": "The plain-text body of the message."
+    },
+    "html": {
+      "type": "string",
+      "description": "The HTML body of the message."
+    },
+    "attachments": {
+      "type": "array",
+      "description": "File attachments included in the message."
+    }
+  }
+}
