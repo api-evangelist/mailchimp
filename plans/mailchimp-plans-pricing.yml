@@ -1,0 +1,142 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Mailchimp
+providerId: mailchimp
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Email Marketing
+  - CRM
+  - Automation
+description: Mailchimp Marketing pricing tiers. Pricing scales with contact tier.
+sources:
+  - https://mailchimp.com/pricing/marketing/
+plans:
+  - id: mailchimp-free
+    name: Free
+    type: freemium
+    description: Up to 250 contacts; ~500 sends/mo.
+    entries:
+      - label: Per user
+        name: seat
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: true
+      - label: Contacts
+        name: contacts
+        type: quota
+        metric: contact
+        limit: 250
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Email campaigns
+      - name: Basic templates
+      - name: 1 audience
+      - name: 1 seat
+      - name: Popup forms
+  - id: mailchimp-essentials
+    name: Essentials
+    type: paid
+    description: $13/month at 500 contacts; up to 5,000 contacts.
+    entries:
+      - label: Monthly base (500 contacts)
+        name: base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '13.00'
+        userMultiplied: false
+      - label: Contacts max
+        name: contacts
+        type: quota
+        metric: contact
+        limit: 5000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Email scheduling
+      - name: A/B testing
+      - name: Up to 4 automation steps
+      - name: 3 audiences
+      - name: 3 seats
+  - id: mailchimp-standard
+    name: Standard
+    type: paid
+    description: $20/month at 500 contacts; up to 10,000 contacts.
+    entries:
+      - label: Monthly base (500 contacts)
+        name: base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '20.00'
+        userMultiplied: false
+      - label: Contacts max
+        name: contacts
+        type: quota
+        metric: contact
+        limit: 10000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Up to 200 automation flows
+      - name: Dynamic content
+      - name: Custom reports
+      - name: 5 audiences
+      - name: 5 seats
+      - name: Generative AI
+  - id: mailchimp-premium
+    name: Premium
+    type: paid
+    description: $350/month starting; unlimited contacts.
+    entries:
+      - label: Monthly base
+        name: base
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '350.00'
+        userMultiplied: false
+      - label: Contacts max
+        name: contacts
+        type: quota
+        metric: contact
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Predictive segmentation
+      - name: Enhanced automation flows
+      - name: Multivariate testing
+      - name: Phone support
+      - name: Dedicated onboarding
+      - name: Unlimited users

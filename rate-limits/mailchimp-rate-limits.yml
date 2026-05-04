@@ -1,0 +1,33 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Mailchimp
+providerId: mailchimp
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Email
+description: Mailchimp Marketing API enforces concurrency-based rate limiting.
+sources:
+  - https://mailchimp.com/pricing/marketing/
+  - https://mailchimp.com/developer/marketing/docs/fundamentals/
+headers: {}
+responseCodes:
+  throttled: 429
+limits:
+  - name: Concurrent API connections
+    scope: user/datacenter
+    metric: concurrent
+    limit: 10
+    notes: Up to 10 simultaneous connections per user across all apps.
+  - name: Batch operations max
+    scope: request
+    metric: operations
+    limit: 1000
+    timeFrame: request
+  - name: Open batch operations
+    scope: user
+    metric: concurrent_batches
+    limit: 500

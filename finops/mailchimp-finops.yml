@@ -1,0 +1,57 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Mailchimp
+providerId: mailchimp
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - Email Marketing
+description: FOCUS-aligned FinOps for Mailchimp.
+sources:
+  - https://mailchimp.com/pricing/marketing/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Mailchimp
+serviceCategory: Email Marketing
+billingModel:
+  pricingCategory: Tiered by Contact Count
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Mailchimp
+  ServiceCategory: Email Marketing
+  ProviderName: Mailchimp
+  PublisherName: Mailchimp
+  BillingCurrency: USD
+meters:
+  - name: contacts
+    unit: contact
+    aggregation: max
+    dimensions:
+      - audience
+  - name: email_sends
+    unit: email
+    aggregation: sum
+  - name: user_seats
+    unit: seat-month
+    aggregation: max
+  - name: automation_runs
+    unit: run
+    aggregation: sum
+principles:
+  - name: Visibility
+    description: Track Mailchimp consumption monthly via admin/billing exports.
+  - name: Allocation
+    description: Tag seats/usage to teams or cost centers for chargeback.
+  - name: Optimization
+    description: Right-size tier and seat count quarterly; reclaim inactive seats.
+  - name: Accountability
+    description: Set spend alerts and renew at observed active utilization.
