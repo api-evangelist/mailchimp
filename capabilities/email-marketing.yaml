@@ -1,362 +1,863 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Mailchimp Email Marketing"
-  description: "Unified workflow combining Mailchimp Marketing API for campaigns, audiences, and analytics with the Transactional API for personalized email delivery. Used by marketing teams and developers to manage the full email lifecycle."
+  label: Mailchimp Email Marketing
+  description: Unified workflow combining Mailchimp Marketing API for campaigns, audiences, and analytics with the Transactional
+    API for personalized email delivery. Used by marketing teams and developers to manage the full email lifecycle.
   tags:
-    - Mailchimp
-    - Email Marketing
-    - Transactional Email
-    - Marketing Automation
-  created: "2026-04-18"
-  modified: "2026-04-18"
-
+  - Mailchimp
+  - Email Marketing
+  - Transactional Email
+  - Marketing Automation
+  created: '2026-04-18'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
-      MANDRILL_API_KEY: MANDRILL_API_KEY
-
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+    MANDRILL_API_KEY: MANDRILL_API_KEY
 capability:
   consumes:
-    - import: marketing
-      location: ./shared/marketing.yaml
-    - import: transactional
-      location: ./shared/transactional.yaml
-
+  - type: http
+    namespace: marketing
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API for email marketing and audience management.
+    authentication:
+      type: basic
+      username: anystring
+      password: '{{MAILCHIMP_API_KEY}}'
+    resources:
+    - name: campaigns
+      path: /campaigns
+      description: Email campaign management.
+      operations:
+      - name: list-campaigns
+        method: GET
+        description: List all campaigns.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-campaign
+        method: POST
+        description: Create a new campaign.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            type: '{{tools.type}}'
+            recipients:
+              list_id: '{{tools.list_id}}'
+            settings:
+              subject_line: '{{tools.subject_line}}'
+              from_name: '{{tools.from_name}}'
+              reply_to: '{{tools.reply_to}}'
+      - name: get-campaign
+        method: GET
+        description: Get a specific campaign.
+        inputParameters:
+        - name: campaign_id
+          in: path
+          type: string
+          required: true
+          description: Campaign ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-campaign
+        method: PATCH
+        description: Update a campaign.
+        inputParameters:
+        - name: campaign_id
+          in: path
+          type: string
+          required: true
+          description: Campaign ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-campaign
+        method: DELETE
+        description: Delete a campaign.
+        inputParameters:
+        - name: campaign_id
+          in: path
+          type: string
+          required: true
+          description: Campaign ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: send-campaign
+        method: POST
+        description: Send a campaign.
+        inputParameters:
+        - name: campaign_id
+          in: path
+          type: string
+          required: true
+          description: Campaign ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: schedule-campaign
+        method: POST
+        description: Schedule a campaign.
+        inputParameters:
+        - name: campaign_id
+          in: path
+          type: string
+          required: true
+          description: Campaign ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            schedule_time: '{{tools.schedule_time}}'
+    - name: lists
+      path: /lists
+      description: Audience/list management.
+      operations:
+      - name: list-audiences
+        method: GET
+        description: List all audiences.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-audience
+        method: POST
+        description: Create a new audience.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            permission_reminder: '{{tools.permission_reminder}}'
+      - name: get-audience
+        method: GET
+        description: Get a specific audience.
+        inputParameters:
+        - name: list_id
+          in: path
+          type: string
+          required: true
+          description: List/Audience ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: list-members
+        method: GET
+        description: List audience members.
+        inputParameters:
+        - name: list_id
+          in: path
+          type: string
+          required: true
+          description: List ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: add-member
+        method: POST
+        description: Add a member to an audience.
+        inputParameters:
+        - name: list_id
+          in: path
+          type: string
+          required: true
+          description: List ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            email_address: '{{tools.email_address}}'
+            status: '{{tools.status}}'
+      - name: get-member
+        method: GET
+        description: Get a specific member.
+        inputParameters:
+        - name: list_id
+          in: path
+          type: string
+          required: true
+          description: List ID
+        - name: subscriber_hash
+          in: path
+          type: string
+          required: true
+          description: Subscriber hash (MD5 of lowercase email)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: automations
+      path: /automations
+      description: Marketing automations.
+      operations:
+      - name: list-automations
+        method: GET
+        description: List all automations.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-automation
+        method: GET
+        description: Get a specific automation.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          required: true
+          description: Workflow ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: templates
+      path: /templates
+      description: Email templates.
+      operations:
+      - name: list-templates
+        method: GET
+        description: List all templates.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-template
+        method: POST
+        description: Create a template.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            name: '{{tools.name}}'
+            html: '{{tools.html}}'
+    - name: reports
+      path: /reports
+      description: Campaign reports and analytics.
+      operations:
+      - name: list-reports
+        method: GET
+        description: List campaign reports.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-report
+        method: GET
+        description: Get a specific campaign report.
+        inputParameters:
+        - name: campaign_id
+          in: path
+          type: string
+          required: true
+          description: Campaign ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: transactional
+    baseUri: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional API (Mandrill) for transactional email delivery.
+    authentication:
+      type: apikey
+      key: key
+      value: '{{MANDRILL_API_KEY}}'
+      placement: body
+    resources:
+    - name: messages
+      path: /messages
+      description: Send and manage transactional messages.
+      operations:
+      - name: send-message
+        method: POST
+        description: Send a new transactional email.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            message:
+              from_email: '{{tools.from_email}}'
+              to:
+              - email: '{{tools.to_email}}'
+              subject: '{{tools.subject}}'
+              html: '{{tools.html}}'
+      - name: send-template-message
+        method: POST
+        description: Send a transactional email using a template.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            template_name: '{{tools.template_name}}'
+            message:
+              to:
+              - email: '{{tools.to_email}}'
+      - name: search-messages
+        method: POST
+        description: Search recently sent messages.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            query: '{{tools.query}}'
+      - name: get-message-info
+        method: POST
+        description: Get information about a sent message.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            id: '{{tools.message_id}}'
+      - name: get-message-content
+        method: POST
+        description: Get the full content of a sent message.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            id: '{{tools.message_id}}'
+    - name: templates
+      path: /templates
+      description: Manage email templates.
+      operations:
+      - name: list-templates
+        method: POST
+        description: List all templates.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+      - name: get-template-info
+        method: POST
+        description: Get information about a template.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            name: '{{tools.template_name}}'
+      - name: add-template
+        method: POST
+        description: Add a new template.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            name: '{{tools.name}}'
+            code: '{{tools.html}}'
+    - name: tags
+      path: /tags
+      description: Manage message tags.
+      operations:
+      - name: list-tags
+        method: POST
+        description: List all tags.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+      - name: get-tag-info
+        method: POST
+        description: Get information about a tag.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+            tag: '{{tools.tag}}'
+    - name: senders
+      path: /senders
+      description: Manage sending domains and addresses.
+      operations:
+      - name: list-senders
+        method: POST
+        description: List all senders.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+    - name: users
+      path: /users
+      description: Account information.
+      operations:
+      - name: get-user-info
+        method: POST
+        description: Get account information.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
+    - name: webhooks
+      path: /webhooks
+      description: Webhook management.
+      operations:
+      - name: list-webhooks
+        method: POST
+        description: List all webhooks.
+        inputParameters: []
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            key: '{{MANDRILL_API_KEY}}'
   exposes:
-    - type: rest
-      port: 8080
-      namespace: email-marketing-api
-      description: "Unified REST API for Mailchimp marketing campaigns and transactional email."
-      resources:
-        - path: /v1/campaigns
-          name: campaigns
-          description: "Marketing campaigns."
-          operations:
-            - method: GET
-              name: list-campaigns
-              description: "List campaigns."
-              call: "marketing.list-campaigns"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-campaign
-              description: "Create a campaign."
-              call: "marketing.create-campaign"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/campaigns/{campaign_id}
-          name: campaign-detail
-          description: "Specific campaign."
-          operations:
-            - method: GET
-              name: get-campaign
-              description: "Get campaign details."
-              call: "marketing.get-campaign"
-              with:
-                campaign_id: "rest.campaign_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-campaign
-              description: "Delete a campaign."
-              call: "marketing.delete-campaign"
-              with:
-                campaign_id: "rest.campaign_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/campaigns/{campaign_id}/send
-          name: send-campaign
-          description: "Send a campaign."
-          operations:
-            - method: POST
-              name: send-campaign
-              description: "Send campaign."
-              call: "marketing.send-campaign"
-              with:
-                campaign_id: "rest.campaign_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/audiences
-          name: audiences
-          description: "Audience management."
-          operations:
-            - method: GET
-              name: list-audiences
-              description: "List audiences."
-              call: "marketing.list-audiences"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/audiences/{list_id}/members
-          name: members
-          description: "Audience members."
-          operations:
-            - method: GET
-              name: list-members
-              description: "List members."
-              call: "marketing.list-members"
-              with:
-                list_id: "rest.list_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: add-member
-              description: "Add a member."
-              call: "marketing.add-member"
-              with:
-                list_id: "rest.list_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/reports
-          name: reports
-          description: "Campaign reports."
-          operations:
-            - method: GET
-              name: list-reports
-              description: "List reports."
-              call: "marketing.list-reports"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/reports/{campaign_id}
-          name: report-detail
-          description: "Specific campaign report."
-          operations:
-            - method: GET
-              name: get-report
-              description: "Get campaign report."
-              call: "marketing.get-report"
-              with:
-                campaign_id: "rest.campaign_id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/transactional/send
-          name: transactional-send
-          description: "Send transactional email."
-          operations:
-            - method: POST
-              name: send-transactional
-              description: "Send a transactional email."
-              call: "transactional.send-message"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/transactional/search
-          name: transactional-search
-          description: "Search transactional messages."
-          operations:
-            - method: POST
-              name: search-transactional
-              description: "Search sent messages."
-              call: "transactional.search-messages"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: email-marketing-mcp
-      transport: http
-      description: "MCP server for AI-assisted email marketing and transactional email."
-      tools:
-        - name: marketing-list-campaigns
-          description: "List all marketing campaigns."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "marketing.list-campaigns"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-get-campaign
-          description: "Get a specific marketing campaign."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "marketing.get-campaign"
-          with:
-            campaign_id: "tools.campaign_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-create-campaign
-          description: "Create a new marketing campaign."
-          hints:
-            readOnly: false
-          call: "marketing.create-campaign"
-          with:
-            type: "tools.type"
-            list_id: "tools.list_id"
-            subject_line: "tools.subject_line"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-send-campaign
-          description: "Send a marketing campaign."
-          hints:
-            readOnly: false
-          call: "marketing.send-campaign"
-          with:
-            campaign_id: "tools.campaign_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-delete-campaign
-          description: "Delete a marketing campaign."
-          hints:
-            readOnly: false
-            destructive: true
-          call: "marketing.delete-campaign"
-          with:
-            campaign_id: "tools.campaign_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-list-audiences
-          description: "List all audiences."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "marketing.list-audiences"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-get-audience
-          description: "Get audience details."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "marketing.get-audience"
-          with:
-            list_id: "tools.list_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-list-members
-          description: "List audience members."
-          hints:
-            readOnly: true
-          call: "marketing.list-members"
-          with:
-            list_id: "tools.list_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-add-member
-          description: "Add a member to an audience."
-          hints:
-            readOnly: false
-          call: "marketing.add-member"
-          with:
-            list_id: "tools.list_id"
-            email_address: "tools.email_address"
-            status: "tools.status"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-list-automations
-          description: "List marketing automations."
-          hints:
-            readOnly: true
-          call: "marketing.list-automations"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-list-templates
-          description: "List email templates."
-          hints:
-            readOnly: true
-          call: "marketing.list-templates"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-list-reports
-          description: "List campaign reports."
-          hints:
-            readOnly: true
-          call: "marketing.list-reports"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: marketing-get-report
-          description: "Get a specific campaign report."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "marketing.get-report"
-          with:
-            campaign_id: "tools.campaign_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: transactional-send-message
-          description: "Send a transactional email."
-          hints:
-            readOnly: false
-          call: "transactional.send-message"
-          with:
-            from_email: "tools.from_email"
-            to_email: "tools.to_email"
-            subject: "tools.subject"
-            html: "tools.html"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: transactional-send-template
-          description: "Send a transactional email with a template."
-          hints:
-            readOnly: false
-          call: "transactional.send-template-message"
-          with:
-            template_name: "tools.template_name"
-            to_email: "tools.to_email"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: transactional-search-messages
-          description: "Search sent transactional messages."
-          hints:
-            readOnly: true
-          call: "transactional.search-messages"
-          with:
-            query: "tools.query"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: transactional-get-message-info
-          description: "Get details about a sent transactional message."
-          hints:
-            readOnly: true
-            idempotent: true
-          call: "transactional.get-message-info"
-          with:
-            message_id: "tools.message_id"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: transactional-list-templates
-          description: "List transactional email templates."
-          hints:
-            readOnly: true
-          call: "transactional.list-templates"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: transactional-get-user-info
-          description: "Get transactional account information."
-          hints:
-            readOnly: true
-          call: "transactional.get-user-info"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: email-marketing-api
+    description: Unified REST API for Mailchimp marketing campaigns and transactional email.
+    resources:
+    - path: /v1/campaigns
+      name: campaigns
+      description: Marketing campaigns.
+      operations:
+      - method: GET
+        name: list-campaigns
+        description: List campaigns.
+        call: marketing.list-campaigns
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-campaign
+        description: Create a campaign.
+        call: marketing.create-campaign
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/campaigns/{campaign_id}
+      name: campaign-detail
+      description: Specific campaign.
+      operations:
+      - method: GET
+        name: get-campaign
+        description: Get campaign details.
+        call: marketing.get-campaign
+        with:
+          campaign_id: rest.campaign_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-campaign
+        description: Delete a campaign.
+        call: marketing.delete-campaign
+        with:
+          campaign_id: rest.campaign_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/campaigns/{campaign_id}/send
+      name: send-campaign
+      description: Send a campaign.
+      operations:
+      - method: POST
+        name: send-campaign
+        description: Send campaign.
+        call: marketing.send-campaign
+        with:
+          campaign_id: rest.campaign_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/audiences
+      name: audiences
+      description: Audience management.
+      operations:
+      - method: GET
+        name: list-audiences
+        description: List audiences.
+        call: marketing.list-audiences
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/audiences/{list_id}/members
+      name: members
+      description: Audience members.
+      operations:
+      - method: GET
+        name: list-members
+        description: List members.
+        call: marketing.list-members
+        with:
+          list_id: rest.list_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: add-member
+        description: Add a member.
+        call: marketing.add-member
+        with:
+          list_id: rest.list_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports
+      name: reports
+      description: Campaign reports.
+      operations:
+      - method: GET
+        name: list-reports
+        description: List reports.
+        call: marketing.list-reports
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{campaign_id}
+      name: report-detail
+      description: Specific campaign report.
+      operations:
+      - method: GET
+        name: get-report
+        description: Get campaign report.
+        call: marketing.get-report
+        with:
+          campaign_id: rest.campaign_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactional/send
+      name: transactional-send
+      description: Send transactional email.
+      operations:
+      - method: POST
+        name: send-transactional
+        description: Send a transactional email.
+        call: transactional.send-message
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactional/search
+      name: transactional-search
+      description: Search transactional messages.
+      operations:
+      - method: POST
+        name: search-transactional
+        description: Search sent messages.
+        call: transactional.search-messages
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: email-marketing-mcp
+    transport: http
+    description: MCP server for AI-assisted email marketing and transactional email.
+    tools:
+    - name: marketing-list-campaigns
+      description: List all marketing campaigns.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: marketing.list-campaigns
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-get-campaign
+      description: Get a specific marketing campaign.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: marketing.get-campaign
+      with:
+        campaign_id: tools.campaign_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-create-campaign
+      description: Create a new marketing campaign.
+      hints:
+        readOnly: false
+      call: marketing.create-campaign
+      with:
+        type: tools.type
+        list_id: tools.list_id
+        subject_line: tools.subject_line
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-send-campaign
+      description: Send a marketing campaign.
+      hints:
+        readOnly: false
+      call: marketing.send-campaign
+      with:
+        campaign_id: tools.campaign_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-delete-campaign
+      description: Delete a marketing campaign.
+      hints:
+        readOnly: false
+        destructive: true
+      call: marketing.delete-campaign
+      with:
+        campaign_id: tools.campaign_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-list-audiences
+      description: List all audiences.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: marketing.list-audiences
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-get-audience
+      description: Get audience details.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: marketing.get-audience
+      with:
+        list_id: tools.list_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-list-members
+      description: List audience members.
+      hints:
+        readOnly: true
+      call: marketing.list-members
+      with:
+        list_id: tools.list_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-add-member
+      description: Add a member to an audience.
+      hints:
+        readOnly: false
+      call: marketing.add-member
+      with:
+        list_id: tools.list_id
+        email_address: tools.email_address
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-list-automations
+      description: List marketing automations.
+      hints:
+        readOnly: true
+      call: marketing.list-automations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-list-templates
+      description: List email templates.
+      hints:
+        readOnly: true
+      call: marketing.list-templates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-list-reports
+      description: List campaign reports.
+      hints:
+        readOnly: true
+      call: marketing.list-reports
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: marketing-get-report
+      description: Get a specific campaign report.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: marketing.get-report
+      with:
+        campaign_id: tools.campaign_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transactional-send-message
+      description: Send a transactional email.
+      hints:
+        readOnly: false
+      call: transactional.send-message
+      with:
+        from_email: tools.from_email
+        to_email: tools.to_email
+        subject: tools.subject
+        html: tools.html
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transactional-send-template
+      description: Send a transactional email with a template.
+      hints:
+        readOnly: false
+      call: transactional.send-template-message
+      with:
+        template_name: tools.template_name
+        to_email: tools.to_email
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transactional-search-messages
+      description: Search sent transactional messages.
+      hints:
+        readOnly: true
+      call: transactional.search-messages
+      with:
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transactional-get-message-info
+      description: Get details about a sent transactional message.
+      hints:
+        readOnly: true
+        idempotent: true
+      call: transactional.get-message-info
+      with:
+        message_id: tools.message_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transactional-list-templates
+      description: List transactional email templates.
+      hints:
+        readOnly: true
+      call: transactional.list-templates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: transactional-get-user-info
+      description: Get transactional account information.
+      hints:
+        readOnly: true
+      call: transactional.get-user-info
+      outputParameters:
+      - type: object
+        mapping: $.
