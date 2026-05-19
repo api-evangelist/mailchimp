@@ -1,0 +1,181 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Product
+  description: 'Mailchimp Marketing API  — Product. 2 operations. Lead operation: Mailchimp List Facebook Ecommerce Report.
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Product
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-product
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Product business capability. Self-contained, no shared references.
+    resources:
+    - name: reporting-facebook-ads-outreach_id-ecommerce-product-activity
+      path: /reporting/facebook-ads/{outreach_id}/ecommerce-product-activity
+      operations:
+      - name: getreportingfacebookadsidecommerceproductactivity
+        method: GET
+        description: Mailchimp List Facebook Ecommerce Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: outreach_id
+          in: path
+          type: string
+          description: The outreach id.
+          required: true
+        - name: sort_field
+          in: query
+          type: string
+          description: Returns files sorted by the specified field.
+    - name: reports-campaign_id-ecommerce-product-activity
+      path: /reports/{campaign_id}/ecommerce-product-activity
+      operations:
+      - name: getreportsidecommerceproductactivity
+        method: GET
+        description: Mailchimp List Campaign Product Activity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+        - name: sort_field
+          in: query
+          type: string
+          description: Returns files sorted by the specified field.
+  exposes:
+  - type: rest
+    namespace: marketing-product-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Product. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/reporting/facebook-ads/{outreach-id}/ecommerce-product-activity
+      name: reporting-facebook-ads-outreach-id-ecommerce-product-activity
+      description: REST surface for reporting-facebook-ads-outreach_id-ecommerce-product-activity.
+      operations:
+      - method: GET
+        name: getreportingfacebookadsidecommerceproductactivity
+        description: Mailchimp List Facebook Ecommerce Report
+        call: marketing-product.getreportingfacebookadsidecommerceproductactivity
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          outreach_id: rest.outreach_id
+          sort_field: rest.sort_field
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{campaign-id}/ecommerce-product-activity
+      name: reports-campaign-id-ecommerce-product-activity
+      description: REST surface for reports-campaign_id-ecommerce-product-activity.
+      operations:
+      - method: GET
+        name: getreportsidecommerceproductactivity
+        description: Mailchimp List Campaign Product Activity
+        call: marketing-product.getreportsidecommerceproductactivity
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          campaign_id: rest.campaign_id
+          sort_field: rest.sort_field
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-product-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Product. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-facebook-ecommerce-report
+      description: Mailchimp List Facebook Ecommerce Report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-product.getreportingfacebookadsidecommerceproductactivity
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        outreach_id: tools.outreach_id
+        sort_field: tools.sort_field
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-campaign-product-activity
+      description: Mailchimp List Campaign Product Activity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-product.getreportsidecommerceproductactivity
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        campaign_id: tools.campaign_id
+        sort_field: tools.sort_field
+      outputParameters:
+      - type: object
+        mapping: $.

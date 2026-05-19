@@ -1,0 +1,3158 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Stores
+  description: 'Mailchimp Marketing API  — Stores. 57 operations. Lead operation: Mailchimp List Stores. Self-contained Naftiko
+    capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Stores
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-stores
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Stores business capability. Self-contained, no shared references.
+    resources:
+    - name: ecommerce-stores
+      path: /ecommerce/stores
+      operations:
+      - name: getecommercestores
+        method: GET
+        description: Mailchimp List Stores
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+      - name: postecommercestores
+        method: POST
+        description: Mailchimp Add Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id
+      path: /ecommerce/stores/{store_id}
+      operations:
+      - name: getecommercestoresid
+        method: GET
+        description: Mailchimp Get Store Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+      - name: patchecommercestoresid
+        method: PATCH
+        description: Mailchimp Update Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresid
+        method: DELETE
+        description: Mailchimp Delete Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+    - name: ecommerce-stores-store_id-carts
+      path: /ecommerce/stores/{store_id}/carts
+      operations:
+      - name: getecommercestoresidcarts
+        method: GET
+        description: Mailchimp List Carts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+      - name: postecommercestoresidcarts
+        method: POST
+        description: Mailchimp Add Cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-carts-cart_id
+      path: /ecommerce/stores/{store_id}/carts/{cart_id}
+      operations:
+      - name: getecommercestoresidcartsid
+        method: GET
+        description: Mailchimp Get Cart Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+      - name: patchecommercestoresidcartsid
+        method: PATCH
+        description: Mailchimp Update Cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidcartsid
+        method: DELETE
+        description: Mailchimp Delete Cart
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+    - name: ecommerce-stores-store_id-carts-cart_id-lines
+      path: /ecommerce/stores/{store_id}/carts/{cart_id}/lines
+      operations:
+      - name: getecommercestoresidcartsidlines
+        method: GET
+        description: Mailchimp List Cart Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+      - name: postecommercestoresidcartsidlines
+        method: POST
+        description: Mailchimp Add Cart Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-carts-cart_id-lines-line_id
+      path: /ecommerce/stores/{store_id}/carts/{cart_id}/lines/{line_id}
+      operations:
+      - name: getecommercestoresidcartsidlinesid
+        method: GET
+        description: Mailchimp Get Cart Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+        - name: line_id
+          in: path
+          type: string
+          description: The id for the line item of a cart.
+          required: true
+      - name: patchecommercestoresidcartsidlinesid
+        method: PATCH
+        description: Mailchimp Update Cart Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+        - name: line_id
+          in: path
+          type: string
+          description: The id for the line item of a cart.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidcartslinesid
+        method: DELETE
+        description: Mailchimp Delete Cart Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: cart_id
+          in: path
+          type: string
+          description: The id for the cart.
+          required: true
+        - name: line_id
+          in: path
+          type: string
+          description: The id for the line item of a cart.
+          required: true
+    - name: ecommerce-stores-store_id-customers
+      path: /ecommerce/stores/{store_id}/customers
+      operations:
+      - name: getecommercestoresidcustomers
+        method: GET
+        description: Mailchimp List Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: email_address
+          in: query
+          type: string
+          description: Restrict the response to customers with the email address.
+      - name: postecommercestoresidcustomers
+        method: POST
+        description: Mailchimp Add Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-customers-customer_id
+      path: /ecommerce/stores/{store_id}/customers/{customer_id}
+      operations:
+      - name: getecommercestoresidcustomersid
+        method: GET
+        description: Mailchimp Get Customer Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: customer_id
+          in: path
+          type: string
+          description: The id for the customer of a store.
+          required: true
+      - name: putecommercestoresidcustomersid
+        method: PUT
+        description: Mailchimp Add or Update Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: customer_id
+          in: path
+          type: string
+          description: The id for the customer of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: patchecommercestoresidcustomersid
+        method: PATCH
+        description: Mailchimp Update Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: customer_id
+          in: path
+          type: string
+          description: The id for the customer of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidcustomersid
+        method: DELETE
+        description: Mailchimp Delete Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: customer_id
+          in: path
+          type: string
+          description: The id for the customer of a store.
+          required: true
+    - name: ecommerce-stores-store_id-orders
+      path: /ecommerce/stores/{store_id}/orders
+      operations:
+      - name: getecommercestoresidorders
+        method: GET
+        description: Mailchimp List Orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: customer_id
+          in: query
+          type: string
+          description: Restrict results to orders made by a specific customer.
+        - name: has_outreach
+          in: query
+          type: boolean
+          description: Restrict results to orders that have an outreach attached. For example, an email campaign or Facebook
+            ad.
+        - name: campaign_id
+          in: query
+          type: string
+          description: Restrict results to orders with a specific `campaign_id` value.
+        - name: outreach_id
+          in: query
+          type: string
+          description: Restrict results to orders with a specific `outreach_id` value.
+      - name: postecommercestoresidorders
+        method: POST
+        description: Mailchimp Add Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-orders-order_id
+      path: /ecommerce/stores/{store_id}/orders/{order_id}
+      operations:
+      - name: getecommercestoresidordersid
+        method: GET
+        description: Mailchimp Get Order Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+      - name: patchecommercestoresidordersid
+        method: PATCH
+        description: Mailchimp Update Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidordersid
+        method: DELETE
+        description: Mailchimp Delete Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+    - name: ecommerce-stores-store_id-orders-order_id-lines
+      path: /ecommerce/stores/{store_id}/orders/{order_id}/lines
+      operations:
+      - name: getecommercestoresidordersidlines
+        method: GET
+        description: Mailchimp List Order Line Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+      - name: postecommercestoresidordersidlines
+        method: POST
+        description: Mailchimp Add Order Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-orders-order_id-lines-line_id
+      path: /ecommerce/stores/{store_id}/orders/{order_id}/lines/{line_id}
+      operations:
+      - name: getecommercestoresidordersidlinesid
+        method: GET
+        description: Mailchimp Get Order Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+        - name: line_id
+          in: path
+          type: string
+          description: The id for the line item of an order.
+          required: true
+      - name: patchecommercestoresidordersidlinesid
+        method: PATCH
+        description: Mailchimp Update Order Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+        - name: line_id
+          in: path
+          type: string
+          description: The id for the line item of an order.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidordersidlinesid
+        method: DELETE
+        description: Mailchimp Delete Order Line Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: order_id
+          in: path
+          type: string
+          description: The id for the order in a store.
+          required: true
+        - name: line_id
+          in: path
+          type: string
+          description: The id for the line item of an order.
+          required: true
+    - name: ecommerce-stores-store_id-products
+      path: /ecommerce/stores/{store_id}/products
+      operations:
+      - name: getecommercestoresidproducts
+        method: GET
+        description: Mailchimp List Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+      - name: postecommercestoresidproducts
+        method: POST
+        description: Mailchimp Add Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-products-product_id
+      path: /ecommerce/stores/{store_id}/products/{product_id}
+      operations:
+      - name: getecommercestoresidproductsid
+        method: GET
+        description: Mailchimp Get Product Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+      - name: patchecommercestoresidproductsid
+        method: PATCH
+        description: Mailchimp Update Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidproductsid
+        method: DELETE
+        description: Mailchimp Delete Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+    - name: ecommerce-stores-store_id-products-product_id-images
+      path: /ecommerce/stores/{store_id}/products/{product_id}/images
+      operations:
+      - name: getecommercestoresidproductsidimages
+        method: GET
+        description: Mailchimp List Product Images
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+      - name: postecommercestoresidproductsidimages
+        method: POST
+        description: Mailchimp Add Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-products-product_id-images-image_id
+      path: /ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}
+      operations:
+      - name: getecommercestoresidproductsidimagesid
+        method: GET
+        description: Mailchimp Get Product Image Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: The id for the product image.
+          required: true
+      - name: patchecommercestoresidproductsidimagesid
+        method: PATCH
+        description: Mailchimp Update Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: The id for the product image.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidproductsidimagesid
+        method: DELETE
+        description: Mailchimp Delete Product Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: image_id
+          in: path
+          type: string
+          description: The id for the product image.
+          required: true
+    - name: ecommerce-stores-store_id-products-product_id-variants
+      path: /ecommerce/stores/{store_id}/products/{product_id}/variants
+      operations:
+      - name: getecommercestoresidproductsidvariants
+        method: GET
+        description: Mailchimp List Product Variants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+      - name: postecommercestoresidproductsidvariants
+        method: POST
+        description: Mailchimp Add Product Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-products-product_id-variants-variant_id
+      path: /ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}
+      operations:
+      - name: getecommercestoresidproductsidvariantsid
+        method: GET
+        description: Mailchimp Get Product Variant Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: variant_id
+          in: path
+          type: string
+          description: The id for the product variant.
+          required: true
+      - name: putecommercestoresidproductsidvariantsid
+        method: PUT
+        description: Mailchimp Add or Update Product Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: variant_id
+          in: path
+          type: string
+          description: The id for the product variant.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: patchecommercestoresidproductsidvariantsid
+        method: PATCH
+        description: Mailchimp Update Product Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: variant_id
+          in: path
+          type: string
+          description: The id for the product variant.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidproductsidvariantsid
+        method: DELETE
+        description: Mailchimp Delete Product Variant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: product_id
+          in: path
+          type: string
+          description: The id for the product of a store.
+          required: true
+        - name: variant_id
+          in: path
+          type: string
+          description: The id for the product variant.
+          required: true
+    - name: ecommerce-stores-store_id-promo-rules
+      path: /ecommerce/stores/{store_id}/promo-rules
+      operations:
+      - name: getecommercestoresidpromorules
+        method: GET
+        description: Mailchimp List Promo Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+      - name: postecommercestoresidpromorules
+        method: POST
+        description: Mailchimp Add Promo Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-promo-rules-promo_rule_id
+      path: /ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}
+      operations:
+      - name: getecommercestoresidpromorulesid
+        method: GET
+        description: Mailchimp Get Promo Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+      - name: patchecommercestoresidpromorulesid
+        method: PATCH
+        description: Mailchimp Update Promo Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidpromorulesid
+        method: DELETE
+        description: Mailchimp Delete Promo Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+    - name: ecommerce-stores-store_id-promo-rules-promo_rule_id-promo-codes
+      path: /ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes
+      operations:
+      - name: getecommercestoresidpromocodes
+        method: GET
+        description: Mailchimp List Promo Codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+      - name: postecommercestoresidpromocodes
+        method: POST
+        description: Mailchimp Add Promo Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: ecommerce-stores-store_id-promo-rules-promo_rule_id-promo-codes-promo_code_id
+      path: /ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes/{promo_code_id}
+      operations:
+      - name: getecommercestoresidpromocodesid
+        method: GET
+        description: Mailchimp Get Promo Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+        - name: promo_code_id
+          in: path
+          type: string
+          description: The id for the promo code of a store.
+          required: true
+      - name: patchecommercestoresidpromocodesid
+        method: PATCH
+        description: Mailchimp Update Promo Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+        - name: promo_code_id
+          in: path
+          type: string
+          description: The id for the promo code of a store.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteecommercestoresidpromocodesid
+        method: DELETE
+        description: Mailchimp Delete Promo Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_id
+          in: path
+          type: string
+          description: The store id.
+          required: true
+        - name: promo_rule_id
+          in: path
+          type: string
+          description: The id for the promo rule of a store.
+          required: true
+        - name: promo_code_id
+          in: path
+          type: string
+          description: The id for the promo code of a store.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-stores-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Stores. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/ecommerce/stores
+      name: ecommerce-stores
+      description: REST surface for ecommerce-stores.
+      operations:
+      - method: GET
+        name: getecommercestores
+        description: Mailchimp List Stores
+        call: marketing-stores.getecommercestores
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestores
+        description: Mailchimp Add Store
+        call: marketing-stores.postecommercestores
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}
+      name: ecommerce-stores-store-id
+      description: REST surface for ecommerce-stores-store_id.
+      operations:
+      - method: GET
+        name: getecommercestoresid
+        description: Mailchimp Get Store Info
+        call: marketing-stores.getecommercestoresid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresid
+        description: Mailchimp Update Store
+        call: marketing-stores.patchecommercestoresid
+        with:
+          store_id: rest.store_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresid
+        description: Mailchimp Delete Store
+        call: marketing-stores.deleteecommercestoresid
+        with:
+          store_id: rest.store_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/carts
+      name: ecommerce-stores-store-id-carts
+      description: REST surface for ecommerce-stores-store_id-carts.
+      operations:
+      - method: GET
+        name: getecommercestoresidcarts
+        description: Mailchimp List Carts
+        call: marketing-stores.getecommercestoresidcarts
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidcarts
+        description: Mailchimp Add Cart
+        call: marketing-stores.postecommercestoresidcarts
+        with:
+          store_id: rest.store_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/carts/{cart-id}
+      name: ecommerce-stores-store-id-carts-cart-id
+      description: REST surface for ecommerce-stores-store_id-carts-cart_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidcartsid
+        description: Mailchimp Get Cart Info
+        call: marketing-stores.getecommercestoresidcartsid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidcartsid
+        description: Mailchimp Update Cart
+        call: marketing-stores.patchecommercestoresidcartsid
+        with:
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidcartsid
+        description: Mailchimp Delete Cart
+        call: marketing-stores.deleteecommercestoresidcartsid
+        with:
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/carts/{cart-id}/lines
+      name: ecommerce-stores-store-id-carts-cart-id-lines
+      description: REST surface for ecommerce-stores-store_id-carts-cart_id-lines.
+      operations:
+      - method: GET
+        name: getecommercestoresidcartsidlines
+        description: Mailchimp List Cart Line Items
+        call: marketing-stores.getecommercestoresidcartsidlines
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidcartsidlines
+        description: Mailchimp Add Cart Line Item
+        call: marketing-stores.postecommercestoresidcartsidlines
+        with:
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/carts/{cart-id}/lines/{line-id}
+      name: ecommerce-stores-store-id-carts-cart-id-lines-line-id
+      description: REST surface for ecommerce-stores-store_id-carts-cart_id-lines-line_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidcartsidlinesid
+        description: Mailchimp Get Cart Line Item
+        call: marketing-stores.getecommercestoresidcartsidlinesid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+          line_id: rest.line_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidcartsidlinesid
+        description: Mailchimp Update Cart Line Item
+        call: marketing-stores.patchecommercestoresidcartsidlinesid
+        with:
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+          line_id: rest.line_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidcartslinesid
+        description: Mailchimp Delete Cart Line Item
+        call: marketing-stores.deleteecommercestoresidcartslinesid
+        with:
+          store_id: rest.store_id
+          cart_id: rest.cart_id
+          line_id: rest.line_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/customers
+      name: ecommerce-stores-store-id-customers
+      description: REST surface for ecommerce-stores-store_id-customers.
+      operations:
+      - method: GET
+        name: getecommercestoresidcustomers
+        description: Mailchimp List Customers
+        call: marketing-stores.getecommercestoresidcustomers
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+          email_address: rest.email_address
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidcustomers
+        description: Mailchimp Add Customer
+        call: marketing-stores.postecommercestoresidcustomers
+        with:
+          store_id: rest.store_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/customers/{customer-id}
+      name: ecommerce-stores-store-id-customers-customer-id
+      description: REST surface for ecommerce-stores-store_id-customers-customer_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidcustomersid
+        description: Mailchimp Get Customer Info
+        call: marketing-stores.getecommercestoresidcustomersid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putecommercestoresidcustomersid
+        description: Mailchimp Add or Update Customer
+        call: marketing-stores.putecommercestoresidcustomersid
+        with:
+          store_id: rest.store_id
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidcustomersid
+        description: Mailchimp Update Customer
+        call: marketing-stores.patchecommercestoresidcustomersid
+        with:
+          store_id: rest.store_id
+          customer_id: rest.customer_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidcustomersid
+        description: Mailchimp Delete Customer
+        call: marketing-stores.deleteecommercestoresidcustomersid
+        with:
+          store_id: rest.store_id
+          customer_id: rest.customer_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/orders
+      name: ecommerce-stores-store-id-orders
+      description: REST surface for ecommerce-stores-store_id-orders.
+      operations:
+      - method: GET
+        name: getecommercestoresidorders
+        description: Mailchimp List Orders
+        call: marketing-stores.getecommercestoresidorders
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+          customer_id: rest.customer_id
+          has_outreach: rest.has_outreach
+          campaign_id: rest.campaign_id
+          outreach_id: rest.outreach_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidorders
+        description: Mailchimp Add Order
+        call: marketing-stores.postecommercestoresidorders
+        with:
+          store_id: rest.store_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/orders/{order-id}
+      name: ecommerce-stores-store-id-orders-order-id
+      description: REST surface for ecommerce-stores-store_id-orders-order_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidordersid
+        description: Mailchimp Get Order Info
+        call: marketing-stores.getecommercestoresidordersid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          order_id: rest.order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidordersid
+        description: Mailchimp Update Order
+        call: marketing-stores.patchecommercestoresidordersid
+        with:
+          store_id: rest.store_id
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidordersid
+        description: Mailchimp Delete Order
+        call: marketing-stores.deleteecommercestoresidordersid
+        with:
+          store_id: rest.store_id
+          order_id: rest.order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/orders/{order-id}/lines
+      name: ecommerce-stores-store-id-orders-order-id-lines
+      description: REST surface for ecommerce-stores-store_id-orders-order_id-lines.
+      operations:
+      - method: GET
+        name: getecommercestoresidordersidlines
+        description: Mailchimp List Order Line Items
+        call: marketing-stores.getecommercestoresidordersidlines
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+          order_id: rest.order_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidordersidlines
+        description: Mailchimp Add Order Line Item
+        call: marketing-stores.postecommercestoresidordersidlines
+        with:
+          store_id: rest.store_id
+          order_id: rest.order_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/orders/{order-id}/lines/{line-id}
+      name: ecommerce-stores-store-id-orders-order-id-lines-line-id
+      description: REST surface for ecommerce-stores-store_id-orders-order_id-lines-line_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidordersidlinesid
+        description: Mailchimp Get Order Line Item
+        call: marketing-stores.getecommercestoresidordersidlinesid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          order_id: rest.order_id
+          line_id: rest.line_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidordersidlinesid
+        description: Mailchimp Update Order Line Item
+        call: marketing-stores.patchecommercestoresidordersidlinesid
+        with:
+          store_id: rest.store_id
+          order_id: rest.order_id
+          line_id: rest.line_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidordersidlinesid
+        description: Mailchimp Delete Order Line Item
+        call: marketing-stores.deleteecommercestoresidordersidlinesid
+        with:
+          store_id: rest.store_id
+          order_id: rest.order_id
+          line_id: rest.line_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/products
+      name: ecommerce-stores-store-id-products
+      description: REST surface for ecommerce-stores-store_id-products.
+      operations:
+      - method: GET
+        name: getecommercestoresidproducts
+        description: Mailchimp List Product
+        call: marketing-stores.getecommercestoresidproducts
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidproducts
+        description: Mailchimp Add Product
+        call: marketing-stores.postecommercestoresidproducts
+        with:
+          store_id: rest.store_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/products/{product-id}
+      name: ecommerce-stores-store-id-products-product-id
+      description: REST surface for ecommerce-stores-store_id-products-product_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidproductsid
+        description: Mailchimp Get Product Info
+        call: marketing-stores.getecommercestoresidproductsid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidproductsid
+        description: Mailchimp Update Product
+        call: marketing-stores.patchecommercestoresidproductsid
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidproductsid
+        description: Mailchimp Delete Product
+        call: marketing-stores.deleteecommercestoresidproductsid
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/products/{product-id}/images
+      name: ecommerce-stores-store-id-products-product-id-images
+      description: REST surface for ecommerce-stores-store_id-products-product_id-images.
+      operations:
+      - method: GET
+        name: getecommercestoresidproductsidimages
+        description: Mailchimp List Product Images
+        call: marketing-stores.getecommercestoresidproductsidimages
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidproductsidimages
+        description: Mailchimp Add Product Image
+        call: marketing-stores.postecommercestoresidproductsidimages
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/products/{product-id}/images/{image-id}
+      name: ecommerce-stores-store-id-products-product-id-images-image-id
+      description: REST surface for ecommerce-stores-store_id-products-product_id-images-image_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidproductsidimagesid
+        description: Mailchimp Get Product Image Info
+        call: marketing-stores.getecommercestoresidproductsidimagesid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidproductsidimagesid
+        description: Mailchimp Update Product Image
+        call: marketing-stores.patchecommercestoresidproductsidimagesid
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          image_id: rest.image_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidproductsidimagesid
+        description: Mailchimp Delete Product Image
+        call: marketing-stores.deleteecommercestoresidproductsidimagesid
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          image_id: rest.image_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/products/{product-id}/variants
+      name: ecommerce-stores-store-id-products-product-id-variants
+      description: REST surface for ecommerce-stores-store_id-products-product_id-variants.
+      operations:
+      - method: GET
+        name: getecommercestoresidproductsidvariants
+        description: Mailchimp List Product Variants
+        call: marketing-stores.getecommercestoresidproductsidvariants
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+          product_id: rest.product_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidproductsidvariants
+        description: Mailchimp Add Product Variant
+        call: marketing-stores.postecommercestoresidproductsidvariants
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/products/{product-id}/variants/{variant-id}
+      name: ecommerce-stores-store-id-products-product-id-variants-variant-id
+      description: REST surface for ecommerce-stores-store_id-products-product_id-variants-variant_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidproductsidvariantsid
+        description: Mailchimp Get Product Variant Info
+        call: marketing-stores.getecommercestoresidproductsidvariantsid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          product_id: rest.product_id
+          variant_id: rest.variant_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: putecommercestoresidproductsidvariantsid
+        description: Mailchimp Add or Update Product Variant
+        call: marketing-stores.putecommercestoresidproductsidvariantsid
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          variant_id: rest.variant_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidproductsidvariantsid
+        description: Mailchimp Update Product Variant
+        call: marketing-stores.patchecommercestoresidproductsidvariantsid
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          variant_id: rest.variant_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidproductsidvariantsid
+        description: Mailchimp Delete Product Variant
+        call: marketing-stores.deleteecommercestoresidproductsidvariantsid
+        with:
+          store_id: rest.store_id
+          product_id: rest.product_id
+          variant_id: rest.variant_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/promo-rules
+      name: ecommerce-stores-store-id-promo-rules
+      description: REST surface for ecommerce-stores-store_id-promo-rules.
+      operations:
+      - method: GET
+        name: getecommercestoresidpromorules
+        description: Mailchimp List Promo Rules
+        call: marketing-stores.getecommercestoresidpromorules
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          store_id: rest.store_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidpromorules
+        description: Mailchimp Add Promo Rule
+        call: marketing-stores.postecommercestoresidpromorules
+        with:
+          store_id: rest.store_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/promo-rules/{promo-rule-id}
+      name: ecommerce-stores-store-id-promo-rules-promo-rule-id
+      description: REST surface for ecommerce-stores-store_id-promo-rules-promo_rule_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidpromorulesid
+        description: Mailchimp Get Promo Rule
+        call: marketing-stores.getecommercestoresidpromorulesid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          promo_rule_id: rest.promo_rule_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidpromorulesid
+        description: Mailchimp Update Promo Rule
+        call: marketing-stores.patchecommercestoresidpromorulesid
+        with:
+          store_id: rest.store_id
+          promo_rule_id: rest.promo_rule_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidpromorulesid
+        description: Mailchimp Delete Promo Rule
+        call: marketing-stores.deleteecommercestoresidpromorulesid
+        with:
+          store_id: rest.store_id
+          promo_rule_id: rest.promo_rule_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/promo-rules/{promo-rule-id}/promo-codes
+      name: ecommerce-stores-store-id-promo-rules-promo-rule-id-promo-codes
+      description: REST surface for ecommerce-stores-store_id-promo-rules-promo_rule_id-promo-codes.
+      operations:
+      - method: GET
+        name: getecommercestoresidpromocodes
+        description: Mailchimp List Promo Codes
+        call: marketing-stores.getecommercestoresidpromocodes
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          promo_rule_id: rest.promo_rule_id
+          store_id: rest.store_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postecommercestoresidpromocodes
+        description: Mailchimp Add Promo Code
+        call: marketing-stores.postecommercestoresidpromocodes
+        with:
+          store_id: rest.store_id
+          promo_rule_id: rest.promo_rule_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ecommerce/stores/{store-id}/promo-rules/{promo-rule-id}/promo-codes/{promo-code-id}
+      name: ecommerce-stores-store-id-promo-rules-promo-rule-id-promo-codes-promo-code-id
+      description: REST surface for ecommerce-stores-store_id-promo-rules-promo_rule_id-promo-codes-promo_code_id.
+      operations:
+      - method: GET
+        name: getecommercestoresidpromocodesid
+        description: Mailchimp Get Promo Code
+        call: marketing-stores.getecommercestoresidpromocodesid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          store_id: rest.store_id
+          promo_rule_id: rest.promo_rule_id
+          promo_code_id: rest.promo_code_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchecommercestoresidpromocodesid
+        description: Mailchimp Update Promo Code
+        call: marketing-stores.patchecommercestoresidpromocodesid
+        with:
+          store_id: rest.store_id
+          promo_rule_id: rest.promo_rule_id
+          promo_code_id: rest.promo_code_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteecommercestoresidpromocodesid
+        description: Mailchimp Delete Promo Code
+        call: marketing-stores.deleteecommercestoresidpromocodesid
+        with:
+          store_id: rest.store_id
+          promo_rule_id: rest.promo_rule_id
+          promo_code_id: rest.promo_code_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-stores-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Stores. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-stores
+      description: Mailchimp List Stores
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestores
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-store
+      description: Mailchimp Add Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestores
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-store-info
+      description: Mailchimp Get Store Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-store
+      description: Mailchimp Update Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresid
+      with:
+        store_id: tools.store_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-store
+      description: Mailchimp Delete Store
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresid
+      with:
+        store_id: tools.store_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-carts
+      description: Mailchimp List Carts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidcarts
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-cart
+      description: Mailchimp Add Cart
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidcarts
+      with:
+        store_id: tools.store_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-cart-info
+      description: Mailchimp Get Cart Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidcartsid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-cart
+      description: Mailchimp Update Cart
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidcartsid
+      with:
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-cart
+      description: Mailchimp Delete Cart
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidcartsid
+      with:
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-cart-line-items
+      description: Mailchimp List Cart Line Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidcartsidlines
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-cart-line-item
+      description: Mailchimp Add Cart Line Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidcartsidlines
+      with:
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-cart-line-item
+      description: Mailchimp Get Cart Line Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidcartsidlinesid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+        line_id: tools.line_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-cart-line-item
+      description: Mailchimp Update Cart Line Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidcartsidlinesid
+      with:
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+        line_id: tools.line_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-cart-line-item
+      description: Mailchimp Delete Cart Line Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidcartslinesid
+      with:
+        store_id: tools.store_id
+        cart_id: tools.cart_id
+        line_id: tools.line_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-customers
+      description: Mailchimp List Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidcustomers
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+        email_address: tools.email_address
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-customer
+      description: Mailchimp Add Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidcustomers
+      with:
+        store_id: tools.store_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-customer-info
+      description: Mailchimp Get Customer Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidcustomersid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-update-customer
+      description: Mailchimp Add or Update Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.putecommercestoresidcustomersid
+      with:
+        store_id: tools.store_id
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-customer
+      description: Mailchimp Update Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidcustomersid
+      with:
+        store_id: tools.store_id
+        customer_id: tools.customer_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-customer
+      description: Mailchimp Delete Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidcustomersid
+      with:
+        store_id: tools.store_id
+        customer_id: tools.customer_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-orders
+      description: Mailchimp List Orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidorders
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+        customer_id: tools.customer_id
+        has_outreach: tools.has_outreach
+        campaign_id: tools.campaign_id
+        outreach_id: tools.outreach_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-order
+      description: Mailchimp Add Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidorders
+      with:
+        store_id: tools.store_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-order-info
+      description: Mailchimp Get Order Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidordersid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        order_id: tools.order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-order
+      description: Mailchimp Update Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidordersid
+      with:
+        store_id: tools.store_id
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-order
+      description: Mailchimp Delete Order
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidordersid
+      with:
+        store_id: tools.store_id
+        order_id: tools.order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-order-line-items
+      description: Mailchimp List Order Line Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidordersidlines
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+        order_id: tools.order_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-order-line-item
+      description: Mailchimp Add Order Line Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidordersidlines
+      with:
+        store_id: tools.store_id
+        order_id: tools.order_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-order-line-item
+      description: Mailchimp Get Order Line Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidordersidlinesid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        order_id: tools.order_id
+        line_id: tools.line_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-order-line-item
+      description: Mailchimp Update Order Line Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidordersidlinesid
+      with:
+        store_id: tools.store_id
+        order_id: tools.order_id
+        line_id: tools.line_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-order-line-item
+      description: Mailchimp Delete Order Line Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidordersidlinesid
+      with:
+        store_id: tools.store_id
+        order_id: tools.order_id
+        line_id: tools.line_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-product
+      description: Mailchimp List Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidproducts
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-product
+      description: Mailchimp Add Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidproducts
+      with:
+        store_id: tools.store_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-product-info
+      description: Mailchimp Get Product Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidproductsid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-product
+      description: Mailchimp Update Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidproductsid
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-product
+      description: Mailchimp Delete Product
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidproductsid
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-product-images
+      description: Mailchimp List Product Images
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidproductsidimages
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-product-image
+      description: Mailchimp Add Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidproductsidimages
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-product-image-info
+      description: Mailchimp Get Product Image Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidproductsidimagesid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-product-image
+      description: Mailchimp Update Product Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidproductsidimagesid
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        image_id: tools.image_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-product-image
+      description: Mailchimp Delete Product Image
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidproductsidimagesid
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        image_id: tools.image_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-product-variants
+      description: Mailchimp List Product Variants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidproductsidvariants
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+        product_id: tools.product_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-product-variant
+      description: Mailchimp Add Product Variant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidproductsidvariants
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-product-variant-info
+      description: Mailchimp Get Product Variant Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidproductsidvariantsid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        product_id: tools.product_id
+        variant_id: tools.variant_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-update-product-variant
+      description: Mailchimp Add or Update Product Variant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.putecommercestoresidproductsidvariantsid
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        variant_id: tools.variant_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-product-variant
+      description: Mailchimp Update Product Variant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidproductsidvariantsid
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        variant_id: tools.variant_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-product-variant
+      description: Mailchimp Delete Product Variant
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidproductsidvariantsid
+      with:
+        store_id: tools.store_id
+        product_id: tools.product_id
+        variant_id: tools.variant_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-promo-rules
+      description: Mailchimp List Promo Rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidpromorules
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        store_id: tools.store_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-promo-rule
+      description: Mailchimp Add Promo Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidpromorules
+      with:
+        store_id: tools.store_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-promo-rule
+      description: Mailchimp Get Promo Rule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidpromorulesid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        promo_rule_id: tools.promo_rule_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-promo-rule
+      description: Mailchimp Update Promo Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidpromorulesid
+      with:
+        store_id: tools.store_id
+        promo_rule_id: tools.promo_rule_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-promo-rule
+      description: Mailchimp Delete Promo Rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidpromorulesid
+      with:
+        store_id: tools.store_id
+        promo_rule_id: tools.promo_rule_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-promo-codes
+      description: Mailchimp List Promo Codes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidpromocodes
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        promo_rule_id: tools.promo_rule_id
+        store_id: tools.store_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-promo-code
+      description: Mailchimp Add Promo Code
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-stores.postecommercestoresidpromocodes
+      with:
+        store_id: tools.store_id
+        promo_rule_id: tools.promo_rule_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-promo-code
+      description: Mailchimp Get Promo Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-stores.getecommercestoresidpromocodesid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        store_id: tools.store_id
+        promo_rule_id: tools.promo_rule_id
+        promo_code_id: tools.promo_code_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-promo-code
+      description: Mailchimp Update Promo Code
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-stores.patchecommercestoresidpromocodesid
+      with:
+        store_id: tools.store_id
+        promo_rule_id: tools.promo_rule_id
+        promo_code_id: tools.promo_code_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-promo-code
+      description: Mailchimp Delete Promo Code
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-stores.deleteecommercestoresidpromocodesid
+      with:
+        store_id: tools.store_id
+        promo_rule_id: tools.promo_rule_id
+        promo_code_id: tools.promo_code_id
+      outputParameters:
+      - type: object
+        mapping: $.

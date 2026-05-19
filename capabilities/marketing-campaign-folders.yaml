@@ -1,0 +1,165 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Campaign Folders
+  description: 'Mailchimp Marketing API  — Campaign Folders. 3 operations. Lead operation: Mailchimp Get Campaign Folder.
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Campaign Folders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-campaign-folders
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Campaign Folders business capability. Self-contained, no shared references.
+    resources:
+    - name: campaign-folders-folder_id
+      path: /campaign-folders/{folder_id}
+      operations:
+      - name: getcampaignfoldersid
+        method: GET
+        description: Mailchimp Get Campaign Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the campaign folder.
+          required: true
+      - name: patchcampaignfoldersid
+        method: PATCH
+        description: Mailchimp Update Campaign Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the campaign folder.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deletecampaignfoldersid
+        method: DELETE
+        description: Mailchimp Delete Campaign Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the campaign folder.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-campaign-folders-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Campaign Folders. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/campaign-folders/{folder-id}
+      name: campaign-folders-folder-id
+      description: REST surface for campaign-folders-folder_id.
+      operations:
+      - method: GET
+        name: getcampaignfoldersid
+        description: Mailchimp Get Campaign Folder
+        call: marketing-campaign-folders.getcampaignfoldersid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchcampaignfoldersid
+        description: Mailchimp Update Campaign Folder
+        call: marketing-campaign-folders.patchcampaignfoldersid
+        with:
+          folder_id: rest.folder_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecampaignfoldersid
+        description: Mailchimp Delete Campaign Folder
+        call: marketing-campaign-folders.deletecampaignfoldersid
+        with:
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-campaign-folders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Campaign Folders. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: mailchimp-get-campaign-folder
+      description: Mailchimp Get Campaign Folder
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-campaign-folders.getcampaignfoldersid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-campaign-folder
+      description: Mailchimp Update Campaign Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-campaign-folders.patchcampaignfoldersid
+      with:
+        folder_id: tools.folder_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-campaign-folder
+      description: Mailchimp Delete Campaign Folder
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-campaign-folders.deletecampaignfoldersid
+      with:
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.

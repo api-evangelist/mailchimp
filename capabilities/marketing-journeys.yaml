@@ -1,0 +1,90 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Journeys
+  description: 'Mailchimp Marketing API  — Journeys. 1 operations. Lead operation: Mailchimp Customer Journeys Api Trigger
+    for a Contact. Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Journeys
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-journeys
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Journeys business capability. Self-contained, no shared references.
+    resources:
+    - name: customer-journeys-journeys-journey_id-steps-step_id-actions-trigger
+      path: /customer-journeys/journeys/{journey_id}/steps/{step_id}/actions/trigger
+      operations:
+      - name: postcustomerjourneysjourneysidstepsidactionstrigger
+        method: POST
+        description: Mailchimp Customer Journeys Api Trigger for a Contact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: journey_id
+          in: path
+          type: integer
+          description: The id for the Journey.
+          required: true
+        - name: step_id
+          in: path
+          type: integer
+          description: The id for the Step.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-journeys-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Journeys. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/customer-journeys/journeys/{journey-id}/steps/{step-id}/actions/trigger
+      name: customer-journeys-journeys-journey-id-steps-step-id-actions-trigger
+      description: REST surface for customer-journeys-journeys-journey_id-steps-step_id-actions-trigger.
+      operations:
+      - method: POST
+        name: postcustomerjourneysjourneysidstepsidactionstrigger
+        description: Mailchimp Customer Journeys Api Trigger for a Contact
+        call: marketing-journeys.postcustomerjourneysjourneysidstepsidactionstrigger
+        with:
+          journey_id: rest.journey_id
+          step_id: rest.step_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-journeys-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Journeys. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-customer-journeys-api-trigger
+      description: Mailchimp Customer Journeys Api Trigger for a Contact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-journeys.postcustomerjourneysjourneysidstepsidactionstrigger
+      with:
+        journey_id: tools.journey_id
+        step_id: tools.step_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

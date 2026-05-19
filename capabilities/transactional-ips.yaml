@@ -1,0 +1,250 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Transactional API — IPs
+  description: 'Mailchimp Transactional API — IPs. 5 operations. Lead operation: Mailchimp Create an Ip Pool. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - IPs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: transactional-ips
+    baseUri: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional API — IPs business capability. Self-contained, no shared references.
+    resources:
+    - name: ips-create-pool
+      path: /ips/create-pool
+      operations:
+      - name: postipscreatepool
+        method: POST
+        description: Mailchimp Create an Ip Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ips-delete-pool
+      path: /ips/delete-pool
+      operations:
+      - name: postipsdeletepool
+        method: POST
+        description: Mailchimp Delete an Ip Pool
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ips-info
+      path: /ips/info
+      operations:
+      - name: postipsinfo
+        method: POST
+        description: Mailchimp Get Ip Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ips-list
+      path: /ips/list
+      operations:
+      - name: postipslist
+        method: POST
+        description: Mailchimp List Dedicated Ips
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ips-list-pools
+      path: /ips/list-pools
+      operations:
+      - name: postipslistpools
+        method: POST
+        description: Mailchimp List Ip Pools
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-MC-ApiKey
+      value: '{{env.MAILCHIMP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: transactional-ips-rest
+    port: 8080
+    description: REST adapter for Mailchimp Transactional API — IPs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/ips/create-pool
+      name: ips-create-pool
+      description: REST surface for ips-create-pool.
+      operations:
+      - method: POST
+        name: postipscreatepool
+        description: Mailchimp Create an Ip Pool
+        call: transactional-ips.postipscreatepool
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ips/delete-pool
+      name: ips-delete-pool
+      description: REST surface for ips-delete-pool.
+      operations:
+      - method: POST
+        name: postipsdeletepool
+        description: Mailchimp Delete an Ip Pool
+        call: transactional-ips.postipsdeletepool
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ips/info
+      name: ips-info
+      description: REST surface for ips-info.
+      operations:
+      - method: POST
+        name: postipsinfo
+        description: Mailchimp Get Ip Info
+        call: transactional-ips.postipsinfo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ips/list
+      name: ips-list
+      description: REST surface for ips-list.
+      operations:
+      - method: POST
+        name: postipslist
+        description: Mailchimp List Dedicated Ips
+        call: transactional-ips.postipslist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ips/list-pools
+      name: ips-list-pools
+      description: REST surface for ips-list-pools.
+      operations:
+      - method: POST
+        name: postipslistpools
+        description: Mailchimp List Ip Pools
+        call: transactional-ips.postipslistpools
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: transactional-ips-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Transactional API — IPs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-create-ip-pool
+      description: Mailchimp Create an Ip Pool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-ips.postipscreatepool
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-ip-pool
+      description: Mailchimp Delete an Ip Pool
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-ips.postipsdeletepool
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-ip-info
+      description: Mailchimp Get Ip Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-ips.postipsinfo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-dedicated-ips
+      description: Mailchimp List Dedicated Ips
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-ips.postipslist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-ip-pools
+      description: Mailchimp List Ip Pools
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-ips.postipslistpools
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

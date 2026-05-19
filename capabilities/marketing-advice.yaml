@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Advice
+  description: 'Mailchimp Marketing API  — Advice. 1 operations. Lead operation: Mailchimp List Campaign Feedback. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Advice
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-advice
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Advice business capability. Self-contained, no shared references.
+    resources:
+    - name: reports-campaign_id-advice
+      path: /reports/{campaign_id}/advice
+      operations:
+      - name: getreportsidadvice
+        method: GET
+        description: Mailchimp List Campaign Feedback
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-advice-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Advice. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/reports/{campaign-id}/advice
+      name: reports-campaign-id-advice
+      description: REST surface for reports-campaign_id-advice.
+      operations:
+      - method: GET
+        name: getreportsidadvice
+        description: Mailchimp List Campaign Feedback
+        call: marketing-advice.getreportsidadvice
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          campaign_id: rest.campaign_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-advice-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Advice. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-campaign-feedback
+      description: Mailchimp List Campaign Feedback
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-advice.getreportsidadvice
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        campaign_id: tools.campaign_id
+      outputParameters:
+      - type: object
+        mapping: $.

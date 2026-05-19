@@ -1,0 +1,250 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Transactional API — Webhooks
+  description: 'Mailchimp Transactional API — Webhooks. 5 operations. Lead operation: Mailchimp Add a Webhook. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: transactional-webhooks
+    baseUri: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: webhooks-add
+      path: /webhooks/add
+      operations:
+      - name: postwebhooksadd
+        method: POST
+        description: Mailchimp Add a Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-delete
+      path: /webhooks/delete
+      operations:
+      - name: postwebhooksdelete
+        method: POST
+        description: Mailchimp Delete a Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-info
+      path: /webhooks/info
+      operations:
+      - name: postwebhooksinfo
+        method: POST
+        description: Mailchimp Get Webhook Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-list
+      path: /webhooks/list
+      operations:
+      - name: postwebhookslist
+        method: POST
+        description: Mailchimp List Webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-update
+      path: /webhooks/update
+      operations:
+      - name: postwebhooksupdate
+        method: POST
+        description: Mailchimp Update a Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-MC-ApiKey
+      value: '{{env.MAILCHIMP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: transactional-webhooks-rest
+    port: 8080
+    description: REST adapter for Mailchimp Transactional API — Webhooks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/webhooks/add
+      name: webhooks-add
+      description: REST surface for webhooks-add.
+      operations:
+      - method: POST
+        name: postwebhooksadd
+        description: Mailchimp Add a Webhook
+        call: transactional-webhooks.postwebhooksadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/delete
+      name: webhooks-delete
+      description: REST surface for webhooks-delete.
+      operations:
+      - method: POST
+        name: postwebhooksdelete
+        description: Mailchimp Delete a Webhook
+        call: transactional-webhooks.postwebhooksdelete
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/info
+      name: webhooks-info
+      description: REST surface for webhooks-info.
+      operations:
+      - method: POST
+        name: postwebhooksinfo
+        description: Mailchimp Get Webhook Info
+        call: transactional-webhooks.postwebhooksinfo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/list
+      name: webhooks-list
+      description: REST surface for webhooks-list.
+      operations:
+      - method: POST
+        name: postwebhookslist
+        description: Mailchimp List Webhooks
+        call: transactional-webhooks.postwebhookslist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/update
+      name: webhooks-update
+      description: REST surface for webhooks-update.
+      operations:
+      - method: POST
+        name: postwebhooksupdate
+        description: Mailchimp Update a Webhook
+        call: transactional-webhooks.postwebhooksupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: transactional-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Transactional API — Webhooks. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-add-webhook
+      description: Mailchimp Add a Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-webhooks.postwebhooksadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-webhook
+      description: Mailchimp Delete a Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-webhooks.postwebhooksdelete
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-webhook-info
+      description: Mailchimp Get Webhook Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-webhooks.postwebhooksinfo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-webhooks
+      description: Mailchimp List Webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-webhooks.postwebhookslist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-webhook
+      description: Mailchimp Update a Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-webhooks.postwebhooksupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

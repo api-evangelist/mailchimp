@@ -1,0 +1,125 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Verify
+  description: 'Mailchimp Marketing API  — Verify. 2 operations. Lead operation: Mailchimp Verify Connected Site Script. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Verify
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-verify
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Verify business capability. Self-contained, no shared references.
+    resources:
+    - name: connected-sites-connected_site_id-actions-verify-script-installation
+      path: /connected-sites/{connected_site_id}/actions/verify-script-installation
+      operations:
+      - name: postconnectedsitesidactionsverifyscriptinstallation
+        method: POST
+        description: Mailchimp Verify Connected Site Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connected_site_id
+          in: path
+          type: string
+          description: The unique identifier for the site.
+          required: true
+    - name: verified-domains-domain_name-actions-verify
+      path: /verified-domains/{domain_name}/actions/verify
+      operations:
+      - name: verifydomain
+        method: POST
+        description: Mailchimp Verify Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: domain_name
+          in: path
+          type: string
+          description: The domain name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-verify-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Verify. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/connected-sites/{connected-site-id}/actions/verify-script-installation
+      name: connected-sites-connected-site-id-actions-verify-script-installation
+      description: REST surface for connected-sites-connected_site_id-actions-verify-script-installation.
+      operations:
+      - method: POST
+        name: postconnectedsitesidactionsverifyscriptinstallation
+        description: Mailchimp Verify Connected Site Script
+        call: marketing-verify.postconnectedsitesidactionsverifyscriptinstallation
+        with:
+          connected_site_id: rest.connected_site_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/verified-domains/{domain-name}/actions/verify
+      name: verified-domains-domain-name-actions-verify
+      description: REST surface for verified-domains-domain_name-actions-verify.
+      operations:
+      - method: POST
+        name: verifydomain
+        description: Mailchimp Verify Domain
+        call: marketing-verify.verifydomain
+        with:
+          domain_name: rest.domain_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-verify-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Verify. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-verify-connected-site-script
+      description: Mailchimp Verify Connected Site Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-verify.postconnectedsitesidactionsverifyscriptinstallation
+      with:
+        connected_site_id: tools.connected_site_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-verify-domain
+      description: Mailchimp Verify Domain
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-verify.verifydomain
+      with:
+        domain_name: tools.domain_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Schedules
+  description: 'Mailchimp Marketing API  — Schedules. 1 operations. Lead operation: Mailchimp Schedule Campaign. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Schedules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-schedules
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Schedules business capability. Self-contained, no shared references.
+    resources:
+    - name: campaigns-campaign_id-actions-schedule
+      path: /campaigns/{campaign_id}/actions/schedule
+      operations:
+      - name: postcampaignsidactionsschedule
+        method: POST
+        description: Mailchimp Schedule Campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-schedules-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Schedules. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/campaigns/{campaign-id}/actions/schedule
+      name: campaigns-campaign-id-actions-schedule
+      description: REST surface for campaigns-campaign_id-actions-schedule.
+      operations:
+      - method: POST
+        name: postcampaignsidactionsschedule
+        description: Mailchimp Schedule Campaign
+        call: marketing-schedules.postcampaignsidactionsschedule
+        with:
+          campaign_id: rest.campaign_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-schedules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Schedules. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-schedule-campaign
+      description: Mailchimp Schedule Campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-schedules.postcampaignsidactionsschedule
+      with:
+        campaign_id: tools.campaign_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

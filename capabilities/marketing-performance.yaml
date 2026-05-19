@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Performance
+  description: 'Mailchimp Marketing API  — Performance. 1 operations. Lead operation: Mailchimp List Domain Performance Stats.
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Performance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-performance
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Performance business capability. Self-contained, no shared references.
+    resources:
+    - name: reports-campaign_id-domain-performance
+      path: /reports/{campaign_id}/domain-performance
+      operations:
+      - name: getreportsiddomainperformance
+        method: GET
+        description: Mailchimp List Domain Performance Stats
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-performance-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Performance. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/reports/{campaign-id}/domain-performance
+      name: reports-campaign-id-domain-performance
+      description: REST surface for reports-campaign_id-domain-performance.
+      operations:
+      - method: GET
+        name: getreportsiddomainperformance
+        description: Mailchimp List Domain Performance Stats
+        call: marketing-performance.getreportsiddomainperformance
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          campaign_id: rest.campaign_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-performance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Performance. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-domain-performance-stats
+      description: Mailchimp List Domain Performance Stats
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-performance.getreportsiddomainperformance
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        campaign_id: tools.campaign_id
+      outputParameters:
+      - type: object
+        mapping: $.

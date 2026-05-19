@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Transactional API — Allowlists
+  description: 'Mailchimp Transactional API — Allowlists. 3 operations. Lead operation: Mailchimp Add an Allowlist Entry.
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Allowlists
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: transactional-allowlists
+    baseUri: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional API — Allowlists business capability. Self-contained, no shared references.
+    resources:
+    - name: allowlists-add
+      path: /allowlists/add
+      operations:
+      - name: postallowlistsadd
+        method: POST
+        description: Mailchimp Add an Allowlist Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: allowlists-delete
+      path: /allowlists/delete
+      operations:
+      - name: postallowlistsdelete
+        method: POST
+        description: Mailchimp Delete an Allowlist Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: allowlists-list
+      path: /allowlists/list
+      operations:
+      - name: postallowlistslist
+        method: POST
+        description: Mailchimp List Allowlist Entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-MC-ApiKey
+      value: '{{env.MAILCHIMP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: transactional-allowlists-rest
+    port: 8080
+    description: REST adapter for Mailchimp Transactional API — Allowlists. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/allowlists/add
+      name: allowlists-add
+      description: REST surface for allowlists-add.
+      operations:
+      - method: POST
+        name: postallowlistsadd
+        description: Mailchimp Add an Allowlist Entry
+        call: transactional-allowlists.postallowlistsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/allowlists/delete
+      name: allowlists-delete
+      description: REST surface for allowlists-delete.
+      operations:
+      - method: POST
+        name: postallowlistsdelete
+        description: Mailchimp Delete an Allowlist Entry
+        call: transactional-allowlists.postallowlistsdelete
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/allowlists/list
+      name: allowlists-list
+      description: REST surface for allowlists-list.
+      operations:
+      - method: POST
+        name: postallowlistslist
+        description: Mailchimp List Allowlist Entries
+        call: transactional-allowlists.postallowlistslist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: transactional-allowlists-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Transactional API — Allowlists. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: mailchimp-add-allowlist-entry
+      description: Mailchimp Add an Allowlist Entry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-allowlists.postallowlistsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-allowlist-entry
+      description: Mailchimp Delete an Allowlist Entry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-allowlists.postallowlistsdelete
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-allowlist-entries
+      description: Mailchimp List Allowlist Entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-allowlists.postallowlistslist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

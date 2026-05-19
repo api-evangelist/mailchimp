@@ -1,0 +1,167 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Subscribers
+  description: 'Mailchimp Marketing API  — Subscribers. 3 operations. Lead operation: Mailchimp List Subscribers Removed From
+    Workflow. Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Subscribers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-subscribers
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Subscribers business capability. Self-contained, no shared references.
+    resources:
+    - name: automations-workflow_id-removed-subscribers
+      path: /automations/{workflow_id}/removed-subscribers
+      operations:
+      - name: getautomationsidremovedsubscribers
+        method: GET
+        description: Mailchimp List Subscribers Removed From Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+      - name: postautomationsidremovedsubscribers
+        method: POST
+        description: Mailchimp Remove Subscriber From Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: automations-workflow_id-removed-subscribers-subscriber_hash
+      path: /automations/{workflow_id}/removed-subscribers/{subscriber_hash}
+      operations:
+      - name: getautomationsidremovedsubscribersid
+        method: GET
+        description: Mailchimp Get Subscriber Removed From Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: subscriber_hash
+          in: path
+          type: string
+          description: The MD5 hash of the lowercase version of the list member's email address.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-subscribers-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Subscribers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/automations/{workflow-id}/removed-subscribers
+      name: automations-workflow-id-removed-subscribers
+      description: REST surface for automations-workflow_id-removed-subscribers.
+      operations:
+      - method: GET
+        name: getautomationsidremovedsubscribers
+        description: Mailchimp List Subscribers Removed From Workflow
+        call: marketing-subscribers.getautomationsidremovedsubscribers
+        with:
+          workflow_id: rest.workflow_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postautomationsidremovedsubscribers
+        description: Mailchimp Remove Subscriber From Workflow
+        call: marketing-subscribers.postautomationsidremovedsubscribers
+        with:
+          workflow_id: rest.workflow_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/removed-subscribers/{subscriber-hash}
+      name: automations-workflow-id-removed-subscribers-subscriber-hash
+      description: REST surface for automations-workflow_id-removed-subscribers-subscriber_hash.
+      operations:
+      - method: GET
+        name: getautomationsidremovedsubscribersid
+        description: Mailchimp Get Subscriber Removed From Workflow
+        call: marketing-subscribers.getautomationsidremovedsubscribersid
+        with:
+          workflow_id: rest.workflow_id
+          subscriber_hash: rest.subscriber_hash
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-subscribers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Subscribers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-subscribers-removed-workflow
+      description: Mailchimp List Subscribers Removed From Workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-subscribers.getautomationsidremovedsubscribers
+      with:
+        workflow_id: tools.workflow_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-remove-subscriber-workflow
+      description: Mailchimp Remove Subscriber From Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-subscribers.postautomationsidremovedsubscribers
+      with:
+        workflow_id: tools.workflow_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-subscriber-removed-workflow
+      description: Mailchimp Get Subscriber Removed From Workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-subscribers.getautomationsidremovedsubscribersid
+      with:
+        workflow_id: tools.workflow_id
+        subscriber_hash: tools.subscriber_hash
+      outputParameters:
+      - type: object
+        mapping: $.

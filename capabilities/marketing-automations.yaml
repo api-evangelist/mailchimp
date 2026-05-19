@@ -1,0 +1,903 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Automations
+  description: 'Mailchimp Marketing API  — Automations. 18 operations. Lead operation: Mailchimp List Automations. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Automations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-automations
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Automations business capability. Self-contained, no shared references.
+    resources:
+    - name: automations
+      path: /automations
+      operations:
+      - name: getautomations
+        method: GET
+        description: Mailchimp List Automations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: before_create_time
+          in: query
+          type: string
+          description: 'Restrict the response to automations created before this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: since_create_time
+          in: query
+          type: string
+          description: 'Restrict the response to automations created after this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: before_start_time
+          in: query
+          type: string
+          description: 'Restrict the response to automations started before this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: since_start_time
+          in: query
+          type: string
+          description: 'Restrict the response to automations started after this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: status
+          in: query
+          type: string
+          description: Restrict the results to automations with the specified status.
+      - name: postautomations
+        method: POST
+        description: Mailchimp Add Automation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: automations-workflow_id
+      path: /automations/{workflow_id}
+      operations:
+      - name: getautomationsid
+        method: GET
+        description: Mailchimp Get Automation Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+    - name: automations-workflow_id-actions-archive
+      path: /automations/{workflow_id}/actions/archive
+      operations:
+      - name: archiveautomations
+        method: POST
+        description: Mailchimp Archive Automation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+    - name: automations-workflow_id-actions-pause-all-emails
+      path: /automations/{workflow_id}/actions/pause-all-emails
+      operations:
+      - name: postautomationsidactionspauseallemails
+        method: POST
+        description: Mailchimp Pause Automation Emails
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+    - name: automations-workflow_id-actions-start-all-emails
+      path: /automations/{workflow_id}/actions/start-all-emails
+      operations:
+      - name: postautomationsidactionsstartallemails
+        method: POST
+        description: Mailchimp Start Automation Emails
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+    - name: automations-workflow_id-emails
+      path: /automations/{workflow_id}/emails
+      operations:
+      - name: getautomationsidemails
+        method: GET
+        description: Mailchimp List Automated Emails
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+    - name: automations-workflow_id-emails-workflow_email_id
+      path: /automations/{workflow_id}/emails/{workflow_email_id}
+      operations:
+      - name: getautomationsidemailsid
+        method: GET
+        description: Mailchimp Get Workflow Email Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+      - name: deleteautomationsidemailsid
+        method: DELETE
+        description: Mailchimp Delete Workflow Email
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+      - name: patchautomationemailworkflowid
+        method: PATCH
+        description: Mailchimp Update Workflow Email
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: automations-workflow_id-emails-workflow_email_id-actions-pause
+      path: /automations/{workflow_id}/emails/{workflow_email_id}/actions/pause
+      operations:
+      - name: postautomationsidemailsidactionspause
+        method: POST
+        description: Mailchimp Pause Automated Email
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+    - name: automations-workflow_id-emails-workflow_email_id-actions-start
+      path: /automations/{workflow_id}/emails/{workflow_email_id}/actions/start
+      operations:
+      - name: postautomationsidemailsidactionsstart
+        method: POST
+        description: Mailchimp Start Automated Email
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+    - name: automations-workflow_id-emails-workflow_email_id-queue
+      path: /automations/{workflow_id}/emails/{workflow_email_id}/queue
+      operations:
+      - name: getautomationsidemailsidqueue
+        method: GET
+        description: Mailchimp List Automated Email Subscribers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+      - name: postautomationsidemailsidqueue
+        method: POST
+        description: Mailchimp Add Subscriber to Workflow Email
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: automations-workflow_id-emails-workflow_email_id-queue-subscriber_hash
+      path: /automations/{workflow_id}/emails/{workflow_email_id}/queue/{subscriber_hash}
+      operations:
+      - name: getautomationsidemailsidqueueid
+        method: GET
+        description: Mailchimp Get Automated Email Subscriber
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: workflow_email_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow email.
+          required: true
+        - name: subscriber_hash
+          in: path
+          type: string
+          description: The MD5 hash of the lowercase version of the list member's email address.
+          required: true
+    - name: automations-workflow_id-removed-subscribers
+      path: /automations/{workflow_id}/removed-subscribers
+      operations:
+      - name: getautomationsidremovedsubscribers
+        method: GET
+        description: Mailchimp List Subscribers Removed From Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+      - name: postautomationsidremovedsubscribers
+        method: POST
+        description: Mailchimp Remove Subscriber From Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: automations-workflow_id-removed-subscribers-subscriber_hash
+      path: /automations/{workflow_id}/removed-subscribers/{subscriber_hash}
+      operations:
+      - name: getautomationsidremovedsubscribersid
+        method: GET
+        description: Mailchimp Get Subscriber Removed From Workflow
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workflow_id
+          in: path
+          type: string
+          description: The unique id for the Automation workflow.
+          required: true
+        - name: subscriber_hash
+          in: path
+          type: string
+          description: The MD5 hash of the lowercase version of the list member's email address.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-automations-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Automations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/automations
+      name: automations
+      description: REST surface for automations.
+      operations:
+      - method: GET
+        name: getautomations
+        description: Mailchimp List Automations
+        call: marketing-automations.getautomations
+        with:
+          count: rest.count
+          offset: rest.offset
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          before_create_time: rest.before_create_time
+          since_create_time: rest.since_create_time
+          before_start_time: rest.before_start_time
+          since_start_time: rest.since_start_time
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postautomations
+        description: Mailchimp Add Automation
+        call: marketing-automations.postautomations
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}
+      name: automations-workflow-id
+      description: REST surface for automations-workflow_id.
+      operations:
+      - method: GET
+        name: getautomationsid
+        description: Mailchimp Get Automation Info
+        call: marketing-automations.getautomationsid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          workflow_id: rest.workflow_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/actions/archive
+      name: automations-workflow-id-actions-archive
+      description: REST surface for automations-workflow_id-actions-archive.
+      operations:
+      - method: POST
+        name: archiveautomations
+        description: Mailchimp Archive Automation
+        call: marketing-automations.archiveautomations
+        with:
+          workflow_id: rest.workflow_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/actions/pause-all-emails
+      name: automations-workflow-id-actions-pause-all-emails
+      description: REST surface for automations-workflow_id-actions-pause-all-emails.
+      operations:
+      - method: POST
+        name: postautomationsidactionspauseallemails
+        description: Mailchimp Pause Automation Emails
+        call: marketing-automations.postautomationsidactionspauseallemails
+        with:
+          workflow_id: rest.workflow_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/actions/start-all-emails
+      name: automations-workflow-id-actions-start-all-emails
+      description: REST surface for automations-workflow_id-actions-start-all-emails.
+      operations:
+      - method: POST
+        name: postautomationsidactionsstartallemails
+        description: Mailchimp Start Automation Emails
+        call: marketing-automations.postautomationsidactionsstartallemails
+        with:
+          workflow_id: rest.workflow_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/emails
+      name: automations-workflow-id-emails
+      description: REST surface for automations-workflow_id-emails.
+      operations:
+      - method: GET
+        name: getautomationsidemails
+        description: Mailchimp List Automated Emails
+        call: marketing-automations.getautomationsidemails
+        with:
+          workflow_id: rest.workflow_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/emails/{workflow-email-id}
+      name: automations-workflow-id-emails-workflow-email-id
+      description: REST surface for automations-workflow_id-emails-workflow_email_id.
+      operations:
+      - method: GET
+        name: getautomationsidemailsid
+        description: Mailchimp Get Workflow Email Info
+        call: marketing-automations.getautomationsidemailsid
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteautomationsidemailsid
+        description: Mailchimp Delete Workflow Email
+        call: marketing-automations.deleteautomationsidemailsid
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchautomationemailworkflowid
+        description: Mailchimp Update Workflow Email
+        call: marketing-automations.patchautomationemailworkflowid
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/emails/{workflow-email-id}/actions/pause
+      name: automations-workflow-id-emails-workflow-email-id-actions-pause
+      description: REST surface for automations-workflow_id-emails-workflow_email_id-actions-pause.
+      operations:
+      - method: POST
+        name: postautomationsidemailsidactionspause
+        description: Mailchimp Pause Automated Email
+        call: marketing-automations.postautomationsidemailsidactionspause
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/emails/{workflow-email-id}/actions/start
+      name: automations-workflow-id-emails-workflow-email-id-actions-start
+      description: REST surface for automations-workflow_id-emails-workflow_email_id-actions-start.
+      operations:
+      - method: POST
+        name: postautomationsidemailsidactionsstart
+        description: Mailchimp Start Automated Email
+        call: marketing-automations.postautomationsidemailsidactionsstart
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/emails/{workflow-email-id}/queue
+      name: automations-workflow-id-emails-workflow-email-id-queue
+      description: REST surface for automations-workflow_id-emails-workflow_email_id-queue.
+      operations:
+      - method: GET
+        name: getautomationsidemailsidqueue
+        description: Mailchimp List Automated Email Subscribers
+        call: marketing-automations.getautomationsidemailsidqueue
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postautomationsidemailsidqueue
+        description: Mailchimp Add Subscriber to Workflow Email
+        call: marketing-automations.postautomationsidemailsidqueue
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/emails/{workflow-email-id}/queue/{subscriber-hash}
+      name: automations-workflow-id-emails-workflow-email-id-queue-subscriber-hash
+      description: REST surface for automations-workflow_id-emails-workflow_email_id-queue-subscriber_hash.
+      operations:
+      - method: GET
+        name: getautomationsidemailsidqueueid
+        description: Mailchimp Get Automated Email Subscriber
+        call: marketing-automations.getautomationsidemailsidqueueid
+        with:
+          workflow_id: rest.workflow_id
+          workflow_email_id: rest.workflow_email_id
+          subscriber_hash: rest.subscriber_hash
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/removed-subscribers
+      name: automations-workflow-id-removed-subscribers
+      description: REST surface for automations-workflow_id-removed-subscribers.
+      operations:
+      - method: GET
+        name: getautomationsidremovedsubscribers
+        description: Mailchimp List Subscribers Removed From Workflow
+        call: marketing-automations.getautomationsidremovedsubscribers
+        with:
+          workflow_id: rest.workflow_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postautomationsidremovedsubscribers
+        description: Mailchimp Remove Subscriber From Workflow
+        call: marketing-automations.postautomationsidremovedsubscribers
+        with:
+          workflow_id: rest.workflow_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/automations/{workflow-id}/removed-subscribers/{subscriber-hash}
+      name: automations-workflow-id-removed-subscribers-subscriber-hash
+      description: REST surface for automations-workflow_id-removed-subscribers-subscriber_hash.
+      operations:
+      - method: GET
+        name: getautomationsidremovedsubscribersid
+        description: Mailchimp Get Subscriber Removed From Workflow
+        call: marketing-automations.getautomationsidremovedsubscribersid
+        with:
+          workflow_id: rest.workflow_id
+          subscriber_hash: rest.subscriber_hash
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-automations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Automations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-automations
+      description: Mailchimp List Automations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomations
+      with:
+        count: tools.count
+        offset: tools.offset
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        before_create_time: tools.before_create_time
+        since_create_time: tools.since_create_time
+        before_start_time: tools.before_start_time
+        since_start_time: tools.since_start_time
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-automation
+      description: Mailchimp Add Automation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.postautomations
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-automation-info
+      description: Mailchimp Get Automation Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomationsid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        workflow_id: tools.workflow_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-archive-automation
+      description: Mailchimp Archive Automation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.archiveautomations
+      with:
+        workflow_id: tools.workflow_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-pause-automation-emails
+      description: Mailchimp Pause Automation Emails
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.postautomationsidactionspauseallemails
+      with:
+        workflow_id: tools.workflow_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-start-automation-emails
+      description: Mailchimp Start Automation Emails
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.postautomationsidactionsstartallemails
+      with:
+        workflow_id: tools.workflow_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-automated-emails
+      description: Mailchimp List Automated Emails
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomationsidemails
+      with:
+        workflow_id: tools.workflow_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-workflow-email-info
+      description: Mailchimp Get Workflow Email Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomationsidemailsid
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-workflow-email
+      description: Mailchimp Delete Workflow Email
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-automations.deleteautomationsidemailsid
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-workflow-email
+      description: Mailchimp Update Workflow Email
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-automations.patchautomationemailworkflowid
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-pause-automated-email
+      description: Mailchimp Pause Automated Email
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.postautomationsidemailsidactionspause
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-start-automated-email
+      description: Mailchimp Start Automated Email
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.postautomationsidemailsidactionsstart
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-automated-email-subscribers
+      description: Mailchimp List Automated Email Subscribers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomationsidemailsidqueue
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-subscriber-workflow-email
+      description: Mailchimp Add Subscriber to Workflow Email
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.postautomationsidemailsidqueue
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-automated-email-subscriber
+      description: Mailchimp Get Automated Email Subscriber
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomationsidemailsidqueueid
+      with:
+        workflow_id: tools.workflow_id
+        workflow_email_id: tools.workflow_email_id
+        subscriber_hash: tools.subscriber_hash
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-subscribers-removed-workflow
+      description: Mailchimp List Subscribers Removed From Workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomationsidremovedsubscribers
+      with:
+        workflow_id: tools.workflow_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-remove-subscriber-workflow
+      description: Mailchimp Remove Subscriber From Workflow
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-automations.postautomationsidremovedsubscribers
+      with:
+        workflow_id: tools.workflow_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-subscriber-removed-workflow
+      description: Mailchimp Get Subscriber Removed From Workflow
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-automations.getautomationsidremovedsubscribersid
+      with:
+        workflow_id: tools.workflow_id
+        subscriber_hash: tools.subscriber_hash
+      outputParameters:
+      - type: object
+        mapping: $.

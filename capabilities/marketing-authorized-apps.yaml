@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Authorized Apps
+  description: 'Mailchimp Marketing API  — Authorized Apps. 1 operations. Lead operation: Mailchimp Get Authorized App Info.
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Authorized Apps
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-authorized-apps
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Authorized Apps business capability. Self-contained, no shared references.
+    resources:
+    - name: authorized-apps-app_id
+      path: /authorized-apps/{app_id}
+      operations:
+      - name: getauthorizedappsid
+        method: GET
+        description: Mailchimp Get Authorized App Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: app_id
+          in: path
+          type: string
+          description: The unique id for the connected authorized application.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-authorized-apps-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Authorized Apps. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/authorized-apps/{app-id}
+      name: authorized-apps-app-id
+      description: REST surface for authorized-apps-app_id.
+      operations:
+      - method: GET
+        name: getauthorizedappsid
+        description: Mailchimp Get Authorized App Info
+        call: marketing-authorized-apps.getauthorizedappsid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          app_id: rest.app_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-authorized-apps-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Authorized Apps. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: mailchimp-get-authorized-app-info
+      description: Mailchimp Get Authorized App Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-authorized-apps.getauthorizedappsid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        app_id: tools.app_id
+      outputParameters:
+      - type: object
+        mapping: $.

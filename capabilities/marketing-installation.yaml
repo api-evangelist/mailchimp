@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Installation
+  description: 'Mailchimp Marketing API  — Installation. 1 operations. Lead operation: Mailchimp Verify Connected Site Script.
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Installation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-installation
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Installation business capability. Self-contained, no shared references.
+    resources:
+    - name: connected-sites-connected_site_id-actions-verify-script-installation
+      path: /connected-sites/{connected_site_id}/actions/verify-script-installation
+      operations:
+      - name: postconnectedsitesidactionsverifyscriptinstallation
+        method: POST
+        description: Mailchimp Verify Connected Site Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: connected_site_id
+          in: path
+          type: string
+          description: The unique identifier for the site.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-installation-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Installation. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/connected-sites/{connected-site-id}/actions/verify-script-installation
+      name: connected-sites-connected-site-id-actions-verify-script-installation
+      description: REST surface for connected-sites-connected_site_id-actions-verify-script-installation.
+      operations:
+      - method: POST
+        name: postconnectedsitesidactionsverifyscriptinstallation
+        description: Mailchimp Verify Connected Site Script
+        call: marketing-installation.postconnectedsitesidactionsverifyscriptinstallation
+        with:
+          connected_site_id: rest.connected_site_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-installation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Installation. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-verify-connected-site-script
+      description: Mailchimp Verify Connected Site Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-installation.postconnectedsitesidactionsverifyscriptinstallation
+      with:
+        connected_site_id: tools.connected_site_id
+      outputParameters:
+      - type: object
+        mapping: $.

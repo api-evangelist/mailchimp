@@ -1,0 +1,249 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Transactional API
+  description: 'Mailchimp Transactional API. 5 operations. Lead operation: Mailchimp Get All Tags Time Series. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: transactional-general
+    baseUri: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional API business capability. Self-contained, no shared references.
+    resources:
+    - name: tags-all-time-series
+      path: /tags/all-time-series
+      operations:
+      - name: posttagsalltimeseries
+        method: POST
+        description: Mailchimp Get All Tags Time Series
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tags-delete
+      path: /tags/delete
+      operations:
+      - name: posttagsdelete
+        method: POST
+        description: Mailchimp Delete a Tag
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tags-info
+      path: /tags/info
+      operations:
+      - name: posttagsinfo
+        method: POST
+        description: Mailchimp Get Tag Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tags-list
+      path: /tags/list
+      operations:
+      - name: posttagslist
+        method: POST
+        description: Mailchimp List Tags
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tags-time-series
+      path: /tags/time-series
+      operations:
+      - name: posttagstimeseries
+        method: POST
+        description: Mailchimp Get Tag Time Series
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-MC-ApiKey
+      value: '{{env.MAILCHIMP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: transactional-general-rest
+    port: 8080
+    description: REST adapter for Mailchimp Transactional API. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tags/all-time-series
+      name: tags-all-time-series
+      description: REST surface for tags-all-time-series.
+      operations:
+      - method: POST
+        name: posttagsalltimeseries
+        description: Mailchimp Get All Tags Time Series
+        call: transactional-general.posttagsalltimeseries
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tags/delete
+      name: tags-delete
+      description: REST surface for tags-delete.
+      operations:
+      - method: POST
+        name: posttagsdelete
+        description: Mailchimp Delete a Tag
+        call: transactional-general.posttagsdelete
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tags/info
+      name: tags-info
+      description: REST surface for tags-info.
+      operations:
+      - method: POST
+        name: posttagsinfo
+        description: Mailchimp Get Tag Info
+        call: transactional-general.posttagsinfo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tags/list
+      name: tags-list
+      description: REST surface for tags-list.
+      operations:
+      - method: POST
+        name: posttagslist
+        description: Mailchimp List Tags
+        call: transactional-general.posttagslist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tags/time-series
+      name: tags-time-series
+      description: REST surface for tags-time-series.
+      operations:
+      - method: POST
+        name: posttagstimeseries
+        description: Mailchimp Get Tag Time Series
+        call: transactional-general.posttagstimeseries
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: transactional-general-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Transactional API. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: mailchimp-get-all-tags-time
+      description: Mailchimp Get All Tags Time Series
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-general.posttagsalltimeseries
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-tag
+      description: Mailchimp Delete a Tag
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-general.posttagsdelete
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-tag-info
+      description: Mailchimp Get Tag Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-general.posttagsinfo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-tags
+      description: Mailchimp List Tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-general.posttagslist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-tag-time-series
+      description: Mailchimp Get Tag Time Series
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-general.posttagstimeseries
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

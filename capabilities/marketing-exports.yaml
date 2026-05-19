@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Exports
+  description: 'Mailchimp Marketing API  — Exports. 3 operations. Lead operation: Mailchimp List Account Exports. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Exports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-exports
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Exports business capability. Self-contained, no shared references.
+    resources:
+    - name: account-exports
+      path: /account-exports
+      operations:
+      - name: getaccountexports
+        method: GET
+        description: Mailchimp List Account Exports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+      - name: postaccountexport
+        method: POST
+        description: Mailchimp Add Export
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: account-exports-export_id
+      path: /account-exports/{export_id}
+      operations:
+      - name: getaccountexportid
+        method: GET
+        description: Mailchimp Get Account Export Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: export_id
+          in: path
+          type: string
+          description: The unique id for the account export.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-exports-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Exports. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/account-exports
+      name: account-exports
+      description: REST surface for account-exports.
+      operations:
+      - method: GET
+        name: getaccountexports
+        description: Mailchimp List Account Exports
+        call: marketing-exports.getaccountexports
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postaccountexport
+        description: Mailchimp Add Export
+        call: marketing-exports.postaccountexport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/account-exports/{export-id}
+      name: account-exports-export-id
+      description: REST surface for account-exports-export_id.
+      operations:
+      - method: GET
+        name: getaccountexportid
+        description: Mailchimp Get Account Export Info
+        call: marketing-exports.getaccountexportid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          export_id: rest.export_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-exports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Exports. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-account-exports
+      description: Mailchimp List Account Exports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-exports.getaccountexports
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-export
+      description: Mailchimp Add Export
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-exports.postaccountexport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-account-export-info
+      description: Mailchimp Get Account Export Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-exports.getaccountexportid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        export_id: tools.export_id
+      outputParameters:
+      - type: object
+        mapping: $.

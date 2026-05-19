@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Transactional API — Rejects
+  description: 'Mailchimp Transactional API — Rejects. 3 operations. Lead operation: Mailchimp Add a Rejection. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Rejects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: transactional-rejects
+    baseUri: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional API — Rejects business capability. Self-contained, no shared references.
+    resources:
+    - name: rejects-add
+      path: /rejects/add
+      operations:
+      - name: postrejectsadd
+        method: POST
+        description: Mailchimp Add a Rejection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: rejects-delete
+      path: /rejects/delete
+      operations:
+      - name: postrejectsdelete
+        method: POST
+        description: Mailchimp Delete a Rejection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: rejects-list
+      path: /rejects/list
+      operations:
+      - name: postrejectslist
+        method: POST
+        description: Mailchimp List Rejections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-MC-ApiKey
+      value: '{{env.MAILCHIMP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: transactional-rejects-rest
+    port: 8080
+    description: REST adapter for Mailchimp Transactional API — Rejects. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/rejects/add
+      name: rejects-add
+      description: REST surface for rejects-add.
+      operations:
+      - method: POST
+        name: postrejectsadd
+        description: Mailchimp Add a Rejection
+        call: transactional-rejects.postrejectsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rejects/delete
+      name: rejects-delete
+      description: REST surface for rejects-delete.
+      operations:
+      - method: POST
+        name: postrejectsdelete
+        description: Mailchimp Delete a Rejection
+        call: transactional-rejects.postrejectsdelete
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rejects/list
+      name: rejects-list
+      description: REST surface for rejects-list.
+      operations:
+      - method: POST
+        name: postrejectslist
+        description: Mailchimp List Rejections
+        call: transactional-rejects.postrejectslist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: transactional-rejects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Transactional API — Rejects. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-add-rejection
+      description: Mailchimp Add a Rejection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-rejects.postrejectsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-rejection
+      description: Mailchimp Delete a Rejection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-rejects.postrejectsdelete
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-rejections
+      description: Mailchimp List Rejections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-rejects.postrejectslist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

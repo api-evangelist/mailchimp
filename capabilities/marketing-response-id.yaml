@@ -1,0 +1,84 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Response_id
+  description: 'Mailchimp Marketing API  — Response_id. 1 operations. Lead operation: Mailchimp Get Survey Response. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Response_id
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-response-id
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Response_id business capability. Self-contained, no shared references.
+    resources:
+    - name: reporting-surveys-survey_id-responses-response_id
+      path: /reporting/surveys/{survey_id}/responses/{response_id}
+      operations:
+      - name: getreportingsurveysidresponsesid
+        method: GET
+        description: Mailchimp Get Survey Response
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: survey_id
+          in: path
+          type: string
+          description: The ID of the survey.
+          required: true
+        - name: response_id
+          in: path
+          type: string
+          description: The ID of the survey response.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-response-id-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Response_id. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/reporting/surveys/{survey-id}/responses/{response-id}
+      name: reporting-surveys-survey-id-responses-response-id
+      description: REST surface for reporting-surveys-survey_id-responses-response_id.
+      operations:
+      - method: GET
+        name: getreportingsurveysidresponsesid
+        description: Mailchimp Get Survey Response
+        call: marketing-response-id.getreportingsurveysidresponsesid
+        with:
+          survey_id: rest.survey_id
+          response_id: rest.response_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-response-id-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Response_id. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-get-survey-response
+      description: Mailchimp Get Survey Response
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-response-id.getreportingsurveysidresponsesid
+      with:
+        survey_id: tools.survey_id
+        response_id: tools.response_id
+      outputParameters:
+      - type: object
+        mapping: $.

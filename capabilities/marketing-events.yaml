@@ -1,0 +1,159 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Events
+  description: 'Mailchimp Marketing API  — Events. 2 operations. Lead operation: Mailchimp List Member Events. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-events
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: lists-list_id-members-subscriber_hash-events
+      path: /lists/{list_id}/members/{subscriber_hash}/events
+      operations:
+      - name: getlistsidmembersidevents
+        method: GET
+        description: Mailchimp List Member Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: path
+          type: string
+          description: The unique ID for the list.
+          required: true
+        - name: subscriber_hash
+          in: path
+          type: string
+          description: The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts
+            a list member's email address or contact_id.
+          required: true
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+      - name: postlistmemberevents
+        method: POST
+        description: Mailchimp Add Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: path
+          type: string
+          description: The unique ID for the list.
+          required: true
+        - name: subscriber_hash
+          in: path
+          type: string
+          description: The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts
+            a list member's email address or contact_id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-events-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Events. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/lists/{list-id}/members/{subscriber-hash}/events
+      name: lists-list-id-members-subscriber-hash-events
+      description: REST surface for lists-list_id-members-subscriber_hash-events.
+      operations:
+      - method: GET
+        name: getlistsidmembersidevents
+        description: Mailchimp List Member Events
+        call: marketing-events.getlistsidmembersidevents
+        with:
+          list_id: rest.list_id
+          subscriber_hash: rest.subscriber_hash
+          count: rest.count
+          offset: rest.offset
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postlistmemberevents
+        description: Mailchimp Add Event
+        call: marketing-events.postlistmemberevents
+        with:
+          list_id: rest.list_id
+          subscriber_hash: rest.subscriber_hash
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Events. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-member-events
+      description: Mailchimp List Member Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-events.getlistsidmembersidevents
+      with:
+        list_id: tools.list_id
+        subscriber_hash: tools.subscriber_hash
+        count: tools.count
+        offset: tools.offset
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-event
+      description: Mailchimp Add Event
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-events.postlistmemberevents
+      with:
+        list_id: tools.list_id
+        subscriber_hash: tools.subscriber_hash
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

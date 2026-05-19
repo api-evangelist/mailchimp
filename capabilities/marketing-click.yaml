@@ -1,0 +1,317 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Click
+  description: 'Mailchimp Marketing API  — Click. 4 operations. Lead operation: Mailchimp List Campaign Details. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Click
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-click
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Click business capability. Self-contained, no shared references.
+    resources:
+    - name: reports-campaign_id-click-details
+      path: /reports/{campaign_id}/click-details
+      operations:
+      - name: getreportsidclickdetails
+        method: GET
+        description: Mailchimp List Campaign Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+        - name: sort_field
+          in: query
+          type: string
+          description: Returns click reports sorted by the specified field.
+        - name: sort_dir
+          in: query
+          type: string
+          description: Determines the order direction for sorted results.
+    - name: reports-campaign_id-click-details-link_id
+      path: /reports/{campaign_id}/click-details/{link_id}
+      operations:
+      - name: getreportsidclickdetailsid
+        method: GET
+        description: Mailchimp Get Campaign Link Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+        - name: link_id
+          in: path
+          type: string
+          description: The id for the link.
+          required: true
+    - name: reports-campaign_id-click-details-link_id-members
+      path: /reports/{campaign_id}/click-details/{link_id}/members
+      operations:
+      - name: getreportsidclickdetailsidmembers
+        method: GET
+        description: Mailchimp List Clicked Link Subscribers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+        - name: link_id
+          in: path
+          type: string
+          description: The id for the link.
+          required: true
+    - name: reports-campaign_id-click-details-link_id-members-subscriber_hash
+      path: /reports/{campaign_id}/click-details/{link_id}/members/{subscriber_hash}
+      operations:
+      - name: getreportsidclickdetailsidmembersid
+        method: GET
+        description: Mailchimp Get Clicked Link Subscriber
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: campaign_id
+          in: path
+          type: string
+          description: The unique id for the campaign.
+          required: true
+        - name: link_id
+          in: path
+          type: string
+          description: The id for the link.
+          required: true
+        - name: subscriber_hash
+          in: path
+          type: string
+          description: The MD5 hash of the lowercase version of the list member's email address.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-click-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Click. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/reports/{campaign-id}/click-details
+      name: reports-campaign-id-click-details
+      description: REST surface for reports-campaign_id-click-details.
+      operations:
+      - method: GET
+        name: getreportsidclickdetails
+        description: Mailchimp List Campaign Details
+        call: marketing-click.getreportsidclickdetails
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          campaign_id: rest.campaign_id
+          sort_field: rest.sort_field
+          sort_dir: rest.sort_dir
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{campaign-id}/click-details/{link-id}
+      name: reports-campaign-id-click-details-link-id
+      description: REST surface for reports-campaign_id-click-details-link_id.
+      operations:
+      - method: GET
+        name: getreportsidclickdetailsid
+        description: Mailchimp Get Campaign Link Details
+        call: marketing-click.getreportsidclickdetailsid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          campaign_id: rest.campaign_id
+          link_id: rest.link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{campaign-id}/click-details/{link-id}/members
+      name: reports-campaign-id-click-details-link-id-members
+      description: REST surface for reports-campaign_id-click-details-link_id-members.
+      operations:
+      - method: GET
+        name: getreportsidclickdetailsidmembers
+        description: Mailchimp List Clicked Link Subscribers
+        call: marketing-click.getreportsidclickdetailsidmembers
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          campaign_id: rest.campaign_id
+          link_id: rest.link_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{campaign-id}/click-details/{link-id}/members/{subscriber-hash}
+      name: reports-campaign-id-click-details-link-id-members-subscriber-hash
+      description: REST surface for reports-campaign_id-click-details-link_id-members-subscriber_hash.
+      operations:
+      - method: GET
+        name: getreportsidclickdetailsidmembersid
+        description: Mailchimp Get Clicked Link Subscriber
+        call: marketing-click.getreportsidclickdetailsidmembersid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          campaign_id: rest.campaign_id
+          link_id: rest.link_id
+          subscriber_hash: rest.subscriber_hash
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-click-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Click. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-campaign-details
+      description: Mailchimp List Campaign Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-click.getreportsidclickdetails
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        campaign_id: tools.campaign_id
+        sort_field: tools.sort_field
+        sort_dir: tools.sort_dir
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-campaign-link-details
+      description: Mailchimp Get Campaign Link Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-click.getreportsidclickdetailsid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        campaign_id: tools.campaign_id
+        link_id: tools.link_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-clicked-link-subscribers
+      description: Mailchimp List Clicked Link Subscribers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-click.getreportsidclickdetailsidmembers
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        campaign_id: tools.campaign_id
+        link_id: tools.link_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-clicked-link-subscriber
+      description: Mailchimp Get Clicked Link Subscriber
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-click.getreportsidclickdetailsidmembersid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        campaign_id: tools.campaign_id
+        link_id: tools.link_id
+        subscriber_hash: tools.subscriber_hash
+      outputParameters:
+      - type: object
+        mapping: $.

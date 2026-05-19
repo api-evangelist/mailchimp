@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Search
+  description: 'Mailchimp Marketing API  — Search. 3 operations. Lead operation: Mailchimp Search for Tags on a List by Name..
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-search
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: lists-list_id-tag-search
+      path: /lists/{list_id}/tag-search
+      operations:
+      - name: searchtagsbyname
+        method: GET
+        description: Mailchimp Search for Tags on a List by Name.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: list_id
+          in: path
+          type: string
+          description: The unique ID for the list.
+          required: true
+        - name: name
+          in: query
+          type: string
+          description: 'The search query used to filter tags.  The search query will be compared to each tag as a prefix,
+            so all tags that have a name starting with this field will be '
+    - name: search-campaigns
+      path: /search-campaigns
+      operations:
+      - name: getsearchcampaigns
+        method: GET
+        description: Mailchimp Search Campaigns
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: query
+          in: query
+          type: string
+          description: The search query used to filter results.
+          required: true
+    - name: search-members
+      path: /search-members
+      operations:
+      - name: getsearchmembers
+        method: GET
+        description: Mailchimp Search Members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: query
+          in: query
+          type: string
+          description: The search query used to filter results. Query should be a valid email, or a string representing a
+            contact's first or last name.
+          required: true
+        - name: list_id
+          in: query
+          type: string
+          description: The unique id for the list.
+  exposes:
+  - type: rest
+    namespace: marketing-search-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Search. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/lists/{list-id}/tag-search
+      name: lists-list-id-tag-search
+      description: REST surface for lists-list_id-tag-search.
+      operations:
+      - method: GET
+        name: searchtagsbyname
+        description: Mailchimp Search for Tags on a List by Name.
+        call: marketing-search.searchtagsbyname
+        with:
+          list_id: rest.list_id
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/search-campaigns
+      name: search-campaigns
+      description: REST surface for search-campaigns.
+      operations:
+      - method: GET
+        name: getsearchcampaigns
+        description: Mailchimp Search Campaigns
+        call: marketing-search.getsearchcampaigns
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/search-members
+      name: search-members
+      description: REST surface for search-members.
+      operations:
+      - method: GET
+        name: getsearchmembers
+        description: Mailchimp Search Members
+        call: marketing-search.getsearchmembers
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          query: rest.query
+          list_id: rest.list_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Search. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-search-tags-list-name
+      description: Mailchimp Search for Tags on a List by Name.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-search.searchtagsbyname
+      with:
+        list_id: tools.list_id
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-search-campaigns
+      description: Mailchimp Search Campaigns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-search.getsearchcampaigns
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-search-members
+      description: Mailchimp Search Members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-search.getsearchmembers
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        query: tools.query
+        list_id: tools.list_id
+      outputParameters:
+      - type: object
+        mapping: $.

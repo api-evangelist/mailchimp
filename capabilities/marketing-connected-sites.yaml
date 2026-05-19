@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Connected Sites
+  description: 'Mailchimp Marketing API  — Connected Sites. 2 operations. Lead operation: Mailchimp List Connected Sites.
+    Self-contained Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Connected Sites
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-connected-sites
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Connected Sites business capability. Self-contained, no shared references.
+    resources:
+    - name: connected-sites
+      path: /connected-sites
+      operations:
+      - name: getconnectedsites
+        method: GET
+        description: Mailchimp List Connected Sites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+      - name: postconnectedsites
+        method: POST
+        description: Mailchimp Add Connected Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-connected-sites-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Connected Sites. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/connected-sites
+      name: connected-sites
+      description: REST surface for connected-sites.
+      operations:
+      - method: GET
+        name: getconnectedsites
+        description: Mailchimp List Connected Sites
+        call: marketing-connected-sites.getconnectedsites
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postconnectedsites
+        description: Mailchimp Add Connected Site
+        call: marketing-connected-sites.postconnectedsites
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-connected-sites-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Connected Sites. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: mailchimp-list-connected-sites
+      description: Mailchimp List Connected Sites
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-connected-sites.getconnectedsites
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-connected-site
+      description: Mailchimp Add Connected Site
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-connected-sites.postconnectedsites
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

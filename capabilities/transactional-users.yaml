@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Transactional API — Users
+  description: 'Mailchimp Transactional API — Users. 3 operations. Lead operation: Mailchimp Get User Info. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: transactional-users
+    baseUri: https://mandrillapp.com/api/1.0
+    description: Mailchimp Transactional API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: users-info
+      path: /users/info
+      operations:
+      - name: postusersinfo
+        method: POST
+        description: Mailchimp Get User Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: users-ping
+      path: /users/ping
+      operations:
+      - name: postusersping
+        method: POST
+        description: Mailchimp Ping the Api
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: users-senders
+      path: /users/senders
+      operations:
+      - name: postuserssenders
+        method: POST
+        description: Mailchimp List Account Senders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-MC-ApiKey
+      value: '{{env.MAILCHIMP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: transactional-users-rest
+    port: 8080
+    description: REST adapter for Mailchimp Transactional API — Users. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/users/info
+      name: users-info
+      description: REST surface for users-info.
+      operations:
+      - method: POST
+        name: postusersinfo
+        description: Mailchimp Get User Info
+        call: transactional-users.postusersinfo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/ping
+      name: users-ping
+      description: REST surface for users-ping.
+      operations:
+      - method: POST
+        name: postusersping
+        description: Mailchimp Ping the Api
+        call: transactional-users.postusersping
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/senders
+      name: users-senders
+      description: REST surface for users-senders.
+      operations:
+      - method: POST
+        name: postuserssenders
+        description: Mailchimp List Account Senders
+        call: transactional-users.postuserssenders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: transactional-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Transactional API — Users. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-get-user-info
+      description: Mailchimp Get User Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-users.postusersinfo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-ping-api
+      description: Mailchimp Ping the Api
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: transactional-users.postusersping
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-account-senders
+      description: Mailchimp List Account Senders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: transactional-users.postuserssenders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,168 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Messages
+  description: 'Mailchimp Marketing API  — Messages. 2 operations. Lead operation: Mailchimp List Messages. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Messages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-messages
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Messages business capability. Self-contained, no shared references.
+    resources:
+    - name: conversations-conversation_id-messages
+      path: /conversations/{conversation_id}/messages
+      operations:
+      - name: getconversationsidmessages
+        method: GET
+        description: Mailchimp List Messages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique id for the conversation.
+          required: true
+        - name: is_read
+          in: query
+          type: string
+          description: Whether a conversation message has been marked as read.
+        - name: before_timestamp
+          in: query
+          type: string
+          description: 'Restrict the response to messages created before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: since_timestamp
+          in: query
+          type: string
+          description: 'Restrict the response to messages created after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+    - name: conversations-conversation_id-messages-message_id
+      path: /conversations/{conversation_id}/messages/{message_id}
+      operations:
+      - name: getconversationsidmessagesid
+        method: GET
+        description: Mailchimp Get Message
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: conversation_id
+          in: path
+          type: string
+          description: The unique id for the conversation.
+          required: true
+        - name: message_id
+          in: path
+          type: string
+          description: The unique id for the conversation message.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-messages-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Messages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/conversations/{conversation-id}/messages
+      name: conversations-conversation-id-messages
+      description: REST surface for conversations-conversation_id-messages.
+      operations:
+      - method: GET
+        name: getconversationsidmessages
+        description: Mailchimp List Messages
+        call: marketing-messages.getconversationsidmessages
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          conversation_id: rest.conversation_id
+          is_read: rest.is_read
+          before_timestamp: rest.before_timestamp
+          since_timestamp: rest.since_timestamp
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/conversations/{conversation-id}/messages/{message-id}
+      name: conversations-conversation-id-messages-message-id
+      description: REST surface for conversations-conversation_id-messages-message_id.
+      operations:
+      - method: GET
+        name: getconversationsidmessagesid
+        description: Mailchimp Get Message
+        call: marketing-messages.getconversationsidmessagesid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          conversation_id: rest.conversation_id
+          message_id: rest.message_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-messages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Messages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-messages
+      description: Mailchimp List Messages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-messages.getconversationsidmessages
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        conversation_id: tools.conversation_id
+        is_read: tools.is_read
+        before_timestamp: tools.before_timestamp
+        since_timestamp: tools.since_timestamp
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-message
+      description: Mailchimp Get Message
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-messages.getconversationsidmessagesid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        conversation_id: tools.conversation_id
+        message_id: tools.message_id
+      outputParameters:
+      - type: object
+        mapping: $.

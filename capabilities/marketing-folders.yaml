@@ -1,0 +1,828 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mailchimp Marketing API  — Folders
+  description: 'Mailchimp Marketing API  — Folders. 16 operations. Lead operation: Mailchimp List Campaign Folders. Self-contained
+    Naftiko capability covering one Mailchimp business surface.'
+  tags:
+  - Mailchimp
+  - Folders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MAILCHIMP_API_KEY: MAILCHIMP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: marketing-folders
+    baseUri: https://server.api.mailchimp.com/3.0
+    description: Mailchimp Marketing API  — Folders business capability. Self-contained, no shared references.
+    resources:
+    - name: campaign-folders
+      path: /campaign-folders
+      operations:
+      - name: getcampaignfolders
+        method: GET
+        description: Mailchimp List Campaign Folders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+      - name: postcampaignfolders
+        method: POST
+        description: Mailchimp Add Campaign Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: campaign-folders-folder_id
+      path: /campaign-folders/{folder_id}
+      operations:
+      - name: getcampaignfoldersid
+        method: GET
+        description: Mailchimp Get Campaign Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the campaign folder.
+          required: true
+      - name: patchcampaignfoldersid
+        method: PATCH
+        description: Mailchimp Update Campaign Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the campaign folder.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deletecampaignfoldersid
+        method: DELETE
+        description: Mailchimp Delete Campaign Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the campaign folder.
+          required: true
+    - name: file-manager-folders
+      path: /file-manager/folders
+      operations:
+      - name: getfilemanagerfolders
+        method: GET
+        description: Mailchimp List Folders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: created_by
+          in: query
+          type: string
+          description: The Mailchimp account user who created the File Manager file.
+        - name: before_created_at
+          in: query
+          type: string
+          description: 'Restrict the response to files created before the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: since_created_at
+          in: query
+          type: string
+          description: 'Restrict the response to files created after the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+      - name: postfilemanagerfolders
+        method: POST
+        description: Mailchimp Add Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: file-manager-folders-folder_id
+      path: /file-manager/folders/{folder_id}
+      operations:
+      - name: getfilemanagerfoldersid
+        method: GET
+        description: Mailchimp Get Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the File Manager folder.
+          required: true
+      - name: patchfilemanagerfoldersid
+        method: PATCH
+        description: Mailchimp Update Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the File Manager folder.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deletefilemanagerfoldersid
+        method: DELETE
+        description: Mailchimp Delete Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the File Manager folder.
+          required: true
+    - name: file-manager-folders-folder_id-files
+      path: /file-manager/folders/{folder_id}/files
+      operations:
+      - name: getfilemanagerfoldersfiles
+        method: GET
+        description: Mailchimp List Stored Files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the File Manager folder.
+          required: true
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+        - name: type
+          in: query
+          type: string
+          description: The file type for the File Manager file.
+        - name: created_by
+          in: query
+          type: string
+          description: The Mailchimp account user who created the File Manager file.
+        - name: before_created_at
+          in: query
+          type: string
+          description: 'Restrict the response to files created before the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: since_created_at
+          in: query
+          type: string
+          description: 'Restrict the response to files created after the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        - name: sort_field
+          in: query
+          type: string
+          description: Returns files sorted by the specified field.
+        - name: sort_dir
+          in: query
+          type: string
+          description: Determines the order direction for sorted results.
+    - name: template-folders
+      path: /template-folders
+      operations:
+      - name: gettemplatefolders
+        method: GET
+        description: Mailchimp List Template Folders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: count
+          in: query
+          type: integer
+          description: The number of records to return. Default value is 10. Maximum value is 1000
+        - name: offset
+          in: query
+          type: integer
+          description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination),
+            this it the number of records from a collection to skip. D
+      - name: posttemplatefolders
+        method: POST
+        description: Mailchimp Add Template Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: template-folders-folder_id
+      path: /template-folders/{folder_id}
+      operations:
+      - name: gettemplatefoldersid
+        method: GET
+        description: Mailchimp Get Template Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        - name: exclude_fields
+          in: query
+          type: array
+          description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the template folder.
+          required: true
+      - name: patchtemplatefoldersid
+        method: PATCH
+        description: Mailchimp Update Template Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the template folder.
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deletetemplatefoldersid
+        method: DELETE
+        description: Mailchimp Delete Template Folder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: folder_id
+          in: path
+          type: string
+          description: The unique id for the template folder.
+          required: true
+  exposes:
+  - type: rest
+    namespace: marketing-folders-rest
+    port: 8080
+    description: REST adapter for Mailchimp Marketing API  — Folders. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/campaign-folders
+      name: campaign-folders
+      description: REST surface for campaign-folders.
+      operations:
+      - method: GET
+        name: getcampaignfolders
+        description: Mailchimp List Campaign Folders
+        call: marketing-folders.getcampaignfolders
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postcampaignfolders
+        description: Mailchimp Add Campaign Folder
+        call: marketing-folders.postcampaignfolders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/campaign-folders/{folder-id}
+      name: campaign-folders-folder-id
+      description: REST surface for campaign-folders-folder_id.
+      operations:
+      - method: GET
+        name: getcampaignfoldersid
+        description: Mailchimp Get Campaign Folder
+        call: marketing-folders.getcampaignfoldersid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchcampaignfoldersid
+        description: Mailchimp Update Campaign Folder
+        call: marketing-folders.patchcampaignfoldersid
+        with:
+          folder_id: rest.folder_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecampaignfoldersid
+        description: Mailchimp Delete Campaign Folder
+        call: marketing-folders.deletecampaignfoldersid
+        with:
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-manager/folders
+      name: file-manager-folders
+      description: REST surface for file-manager-folders.
+      operations:
+      - method: GET
+        name: getfilemanagerfolders
+        description: Mailchimp List Folders
+        call: marketing-folders.getfilemanagerfolders
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          created_by: rest.created_by
+          before_created_at: rest.before_created_at
+          since_created_at: rest.since_created_at
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: postfilemanagerfolders
+        description: Mailchimp Add Folder
+        call: marketing-folders.postfilemanagerfolders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-manager/folders/{folder-id}
+      name: file-manager-folders-folder-id
+      description: REST surface for file-manager-folders-folder_id.
+      operations:
+      - method: GET
+        name: getfilemanagerfoldersid
+        description: Mailchimp Get Folder
+        call: marketing-folders.getfilemanagerfoldersid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchfilemanagerfoldersid
+        description: Mailchimp Update Folder
+        call: marketing-folders.patchfilemanagerfoldersid
+        with:
+          folder_id: rest.folder_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletefilemanagerfoldersid
+        description: Mailchimp Delete Folder
+        call: marketing-folders.deletefilemanagerfoldersid
+        with:
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-manager/folders/{folder-id}/files
+      name: file-manager-folders-folder-id-files
+      description: REST surface for file-manager-folders-folder_id-files.
+      operations:
+      - method: GET
+        name: getfilemanagerfoldersfiles
+        description: Mailchimp List Stored Files
+        call: marketing-folders.getfilemanagerfoldersfiles
+        with:
+          folder_id: rest.folder_id
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+          type: rest.type
+          created_by: rest.created_by
+          before_created_at: rest.before_created_at
+          since_created_at: rest.since_created_at
+          sort_field: rest.sort_field
+          sort_dir: rest.sort_dir
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/template-folders
+      name: template-folders
+      description: REST surface for template-folders.
+      operations:
+      - method: GET
+        name: gettemplatefolders
+        description: Mailchimp List Template Folders
+        call: marketing-folders.gettemplatefolders
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          count: rest.count
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: posttemplatefolders
+        description: Mailchimp Add Template Folder
+        call: marketing-folders.posttemplatefolders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/template-folders/{folder-id}
+      name: template-folders-folder-id
+      description: REST surface for template-folders-folder_id.
+      operations:
+      - method: GET
+        name: gettemplatefoldersid
+        description: Mailchimp Get Template Folder
+        call: marketing-folders.gettemplatefoldersid
+        with:
+          fields: rest.fields
+          exclude_fields: rest.exclude_fields
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchtemplatefoldersid
+        description: Mailchimp Update Template Folder
+        call: marketing-folders.patchtemplatefoldersid
+        with:
+          folder_id: rest.folder_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetemplatefoldersid
+        description: Mailchimp Delete Template Folder
+        call: marketing-folders.deletetemplatefoldersid
+        with:
+          folder_id: rest.folder_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: marketing-folders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Mailchimp Marketing API  — Folders. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: mailchimp-list-campaign-folders
+      description: Mailchimp List Campaign Folders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-folders.getcampaignfolders
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-campaign-folder
+      description: Mailchimp Add Campaign Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-folders.postcampaignfolders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-campaign-folder
+      description: Mailchimp Get Campaign Folder
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-folders.getcampaignfoldersid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-campaign-folder
+      description: Mailchimp Update Campaign Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-folders.patchcampaignfoldersid
+      with:
+        folder_id: tools.folder_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-campaign-folder
+      description: Mailchimp Delete Campaign Folder
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-folders.deletecampaignfoldersid
+      with:
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-folders
+      description: Mailchimp List Folders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-folders.getfilemanagerfolders
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        created_by: tools.created_by
+        before_created_at: tools.before_created_at
+        since_created_at: tools.since_created_at
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-folder
+      description: Mailchimp Add Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-folders.postfilemanagerfolders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-folder
+      description: Mailchimp Get Folder
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-folders.getfilemanagerfoldersid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-folder
+      description: Mailchimp Update Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-folders.patchfilemanagerfoldersid
+      with:
+        folder_id: tools.folder_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-folder
+      description: Mailchimp Delete Folder
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-folders.deletefilemanagerfoldersid
+      with:
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-stored-files
+      description: Mailchimp List Stored Files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-folders.getfilemanagerfoldersfiles
+      with:
+        folder_id: tools.folder_id
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+        type: tools.type
+        created_by: tools.created_by
+        before_created_at: tools.before_created_at
+        since_created_at: tools.since_created_at
+        sort_field: tools.sort_field
+        sort_dir: tools.sort_dir
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-list-template-folders
+      description: Mailchimp List Template Folders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-folders.gettemplatefolders
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        count: tools.count
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-add-template-folder
+      description: Mailchimp Add Template Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: marketing-folders.posttemplatefolders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-get-template-folder
+      description: Mailchimp Get Template Folder
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: marketing-folders.gettemplatefoldersid
+      with:
+        fields: tools.fields
+        exclude_fields: tools.exclude_fields
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-update-template-folder
+      description: Mailchimp Update Template Folder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: marketing-folders.patchtemplatefoldersid
+      with:
+        folder_id: tools.folder_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mailchimp-delete-template-folder
+      description: Mailchimp Delete Template Folder
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: marketing-folders.deletetemplatefoldersid
+      with:
+        folder_id: tools.folder_id
+      outputParameters:
+      - type: object
+        mapping: $.
