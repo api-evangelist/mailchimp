@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DedicatedIP",
+  "title": "DedicatedIP",
+  "type": "object",
+  "description": "Information about a dedicated IP address.",
+  "properties": {
+    "ip": {
+      "type": "string",
+      "description": "The dedicated IP address.",
+      "example": "example_value"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the IP was provisioned.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "pool": {
+      "type": "string",
+      "description": "The IP pool this address belongs to.",
+      "example": "example_value"
+    },
+    "domain": {
+      "type": "string",
+      "description": "The reverse DNS domain for the IP.",
+      "example": "example_value"
+    },
+    "custom_dns": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether custom reverse DNS is enabled."
+        },
+        "valid": {
+          "type": "boolean",
+          "description": "Whether the custom DNS is valid."
+        },
+        "error": {
+          "type": "string",
+          "description": "Any DNS error."
+        }
+      },
+      "description": "Custom DNS settings for the IP.",
+      "example": "example_value"
+    },
+    "warmup": {
+      "type": "object",
+      "properties": {
+        "warming_up": {
+          "type": "boolean",
+          "description": "Whether the IP is currently in warmup mode."
+        },
+        "start_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the warmup started."
+        },
+        "end_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the warmup is expected to end."
+        }
+      },
+      "description": "IP warmup status.",
+      "example": "example_value"
+    }
+  }
+}

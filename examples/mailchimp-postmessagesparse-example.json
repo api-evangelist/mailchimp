@@ -1,0 +1,51 @@
+{
+  "operationId": "postMessagesParse",
+  "method": "POST",
+  "path": "/messages/parse",
+  "summary": "Mailchimp Parse a Raw Mime Message",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostmessagesparseRequestExample",
+      "example": {
+        "key": "example_value",
+        "raw_message": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postmessagesparse200Example",
+      "example": {
+        "subject": "example_value",
+        "from_email": "user@example.com",
+        "from_name": "example_value",
+        "to": [
+          {
+            "email": "user@example.com",
+            "name": "Example Title"
+          }
+        ],
+        "headers": "example_value",
+        "text": "example_value",
+        "html": "example_value",
+        "attachments": [
+          {
+            "name": "Example Title",
+            "type": "example_value",
+            "content": "example_value"
+          }
+        ],
+        "images": [
+          {
+            "name": "Example Title",
+            "type": "example_value",
+            "content": "example_value"
+          }
+        ]
+      }
+    }
+  ]
+}

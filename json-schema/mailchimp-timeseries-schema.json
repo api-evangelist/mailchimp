@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimeSeries",
+  "title": "TimeSeries",
+  "type": "object",
+  "description": "An hourly time series data point with sending statistics.",
+  "properties": {
+    "time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The hour this data point covers (UTC).",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "sent": {
+      "type": "integer",
+      "description": "Number of messages sent.",
+      "example": 10
+    },
+    "hard_bounces": {
+      "type": "integer",
+      "description": "Number of hard bounces.",
+      "example": 10
+    },
+    "soft_bounces": {
+      "type": "integer",
+      "description": "Number of soft bounces.",
+      "example": 10
+    },
+    "rejects": {
+      "type": "integer",
+      "description": "Number of rejects.",
+      "example": 10
+    },
+    "complaints": {
+      "type": "integer",
+      "description": "Number of spam complaints.",
+      "example": 10
+    },
+    "unsubs": {
+      "type": "integer",
+      "description": "Number of unsubscribes.",
+      "example": 10
+    },
+    "opens": {
+      "type": "integer",
+      "description": "Number of opens.",
+      "example": 10
+    },
+    "unique_opens": {
+      "type": "integer",
+      "description": "Number of unique opens.",
+      "example": 10
+    },
+    "clicks": {
+      "type": "integer",
+      "description": "Number of clicks.",
+      "example": 10
+    },
+    "unique_clicks": {
+      "type": "integer",
+      "description": "Number of unique clicks.",
+      "example": 10
+    }
+  }
+}

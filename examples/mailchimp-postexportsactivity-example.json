@@ -1,0 +1,45 @@
+{
+  "operationId": "postExportsActivity",
+  "method": "POST",
+  "path": "/exports/activity",
+  "summary": "Mailchimp Export Message Activity",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostexportsactivityRequestExample",
+      "example": {
+        "key": "example_value",
+        "notify_email": "user@example.com",
+        "date_from": "2026-01-15T10:30:00Z",
+        "date_to": "2026-01-15T10:30:00Z",
+        "tags": [
+          "example_value"
+        ],
+        "senders": [
+          "example_value"
+        ],
+        "states": [
+          "sent"
+        ],
+        "api_keys": [
+          "example_value"
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postexportsactivity200Example",
+      "example": {
+        "id": "abc123",
+        "created_at": "2026-01-15T10:30:00Z",
+        "type": "activity",
+        "finished_at": "2026-01-15T10:30:00Z",
+        "state": "waiting",
+        "result_url": "https://www.example.com"
+      }
+    }
+  ]
+}

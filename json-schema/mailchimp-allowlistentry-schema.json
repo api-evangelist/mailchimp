@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AllowlistEntry",
+  "title": "AllowlistEntry",
+  "type": "object",
+  "description": "An entry in the sending allowlist.",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The allowlisted email address.",
+      "example": "user@example.com"
+    },
+    "detail": {
+      "type": "string",
+      "description": "Details or comment about why the address is allowlisted.",
+      "example": "example_value"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the entry was added to the allowlist.",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

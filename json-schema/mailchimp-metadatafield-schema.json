@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MetadataField",
+  "title": "MetadataField",
+  "type": "object",
+  "description": "A custom metadata field definition.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The unique name of the metadata field.",
+      "example": "Example Title"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "active",
+        "delete",
+        "index"
+      ],
+      "description": "The current state of the field.",
+      "example": "active"
+    },
+    "view_template": {
+      "type": "string",
+      "description": "The Mustache template for displaying the field in the UI.",
+      "example": "example_value"
+    }
+  }
+}

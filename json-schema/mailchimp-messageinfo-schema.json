@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageInfo",
+  "title": "MessageInfo",
+  "type": "object",
+  "description": "Summary information about a sent message.",
+  "properties": {
+    "ts": {
+      "type": "integer",
+      "description": "The Unix timestamp when the message was sent.",
+      "example": 10
+    },
+    "_id": {
+      "type": "string",
+      "description": "The unique message ID.",
+      "example": "500123"
+    },
+    "sender": {
+      "type": "string",
+      "format": "email",
+      "description": "The sender email address.",
+      "example": "example_value"
+    },
+    "template": {
+      "type": "string",
+      "description": "The template slug used, if any.",
+      "example": "example_value"
+    },
+    "subject": {
+      "type": "string",
+      "description": "The subject line of the message.",
+      "example": "example_value"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The recipient email address.",
+      "example": "user@example.com"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags applied to the message.",
+      "example": []
+    },
+    "opens": {
+      "type": "integer",
+      "description": "The number of times the message was opened.",
+      "example": 10
+    },
+    "opens_detail": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ts": {
+            "type": "integer",
+            "description": "Unix timestamp of the open event."
+          },
+          "ip": {
+            "type": "string",
+            "description": "IP address from which the message was opened."
+          },
+          "location": {
+            "type": "string",
+            "description": "Approximate geographic location of the open."
+          },
+          "ua": {
+            "type": "string",
+            "description": "User agent string of the client."
+          }
+        }
+      },
+      "description": "Detailed open tracking events.",
+      "example": []
+    },
+    "clicks": {
+      "type": "integer",
+      "description": "The number of link clicks in the message.",
+      "example": 10
+    },
+    "clicks_detail": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ts": {
+            "type": "integer",
+            "description": "Unix timestamp of the click event."
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL that was clicked."
+          },
+          "ip": {
+            "type": "string",
+            "description": "IP address of the clicker."
+          },
+          "location": {
+            "type": "string",
+            "description": "Approximate geographic location of the click."
+          },
+          "ua": {
+            "type": "string",
+            "description": "User agent string of the client."
+          }
+        }
+      },
+      "description": "Detailed click tracking events.",
+      "example": []
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "sent",
+        "bounced",
+        "rejected",
+        "soft-bounced",
+        "spam",
+        "unsub"
+      ],
+      "description": "The current state of the message.",
+      "example": "sent"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Custom metadata attached to the message.",
+      "example": "example_value"
+    }
+  }
+}

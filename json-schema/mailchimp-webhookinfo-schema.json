@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookInfo",
+  "title": "WebhookInfo",
+  "type": "object",
+  "description": "Information about a configured webhook.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique webhook identifier.",
+      "example": "abc123"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The webhook URL.",
+      "example": "https://www.example.com"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the webhook.",
+      "example": "A sample description."
+    },
+    "auth_key": {
+      "type": "string",
+      "description": "The key used to generate webhook signatures for verifying webhook authenticity.",
+      "example": "example_value"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "send",
+          "hard_bounce",
+          "soft_bounce",
+          "open",
+          "click",
+          "spam",
+          "unsub",
+          "reject",
+          "deferral"
+        ]
+      },
+      "description": "The events that trigger this webhook.",
+      "example": []
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the webhook was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "last_sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the webhook last fired.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "batches_sent": {
+      "type": "integer",
+      "description": "Total number of event batches sent.",
+      "example": 10
+    },
+    "events_sent": {
+      "type": "integer",
+      "description": "Total number of events sent.",
+      "example": 10
+    },
+    "last_error": {
+      "type": "string",
+      "description": "The last error received from the webhook URL.",
+      "example": "example_value"
+    }
+  }
+}

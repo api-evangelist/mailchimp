@@ -1,0 +1,41 @@
+{
+  "operationId": "postMessagesSendRaw",
+  "method": "POST",
+  "path": "/messages/send-raw",
+  "summary": "Mailchimp Send a Raw Mime Message",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostmessagessendrawRequestExample",
+      "example": {
+        "key": "example_value",
+        "raw_message": "example_value",
+        "from_email": "user@example.com",
+        "from_name": "example_value",
+        "to": [
+          "example_value"
+        ],
+        "async": true,
+        "ip_pool": "example_value",
+        "send_at": "2026-01-15T10:30:00Z",
+        "return_path_domain": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postmessagessendraw200Example",
+      "example": [
+        {
+          "email": "user@example.com",
+          "status": "sent",
+          "reject_reason": "hard-bounce",
+          "queued_reason": "example_value",
+          "_id": "500123"
+        }
+      ]
+    }
+  ]
+}

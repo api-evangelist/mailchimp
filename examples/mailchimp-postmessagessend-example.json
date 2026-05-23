@@ -1,0 +1,105 @@
+{
+  "operationId": "postMessagesSend",
+  "method": "POST",
+  "path": "/messages/send",
+  "summary": "Mailchimp Send a Transactional Email",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostmessagessendRequestExample",
+      "example": {
+        "key": "example_value",
+        "message": {
+          "html": "example_value",
+          "text": "example_value",
+          "subject": "example_value",
+          "from_email": "user@example.com",
+          "from_name": "example_value",
+          "to": [
+            {
+              "email": "user@example.com",
+              "name": "Example Title",
+              "type": "to"
+            }
+          ],
+          "headers": "example_value",
+          "important": true,
+          "track_opens": true,
+          "track_clicks": true,
+          "auto_text": true,
+          "auto_html": true,
+          "inline_css": true,
+          "url_strip_qs": "https://www.example.com",
+          "preserve_recipients": true,
+          "view_content_link": true,
+          "bcc_address": "example_value",
+          "tracking_domain": "example_value",
+          "signing_domain": "example_value",
+          "return_path_domain": "example_value",
+          "merge": true,
+          "merge_language": "mailchimp",
+          "global_merge_vars": [
+            {
+              "name": "Example Title",
+              "content": "example_value"
+            }
+          ],
+          "merge_vars": [
+            {
+              "rcpt": "example_value",
+              "vars": {}
+            }
+          ],
+          "tags": [
+            "example_value"
+          ],
+          "subaccount": "example_value",
+          "google_analytics_domains": [
+            "example_value"
+          ],
+          "google_analytics_campaign": "example_value",
+          "metadata": "example_value",
+          "recipient_metadata": [
+            {
+              "rcpt": "example_value",
+              "values": "example_value"
+            }
+          ],
+          "attachments": [
+            {
+              "type": "example_value",
+              "name": "Example Title",
+              "content": "example_value"
+            }
+          ],
+          "images": [
+            {
+              "type": "example_value",
+              "name": "Example Title",
+              "content": "example_value"
+            }
+          ]
+        },
+        "async": true,
+        "ip_pool": "example_value",
+        "send_at": "2026-01-15T10:30:00Z"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postmessagessend200Example",
+      "example": [
+        {
+          "email": "user@example.com",
+          "status": "sent",
+          "reject_reason": "hard-bounce",
+          "queued_reason": "example_value",
+          "_id": "500123"
+        }
+      ]
+    }
+  ]
+}

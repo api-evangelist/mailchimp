@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IPPool",
+  "title": "IPPool",
+  "type": "object",
+  "description": "An IP pool grouping dedicated IPs.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The pool name.",
+      "example": "Example Title"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the pool was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "ips": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DedicatedIP"
+      },
+      "description": "The dedicated IPs in this pool.",
+      "example": []
+    }
+  }
+}

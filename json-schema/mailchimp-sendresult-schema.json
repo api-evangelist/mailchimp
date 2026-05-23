@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SendResult",
+  "title": "SendResult",
+  "type": "object",
+  "description": "The result of sending a message to a single recipient.",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The recipient email address.",
+      "example": "user@example.com"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "sent",
+        "queued",
+        "scheduled",
+        "rejected",
+        "invalid"
+      ],
+      "description": "The sending status for this recipient.",
+      "example": "sent"
+    },
+    "reject_reason": {
+      "type": "string",
+      "enum": [
+        "hard-bounce",
+        "soft-bounce",
+        "spam",
+        "unsub",
+        "custom",
+        "invalid-sender",
+        "invalid",
+        "test-mode-limit",
+        "unsigned",
+        "rule"
+      ],
+      "description": "The reason the message was rejected, if applicable.",
+      "example": "hard-bounce"
+    },
+    "queued_reason": {
+      "type": "string",
+      "description": "The reason the message was queued instead of sent immediately.",
+      "example": "example_value"
+    },
+    "_id": {
+      "type": "string",
+      "description": "The unique message ID for this recipient's message.",
+      "example": "500123"
+    }
+  }
+}

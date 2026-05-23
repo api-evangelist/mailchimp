@@ -1,0 +1,37 @@
+{
+  "operationId": "postWebhooksInfo",
+  "method": "POST",
+  "path": "/webhooks/info",
+  "summary": "Mailchimp Get Webhook Info",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostwebhooksinfoRequestExample",
+      "example": {
+        "key": "example_value",
+        "id": "abc123"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postwebhooksinfo200Example",
+      "example": {
+        "id": "abc123",
+        "url": "https://www.example.com",
+        "description": "A sample description.",
+        "auth_key": "example_value",
+        "events": [
+          "send"
+        ],
+        "created_at": "2026-01-15T10:30:00Z",
+        "last_sent_at": "2026-01-15T10:30:00Z",
+        "batches_sent": 10,
+        "events_sent": 10,
+        "last_error": "example_value"
+      }
+    }
+  ]
+}

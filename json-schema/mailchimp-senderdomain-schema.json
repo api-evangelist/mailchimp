@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SenderDomain",
+  "title": "SenderDomain",
+  "type": "object",
+  "description": "Information about a configured sender domain.",
+  "properties": {
+    "domain": {
+      "type": "string",
+      "description": "The domain name.",
+      "example": "example_value"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the domain was added.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "last_tested_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the domain settings were last tested.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "spf": {
+      "type": "object",
+      "description": "SPF verification details.",
+      "properties": {
+        "valid": {
+          "type": "boolean",
+          "description": "Whether the SPF record is valid."
+        },
+        "valid_after": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the SPF record was verified."
+        },
+        "error": {
+          "type": "string",
+          "description": "Any SPF verification error."
+        }
+      },
+      "example": "example_value"
+    },
+    "dkim": {
+      "type": "object",
+      "description": "DKIM verification details.",
+      "properties": {
+        "valid": {
+          "type": "boolean",
+          "description": "Whether the DKIM record is valid."
+        },
+        "valid_after": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the DKIM record was verified."
+        },
+        "error": {
+          "type": "string",
+          "description": "Any DKIM verification error."
+        }
+      },
+      "example": "example_value"
+    },
+    "verified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the domain ownership was verified.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "valid_signing": {
+      "type": "boolean",
+      "description": "Whether the domain can be used for DKIM signing.",
+      "example": true
+    }
+  }
+}

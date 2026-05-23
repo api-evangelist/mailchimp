@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageDetail",
+  "title": "MessageDetail",
+  "type": "object",
+  "description": "Detailed information about a specific message.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/MessageInfo"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "smtp_events": {
+          "type": "array",
+          "description": "SMTP event log for the message delivery.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ts": {
+                "type": "integer",
+                "description": "Unix timestamp of the SMTP event."
+              },
+              "type": {
+                "type": "string",
+                "description": "The type of SMTP event."
+              },
+              "diag": {
+                "type": "string",
+                "description": "Diagnostic information from the receiving server."
+              }
+            }
+          }
+        },
+        "resends": {
+          "type": "array",
+          "description": "A list of resend attempts for this message.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ts": {
+                "type": "integer",
+                "description": "Unix timestamp of the resend."
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

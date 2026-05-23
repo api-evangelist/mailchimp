@@ -1,0 +1,69 @@
+{
+  "operationId": "postMessagesSearch",
+  "method": "POST",
+  "path": "/messages/search",
+  "summary": "Mailchimp Search Sent Messages",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostmessagessearchRequestExample",
+      "example": {
+        "key": "example_value",
+        "query": "example_value",
+        "date_from": "2026-01-15T10:30:00Z",
+        "date_to": "2026-01-15T10:30:00Z",
+        "tags": [
+          "example_value"
+        ],
+        "senders": [
+          "example_value"
+        ],
+        "api_keys": [
+          "example_value"
+        ],
+        "limit": 10
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postmessagessearch200Example",
+      "example": [
+        {
+          "ts": 10,
+          "_id": "500123",
+          "sender": "example_value",
+          "template": "example_value",
+          "subject": "example_value",
+          "email": "user@example.com",
+          "tags": [
+            "example_value"
+          ],
+          "opens": 10,
+          "opens_detail": [
+            {
+              "ts": 10,
+              "ip": "example_value",
+              "location": "example_value",
+              "ua": "example_value"
+            }
+          ],
+          "clicks": 10,
+          "clicks_detail": [
+            {
+              "ts": 10,
+              "url": "https://www.example.com",
+              "ip": "example_value",
+              "location": "example_value",
+              "ua": "example_value"
+            }
+          ],
+          "state": "sent",
+          "metadata": "example_value"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "operationId": "postIpsList",
+  "method": "POST",
+  "path": "/ips/list",
+  "summary": "Mailchimp List Dedicated Ips",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostipslistRequestExample",
+      "example": {
+        "key": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postipslist200Example",
+      "example": [
+        {
+          "ip": "example_value",
+          "created_at": "2026-01-15T10:30:00Z",
+          "pool": "example_value",
+          "domain": "example_value",
+          "custom_dns": {
+            "enabled": true,
+            "valid": "500123",
+            "error": "example_value"
+          },
+          "warmup": {
+            "warming_up": true,
+            "start_at": "2026-01-15T10:30:00Z",
+            "end_at": "2026-01-15T10:30:00Z"
+          }
+        }
+      ]
+    }
+  ]
+}

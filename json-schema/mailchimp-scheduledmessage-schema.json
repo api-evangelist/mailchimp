@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ScheduledMessage",
+  "title": "ScheduledMessage",
+  "type": "object",
+  "description": "A message scheduled for future delivery.",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "The unique scheduled message ID.",
+      "example": "500123"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the scheduled message was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "send_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the message is scheduled to be sent.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "from_email": {
+      "type": "string",
+      "format": "email",
+      "description": "The sender email address.",
+      "example": "user@example.com"
+    },
+    "to": {
+      "type": "string",
+      "format": "email",
+      "description": "The recipient email address.",
+      "example": "example_value"
+    },
+    "subject": {
+      "type": "string",
+      "description": "The message subject line.",
+      "example": "example_value"
+    }
+  }
+}

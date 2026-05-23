@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessagePayload",
+  "title": "MessagePayload",
+  "type": "object",
+  "description": "The message object containing all parameters for a transactional email, including recipients, content, attachments, and tracking options.",
+  "properties": {
+    "html": {
+      "type": "string",
+      "description": "The full HTML content of the message.",
+      "example": "example_value"
+    },
+    "text": {
+      "type": "string",
+      "description": "The full plain-text content of the message.",
+      "example": "example_value"
+    },
+    "subject": {
+      "type": "string",
+      "description": "The message subject line.",
+      "example": "example_value"
+    },
+    "from_email": {
+      "type": "string",
+      "format": "email",
+      "description": "The sender email address.",
+      "example": "user@example.com"
+    },
+    "from_name": {
+      "type": "string",
+      "description": "The sender display name.",
+      "example": "example_value"
+    },
+    "to": {
+      "type": "array",
+      "description": "An array of recipient objects.",
+      "items": {
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "The recipient email address."
+          },
+          "name": {
+            "type": "string",
+            "description": "The recipient display name."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "to",
+              "cc",
+              "bcc"
+            ],
+            "default": "to",
+            "description": "The recipient type (to, cc, or bcc)."
+          }
+        }
+      },
+      "example": []
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Optional extra headers to add to the message (e.g., Reply-To).",
+      "example": "example_value"
+    },
+    "important": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this message is important and should be delivered ahead of non-important messages.",
+      "example": true
+    },
+    "track_opens": {
+      "type": "boolean",
+      "description": "Whether to enable open tracking for this message.",
+      "example": true
+    },
+    "track_clicks": {
+      "type": "boolean",
+      "description": "Whether to enable click tracking for this message.",
+      "example": true
+    },
+    "auto_text": {
+      "type": "boolean",
+      "description": "Whether to automatically generate a plain-text version from the HTML content.",
+      "example": true
+    },
+    "auto_html": {
+      "type": "boolean",
+      "description": "Whether to automatically generate HTML from the plain-text content.",
+      "example": true
+    },
+    "inline_css": {
+      "type": "boolean",
+      "description": "Whether to automatically inline all CSS styles from style blocks in the HTML content.",
+      "example": true
+    },
+    "url_strip_qs": {
+      "type": "boolean",
+      "description": "Whether to strip query strings from URLs when aggregating tracked click data.",
+      "example": "https://www.example.com"
+    },
+    "preserve_recipients": {
+      "type": "boolean",
+      "description": "Whether to show all recipients in the To header of each email.",
+      "example": true
+    },
+    "view_content_link": {
+      "type": "boolean",
+      "description": "Whether to include a View Content Link in the Mandrill dashboard for this message.",
+      "example": true
+    },
+    "bcc_address": {
+      "type": "string",
+      "format": "email",
+      "description": "An optional address to BCC on the message.",
+      "example": "example_value"
+    },
+    "tracking_domain": {
+      "type": "string",
+      "description": "A custom domain to use for tracking opens and clicks.",
+      "example": "example_value"
+    },
+    "signing_domain": {
+      "type": "string",
+      "description": "A custom domain to use for DKIM signing instead of the default.",
+      "example": "example_value"
+    },
+    "return_path_domain": {
+      "type": "string",
+      "description": "A custom domain to use for the return-path header.",
+      "example": "example_value"
+    },
+    "merge": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether to evaluate merge tags in the message.",
+      "example": true
+    },
+    "merge_language": {
+      "type": "string",
+      "enum": [
+        "mailchimp",
+        "handlebars"
+      ],
+      "default": "mailchimp",
+      "description": "The merge tag language to use (Mailchimp or Handlebars).",
+      "example": "mailchimp"
+    },
+    "global_merge_vars": {
+      "type": "array",
+      "description": "Global merge variables applied to all recipients.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The global merge variable name."
+          },
+          "content": {
+            "type": "string",
+            "description": "The global merge variable value."
+          }
+        }
+      },
+      "example": []
+    },
+    "merge_vars": {
+      "type": "array",
+      "description": "Per-recipient merge variables.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rcpt": {
+            "type": "string",
+            "format": "email",
+            "description": "The recipient email address."
+          },
+          "vars": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The merge variable name."
+                },
+                "content": {
+                  "type": "string",
+                  "description": "The merge variable value."
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": []
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "An array of string tags to apply to this message for analytics.",
+      "example": []
+    },
+    "subaccount": {
+      "type": "string",
+      "description": "The unique ID of a subaccount for this message.",
+      "example": "example_value"
+    },
+    "google_analytics_domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "An array of domains for which Google Analytics tracking parameters will be appended.",
+      "example": []
+    },
+    "google_analytics_campaign": {
+      "type": "string",
+      "description": "The utm_campaign tracking parameter for Google Analytics.",
+      "example": "example_value"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Key-value metadata to associate with the message.",
+      "example": "example_value"
+    },
+    "recipient_metadata": {
+      "type": "array",
+      "description": "Per-recipient metadata.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rcpt": {
+            "type": "string",
+            "format": "email",
+            "description": "The recipient email address."
+          },
+          "values": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Key-value metadata for this recipient."
+          }
+        }
+      },
+      "example": []
+    },
+    "attachments": {
+      "type": "array",
+      "description": "An array of file attachments.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The MIME type of the attachment."
+          },
+          "name": {
+            "type": "string",
+            "description": "The file name of the attachment."
+          },
+          "content": {
+            "type": "string",
+            "description": "Base64-encoded content of the attachment."
+          }
+        }
+      },
+      "example": []
+    },
+    "images": {
+      "type": "array",
+      "description": "An array of inline images referenced with \"cid:\" in the HTML content.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The MIME type of the image (e.g., image/png)."
+          },
+          "name": {
+            "type": "string",
+            "description": "The Content-ID of the image, referenced as \"cid:name\" in HTML."
+          },
+          "content": {
+            "type": "string",
+            "description": "Base64-encoded content of the image."
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

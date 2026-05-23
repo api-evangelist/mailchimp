@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RejectEntry",
+  "title": "RejectEntry",
+  "type": "object",
+  "description": "An entry in the rejection blacklist.",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The rejected email address.",
+      "example": "user@example.com"
+    },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "hard-bounce",
+        "soft-bounce",
+        "spam",
+        "unsub",
+        "custom"
+      ],
+      "description": "The reason the address is on the blacklist.",
+      "example": "hard-bounce"
+    },
+    "detail": {
+      "type": "string",
+      "description": "Extended details about the rejection.",
+      "example": "example_value"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the entry was added to the blacklist.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "last_event_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the last event occurred for this address.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the rejection expires (if applicable).",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "expired": {
+      "type": "boolean",
+      "description": "Whether the rejection has expired.",
+      "example": true
+    },
+    "subaccount": {
+      "type": "string",
+      "description": "The subaccount this rejection applies to, if any.",
+      "example": "example_value"
+    },
+    "sender": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "format": "email"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sent": {
+          "type": "integer"
+        },
+        "hard_bounces": {
+          "type": "integer"
+        },
+        "soft_bounces": {
+          "type": "integer"
+        },
+        "rejects": {
+          "type": "integer"
+        },
+        "complaints": {
+          "type": "integer"
+        },
+        "unsubs": {
+          "type": "integer"
+        },
+        "opens": {
+          "type": "integer"
+        },
+        "clicks": {
+          "type": "integer"
+        }
+      },
+      "description": "Sender statistics associated with the rejection.",
+      "example": "example_value"
+    }
+  }
+}

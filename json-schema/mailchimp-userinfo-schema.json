@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserInfo",
+  "title": "UserInfo",
+  "type": "object",
+  "description": "Account-level information for the authenticated Mandrill user.",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "The account username.",
+      "example": "example_value"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the account was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "public_id": {
+      "type": "string",
+      "description": "A unique public identifier for the account.",
+      "example": "500123"
+    },
+    "reputation": {
+      "type": "integer",
+      "description": "The account sending reputation (0-100).",
+      "example": 10
+    },
+    "hourly_quota": {
+      "type": "integer",
+      "description": "The hourly email sending quota.",
+      "example": "https://www.example.com"
+    },
+    "backlog": {
+      "type": "integer",
+      "description": "The number of messages in the send queue.",
+      "example": 10
+    },
+    "stats": {
+      "type": "object",
+      "description": "Account-level sending statistics.",
+      "properties": {
+        "today": {
+          "$ref": "#/components/schemas/AccountStats"
+        },
+        "last_7_days": {
+          "$ref": "#/components/schemas/AccountStats"
+        },
+        "last_30_days": {
+          "$ref": "#/components/schemas/AccountStats"
+        },
+        "last_60_days": {
+          "$ref": "#/components/schemas/AccountStats"
+        },
+        "last_90_days": {
+          "$ref": "#/components/schemas/AccountStats"
+        },
+        "all_time": {
+          "$ref": "#/components/schemas/AccountStats"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

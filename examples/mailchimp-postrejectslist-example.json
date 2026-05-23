@@ -1,0 +1,49 @@
+{
+  "operationId": "postRejectsList",
+  "method": "POST",
+  "path": "/rejects/list",
+  "summary": "Mailchimp List Rejections",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PostrejectslistRequestExample",
+      "example": {
+        "key": "example_value",
+        "email": "user@example.com",
+        "include_expired": true,
+        "subaccount": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Postrejectslist200Example",
+      "example": [
+        {
+          "email": "user@example.com",
+          "reason": "hard-bounce",
+          "detail": "example_value",
+          "created_at": "2026-01-15T10:30:00Z",
+          "last_event_at": "2026-01-15T10:30:00Z",
+          "expires_at": "2026-01-15T10:30:00Z",
+          "expired": true,
+          "subaccount": "example_value",
+          "sender": {
+            "address": "example_value",
+            "created_at": "2026-01-15T10:30:00Z",
+            "sent": 10,
+            "hard_bounces": 10,
+            "soft_bounces": 10,
+            "rejects": 10,
+            "complaints": 10,
+            "unsubs": 10,
+            "opens": 10,
+            "clicks": 10
+          }
+        }
+      ]
+    }
+  ]
+}

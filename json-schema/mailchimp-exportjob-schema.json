@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExportJob",
+  "title": "ExportJob",
+  "type": "object",
+  "description": "Information about a data export job.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique export job ID.",
+      "example": "abc123"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the export was created.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "activity",
+        "reject",
+        "whitelist"
+      ],
+      "description": "The type of data being exported.",
+      "example": "activity"
+    },
+    "finished_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the export completed.",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "waiting",
+        "working",
+        "complete",
+        "error",
+        "expired"
+      ],
+      "description": "The current state of the export.",
+      "example": "waiting"
+    },
+    "result_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to download the export file (when complete).",
+      "example": "https://www.example.com"
+    }
+  }
+}

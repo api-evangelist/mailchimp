@@ -1,0 +1,2912 @@
+{
+  "provider": "Mailchimp",
+  "providerId": "mailchimp",
+  "kind": "json-structure",
+  "description": "Structural overview of the Mailchimp API surface; extracted from openapi/.",
+  "schemaCount": 0,
+  "operationCount": 272,
+  "schemas": [],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/",
+      "operationId": "getRoot",
+      "summary": "Mailchimp List Api Root Resources",
+      "tags": [
+        "Root"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/activity-feed/chimp-chatter",
+      "operationId": "getActivityFeedChimpChatter",
+      "summary": "Mailchimp Get Latest Chimp Chatter",
+      "tags": [
+        "Activity",
+        "Chatter",
+        "Feed"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/account-exports",
+      "operationId": "getAccountExports",
+      "summary": "Mailchimp List Account Exports",
+      "tags": [
+        "Accounts",
+        "Exports"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/account-exports",
+      "operationId": "postAccountExport",
+      "summary": "Mailchimp Add Export",
+      "tags": [
+        "Accounts",
+        "Exports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/account-exports/{export_id}",
+      "operationId": "getAccountExportId",
+      "summary": "Mailchimp Get Account Export Info",
+      "tags": [
+        "Account Export",
+        "Accounts",
+        "Exports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorized-apps",
+      "operationId": "getAuthorizedApps",
+      "summary": "Mailchimp List Authorized Apps",
+      "tags": [
+        "Applications",
+        "Authorized"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/authorized-apps/{app_id}",
+      "operationId": "getAuthorizedAppsId",
+      "summary": "Mailchimp Get Authorized App Info",
+      "tags": [
+        "Applications",
+        "Authorized",
+        "Authorized Apps"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations",
+      "operationId": "getAutomations",
+      "summary": "Mailchimp List Automations",
+      "tags": [
+        "Automations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations",
+      "operationId": "postAutomations",
+      "summary": "Mailchimp Add Automation",
+      "tags": [
+        "Automations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations/{workflow_id}",
+      "operationId": "getAutomationsId",
+      "summary": "Mailchimp Get Automation Info",
+      "tags": [
+        "Automations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations/{workflow_id}/actions/pause-all-emails",
+      "operationId": "postAutomationsIdActionsPauseAllEmails",
+      "summary": "Mailchimp Pause Automation Emails",
+      "tags": [
+        "Actions",
+        "Automations",
+        "Emails",
+        "Pause"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations/{workflow_id}/actions/start-all-emails",
+      "operationId": "postAutomationsIdActionsStartAllEmails",
+      "summary": "Mailchimp Start Automation Emails",
+      "tags": [
+        "Actions",
+        "Automations",
+        "Emails"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations/{workflow_id}/actions/archive",
+      "operationId": "archiveAutomations",
+      "summary": "Mailchimp Archive Automation",
+      "tags": [
+        "Actions",
+        "Archive",
+        "Automations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations/{workflow_id}/emails",
+      "operationId": "getAutomationsIdEmails",
+      "summary": "Mailchimp List Automated Emails",
+      "tags": [
+        "Automations",
+        "Emails"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}",
+      "operationId": "getAutomationsIdEmailsId",
+      "summary": "Mailchimp Get Workflow Email Info",
+      "tags": [
+        "Automations",
+        "Emails"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}",
+      "operationId": "deleteAutomationsIdEmailsId",
+      "summary": "Mailchimp Delete Workflow Email",
+      "tags": [
+        "Automations",
+        "Emails"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}",
+      "operationId": "patchAutomationEmailWorkflowId",
+      "summary": "Mailchimp Update Workflow Email",
+      "tags": [
+        "Automations",
+        "Emails"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}/queue",
+      "operationId": "getAutomationsIdEmailsIdQueue",
+      "summary": "Mailchimp List Automated Email Subscribers",
+      "tags": [
+        "Automations",
+        "Emails",
+        "Queues"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}/queue",
+      "operationId": "postAutomationsIdEmailsIdQueue",
+      "summary": "Mailchimp Add Subscriber to Workflow Email",
+      "tags": [
+        "Automations",
+        "Emails",
+        "Queues"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}/queue/{subscriber_hash}",
+      "operationId": "getAutomationsIdEmailsIdQueueId",
+      "summary": "Mailchimp Get Automated Email Subscriber",
+      "tags": [
+        "Automations",
+        "Emails",
+        "Queues"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}/actions/pause",
+      "operationId": "postAutomationsIdEmailsIdActionsPause",
+      "summary": "Mailchimp Pause Automated Email",
+      "tags": [
+        "Actions",
+        "Automations",
+        "Emails",
+        "Pause"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations/{workflow_id}/emails/{workflow_email_id}/actions/start",
+      "operationId": "postAutomationsIdEmailsIdActionsStart",
+      "summary": "Mailchimp Start Automated Email",
+      "tags": [
+        "Actions",
+        "Automations",
+        "Emails"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations/{workflow_id}/removed-subscribers",
+      "operationId": "getAutomationsIdRemovedSubscribers",
+      "summary": "Mailchimp List Subscribers Removed From Workflow",
+      "tags": [
+        "Automations",
+        "Removed",
+        "Subscribers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/automations/{workflow_id}/removed-subscribers",
+      "operationId": "postAutomationsIdRemovedSubscribers",
+      "summary": "Mailchimp Remove Subscriber From Workflow",
+      "tags": [
+        "Automations",
+        "Removed",
+        "Subscribers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/automations/{workflow_id}/removed-subscribers/{subscriber_hash}",
+      "operationId": "getAutomationsIdRemovedSubscribersId",
+      "summary": "Mailchimp Get Subscriber Removed From Workflow",
+      "tags": [
+        "Automations",
+        "Removed",
+        "Subscribers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/batches",
+      "operationId": "getBatches",
+      "summary": "Mailchimp List Batch Requests",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/batches",
+      "operationId": "postBatches",
+      "summary": "Mailchimp Start Batch Operation",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/batches/{batch_id}",
+      "operationId": "getBatchesId",
+      "summary": "Mailchimp Get Batch Operation Status",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/batches/{batch_id}",
+      "operationId": "deleteBatchesId",
+      "summary": "Mailchimp Delete Batch Request",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/batch-webhooks",
+      "operationId": "getBatchWebhooks",
+      "summary": "Mailchimp List Batch Webhooks",
+      "tags": [
+        "Batch",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/batch-webhooks",
+      "operationId": "postBatchWebhooks",
+      "summary": "Mailchimp Add Batch Webhook",
+      "tags": [
+        "Batch",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/batch-webhooks/{batch_webhook_id}",
+      "operationId": "getBatchWebhook",
+      "summary": "Mailchimp Get Batch Webhook Info",
+      "tags": [
+        "Batch",
+        "Batch Webhooks",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/batch-webhooks/{batch_webhook_id}",
+      "operationId": "deleteBatchWebhookId",
+      "summary": "Mailchimp Delete Batch Webhook",
+      "tags": [
+        "Batch",
+        "Batch Webhooks",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/batch-webhooks/{batch_webhook_id}",
+      "operationId": "patchBatchWebhooks",
+      "summary": "Mailchimp Update Batch Webhook",
+      "tags": [
+        "Batch",
+        "Batch Webhooks",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/template-folders",
+      "operationId": "getTemplateFolders",
+      "summary": "Mailchimp List Template Folders",
+      "tags": [
+        "Folders",
+        "Template"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/template-folders",
+      "operationId": "postTemplateFolders",
+      "summary": "Mailchimp Add Template Folder",
+      "tags": [
+        "Folders",
+        "Template"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/template-folders/{folder_id}",
+      "operationId": "getTemplateFoldersId",
+      "summary": "Mailchimp Get Template Folder",
+      "tags": [
+        "Folders",
+        "Template",
+        "Template Folders"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/template-folders/{folder_id}",
+      "operationId": "deleteTemplateFoldersId",
+      "summary": "Mailchimp Delete Template Folder",
+      "tags": [
+        "Folders",
+        "Template",
+        "Template Folders"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/template-folders/{folder_id}",
+      "operationId": "patchTemplateFoldersId",
+      "summary": "Mailchimp Update Template Folder",
+      "tags": [
+        "Folders",
+        "Template",
+        "Template Folders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-folders",
+      "operationId": "getCampaignFolders",
+      "summary": "Mailchimp List Campaign Folders",
+      "tags": [
+        "Campaigns",
+        "Folders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaign-folders",
+      "operationId": "postCampaignFolders",
+      "summary": "Mailchimp Add Campaign Folder",
+      "tags": [
+        "Campaigns",
+        "Folders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-folders/{folder_id}",
+      "operationId": "getCampaignFoldersId",
+      "summary": "Mailchimp Get Campaign Folder",
+      "tags": [
+        "Campaign Folders",
+        "Campaigns",
+        "Folders"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/campaign-folders/{folder_id}",
+      "operationId": "deleteCampaignFoldersId",
+      "summary": "Mailchimp Delete Campaign Folder",
+      "tags": [
+        "Campaign Folders",
+        "Campaigns",
+        "Folders"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/campaign-folders/{folder_id}",
+      "operationId": "patchCampaignFoldersId",
+      "summary": "Mailchimp Update Campaign Folder",
+      "tags": [
+        "Campaign Folders",
+        "Campaigns",
+        "Folders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns",
+      "operationId": "getCampaigns",
+      "summary": "Mailchimp List Campaigns",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns",
+      "operationId": "postCampaigns",
+      "summary": "Mailchimp Add Campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}",
+      "operationId": "getCampaignsId",
+      "summary": "Mailchimp Get Campaign Info",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/campaigns/{campaign_id}",
+      "operationId": "deleteCampaignsId",
+      "summary": "Mailchimp Delete Campaign",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/campaigns/{campaign_id}",
+      "operationId": "patchCampaignsId",
+      "summary": "Mailchimp Update Campaign Settings",
+      "tags": [
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/cancel-send",
+      "operationId": "postCampaignsIdActionsCancelSend",
+      "summary": "Mailchimp Cancel Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Cancels",
+        "Send"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/replicate",
+      "operationId": "postCampaignsIdActionsReplicate",
+      "summary": "Mailchimp Replicate Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Replicate"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/send",
+      "operationId": "postCampaignsIdActionsSend",
+      "summary": "Mailchimp Send Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Send"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/schedule",
+      "operationId": "postCampaignsIdActionsSchedule",
+      "summary": "Mailchimp Schedule Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Schedules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/unschedule",
+      "operationId": "postCampaignsIdActionsUnschedule",
+      "summary": "Mailchimp Unschedule Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/test",
+      "operationId": "postCampaignsIdActionsTest",
+      "summary": "Mailchimp Send Test Email",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Tests"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/pause",
+      "operationId": "postCampaignsIdActionsPause",
+      "summary": "Mailchimp Pause Rss Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Pause"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/resume",
+      "operationId": "postCampaignsIdActionsResume",
+      "summary": "Mailchimp Resume Rss Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Resume"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/actions/create-resend",
+      "operationId": "postCampaignsIdActionsCreateResend",
+      "summary": "Mailchimp Resend Campaign",
+      "tags": [
+        "Actions",
+        "Campaigns",
+        "Resend"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}/content",
+      "operationId": "getCampaignsIdContent",
+      "summary": "Mailchimp Get Campaign Content",
+      "tags": [
+        "Campaigns",
+        "Content"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/campaigns/{campaign_id}/content",
+      "operationId": "putCampaignsIdContent",
+      "summary": "Mailchimp Set Campaign Content",
+      "tags": [
+        "Campaigns",
+        "Content"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}/feedback",
+      "operationId": "getCampaignsIdFeedback",
+      "summary": "Mailchimp List Campaign Feedback",
+      "tags": [
+        "Campaigns",
+        "Feedback"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/campaigns/{campaign_id}/feedback",
+      "operationId": "postCampaignsIdFeedback",
+      "summary": "Mailchimp Add Campaign Feedback",
+      "tags": [
+        "Campaigns",
+        "Feedback"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}/feedback/{feedback_id}",
+      "operationId": "getCampaignsIdFeedbackId",
+      "summary": "Mailchimp Get Campaign Feedback Message",
+      "tags": [
+        "Campaigns",
+        "Feedback"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/campaigns/{campaign_id}/feedback/{feedback_id}",
+      "operationId": "deleteCampaignsIdFeedbackId",
+      "summary": "Mailchimp Delete Campaign Feedback Message",
+      "tags": [
+        "Campaigns",
+        "Feedback"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/campaigns/{campaign_id}/feedback/{feedback_id}",
+      "operationId": "patchCampaignsIdFeedbackId",
+      "summary": "Mailchimp Update Campaign Feedback Message",
+      "tags": [
+        "Campaigns",
+        "Feedback"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/campaigns/{campaign_id}/send-checklist",
+      "operationId": "getCampaignsIdSendChecklist",
+      "summary": "Mailchimp Get Campaign Send Checklist",
+      "tags": [
+        "Campaigns",
+        "Checklist",
+        "Send"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connected-sites",
+      "operationId": "getConnectedSites",
+      "summary": "Mailchimp List Connected Sites",
+      "tags": [
+        "Connected",
+        "Connected Sites"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/connected-sites",
+      "operationId": "postConnectedSites",
+      "summary": "Mailchimp Add Connected Site",
+      "tags": [
+        "Connected",
+        "Connected Sites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/connected-sites/{connected_site_id}",
+      "operationId": "getConnectedSitesId",
+      "summary": "Mailchimp Get Connected Site",
+      "tags": [
+        "Connected",
+        "Connected_site_id"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/connected-sites/{connected_site_id}",
+      "operationId": "deleteConnectedSitesId",
+      "summary": "Mailchimp Delete Connected Site",
+      "tags": [
+        "Connected",
+        "Connected_site_id"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/connected-sites/{connected_site_id}/actions/verify-script-installation",
+      "operationId": "postConnectedSitesIdActionsVerifyScriptInstallation",
+      "summary": "Mailchimp Verify Connected Site Script",
+      "tags": [
+        "Actions",
+        "Connected",
+        "Connected_site_id",
+        "Installation",
+        "Scripts",
+        "Verify"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/conversations",
+      "operationId": "getConversations",
+      "summary": "Mailchimp List Conversations",
+      "tags": [
+        "Conversations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/conversations/{conversation_id}",
+      "operationId": "getConversationsId",
+      "summary": "Mailchimp Get Conversation",
+      "tags": [
+        "Conversations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/conversations/{conversation_id}/messages",
+      "operationId": "getConversationsIdMessages",
+      "summary": "Mailchimp List Messages",
+      "tags": [
+        "Conversations",
+        "Messages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/conversations/{conversation_id}/messages/{message_id}",
+      "operationId": "getConversationsIdMessagesId",
+      "summary": "Mailchimp Get Message",
+      "tags": [
+        "Conversations",
+        "Messages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customer-journeys/journeys/{journey_id}/steps/{step_id}/actions/trigger",
+      "operationId": "postCustomerJourneysJourneysIdStepsIdActionsTrigger",
+      "summary": "Mailchimp Customer Journeys Api Trigger for a Contact",
+      "tags": [
+        "Actions",
+        "Customers",
+        "Journeys",
+        "Steps",
+        "Trigger"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/file-manager/files",
+      "operationId": "getFileManagerFiles",
+      "summary": "Mailchimp List Stored Files",
+      "tags": [
+        "Files",
+        "Managers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/file-manager/files",
+      "operationId": "postFileManagerFiles",
+      "summary": "Mailchimp Add File",
+      "tags": [
+        "Files",
+        "Managers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/file-manager/files/{file_id}",
+      "operationId": "getFileManagerFilesId",
+      "summary": "Mailchimp Get File",
+      "tags": [
+        "File Manager",
+        "Files",
+        "Managers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/file-manager/files/{file_id}",
+      "operationId": "deleteFileManagerFilesId",
+      "summary": "Mailchimp Delete File",
+      "tags": [
+        "File Manager",
+        "Files",
+        "Managers"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/file-manager/files/{file_id}",
+      "operationId": "patchFileManagerFilesId",
+      "summary": "Mailchimp Update File",
+      "tags": [
+        "File Manager",
+        "Files",
+        "Managers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/file-manager/folders",
+      "operationId": "getFileManagerFolders",
+      "summary": "Mailchimp List Folders",
+      "tags": [
+        "Files",
+        "Folders",
+        "Managers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/file-manager/folders",
+      "operationId": "postFileManagerFolders",
+      "summary": "Mailchimp Add Folder",
+      "tags": [
+        "Files",
+        "Folders",
+        "Managers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/file-manager/folders/{folder_id}",
+      "operationId": "getFileManagerFoldersId",
+      "summary": "Mailchimp Get Folder",
+      "tags": [
+        "File Manager",
+        "Files",
+        "Folders",
+        "Managers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/file-manager/folders/{folder_id}",
+      "operationId": "deleteFileManagerFoldersId",
+      "summary": "Mailchimp Delete Folder",
+      "tags": [
+        "File Manager",
+        "Files",
+        "Folders",
+        "Managers"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/file-manager/folders/{folder_id}",
+      "operationId": "patchFileManagerFoldersId",
+      "summary": "Mailchimp Update Folder",
+      "tags": [
+        "File Manager",
+        "Files",
+        "Folders",
+        "Managers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/file-manager/folders/{folder_id}/files",
+      "operationId": "getFileManagerFoldersFiles",
+      "summary": "Mailchimp List Stored Files",
+      "tags": [
+        "Files",
+        "Folders",
+        "Managers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists",
+      "operationId": "getLists",
+      "summary": "Mailchimp Get Lists Info",
+      "tags": [
+        "Lists"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists",
+      "operationId": "postLists",
+      "summary": "Mailchimp Add List",
+      "tags": [
+        "Lists"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}",
+      "operationId": "getListsId",
+      "summary": "Mailchimp Get List Info",
+      "tags": [
+        "List_id"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}",
+      "operationId": "postListsId",
+      "summary": "Mailchimp Batch Subscribe or Unsubscribe",
+      "tags": [
+        "List_id"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}",
+      "operationId": "deleteListsId",
+      "summary": "Mailchimp Delete List",
+      "tags": [
+        "List_id"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}",
+      "operationId": "patchListsId",
+      "summary": "Mailchimp Update Lists",
+      "tags": [
+        "List_id"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/abuse-reports",
+      "operationId": "getListsIdAbuseReports",
+      "summary": "Mailchimp List Abuse Reports",
+      "tags": [
+        "Abuse",
+        "List_id",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/abuse-reports/{report_id}",
+      "operationId": "getListsIdAbuseReportsId",
+      "summary": "Mailchimp Get Abuse Report",
+      "tags": [
+        "Abuse",
+        "List_id",
+        "Lists",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/activity",
+      "operationId": "getListsIdActivity",
+      "summary": "Mailchimp List Recent Activity",
+      "tags": [
+        "Activity",
+        "List_id"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/clients",
+      "operationId": "getListsIdClients",
+      "summary": "Mailchimp List Top Email Clients",
+      "tags": [
+        "Clients",
+        "List_id"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/growth-history",
+      "operationId": "getListsIdGrowthHistory",
+      "summary": "Mailchimp List Growth History Data",
+      "tags": [
+        "Growth",
+        "History",
+        "List_id"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/growth-history/{month}",
+      "operationId": "getListsIdGrowthHistoryId",
+      "summary": "Mailchimp Get Growth History by Month",
+      "tags": [
+        "Growth",
+        "History",
+        "List_id",
+        "Month"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/interest-categories",
+      "operationId": "getListsIdInterestCategories",
+      "summary": "Mailchimp List Interest Categories",
+      "tags": [
+        "Categories",
+        "Interest",
+        "List_id"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/interest-categories",
+      "operationId": "postListsIdInterestCategories",
+      "summary": "Mailchimp Add Interest Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "List_id"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}",
+      "operationId": "getListsIdInterestCategoriesId",
+      "summary": "Mailchimp Get Interest Category Info",
+      "tags": [
+        "Categories",
+        "Interest",
+        "List_id",
+        "Lists"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}",
+      "operationId": "deleteListsIdInterestCategoriesId",
+      "summary": "Mailchimp Delete Interest Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "List_id",
+        "Lists"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}",
+      "operationId": "patchListsIdInterestCategoriesId",
+      "summary": "Mailchimp Update Interest Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "List_id",
+        "Lists"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}/interests",
+      "operationId": "getListsIdInterestCategoriesIdInterests",
+      "summary": "Mailchimp List Interests in Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "Interests",
+        "List_id"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}/interests",
+      "operationId": "postListsIdInterestCategoriesIdInterests",
+      "summary": "Mailchimp Add Interest in Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "Interests",
+        "List_id"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}/interests/{interest_id}",
+      "operationId": "getListsIdInterestCategoriesIdInterestsId",
+      "summary": "Mailchimp Get Interest in Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "Interests",
+        "List_id",
+        "Lists"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}/interests/{interest_id}",
+      "operationId": "deleteListsIdInterestCategoriesIdInterestsId",
+      "summary": "Mailchimp Delete Interest in Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "Interests",
+        "List_id",
+        "Lists"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}/interest-categories/{interest_category_id}/interests/{interest_id}",
+      "operationId": "patchListsIdInterestCategoriesIdInterestsId",
+      "summary": "Mailchimp Update Interest in Category",
+      "tags": [
+        "Categories",
+        "Interest",
+        "Interests",
+        "List_id",
+        "Lists"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/segments",
+      "operationId": "previewASegment",
+      "summary": "Mailchimp List Segments",
+      "tags": [
+        "List_id",
+        "Segments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/segments",
+      "operationId": "postListsIdSegments",
+      "summary": "Mailchimp Add Segment",
+      "tags": [
+        "List_id",
+        "Segments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/segments/{segment_id}",
+      "operationId": "getListsIdSegmentsId",
+      "summary": "Mailchimp Get Segment Info",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Segments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/segments/{segment_id}",
+      "operationId": "postListsIdSegmentsId",
+      "summary": "Mailchimp Batch Add or Remove Members",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Segments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/segments/{segment_id}",
+      "operationId": "deleteListsIdSegmentsId",
+      "summary": "Mailchimp Delete Segment",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Segments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}/segments/{segment_id}",
+      "operationId": "patchListsIdSegmentsId",
+      "summary": "Mailchimp Update Segment",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Segments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/segments/{segment_id}/members",
+      "operationId": "getListsIdSegmentsIdMembers",
+      "summary": "Mailchimp List Members in Segment",
+      "tags": [
+        "List_id",
+        "Members",
+        "Segments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/segments/{segment_id}/members",
+      "operationId": "postListsIdSegmentsIdMembers",
+      "summary": "Mailchimp Add Member to Segment",
+      "tags": [
+        "List_id",
+        "Members",
+        "Segments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/segments/{segment_id}/members/{subscriber_hash}",
+      "operationId": "deleteListsIdSegmentsIdMembersId",
+      "summary": "Mailchimp Remove List Member From Segment",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members",
+        "Segments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/tag-search",
+      "operationId": "searchTagsByName",
+      "summary": "Mailchimp Search for Tags on a List by Name.",
+      "tags": [
+        "List_id",
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members",
+      "operationId": "getListsIdMembers",
+      "summary": "Mailchimp List Members Info",
+      "tags": [
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/members",
+      "operationId": "postListsIdMembers",
+      "summary": "Mailchimp Add Member to List",
+      "tags": [
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}",
+      "operationId": "getListsIdMembersId",
+      "summary": "Mailchimp Get Member Info",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/lists/{list_id}/members/{subscriber_hash}",
+      "operationId": "putListsIdMembersId",
+      "summary": "Mailchimp Add or Update List Member",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/members/{subscriber_hash}",
+      "operationId": "deleteListsIdMembersId",
+      "summary": "Mailchimp Archive List Member",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}/members/{subscriber_hash}",
+      "operationId": "patchListsIdMembersId",
+      "summary": "Mailchimp Update List Member",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/activity",
+      "operationId": "getListsIdMembersIdActivity",
+      "summary": "Mailchimp View Recent Activity 50",
+      "tags": [
+        "Activity",
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/activity-feed",
+      "operationId": "getListsIdMembersIdActivityFeed",
+      "summary": "Mailchimp View Recent Activity",
+      "tags": [
+        "Activity",
+        "Feed",
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/tags",
+      "operationId": "getListMemberTags",
+      "summary": "Mailchimp List Member Tags",
+      "tags": [
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/tags",
+      "operationId": "postListMemberTags",
+      "summary": "Mailchimp Add or Remove Member Tags",
+      "tags": [
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/events",
+      "operationId": "getListsIdMembersIdEvents",
+      "summary": "Mailchimp List Member Events",
+      "tags": [
+        "Events",
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/events",
+      "operationId": "postListMemberEvents",
+      "summary": "Mailchimp Add Event",
+      "tags": [
+        "Events",
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/goals",
+      "operationId": "getListsIdMembersIdGoals",
+      "summary": "Mailchimp List Member Goal Events",
+      "tags": [
+        "Goals",
+        "List_id",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/notes",
+      "operationId": "getListsIdMembersIdNotes",
+      "summary": "Mailchimp List Recent Member Notes",
+      "tags": [
+        "List_id",
+        "Members",
+        "Notes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/notes",
+      "operationId": "postListsIdMembersIdNotes",
+      "summary": "Mailchimp Add Member Note",
+      "tags": [
+        "List_id",
+        "Members",
+        "Notes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/notes/{note_id}",
+      "operationId": "getListsIdMembersIdNotesId",
+      "summary": "Mailchimp Get Member Note",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members",
+        "Notes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/notes/{note_id}",
+      "operationId": "deleteListsIdMembersIdNotesId",
+      "summary": "Mailchimp Delete Note",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members",
+        "Notes"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/notes/{note_id}",
+      "operationId": "patchListsIdMembersIdNotesId",
+      "summary": "Mailchimp Update Note",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Members",
+        "Notes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/members/{subscriber_hash}/actions/delete-permanent",
+      "operationId": "postListsIdMembersHashActionsDeletePermanent",
+      "summary": "Mailchimp Delete List Member",
+      "tags": [
+        "Actions",
+        "List_id",
+        "Lists",
+        "Members"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/merge-fields",
+      "operationId": "getListsIdMergeFields",
+      "summary": "Mailchimp List Merge Fields",
+      "tags": [
+        "Fields",
+        "List_id",
+        "Merge"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/merge-fields",
+      "operationId": "postListsIdMergeFields",
+      "summary": "Mailchimp Add Merge Field",
+      "tags": [
+        "Fields",
+        "List_id",
+        "Merge"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/merge-fields/{merge_id}",
+      "operationId": "getListsIdMergeFieldsId",
+      "summary": "Mailchimp Get Merge Field",
+      "tags": [
+        "Fields",
+        "List_id",
+        "Lists",
+        "Merge"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/merge-fields/{merge_id}",
+      "operationId": "deleteListsIdMergeFieldsId",
+      "summary": "Mailchimp Delete Merge Field",
+      "tags": [
+        "Fields",
+        "List_id",
+        "Lists",
+        "Merge"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}/merge-fields/{merge_id}",
+      "operationId": "patchListsIdMergeFieldsId",
+      "summary": "Mailchimp Update Merge Field",
+      "tags": [
+        "Fields",
+        "List_id",
+        "Lists",
+        "Merge"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/webhooks",
+      "operationId": "getListsIdWebhooks",
+      "summary": "Mailchimp List Webhooks",
+      "tags": [
+        "List_id",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/webhooks",
+      "operationId": "postListsIdWebhooks",
+      "summary": "Mailchimp Add Webhook",
+      "tags": [
+        "List_id",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/webhooks/{webhook_id}",
+      "operationId": "getListsIdWebhooksId",
+      "summary": "Mailchimp Get Webhook Info",
+      "tags": [
+        "List_id",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/lists/{list_id}/webhooks/{webhook_id}",
+      "operationId": "deleteListsIdWebhooksId",
+      "summary": "Mailchimp Delete Webhook",
+      "tags": [
+        "List_id",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/lists/{list_id}/webhooks/{webhook_id}",
+      "operationId": "patchListsIdWebhooksId",
+      "summary": "Mailchimp Update Webhook",
+      "tags": [
+        "List_id",
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/signup-forms",
+      "operationId": "getListsIdSignupForms",
+      "summary": "Mailchimp List Signup Forms",
+      "tags": [
+        "Forms",
+        "List_id",
+        "Signup"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/signup-forms",
+      "operationId": "postListsIdSignupForms",
+      "summary": "Mailchimp Customize Signup Form",
+      "tags": [
+        "Forms",
+        "List_id",
+        "Signup"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/locations",
+      "operationId": "getListsIdLocations",
+      "summary": "Mailchimp List Locations",
+      "tags": [
+        "List_id",
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/surveys",
+      "operationId": "getListsIdSurveys",
+      "summary": "Mailchimp Get Information About All Surveys for a List",
+      "tags": [
+        "List_id",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/lists/{list_id}/surveys/{survey_id}",
+      "operationId": "getListsIdSurveysId",
+      "summary": "Mailchimp Get Survey",
+      "tags": [
+        "List_id",
+        "Lists",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/surveys/{survey_id}/actions/publish",
+      "operationId": "postListsIdSurveysIdActionsPublish",
+      "summary": "Mailchimp Publish a Survey",
+      "tags": [
+        "Actions",
+        "List_id",
+        "Publish",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/surveys/{survey_id}/actions/unpublish",
+      "operationId": "postListsIdSurveysIdActionsUnpublish",
+      "summary": "Mailchimp Unpublish a Survey",
+      "tags": [
+        "Actions",
+        "List_id",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/lists/{list_id}/surveys/{survey_id}/actions/create-email",
+      "operationId": "postListsIdSurveysIdActionsCreateEmail",
+      "summary": "Mailchimp Create a Survey Campaign",
+      "tags": [
+        "Actions",
+        "Email",
+        "List_id",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/landing-pages",
+      "operationId": "getAllLandingPages",
+      "summary": "Mailchimp List Landing Pages",
+      "tags": [
+        "Landing",
+        "Pages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/landing-pages",
+      "operationId": "postAllLandingPages",
+      "summary": "Mailchimp Add Landing Page",
+      "tags": [
+        "Landing",
+        "Pages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/landing-pages/{page_id}",
+      "operationId": "getLandingPageId",
+      "summary": "Mailchimp Get Landing Page Info",
+      "tags": [
+        "Landing",
+        "Landing Pages",
+        "Pages"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/landing-pages/{page_id}",
+      "operationId": "deleteLandingPageId",
+      "summary": "Mailchimp Delete Landing Page",
+      "tags": [
+        "Landing",
+        "Landing Pages",
+        "Pages"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/landing-pages/{page_id}",
+      "operationId": "patchLandingPageId",
+      "summary": "Mailchimp Update Landing Page",
+      "tags": [
+        "Landing",
+        "Landing Pages",
+        "Pages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/landing-pages/{page_id}/actions/publish",
+      "operationId": "postLandingPageIdActionsPublish",
+      "summary": "Mailchimp Publish Landing Page",
+      "tags": [
+        "Actions",
+        "Landing",
+        "Pages",
+        "Publish"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/landing-pages/{page_id}/actions/unpublish",
+      "operationId": "postLandingPageIdActionsUnpublish",
+      "summary": "Mailchimp Unpublish Landing Page",
+      "tags": [
+        "Actions",
+        "Landing",
+        "Landing Pages",
+        "Pages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/landing-pages/{page_id}/content",
+      "operationId": "getLandingPageIdContent",
+      "summary": "Mailchimp Get Landing Page Content",
+      "tags": [
+        "Content",
+        "Landing",
+        "Pages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports",
+      "operationId": "getReports",
+      "summary": "Mailchimp List Campaign Reports",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}",
+      "operationId": "getReportsId",
+      "summary": "Mailchimp Get Campaign Report",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/abuse-reports",
+      "operationId": "getReportsIdAbuseReportsId",
+      "summary": "Mailchimp List Abuse Reports",
+      "tags": [
+        "Abuse",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/abuse-reports/{report_id}",
+      "operationId": "getReportsIdAbuseReportsIdId",
+      "summary": "Mailchimp Get Abuse Report",
+      "tags": [
+        "Abuse",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/advice",
+      "operationId": "getReportsIdAdvice",
+      "summary": "Mailchimp List Campaign Feedback",
+      "tags": [
+        "Advice",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/click-details",
+      "operationId": "getReportsIdClickDetails",
+      "summary": "Mailchimp List Campaign Details",
+      "tags": [
+        "Click",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/click-details/{link_id}",
+      "operationId": "getReportsIdClickDetailsId",
+      "summary": "Mailchimp Get Campaign Link Details",
+      "tags": [
+        "Click",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/click-details/{link_id}/members",
+      "operationId": "getReportsIdClickDetailsIdMembers",
+      "summary": "Mailchimp List Clicked Link Subscribers",
+      "tags": [
+        "Click",
+        "Members",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/click-details/{link_id}/members/{subscriber_hash}",
+      "operationId": "getReportsIdClickDetailsIdMembersId",
+      "summary": "Mailchimp Get Clicked Link Subscriber",
+      "tags": [
+        "Click",
+        "Members",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/open-details",
+      "operationId": "getReportsIdOpenDetails",
+      "summary": "Mailchimp List Campaign Open Details",
+      "tags": [
+        "Open",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/open-details/{subscriber_hash}",
+      "operationId": "getReportsIdOpenDetailsIdMembersId",
+      "summary": "Mailchimp Get Opened Campaign Subscriber",
+      "tags": [
+        "Open",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/domain-performance",
+      "operationId": "getReportsIdDomainPerformance",
+      "summary": "Mailchimp List Domain Performance Stats",
+      "tags": [
+        "Domains",
+        "Performance",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/eepurl",
+      "operationId": "getReportsIdEepurl",
+      "summary": "Mailchimp List Eepurl Activity",
+      "tags": [
+        "Eepurl",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/email-activity",
+      "operationId": "getReportsIdEmailActivity",
+      "summary": "Mailchimp List Email Activity",
+      "tags": [
+        "Activity",
+        "Email",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/email-activity/{subscriber_hash}",
+      "operationId": "getReportsIdEmailActivityId",
+      "summary": "Mailchimp Get Subscriber Email Activity",
+      "tags": [
+        "Activity",
+        "Email",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/locations",
+      "operationId": "getReportsIdLocations",
+      "summary": "Mailchimp List Top Open Activities",
+      "tags": [
+        "Locations",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/sent-to",
+      "operationId": "getReportsIdSentTo",
+      "summary": "Mailchimp List Campaign Recipients",
+      "tags": [
+        "Reports",
+        "Sent"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/sent-to/{subscriber_hash}",
+      "operationId": "getReportsIdSentToId",
+      "summary": "Mailchimp Get Campaign Recipient Info",
+      "tags": [
+        "Reports",
+        "Sent"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/sub-reports",
+      "operationId": "getReportsIdSubReportsId",
+      "summary": "Mailchimp List Child Campaign Reports",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/unsubscribed",
+      "operationId": "getReportsIdUnsubscribed",
+      "summary": "Mailchimp List Unsubscribed Members",
+      "tags": [
+        "Reports",
+        "Unsubscribed"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/unsubscribed/{subscriber_hash}",
+      "operationId": "getReportsIdUnsubscribedId",
+      "summary": "Mailchimp Get Unsubscribed Member",
+      "tags": [
+        "Reports",
+        "Unsubscribed"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reports/{campaign_id}/ecommerce-product-activity",
+      "operationId": "getReportsIdEcommerceProductActivity",
+      "summary": "Mailchimp List Campaign Product Activity",
+      "tags": [
+        "Activity",
+        "Ecommerce",
+        "Product",
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/templates",
+      "operationId": "getTemplates",
+      "summary": "Mailchimp List Templates",
+      "tags": [
+        "Templates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/templates",
+      "operationId": "postTemplates",
+      "summary": "Mailchimp Add Template",
+      "tags": [
+        "Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/templates/{template_id}",
+      "operationId": "getTemplatesId",
+      "summary": "Mailchimp Get Template Info",
+      "tags": [
+        "Templates"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/templates/{template_id}",
+      "operationId": "deleteTemplatesId",
+      "summary": "Mailchimp Delete Template",
+      "tags": [
+        "Templates"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/templates/{template_id}",
+      "operationId": "patchTemplatesId",
+      "summary": "Mailchimp Update Template",
+      "tags": [
+        "Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/templates/{template_id}/default-content",
+      "operationId": "getTemplatesIdDefaultContent",
+      "summary": "Mailchimp View Default Content",
+      "tags": [
+        "Content",
+        "Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/orders",
+      "operationId": "getEcommerceOrders",
+      "summary": "Mailchimp List Account Orders",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores",
+      "operationId": "getEcommerceStores",
+      "summary": "Mailchimp List Stores",
+      "tags": [
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores",
+      "operationId": "postEcommerceStores",
+      "summary": "Mailchimp Add Store",
+      "tags": [
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}",
+      "operationId": "getEcommerceStoresId",
+      "summary": "Mailchimp Get Store Info",
+      "tags": [
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}",
+      "operationId": "deleteEcommerceStoresId",
+      "summary": "Mailchimp Delete Store",
+      "tags": [
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}",
+      "operationId": "patchEcommerceStoresId",
+      "summary": "Mailchimp Update Store",
+      "tags": [
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/carts",
+      "operationId": "getEcommerceStoresIdCarts",
+      "summary": "Mailchimp List Carts",
+      "tags": [
+        "Carts",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/carts",
+      "operationId": "postEcommerceStoresIdCarts",
+      "summary": "Mailchimp Add Cart",
+      "tags": [
+        "Carts",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}",
+      "operationId": "getEcommerceStoresIdCartsId",
+      "summary": "Mailchimp Get Cart Info",
+      "tags": [
+        "Carts",
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}",
+      "operationId": "deleteEcommerceStoresIdCartsId",
+      "summary": "Mailchimp Delete Cart",
+      "tags": [
+        "Carts",
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}",
+      "operationId": "patchEcommerceStoresIdCartsId",
+      "summary": "Mailchimp Update Cart",
+      "tags": [
+        "Carts",
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}/lines",
+      "operationId": "getEcommerceStoresIdCartsIdLines",
+      "summary": "Mailchimp List Cart Line Items",
+      "tags": [
+        "Carts",
+        "Lines",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}/lines",
+      "operationId": "postEcommerceStoresIdCartsIdLines",
+      "summary": "Mailchimp Add Cart Line Item",
+      "tags": [
+        "Carts",
+        "Lines",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}/lines/{line_id}",
+      "operationId": "getEcommerceStoresIdCartsIdLinesId",
+      "summary": "Mailchimp Get Cart Line Item",
+      "tags": [
+        "Carts",
+        "Ecommerce",
+        "Lines",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}/lines/{line_id}",
+      "operationId": "deleteEcommerceStoresIdCartsLinesId",
+      "summary": "Mailchimp Delete Cart Line Item",
+      "tags": [
+        "Carts",
+        "Ecommerce",
+        "Lines",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/carts/{cart_id}/lines/{line_id}",
+      "operationId": "patchEcommerceStoresIdCartsIdLinesId",
+      "summary": "Mailchimp Update Cart Line Item",
+      "tags": [
+        "Carts",
+        "Ecommerce",
+        "Lines",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/customers",
+      "operationId": "getEcommerceStoresIdCustomers",
+      "summary": "Mailchimp List Customers",
+      "tags": [
+        "Customers",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/customers",
+      "operationId": "postEcommerceStoresIdCustomers",
+      "summary": "Mailchimp Add Customer",
+      "tags": [
+        "Customers",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/customers/{customer_id}",
+      "operationId": "getEcommerceStoresIdCustomersId",
+      "summary": "Mailchimp Get Customer Info",
+      "tags": [
+        "Customers",
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/ecommerce/stores/{store_id}/customers/{customer_id}",
+      "operationId": "putEcommerceStoresIdCustomersId",
+      "summary": "Mailchimp Add or Update Customer",
+      "tags": [
+        "Customers",
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/customers/{customer_id}",
+      "operationId": "deleteEcommerceStoresIdCustomersId",
+      "summary": "Mailchimp Delete Customer",
+      "tags": [
+        "Customers",
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/customers/{customer_id}",
+      "operationId": "patchEcommerceStoresIdCustomersId",
+      "summary": "Mailchimp Update Customer",
+      "tags": [
+        "Customers",
+        "Ecommerce",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/promo-rules",
+      "operationId": "getEcommerceStoresIdPromorules",
+      "summary": "Mailchimp List Promo Rules",
+      "tags": [
+        "Promo",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/promo-rules",
+      "operationId": "postEcommerceStoresIdPromorules",
+      "summary": "Mailchimp Add Promo Rule",
+      "tags": [
+        "Promo",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}",
+      "operationId": "getEcommerceStoresIdPromorulesId",
+      "summary": "Mailchimp Get Promo Rule",
+      "tags": [
+        "Ecommerce",
+        "Promo",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}",
+      "operationId": "deleteEcommerceStoresIdPromorulesId",
+      "summary": "Mailchimp Delete Promo Rule",
+      "tags": [
+        "Ecommerce",
+        "Promo",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}",
+      "operationId": "patchEcommerceStoresIdPromorulesId",
+      "summary": "Mailchimp Update Promo Rule",
+      "tags": [
+        "Ecommerce",
+        "Promo",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes",
+      "operationId": "getEcommerceStoresIdPromocodes",
+      "summary": "Mailchimp List Promo Codes",
+      "tags": [
+        "Ecommerce",
+        "Promo",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes",
+      "operationId": "postEcommerceStoresIdPromocodes",
+      "summary": "Mailchimp Add Promo Code",
+      "tags": [
+        "Ecommerce",
+        "Promo",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes/{promo_code_id}",
+      "operationId": "getEcommerceStoresIdPromocodesId",
+      "summary": "Mailchimp Get Promo Code",
+      "tags": [
+        "Promo",
+        "Promo_code_id",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes/{promo_code_id}",
+      "operationId": "deleteEcommerceStoresIdPromocodesId",
+      "summary": "Mailchimp Delete Promo Code",
+      "tags": [
+        "Promo",
+        "Promo_code_id",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes/{promo_code_id}",
+      "operationId": "patchEcommerceStoresIdPromocodesId",
+      "summary": "Mailchimp Update Promo Code",
+      "tags": [
+        "Promo",
+        "Promo_code_id",
+        "Rules",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/orders",
+      "operationId": "getEcommerceStoresIdOrders",
+      "summary": "Mailchimp List Orders",
+      "tags": [
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/orders",
+      "operationId": "postEcommerceStoresIdOrders",
+      "summary": "Mailchimp Add Order",
+      "tags": [
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}",
+      "operationId": "getEcommerceStoresIdOrdersId",
+      "summary": "Mailchimp Get Order Info",
+      "tags": [
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}",
+      "operationId": "deleteEcommerceStoresIdOrdersId",
+      "summary": "Mailchimp Delete Order",
+      "tags": [
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}",
+      "operationId": "patchEcommerceStoresIdOrdersId",
+      "summary": "Mailchimp Update Order",
+      "tags": [
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}/lines",
+      "operationId": "getEcommerceStoresIdOrdersIdLines",
+      "summary": "Mailchimp List Order Line Items",
+      "tags": [
+        "Lines",
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}/lines",
+      "operationId": "postEcommerceStoresIdOrdersIdLines",
+      "summary": "Mailchimp Add Order Line Item",
+      "tags": [
+        "Lines",
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}/lines/{line_id}",
+      "operationId": "getEcommerceStoresIdOrdersIdLinesId",
+      "summary": "Mailchimp Get Order Line Item",
+      "tags": [
+        "Ecommerce",
+        "Lines",
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}/lines/{line_id}",
+      "operationId": "deleteEcommerceStoresIdOrdersIdLinesId",
+      "summary": "Mailchimp Delete Order Line Item",
+      "tags": [
+        "Ecommerce",
+        "Lines",
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/orders/{order_id}/lines/{line_id}",
+      "operationId": "patchEcommerceStoresIdOrdersIdLinesId",
+      "summary": "Mailchimp Update Order Line Item",
+      "tags": [
+        "Ecommerce",
+        "Lines",
+        "Orders",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/products",
+      "operationId": "getEcommerceStoresIdProducts",
+      "summary": "Mailchimp List Product",
+      "tags": [
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/products",
+      "operationId": "postEcommerceStoresIdProducts",
+      "summary": "Mailchimp Add Product",
+      "tags": [
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}",
+      "operationId": "getEcommerceStoresIdProductsId",
+      "summary": "Mailchimp Get Product Info",
+      "tags": [
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}",
+      "operationId": "deleteEcommerceStoresIdProductsId",
+      "summary": "Mailchimp Delete Product",
+      "tags": [
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}",
+      "operationId": "patchEcommerceStoresIdProductsId",
+      "summary": "Mailchimp Update Product",
+      "tags": [
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/variants",
+      "operationId": "getEcommerceStoresIdProductsIdVariants",
+      "summary": "Mailchimp List Product Variants",
+      "tags": [
+        "Products",
+        "Stores",
+        "Variants"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/variants",
+      "operationId": "postEcommerceStoresIdProductsIdVariants",
+      "summary": "Mailchimp Add Product Variant",
+      "tags": [
+        "Products",
+        "Stores",
+        "Variants"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}",
+      "operationId": "getEcommerceStoresIdProductsIdVariantsId",
+      "summary": "Mailchimp Get Product Variant Info",
+      "tags": [
+        "Ecommerce",
+        "Products",
+        "Stores",
+        "Variants"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}",
+      "operationId": "putEcommerceStoresIdProductsIdVariantsId",
+      "summary": "Mailchimp Add or Update Product Variant",
+      "tags": [
+        "Ecommerce",
+        "Products",
+        "Stores",
+        "Variants"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}",
+      "operationId": "deleteEcommerceStoresIdProductsIdVariantsId",
+      "summary": "Mailchimp Delete Product Variant",
+      "tags": [
+        "Ecommerce",
+        "Products",
+        "Stores",
+        "Variants"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}",
+      "operationId": "patchEcommerceStoresIdProductsIdVariantsId",
+      "summary": "Mailchimp Update Product Variant",
+      "tags": [
+        "Ecommerce",
+        "Products",
+        "Stores",
+        "Variants"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/images",
+      "operationId": "getEcommerceStoresIdProductsIdImages",
+      "summary": "Mailchimp List Product Images",
+      "tags": [
+        "Images",
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/images",
+      "operationId": "postEcommerceStoresIdProductsIdImages",
+      "summary": "Mailchimp Add Product Image",
+      "tags": [
+        "Images",
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}",
+      "operationId": "getEcommerceStoresIdProductsIdImagesId",
+      "summary": "Mailchimp Get Product Image Info",
+      "tags": [
+        "Ecommerce",
+        "Images",
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}",
+      "operationId": "deleteEcommerceStoresIdProductsIdImagesId",
+      "summary": "Mailchimp Delete Product Image",
+      "tags": [
+        "Ecommerce",
+        "Images",
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}",
+      "operationId": "patchEcommerceStoresIdProductsIdImagesId",
+      "summary": "Mailchimp Update Product Image",
+      "tags": [
+        "Ecommerce",
+        "Images",
+        "Products",
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/search-campaigns",
+      "operationId": "getSearchCampaigns",
+      "summary": "Mailchimp Search Campaigns",
+      "tags": [
+        "Campaigns",
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/search-members",
+      "operationId": "getSearchMembers",
+      "summary": "Mailchimp Search Members",
+      "tags": [
+        "Members",
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ping",
+      "operationId": "getPing",
+      "summary": "Mailchimp Ping",
+      "tags": [
+        "Pings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/facebook-ads",
+      "operationId": "getAllFacebookAds",
+      "summary": "Mailchimp List Facebook Ads",
+      "tags": [
+        "Facebook",
+        "Facebook Ads"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/facebook-ads/{outreach_id}",
+      "operationId": "getFacebookAdsId",
+      "summary": "Mailchimp Get Facebook Ad Info",
+      "tags": [
+        "Facebook",
+        "Outreach_id"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/facebook-ads",
+      "operationId": "getReportingFacebookAds",
+      "summary": "Mailchimp List Facebook Ads Reports",
+      "tags": [
+        "Facebook",
+        "Reporting"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/facebook-ads/{outreach_id}",
+      "operationId": "getReportingFacebookAdsId",
+      "summary": "Mailchimp Get Facebook Ad Report",
+      "tags": [
+        "Facebook",
+        "Outreach_id",
+        "Reporting"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/facebook-ads/{outreach_id}/ecommerce-product-activity",
+      "operationId": "getReportingFacebookAdsIdEcommerceProductActivity",
+      "summary": "Mailchimp List Facebook Ecommerce Report",
+      "tags": [
+        "Activity",
+        "Facebook",
+        "Outreach_id",
+        "Product",
+        "Reporting"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/landing-pages/{outreach_id}",
+      "operationId": "getReportingLandingPagesId",
+      "summary": "Mailchimp Get Landing Page Report",
+      "tags": [
+        "Landing",
+        "Pages",
+        "Reporting"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/landing-pages",
+      "operationId": "getReportingLandingPages",
+      "summary": "Mailchimp List Landing Pages Reports",
+      "tags": [
+        "Landing",
+        "Pages",
+        "Reporting"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/surveys",
+      "operationId": "getReportingSurveys",
+      "summary": "Mailchimp List Survey Reports",
+      "tags": [
+        "Reporting",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/surveys/{survey_id}",
+      "operationId": "getReportingSurveysId",
+      "summary": "Mailchimp Get Survey Report",
+      "tags": [
+        "Reporting",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/surveys/{survey_id}/questions",
+      "operationId": "getReportingSurveysIdQuestions",
+      "summary": "Mailchimp List Survey Question Reports",
+      "tags": [
+        "Questions",
+        "Reporting",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/surveys/{survey_id}/questions/{question_id}",
+      "operationId": "getReportingSurveysIdQuestionsId",
+      "summary": "Mailchimp Get Survey Question Report",
+      "tags": [
+        "Questions",
+        "Reporting",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/surveys/{survey_id}/questions/{question_id}/answers",
+      "operationId": "getReportingSurveysIdQuestionsIdAnswers",
+      "summary": "Mailchimp List Answers for Question",
+      "tags": [
+        "Answers",
+        "Questions",
+        "Reporting",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/surveys/{survey_id}/responses",
+      "operationId": "getReportingSurveysIdResponses",
+      "summary": "Mailchimp List Survey Responses",
+      "tags": [
+        "Reporting",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reporting/surveys/{survey_id}/responses/{response_id}",
+      "operationId": "getReportingSurveysIdResponsesId",
+      "summary": "Mailchimp Get Survey Response",
+      "tags": [
+        "Reporting",
+        "Response_id",
+        "Surveys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/verified-domains/{domain_name}",
+      "operationId": "getVerifiedDomain",
+      "summary": "Mailchimp Get Domain Info",
+      "tags": [
+        "Domains",
+        "Verified",
+        "Verified Domains"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/verified-domains/{domain_name}",
+      "operationId": "deleteVerifiedDomain",
+      "summary": "Mailchimp Delete Domain",
+      "tags": [
+        "Domains",
+        "Verified",
+        "Verified Domains"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/verified-domains/{domain_name}/actions/verify",
+      "operationId": "verifyDomain",
+      "summary": "Mailchimp Verify Domain",
+      "tags": [
+        "Actions",
+        "Domains",
+        "Verified",
+        "Verify"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/verified-domains",
+      "operationId": "getVerifiedDomains",
+      "summary": "Mailchimp List Sending Domains",
+      "tags": [
+        "Domains",
+        "Verified"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/verified-domains",
+      "operationId": "createVerifiedDomain",
+      "summary": "Mailchimp Add Domain to Account",
+      "tags": [
+        "Domains",
+        "Verified"
+      ]
+    }
+  ]
+}
