@@ -1,0 +1,324 @@
+asyncapi: '2.6.0'
+info:
+  title: Mailchimp Marketing Webhooks
+  version: '1.0.0'
+  description: >-
+    AsyncAPI description of Mailchimp Marketing audience webhooks. Mailchimp
+    delivers list/audience events to a customer-configured callback URL via
+    HTTP POST with an `application/x-www-form-urlencoded` body. The shared
+    envelope is `type`, `fired_at`, and `data[...]`. Six event types are
+    supported: `subscribe`, `unsubscribe`, `profile`, `cleaned`, `upemail`,
+    and `campaign`.
+
+
+    Source documentation:
+
+      * Guide: https://mailchimp.com/developer/marketing/guides/sync-audience-data-webhooks/
+      * API Reference (events + sources flags): https://mailchimp.com/developer/marketing/api/list-webhooks/
+
+    Notes / fidelity:
+
+      * The full form-urlencoded payload field set is documented by Mailchimp
+        only for `subscribe` and `unsubscribe` in the cited guide. Those two
+        operations carry strongly-typed payload schemas below.
+      * For `profile`, `cleaned`, `upemail`, and `campaign`, Mailchimp's
+        published OpenAPI confirms the event names, titles, and trigger
+        semantics but does not enumerate the form field names of the POST
+        body. Those operations therefore use the documented envelope
+        (`type`, `fired_at`, `data`) where `data` is an open object. Do not
+        treat the open object as authoritative for individual field names.
+  contact:
+    name: Mailchimp Developer
+    url: https://mailchimp.com/developer/marketing/
+  license:
+    name: Mailchimp API Use Policy
+    url: https://mailchimp.com/legal/api_use/
+
+defaultContentType: application/x-www-form-urlencoded
+
+servers:
+  consumer:
+    url: '{callbackHost}'
+    protocol: https
+    description: >-
+      The HTTPS endpoint the Mailchimp account holder registers via
+      `POST /lists/{list_id}/webhooks` as the callback URL. Mailchimp
+      strongly recommends HTTPS and a hard-to-guess secret in the path.
+    variables:
+      callbackHost:
+        default: example.com
+        description: Hostname (and optional secret path prefix) the consumer exposes.
+
+channels:
+  /:
+    description: >-
+      The single callback path the consumer registered with Mailchimp. All
+      six event types are delivered to this same URL; subscribers
+      discriminate on the `type` form field.
+    bindings:
+      http:
+        bindingVersion: '0.3.0'
+        type: request
+        method: POST
+    publish:
+      summary: Receive Mailchimp audience webhook events.
+      description: >-
+        Mailchimp POSTs an `application/x-www-form-urlencoded` body to the
+        registered URL. If the URL is unavailable or takes more than 10
+        seconds to respond, the request is canceled and retried over a
+        roughly 75 minute window.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Subscribe'
+          - $ref: '#/components/messages/Unsubscribe'
+          - $ref: '#/components/messages/Profile'
+          - $ref: '#/components/messages/Cleaned'
+          - $ref: '#/components/messages/Upemail'
+          - $ref: '#/components/messages/Campaign'
+
+components:
+  messages:
+    Subscribe:
+      name: subscribe
+      title: List Subscribe
+      summary: A new subscriber was added to a list.
+      description: >-
+        Fired when a list subscriber is added. Payload field set is
+        documented in the Sync Audience Data with Webhooks guide.
+      contentType: application/x-www-form-urlencoded
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/SubscribePayload'
+
+    Unsubscribe:
+      name: unsubscribe
+      title: List Unsubscribe
+      summary: A list member unsubscribed or was removed.
+      description: >-
+        Fired when a list member unsubscribes. Payload field set is
+        documented in the Sync Audience Data with Webhooks guide.
+      contentType: application/x-www-form-urlencoded
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/UnsubscribePayload'
+
+    Profile:
+      name: profile
+      title: Subscriber Profile Updated
+      summary: A subscriber's profile was updated.
+      description: >-
+        Fired when a subscriber's profile is updated. The cited guide does
+        not enumerate the form fields of this payload; the schema below
+        only constrains the envelope (`type`, `fired_at`, `data`).
+      contentType: application/x-www-form-urlencoded
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/EnvelopeProfile'
+
+    Cleaned:
+      name: cleaned
+      title: Email Cleaned From List
+      summary: A subscriber's email address was cleaned from the list.
+      description: >-
+        Fired when a subscriber's email address is cleaned from the list
+        (e.g. hard bounce, abuse report). The cited guide does not
+        enumerate the form fields of this payload; the schema below only
+        constrains the envelope (`type`, `fired_at`, `data`).
+      contentType: application/x-www-form-urlencoded
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/EnvelopeCleaned'
+
+    Upemail:
+      name: upemail
+      title: Subscriber Email Address Updated
+      summary: A subscriber's email address was changed.
+      description: >-
+        Fired when a subscriber's email address is changed. The cited
+        guide does not enumerate the form fields of this payload; the
+        schema below only constrains the envelope (`type`, `fired_at`,
+        `data`).
+      contentType: application/x-www-form-urlencoded
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/EnvelopeUpemail'
+
+    Campaign:
+      name: campaign
+      title: Campaign Sending Status
+      summary: A campaign was sent or cancelled.
+      description: >-
+        Fired when a campaign is sent or cancelled. The cited guide does
+        not enumerate the form fields of this payload; the schema below
+        only constrains the envelope (`type`, `fired_at`, `data`).
+      contentType: application/x-www-form-urlencoded
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      payload:
+        $ref: '#/components/schemas/EnvelopeCampaign'
+
+  schemas:
+    SubscribePayload:
+      type: object
+      required: [type, fired_at, data]
+      properties:
+        type:
+          type: string
+          const: subscribe
+        fired_at:
+          type: string
+          description: Time the event fired, formatted `YYYY-MM-DD HH:MM:SS`.
+          example: '2009-03-26 21:35:57'
+        data:
+          type: object
+          required: [id, list_id, email, email_type]
+          properties:
+            id:
+              type: string
+              description: Mailchimp subscriber hash / id.
+              example: 8a25ff1d98
+            list_id:
+              type: string
+              description: The list/audience id.
+              example: a6b5da1054
+            email:
+              type: string
+              format: email
+              example: api@mailchimp.com
+            email_type:
+              type: string
+              example: html
+            ip_opt:
+              type: string
+              description: IP address recorded at confirmed opt-in.
+              example: 10.20.10.30
+            ip_signup:
+              type: string
+              description: IP address recorded at signup.
+              example: 10.20.10.30
+            merges:
+              type: object
+              description: >-
+                Merge fields for the subscriber. Keys are merge tags
+                configured on the audience.
+              additionalProperties:
+                type: string
+              example:
+                EMAIL: api@mailchimp.com
+                FNAME: Mailchimp
+                LNAME: API
+                INTERESTS: Group1,Group2
+
+    UnsubscribePayload:
+      type: object
+      required: [type, fired_at, data]
+      properties:
+        type:
+          type: string
+          const: unsubscribe
+        fired_at:
+          type: string
+          description: Time the event fired, formatted `YYYY-MM-DD HH:MM:SS`.
+          example: '2009-03-26 21:40:57'
+        data:
+          type: object
+          required: [id, list_id, email, email_type, action]
+          properties:
+            action:
+              type: string
+              description: >-
+                The unsubscribe action recorded by Mailchimp (e.g. `unsub`).
+              example: unsub
+            reason:
+              type: string
+              description: Reason recorded for the unsubscribe (e.g. `manual`).
+              example: manual
+            id:
+              type: string
+              example: 8a25ff1d98
+            list_id:
+              type: string
+              example: a6b5da1054
+            email:
+              type: string
+              format: email
+              example: api+unsub@mailchimp.com
+            email_type:
+              type: string
+              example: html
+            ip_opt:
+              type: string
+              example: 10.20.10.30
+            campaign_id:
+              type: string
+              description: Campaign that triggered the unsubscribe, if any.
+              example: cb398d21d2
+            merges:
+              type: object
+              additionalProperties:
+                type: string
+              example:
+                EMAIL: api+unsub@mailchimp.com
+                FNAME: Mailchimp
+                LNAME: API
+                INTERESTS: Group1,Group2
+
+    Envelope:
+      type: object
+      required: [type, fired_at, data]
+      properties:
+        type:
+          type: string
+          description: The event type discriminator.
+        fired_at:
+          type: string
+          description: Time the event fired, formatted `YYYY-MM-DD HH:MM:SS`.
+        data:
+          type: object
+          description: >-
+            Event-specific payload. Field names are not enumerated in the
+            cited source for this event type.
+          additionalProperties: true
+
+    EnvelopeProfile:
+      allOf:
+        - $ref: '#/components/schemas/Envelope'
+        - type: object
+          properties:
+            type:
+              const: profile
+
+    EnvelopeCleaned:
+      allOf:
+        - $ref: '#/components/schemas/Envelope'
+        - type: object
+          properties:
+            type:
+              const: cleaned
+
+    EnvelopeUpemail:
+      allOf:
+        - $ref: '#/components/schemas/Envelope'
+        - type: object
+          properties:
+            type:
+              const: upemail
+
+    EnvelopeCampaign:
+      allOf:
+        - $ref: '#/components/schemas/Envelope'
+        - type: object
+          properties:
+            type:
+              const: campaign
