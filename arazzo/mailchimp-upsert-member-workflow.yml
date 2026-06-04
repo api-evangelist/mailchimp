@@ -1,0 +1,118 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Upsert Audience Member
+  summary: Find a member by email and update them, otherwise add them to the audience.
+  description: >-
+    A find-then-act subscriber sync. The workflow searches the audience for an
+    existing member by email and branches: when a match is found it patches the
+    existing member with the supplied fields, and when no match is found it adds
+    a new member to the audience. This mirrors a classic upsert so the same
+    payload can be applied whether or not the contact already exists.
+    Authentication uses HTTP Basic auth with any username and your Mailchimp
+    API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-member
+  summary: Upsert a subscriber into an audience by email address.
+  description: >-
+    Searches for an existing member by email; updates the matched member or
+    adds a new one when none is found.
+  inputs:
+    type: object
+    required:
+    - listId
+    - emailAddress
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      emailAddress:
+        type: string
+        description: Email address used to find or create the member.
+      status:
+        type: string
+        description: Status to use when adding a new member.
+        default: subscribed
+      mergeFields:
+        type: object
+        description: Merge field values keyed by merge tag to write to the member.
+  steps:
+  - stepId: findMember
+    description: >-
+      Search the audience for an existing member whose email matches the
+      supplied address.
+    operationId: getSearchMembers
+    parameters:
+    - name: query
+      in: query
+      value: $inputs.emailAddress
+    - name: list_id
+      in: query
+      value: $inputs.listId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedHash: $response.body#/exact_matches/members/0/id
+    onSuccess:
+    - name: memberExists
+      type: goto
+      stepId: updateMember
+      criteria:
+      - context: $response.body
+        condition: $.exact_matches.members.length > 0
+        type: jsonpath
+    - name: memberMissing
+      type: goto
+      stepId: addMember
+      criteria:
+      - context: $response.body
+        condition: $.exact_matches.members.length == 0
+        type: jsonpath
+  - stepId: updateMember
+    description: Patch the matched member with the supplied merge fields and status.
+    operationId: patchListsIdMembersId
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $steps.findMember.outputs.matchedHash
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+        merge_fields: $inputs.mergeFields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      memberStatus: $response.body#/status
+    onSuccess:
+    - name: done
+      type: end
+  - stepId: addMember
+    description: Add a new member to the audience when no existing match was found.
+    operationId: postListsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+        status: $inputs.status
+        merge_fields: $inputs.mergeFields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      memberStatus: $response.body#/status
+  outputs:
+    updatedMemberId: $steps.updateMember.outputs.memberId
+    addedMemberId: $steps.addMember.outputs.memberId

@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Onboard Member into a Static Segment
+  summary: Add a member to an audience and place them into a static segment.
+  description: >-
+    A three-step onboarding flow that subscribes a contact to an audience,
+    creates a static segment to group them, and adds the contact to that
+    segment. The list id threads into segment creation and the segment id
+    threads into the segment-member add, producing a ready-to-target group
+    seeded with the new contact. Authentication uses HTTP Basic auth with any
+    username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-member-to-segment
+  summary: Add a member, create a segment, and place the member in it.
+  description: >-
+    Subscribes a member, creates a static segment, then adds that member to the
+    segment.
+  inputs:
+    type: object
+    required:
+    - listId
+    - emailAddress
+    - segmentName
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      emailAddress:
+        type: string
+        description: Email address of the subscriber to onboard.
+      status:
+        type: string
+        description: Subscription status for the new member.
+        default: subscribed
+      segmentName:
+        type: string
+        description: The name of the static segment to create.
+  steps:
+  - stepId: addMember
+    description: Subscribe the member to the audience.
+    operationId: postListsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+        status: $inputs.status
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+  - stepId: createSegment
+    description: Create a static segment in the audience.
+    operationId: postListsIdSegments
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.segmentName
+        static_segment: []
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      segmentId: $response.body#/id
+  - stepId: addToSegment
+    description: Add the onboarded member to the static segment by email.
+    operationId: postListsIdSegmentsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: segment_id
+      in: path
+      value: $steps.createSegment.outputs.segmentId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      segmentMemberId: $response.body#/id
+  outputs:
+    memberId: $steps.addMember.outputs.memberId
+    segmentId: $steps.createSegment.outputs.segmentId

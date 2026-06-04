@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Create Audience and Add First Member
+  summary: Create a new audience (list) and subscribe an initial member to it.
+  description: >-
+    Stands up a brand new Mailchimp audience with the required contact and
+    campaign default settings, then immediately subscribes a first member to
+    the freshly created list. The list id returned by the create step is passed
+    straight into the add-member step so the audience and its first contact are
+    provisioned in a single chained flow. Authentication uses HTTP Basic auth
+    with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-audience-add-member
+  summary: Create an audience then subscribe an initial member.
+  description: >-
+    Creates a Mailchimp list using the supplied name, contact, permission
+    reminder and campaign defaults, then adds the first subscriber using the
+    returned list id.
+  inputs:
+    type: object
+    required:
+    - name
+    - contact
+    - permissionReminder
+    - campaignDefaults
+    - emailAddress
+    properties:
+      name:
+        type: string
+        description: The name of the new audience/list.
+      contact:
+        type: object
+        description: Contact information shown in campaign footers (company, address1, city, country required).
+      permissionReminder:
+        type: string
+        description: The permission reminder text for the list.
+      emailTypeOption:
+        type: boolean
+        description: Whether the list supports multiple email type preferences.
+        default: false
+      campaignDefaults:
+        type: object
+        description: Default from_name, from_email, subject, and language for campaigns.
+      emailAddress:
+        type: string
+        description: Email address of the first subscriber to add.
+      status:
+        type: string
+        description: Subscription status for the new member (subscribed, unsubscribed, pending, etc.).
+        default: subscribed
+      mergeFields:
+        type: object
+        description: Optional merge field values keyed by merge tag (e.g. FNAME, LNAME).
+  steps:
+  - stepId: createAudience
+    description: >-
+      Create a new Mailchimp audience with the required contact, permission
+      reminder, email type option, and campaign default settings.
+    operationId: postLists
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        contact: $inputs.contact
+        permission_reminder: $inputs.permissionReminder
+        email_type_option: $inputs.emailTypeOption
+        campaign_defaults: $inputs.campaignDefaults
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      listId: $response.body#/id
+      memberCount: $response.body#/stats/member_count
+  - stepId: addFirstMember
+    description: >-
+      Subscribe the first member to the newly created audience using the list
+      id returned by the create step.
+    operationId: postListsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $steps.createAudience.outputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+        status: $inputs.status
+        merge_fields: $inputs.mergeFields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      memberStatus: $response.body#/status
+  outputs:
+    listId: $steps.createAudience.outputs.listId
+    memberId: $steps.addFirstMember.outputs.memberId

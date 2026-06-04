@@ -1,0 +1,99 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Create Merge Field and Add Member
+  summary: Add a custom audience field, then add a member that populates it.
+  description: >-
+    Extends an audience's data model and immediately uses it. The workflow
+    creates a new merge field (audience field) on a list, then adds a subscriber
+    whose merge_fields payload populates the new field by its merge tag. This
+    pairs the schema change and the first data write so a custom field is never
+    left empty on its first contact. Note: merge_fields is keyed by the literal
+    merge tag, so the example payload uses a placeholder key (MERGEFIELD) that
+    must be replaced with the actual tag value (Arazzo runtime expressions
+    cannot supply an object key dynamically). Authentication uses HTTP Basic
+    auth with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-merge-field-add-member
+  summary: Create a merge field, then add a member that fills it in.
+  description: >-
+    Creates a merge field on the audience and adds a member whose merge_fields
+    populate it.
+  inputs:
+    type: object
+    required:
+    - listId
+    - mergeFieldName
+    - mergeFieldType
+    - mergeTag
+    - emailAddress
+    - mergeFieldValue
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      mergeFieldName:
+        type: string
+        description: The display name of the merge field.
+      mergeFieldType:
+        type: string
+        description: The merge field type (text, number, date, address, etc.).
+      mergeTag:
+        type: string
+        description: The merge tag the field is referenced by (e.g. BIRTHDAY).
+      emailAddress:
+        type: string
+        description: Email address of the subscriber to add.
+      status:
+        type: string
+        description: Subscription status for the new member.
+        default: subscribed
+      mergeFieldValue:
+        type: string
+        description: The value to write into the new merge field for this member.
+  steps:
+  - stepId: createMergeField
+    description: Create the custom merge field on the audience.
+    operationId: postListsIdMergeFields
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.mergeFieldName
+        type: $inputs.mergeFieldType
+        tag: $inputs.mergeTag
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      mergeId: $response.body#/merge_id
+      mergeTag: $response.body#/tag
+  - stepId: addMember
+    description: >-
+      Add a subscriber whose merge_fields populate the newly created field by
+      its merge tag.
+    operationId: postListsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+        status: $inputs.status
+        merge_fields:
+          MERGEFIELD: $inputs.mergeFieldValue
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+  outputs:
+    mergeId: $steps.createMergeField.outputs.mergeId
+    memberId: $steps.addMember.outputs.memberId

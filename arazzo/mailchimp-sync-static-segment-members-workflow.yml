@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Sync Static Segment Members
+  summary: Create a static segment, then batch add and remove members in one call.
+  description: >-
+    Manages segment membership in bulk. The workflow creates a static segment
+    and then performs a batch add/remove operation, supplying arrays of emails
+    to add and emails to remove from the static segment in a single call. Emails
+    not present on the audience are ignored. Useful for reconciling an external
+    list against a Mailchimp segment. Authentication uses HTTP Basic auth with
+    any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sync-static-segment-members
+  summary: Create a static segment and batch add/remove members.
+  description: >-
+    Creates a static segment, then batch adds and removes the supplied emails
+    to and from it.
+  inputs:
+    type: object
+    required:
+    - listId
+    - segmentName
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      segmentName:
+        type: string
+        description: The name of the static segment to create.
+      membersToAdd:
+        type: array
+        description: Emails to add to the static segment (max 500).
+        items:
+          type: string
+      membersToRemove:
+        type: array
+        description: Emails to remove from the static segment (max 500).
+        items:
+          type: string
+  steps:
+  - stepId: createSegment
+    description: Create the static segment in the audience.
+    operationId: postListsIdSegments
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.segmentName
+        static_segment: []
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      segmentId: $response.body#/id
+  - stepId: batchSyncMembers
+    description: >-
+      Batch add and remove the supplied emails to and from the static segment in
+      a single call.
+    operationId: postListsIdSegmentsId
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: segment_id
+      in: path
+      value: $steps.createSegment.outputs.segmentId
+    requestBody:
+      contentType: application/json
+      payload:
+        members_to_add: $inputs.membersToAdd
+        members_to_remove: $inputs.membersToRemove
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalAdded: $response.body#/total_added
+      totalRemoved: $response.body#/total_removed
+  outputs:
+    segmentId: $steps.createSegment.outputs.segmentId
+    totalAdded: $steps.batchSyncMembers.outputs.totalAdded
+    totalRemoved: $steps.batchSyncMembers.outputs.totalRemoved

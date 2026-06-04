@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Pre-Send Checklist then Send Campaign
+  summary: Run the send checklist for a campaign and only send if it is ready.
+  description: >-
+    A guarded send. The workflow pulls the campaign's send checklist and
+    branches on the is_ready flag: when the campaign passes all checks it
+    triggers the send action, and when it does not it ends without sending so a
+    half-configured campaign is never delivered. This is the safe wrapper around
+    the otherwise irreversible send call. Authentication uses HTTP Basic auth
+    with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: checklist-then-send-campaign
+  summary: Send a campaign only when its send checklist reports ready.
+  description: >-
+    Fetches the campaign send checklist and sends the campaign only if is_ready
+    is true; otherwise it ends without sending.
+  inputs:
+    type: object
+    required:
+    - campaignId
+    properties:
+      campaignId:
+        type: string
+        description: The unique id for the campaign to check and send.
+  steps:
+  - stepId: getChecklist
+    description: >-
+      Retrieve the send checklist for the campaign to determine whether it is
+      ready to send.
+    operationId: getCampaignsIdSendChecklist
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $inputs.campaignId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      isReady: $response.body#/is_ready
+    onSuccess:
+    - name: ready
+      type: goto
+      stepId: sendCampaign
+      criteria:
+      - context: $response.body
+        condition: $.is_ready == true
+        type: jsonpath
+    - name: notReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.is_ready == false
+        type: jsonpath
+  - stepId: sendCampaign
+    description: >-
+      Send the campaign now that the checklist reports it is ready. Returns a 204
+      empty response on success.
+    operationId: postCampaignsIdActionsSend
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $inputs.campaignId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    isReady: $steps.getChecklist.outputs.isReady

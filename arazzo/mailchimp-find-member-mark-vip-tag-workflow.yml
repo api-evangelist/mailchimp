@@ -1,0 +1,106 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Find Member, Mark VIP, and Tag
+  summary: Search a member by email, flag them VIP, then apply a VIP tag.
+  description: >-
+    A find-then-act enrichment flow for high-value contacts. The workflow
+    searches the audience for a member by email and branches: when a match is
+    found it patches the member to set VIP status and then applies a VIP tag for
+    segmentation, and when no match is found it ends. The matched subscriber
+    hash threads from the search into both write steps. Authentication uses HTTP
+    Basic auth with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-member-mark-vip-tag
+  summary: Find a member, set VIP status, and apply a VIP tag.
+  description: >-
+    Searches for a member by email; if found, sets VIP status and applies the
+    supplied tag. Ends if no member matches.
+  inputs:
+    type: object
+    required:
+    - listId
+    - emailAddress
+    - tagName
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      emailAddress:
+        type: string
+        description: Email address used to find the member.
+      tagName:
+        type: string
+        description: The name of the VIP tag to apply.
+  steps:
+  - stepId: findMember
+    description: Search the audience for the member by email.
+    operationId: getSearchMembers
+    parameters:
+    - name: query
+      in: query
+      value: $inputs.emailAddress
+    - name: list_id
+      in: query
+      value: $inputs.listId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedHash: $response.body#/exact_matches/members/0/id
+    onSuccess:
+    - name: memberFound
+      type: goto
+      stepId: markVip
+      criteria:
+      - context: $response.body
+        condition: $.exact_matches.members.length > 0
+        type: jsonpath
+    - name: memberMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.exact_matches.members.length == 0
+        type: jsonpath
+  - stepId: markVip
+    description: Patch the matched member to set VIP status.
+    operationId: patchListsIdMembersId
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $steps.findMember.outputs.matchedHash
+    requestBody:
+      contentType: application/json
+      payload:
+        vip: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      isVip: $response.body#/vip
+  - stepId: applyVipTag
+    description: Apply the VIP tag to the member (204 on success).
+    operationId: postListMemberTags
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $steps.findMember.outputs.matchedHash
+    requestBody:
+      contentType: application/json
+      payload:
+        tags:
+        - name: $inputs.tagName
+          status: active
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    memberId: $steps.markVip.outputs.memberId

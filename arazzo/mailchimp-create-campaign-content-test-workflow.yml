@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Create Campaign, Set Content, and Send Test
+  summary: Create a campaign, set its content, then send a test email to reviewers.
+  description: >-
+    A pre-flight review flow. The workflow creates a regular campaign for an
+    audience, sets the HTML content, and sends a test email to a list of
+    reviewer addresses so the campaign can be proofed before any real send. No
+    subscriber receives the campaign in this flow. Authentication uses HTTP
+    Basic auth with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-campaign-content-test
+  summary: Create a campaign, set content, and send a test email.
+  description: >-
+    Creates a campaign, uploads HTML content, and sends a test email to the
+    supplied reviewer addresses.
+  inputs:
+    type: object
+    required:
+    - listId
+    - subjectLine
+    - fromName
+    - replyTo
+    - html
+    - testEmails
+    properties:
+      listId:
+        type: string
+        description: The audience/list id the campaign is created against.
+      subjectLine:
+        type: string
+        description: The subject line for the campaign.
+      fromName:
+        type: string
+        description: The 'from' name shown on the campaign.
+      replyTo:
+        type: string
+        description: The reply-to email address.
+      html:
+        type: string
+        description: The raw HTML content for the campaign.
+      testEmails:
+        type: array
+        description: Array of email addresses to send the test email to.
+        items:
+          type: string
+      sendType:
+        type: string
+        description: Type of test email to send (html or plaintext).
+        default: html
+  steps:
+  - stepId: createCampaign
+    description: Create a regular campaign bound to the audience.
+    operationId: postCampaigns
+    requestBody:
+      contentType: application/json
+      payload:
+        type: regular
+        recipients:
+          list_id: $inputs.listId
+        settings:
+          subject_line: $inputs.subjectLine
+          from_name: $inputs.fromName
+          reply_to: $inputs.replyTo
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      campaignId: $response.body#/id
+  - stepId: setContent
+    description: Set the HTML content for the campaign.
+    operationId: putCampaignsIdContent
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    requestBody:
+      contentType: application/json
+      payload:
+        html: $inputs.html
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: sendTest
+    description: >-
+      Send a test email of the campaign to the reviewer addresses. Returns a 204
+      empty response on success.
+    operationId: postCampaignsIdActionsTest
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    requestBody:
+      contentType: application/json
+      payload:
+        test_emails: $inputs.testEmails
+        send_type: $inputs.sendType
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    campaignId: $steps.createCampaign.outputs.campaignId

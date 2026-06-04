@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Create Template, Build Campaign, and Send
+  summary: Create a reusable template, build a campaign from it, then send.
+  description: >-
+    A template-driven send pipeline. The workflow saves a reusable HTML template
+    to the account, creates a regular campaign for an audience, sets the
+    campaign content from the new template by passing its id, and sends the
+    campaign. The template id threads from the create-template step into the
+    set-content step, and the campaign id threads from create through send.
+    Authentication uses HTTP Basic auth with any username and your Mailchimp API
+    key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-template-campaign-send
+  summary: Create a template, build a campaign from it, and send.
+  description: >-
+    Saves a template, creates a campaign, applies the template as content, and
+    sends the campaign.
+  inputs:
+    type: object
+    required:
+    - templateName
+    - templateHtml
+    - listId
+    - subjectLine
+    - fromName
+    - replyTo
+    properties:
+      templateName:
+        type: string
+        description: The name of the template to create.
+      templateHtml:
+        type: string
+        description: The raw HTML for the template.
+      listId:
+        type: string
+        description: The audience/list id the campaign sends to.
+      subjectLine:
+        type: string
+        description: The subject line for the campaign.
+      fromName:
+        type: string
+        description: The 'from' name shown on the campaign.
+      replyTo:
+        type: string
+        description: The reply-to email address (required for sending).
+  steps:
+  - stepId: createTemplate
+    description: Save a reusable HTML template to the account.
+    operationId: postTemplates
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.templateName
+        html: $inputs.templateHtml
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      templateId: $response.body#/id
+  - stepId: createCampaign
+    description: Create a regular campaign bound to the audience.
+    operationId: postCampaigns
+    requestBody:
+      contentType: application/json
+      payload:
+        type: regular
+        recipients:
+          list_id: $inputs.listId
+        settings:
+          subject_line: $inputs.subjectLine
+          from_name: $inputs.fromName
+          reply_to: $inputs.replyTo
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      campaignId: $response.body#/id
+  - stepId: setContentFromTemplate
+    description: Set the campaign content from the newly created template.
+    operationId: putCampaignsIdContent
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    requestBody:
+      contentType: application/json
+      payload:
+        template:
+          id: $steps.createTemplate.outputs.templateId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: sendCampaign
+    description: >-
+      Send the campaign immediately. Returns a 204 empty response on success.
+    operationId: postCampaignsIdActionsSend
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    templateId: $steps.createTemplate.outputs.templateId
+    campaignId: $steps.createCampaign.outputs.campaignId

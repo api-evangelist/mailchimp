@@ -1,0 +1,98 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Create Campaign, Set Content, and Schedule
+  summary: Create a regular campaign, set its HTML content, then schedule delivery.
+  description: >-
+    Builds a campaign for future delivery. The workflow creates a regular
+    campaign for an audience with its subject and sender settings, sets the HTML
+    content, and schedules the campaign for a specific UTC delivery time.
+    Mailchimp only accepts schedule times on the quarter-hour. Authentication
+    uses HTTP Basic auth with any username and your Mailchimp API key as the
+    password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-campaign-set-content-schedule
+  summary: Create a campaign, set content, and schedule it.
+  description: >-
+    Creates a regular campaign, uploads HTML content, and schedules it for the
+    supplied UTC delivery time.
+  inputs:
+    type: object
+    required:
+    - listId
+    - subjectLine
+    - fromName
+    - replyTo
+    - html
+    - scheduleTime
+    properties:
+      listId:
+        type: string
+        description: The audience/list id the campaign sends to.
+      subjectLine:
+        type: string
+        description: The subject line for the campaign.
+      fromName:
+        type: string
+        description: The 'from' name shown on the campaign.
+      replyTo:
+        type: string
+        description: The reply-to email address (required for sending).
+      html:
+        type: string
+        description: The raw HTML content for the campaign.
+      scheduleTime:
+        type: string
+        description: UTC ISO 8601 delivery time on the quarter-hour (:00, :15, :30, :45).
+  steps:
+  - stepId: createCampaign
+    description: Create a regular campaign bound to the audience with sender settings.
+    operationId: postCampaigns
+    requestBody:
+      contentType: application/json
+      payload:
+        type: regular
+        recipients:
+          list_id: $inputs.listId
+        settings:
+          subject_line: $inputs.subjectLine
+          from_name: $inputs.fromName
+          reply_to: $inputs.replyTo
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      campaignId: $response.body#/id
+  - stepId: setContent
+    description: Set the HTML content for the newly created campaign.
+    operationId: putCampaignsIdContent
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    requestBody:
+      contentType: application/json
+      payload:
+        html: $inputs.html
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: scheduleCampaign
+    description: >-
+      Schedule the campaign for delivery at the supplied UTC time. Returns a 204
+      empty response on success.
+    operationId: postCampaignsIdActionsSchedule
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    requestBody:
+      contentType: application/json
+      payload:
+        schedule_time: $inputs.scheduleTime
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    campaignId: $steps.createCampaign.outputs.campaignId

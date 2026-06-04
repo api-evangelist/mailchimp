@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Find Campaign and Pull Its Report
+  summary: Search campaigns by query, then retrieve the report for the first match.
+  description: >-
+    A find-then-act reporting flow. The workflow searches campaigns by a query
+    string and branches on whether any matched: when a campaign is found it
+    pulls the full report (sends, opens, clicks) for the first match, and when
+    none match it ends. The matched campaign id threads from the search step
+    into the report lookup. Authentication uses HTTP Basic auth with any
+    username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: find-campaign-pull-report
+  summary: Search for a campaign and retrieve its report.
+  description: >-
+    Searches campaigns by query and pulls the report for the first match; ends
+    if there are no matches.
+  inputs:
+    type: object
+    required:
+    - query
+    properties:
+      query:
+        type: string
+        description: The search query used to filter campaigns (e.g. a title fragment).
+  steps:
+  - stepId: searchCampaigns
+    description: Search campaigns matching the supplied query string.
+    operationId: getSearchCampaigns
+    parameters:
+    - name: query
+      in: query
+      value: $inputs.query
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedCampaignId: $response.body#/results/0/campaign/id
+    onSuccess:
+    - name: campaignFound
+      type: goto
+      stepId: getReport
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noMatch
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: getReport
+    description: >-
+      Retrieve the campaign report (sends, opens, clicks) for the first matched
+      campaign.
+    operationId: getReportsId
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.searchCampaigns.outputs.matchedCampaignId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      emailsSent: $response.body#/emails_sent
+      opens: $response.body#/opens/opens_total
+      clicks: $response.body#/clicks/clicks_total
+  outputs:
+    campaignId: $steps.searchCampaigns.outputs.matchedCampaignId
+    emailsSent: $steps.getReport.outputs.emailsSent

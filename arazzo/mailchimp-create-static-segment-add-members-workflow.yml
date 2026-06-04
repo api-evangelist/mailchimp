@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Create Static Segment and Add Members
+  summary: Create a static segment (tag-style group), then add a member to it.
+  description: >-
+    Builds a reusable static segment inside an audience and seeds it with a
+    member. The workflow creates the static segment with an optional initial
+    set of subscriber emails, then explicitly adds one more subscriber to the
+    segment using the segment id returned by the create step. Static segments
+    are the basis for targeted campaign sends. Authentication uses HTTP Basic
+    auth with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-static-segment-add-member
+  summary: Create a static segment and add a member to it.
+  description: >-
+    Creates a static segment in the audience, then adds a subscriber to the
+    segment by email.
+  inputs:
+    type: object
+    required:
+    - listId
+    - segmentName
+    - emailAddress
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      segmentName:
+        type: string
+        description: The name of the static segment to create.
+      initialEmails:
+        type: array
+        description: Optional initial emails to seed the static segment with.
+        items:
+          type: string
+      emailAddress:
+        type: string
+        description: Email address of the subscriber to add to the segment.
+  steps:
+  - stepId: createSegment
+    description: >-
+      Create a static segment in the audience, optionally seeded with an initial
+      set of subscriber emails.
+    operationId: postListsIdSegments
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.segmentName
+        static_segment: $inputs.initialEmails
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      segmentId: $response.body#/id
+      memberCount: $response.body#/member_count
+  - stepId: addSegmentMember
+    description: Add a subscriber to the newly created static segment by email.
+    operationId: postListsIdSegmentsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: segment_id
+      in: path
+      value: $steps.createSegment.outputs.segmentId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+  outputs:
+    segmentId: $steps.createSegment.outputs.segmentId
+    memberId: $steps.addSegmentMember.outputs.memberId

@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Create Campaign, Set Content, and Send
+  summary: Create a regular campaign, set its HTML content, then send it.
+  description: >-
+    The core email send pipeline. The workflow creates a regular campaign bound
+    to an audience with its subject line and sender settings, sets the campaign
+    HTML content, and finally triggers the send action. The campaign id returned
+    by the create step threads through the content and send steps so an email
+    goes out end to end. The send step is irreversible. Authentication uses HTTP
+    Basic auth with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-campaign-set-content-send
+  summary: Create a campaign, set content, and send it.
+  description: >-
+    Creates a regular campaign for the supplied audience, uploads HTML content,
+    and sends the campaign.
+  inputs:
+    type: object
+    required:
+    - listId
+    - subjectLine
+    - fromName
+    - replyTo
+    - html
+    properties:
+      listId:
+        type: string
+        description: The audience/list id the campaign sends to.
+      subjectLine:
+        type: string
+        description: The subject line for the campaign.
+      fromName:
+        type: string
+        description: The 'from' name shown on the campaign.
+      replyTo:
+        type: string
+        description: The reply-to email address (required for sending).
+      title:
+        type: string
+        description: Internal title of the campaign.
+      html:
+        type: string
+        description: The raw HTML content for the campaign.
+  steps:
+  - stepId: createCampaign
+    description: Create a regular campaign bound to the audience with sender settings.
+    operationId: postCampaigns
+    requestBody:
+      contentType: application/json
+      payload:
+        type: regular
+        recipients:
+          list_id: $inputs.listId
+        settings:
+          subject_line: $inputs.subjectLine
+          from_name: $inputs.fromName
+          reply_to: $inputs.replyTo
+          title: $inputs.title
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      campaignId: $response.body#/id
+      campaignStatus: $response.body#/status
+  - stepId: setContent
+    description: Set the HTML content for the newly created campaign.
+    operationId: putCampaignsIdContent
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    requestBody:
+      contentType: application/json
+      payload:
+        html: $inputs.html
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      plainText: $response.body#/plain_text
+  - stepId: sendCampaign
+    description: >-
+      Send the campaign immediately. Returns a 204 empty response on success.
+      This action cannot be undone.
+    operationId: postCampaignsIdActionsSend
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.createCampaign.outputs.campaignId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    campaignId: $steps.createCampaign.outputs.campaignId

@@ -1,0 +1,71 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Replicate Campaign and Send Test
+  summary: Clone an existing campaign and send a test of the copy to reviewers.
+  description: >-
+    Reuses a proven campaign as a starting point. The workflow replicates an
+    existing campaign, producing a new draft with the same content and settings,
+    then sends a test email of the replicated copy to a set of reviewer
+    addresses. The new campaign id from the replicate step threads into the test
+    send so the original is never touched. Authentication uses HTTP Basic auth
+    with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: replicate-campaign-test
+  summary: Replicate a campaign and send a test of the copy.
+  description: >-
+    Clones an existing campaign and sends a test email of the replicated copy to
+    the supplied reviewers.
+  inputs:
+    type: object
+    required:
+    - campaignId
+    - testEmails
+    properties:
+      campaignId:
+        type: string
+        description: The unique id of the campaign to replicate.
+      testEmails:
+        type: array
+        description: Array of email addresses to send the test of the copy to.
+        items:
+          type: string
+      sendType:
+        type: string
+        description: Type of test email to send (html or plaintext).
+        default: html
+  steps:
+  - stepId: replicateCampaign
+    description: Replicate the existing campaign into a new draft copy.
+    operationId: postCampaignsIdActionsReplicate
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $inputs.campaignId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newCampaignId: $response.body#/id
+      newCampaignStatus: $response.body#/status
+  - stepId: sendTest
+    description: >-
+      Send a test email of the replicated copy to the reviewer addresses.
+      Returns a 204 empty response on success.
+    operationId: postCampaignsIdActionsTest
+    parameters:
+    - name: campaign_id
+      in: path
+      value: $steps.replicateCampaign.outputs.newCampaignId
+    requestBody:
+      contentType: application/json
+      payload:
+        test_emails: $inputs.testEmails
+        send_type: $inputs.sendType
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    newCampaignId: $steps.replicateCampaign.outputs.newCampaignId

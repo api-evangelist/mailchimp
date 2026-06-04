@@ -1,0 +1,89 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Add-or-Update Member and Tag
+  summary: Idempotently add or update a member with PUT, then tag them.
+  description: >-
+    Uses Mailchimp's native add-or-update member endpoint, which upserts a
+    subscriber in a single idempotent call (creating them with status_if_new
+    when absent or updating them when present), then applies a tag so the
+    contact is immediately segmentable. The subscriber's email address is reused
+    as the subscriber hash on both calls. Authentication uses HTTP Basic auth
+    with any username and your Mailchimp API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: put-member-and-tag
+  summary: Add-or-update a member with PUT and apply a tag.
+  description: >-
+    Calls the add-or-update member endpoint to upsert the subscriber, then
+    applies the supplied tag to that member.
+  inputs:
+    type: object
+    required:
+    - listId
+    - emailAddress
+    - tagName
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      emailAddress:
+        type: string
+        description: Email address of the member (also used as the subscriber hash).
+      statusIfNew:
+        type: string
+        description: Status to set if the member does not already exist.
+        default: subscribed
+      mergeFields:
+        type: object
+        description: Merge field values keyed by merge tag.
+      tagName:
+        type: string
+        description: The name of the tag to apply.
+  steps:
+  - stepId: upsertMember
+    description: >-
+      Add or update the member idempotently. status_if_new is only applied when
+      the member is newly created.
+    operationId: putListsIdMembersId
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $inputs.emailAddress
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+        status_if_new: $inputs.statusIfNew
+        merge_fields: $inputs.mergeFields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      memberStatus: $response.body#/status
+  - stepId: applyTag
+    description: Apply the supplied tag to the upserted member (204 on success).
+    operationId: postListMemberTags
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $inputs.emailAddress
+    requestBody:
+      contentType: application/json
+      payload:
+        tags:
+        - name: $inputs.tagName
+          status: active
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    memberId: $steps.upsertMember.outputs.memberId

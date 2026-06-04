@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Mailchimp Add Member and Tag
+  summary: Subscribe a member to an audience and immediately apply a tag.
+  description: >-
+    Onboards a new subscriber to an existing Mailchimp audience and then tags
+    them so segmentation and automation logic can act on the new contact right
+    away. The subscriber's email address is reused as the subscriber hash on
+    the tagging call, which Mailchimp accepts in place of the MD5 hash.
+    Authentication uses HTTP Basic auth with any username and your Mailchimp
+    API key as the password.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpMarketingApi
+  url: ../openapi/mailchimp-marketing-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-member-and-tag
+  summary: Add a subscriber to a list and apply a tag to them.
+  description: >-
+    Adds a member to the supplied audience, then applies the supplied tag to
+    that member by setting the tag status to active.
+  inputs:
+    type: object
+    required:
+    - listId
+    - emailAddress
+    - tagName
+    properties:
+      listId:
+        type: string
+        description: The unique id for the audience/list.
+      emailAddress:
+        type: string
+        description: Email address of the subscriber to add and tag.
+      status:
+        type: string
+        description: Subscription status for the new member.
+        default: subscribed
+      mergeFields:
+        type: object
+        description: Optional merge field values keyed by merge tag.
+      tagName:
+        type: string
+        description: The name of the tag to apply to the member.
+  steps:
+  - stepId: addMember
+    description: Subscribe the member to the audience.
+    operationId: postListsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.emailAddress
+        status: $inputs.status
+        merge_fields: $inputs.mergeFields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      memberEmail: $response.body#/email_address
+  - stepId: applyTag
+    description: >-
+      Apply the supplied tag to the member by declaring it active. Returns a
+      204 empty response on success.
+    operationId: postListMemberTags
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $inputs.emailAddress
+    requestBody:
+      contentType: application/json
+      payload:
+        tags:
+        - name: $inputs.tagName
+          status: active
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    memberId: $steps.addMember.outputs.memberId
