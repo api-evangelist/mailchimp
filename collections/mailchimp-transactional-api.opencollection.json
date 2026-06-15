@@ -1,0 +1,1104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Transactional API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-MC-ApiKey",
+      "value": "{{X-MC-ApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Send a Transactional Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a new transactional message through Mandrill. Supports HTML and plain-text content, inline images, attachments, merge variables, metadata, and per-recipient customization."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send an Email Using a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/send-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a new transactional message using a stored template. Template content blocks can be overridden with the template_content parameter. Merge variables in the template are populated from the message object."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search Sent Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search recently sent messages and return matching results. You can filter by sending status, sender, tags, recipient, subject, and date range. Results are limited to the last 7 days."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search Message Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/search-time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search the content of recently sent messages and return aggregated hourly statistics for matching messages over time."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Message Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the information for a single recently sent message including delivery status, open/click tracking, and metadata."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Message Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/content",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the full content of a recently sent message including the HTML body, text body, headers, and attachments."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Parse a Raw Mime Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/parse",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Parse the full MIME document for an email message, returning the subject, recipients, HTML body, text body, headers, and attachments."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send a Raw Mime Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/send-raw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Take a raw MIME document and send it exactly as provided. Mandrill will not modify the message content, but will track opens and clicks if the appropriate headers are included."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Scheduled Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/list-scheduled",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of messages that are scheduled for future delivery. Messages can be scheduled up to 7 days in advance."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Cancel a Scheduled Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/cancel-scheduled",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a message that has been scheduled for future delivery. The message must not have already been sent."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Reschedule a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/messages/reschedule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reschedule a message that was previously scheduled for future delivery to a new date and time."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Add a New Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new template on the Mandrill server. Templates can contain merge variables and mc:edit content blocks for dynamic content injection at send time."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Template Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the details for a specific template, including its code, default values, and publish status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing template with new values for any of its fields. Only the fields you include in the request body will be updated."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Publish a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/publish",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish the most recent draft of an existing template, making it available for sending."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a template from the account. This action cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of all templates available in the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Template Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the recent sending history for a template, aggregated by hourly time slots."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Render a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/templates/render",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Render a template with the provided merge variables and template content, returning the final HTML that would be sent."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/tags/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get all the tags that have been used in the account, along with aggregate sending statistics for each tag."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Tag Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/tags/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return more detailed information about a single tag including aggregate statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/tags/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a tag permanently. Deleting a tag removes it from all messages that have been tagged with it, and permanently removes the tag statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Tag Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/tags/time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the recent sending history for a tag, aggregated by hourly time slots."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get All Tags Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/tags/all-time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return hourly aggregated statistics for all tags in the account over the last 30 days."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Senders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Senders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/senders/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of all sender email addresses that have been used in the account, with aggregate statistics for each sender."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Sender Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/senders/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of sender domains that have been configured for the account, including DKIM and SPF verification status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Sender Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/senders/add-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new sender domain to the account for verification."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Check a Sender Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/senders/check-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check the DNS settings for a sender domain to verify DKIM and SPF configuration status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Verify a Sender Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/senders/verify-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a verification email to the specified mailbox at the domain to confirm domain ownership."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Sender Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/senders/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed information for a single sender address, including aggregate sending statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Sender Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/senders/time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the recent sending history for a sender address, aggregated by hourly time slots."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get User Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/users/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the information about the API-connected user, including username, reputation, hourly quota, and account-level statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Ping the Api",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/users/ping",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate an API key and respond to a ping. Returns the string PONG! if the API key is valid."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Account Senders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/users/senders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the senders that have tried to use this account, both verified and unverified."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/webhooks/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of all configured webhooks for the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/webhooks/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook. Mandrill will attempt a HEAD request to the provided URL to verify the webhook endpoint."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Webhook Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/webhooks/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the details for a specific webhook by its unique ID."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/webhooks/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the URL, description, or events for an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/webhooks/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a webhook by its unique ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subaccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Subaccounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/subaccounts/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of subaccounts defined for the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/subaccounts/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new subaccount under the main account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Subaccount Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/subaccounts/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed information about a specific subaccount."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/subaccounts/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing subaccount's name, notes, or quota."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/subaccounts/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a subaccount. Any future email for the subaccount will be sent from the primary account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/subaccounts/pause",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pause a subaccount's sending. Any future messages sent through the subaccount will be queued but not delivered until the subaccount is resumed."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Resume a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/subaccounts/resume",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resume a paused subaccount, allowing it to send messages again."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rejects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Rejections",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/rejects/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all entries in the rejection blacklist. These are email addresses that have previously hard-bounced or been reported as spam, and will be automatically rejected."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Rejection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/rejects/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually add an email address to the rejection blacklist. Messages to this address will be rejected."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Rejection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/rejects/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an email address from the rejection blacklist, allowing messages to be delivered to it again."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Allowlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Allowlist Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/allowlists/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get all email addresses on the account allowlist. Allowlisted addresses bypass the rejection blacklist."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add an Allowlist Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/allowlists/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an email address to the allowlist, allowing messages to bypass the rejection blacklist."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete an Allowlist Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/allowlists/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an email address from the allowlist. The address will no longer bypass the rejection blacklist."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "IPs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Dedicated Ips",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/ips/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of dedicated IP addresses associated with the account, including their pool assignments, warmup status, and sending statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Ip Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/ips/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed information about a specific dedicated IP address."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Ip Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/ips/list-pools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of IP pools defined for the account, with the IPs assigned to each pool."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Create an Ip Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/ips/create-pool",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new IP pool for organizing dedicated IPs."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete an Ip Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/ips/delete-pool",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete an IP pool. IPs in the pool will be moved to the default pool if one exists."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get Export Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/exports/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get information about an individual data export job."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/exports/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of all data export jobs for the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Export Rejections",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/exports/rejects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new export job for the account's rejection blacklist. When complete, a download URL is provided."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Export Allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/exports/allowlist",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new export job for the account's allowlist. When complete, a download URL is provided."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Export Message Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/exports/activity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new export job for message activity history. The export includes detailed message logs for the specified date range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Metadata Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/metadata/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of custom metadata fields defined for the account. Metadata fields can be attached to messages for tracking."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Metadata Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/metadata/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new custom metadata field that can be indexed and used for filtering in message searches."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Metadata Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/metadata/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing metadata field's display template."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Metadata Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mandrillapp.com/api/1.0/metadata/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a metadata field. Metadata attached to messages using this field will no longer be searchable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
