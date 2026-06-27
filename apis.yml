@@ -31,7 +31,7 @@ apis:
   - url: https://mailchimp.com/developer/marketing/docs/integrations/
     type: Integrations
   - url: https://mailchimp.com/developer/marketing/docs/errors/
-    type: Errors
+    type: ErrorCodes
   - url: https://mailchimp.com/developer/marketing/api/
     type: APIReference
   - url: https://mailchimp.com/developer/marketing/guides/quick-start/
@@ -121,66 +121,63 @@ image: https://mailchimp.com/release/plums/cxp/images/apple-touch-icon.png
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/mailchimp/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/mailchimp-add-member-note-workflow.yml
-    name: Mailchimp Add Member and Attach a Note
-    summary: Subscribe a member to an audience and attach an internal note to them.
-  - url: arazzo/mailchimp-add-member-tag-workflow.yml
-    name: Mailchimp Add Member and Tag
-    summary: Subscribe a member to an audience and immediately apply a tag.
-  - url: arazzo/mailchimp-checklist-then-send-campaign-workflow.yml
-    name: Mailchimp Pre-Send Checklist then Send Campaign
-    summary: Run the send checklist for a campaign and only send if it is ready.
-  - url: arazzo/mailchimp-create-audience-add-member-workflow.yml
-    name: Mailchimp Create Audience and Add First Member
-    summary: Create a new audience (list) and subscribe an initial member to it.
-  - url: arazzo/mailchimp-create-campaign-content-test-workflow.yml
-    name: Mailchimp Create Campaign, Set Content, and Send Test
-    summary: Create a campaign, set its content, then send a test email to reviewers.
-  - url: arazzo/mailchimp-create-campaign-set-content-schedule-workflow.yml
-    name: Mailchimp Create Campaign, Set Content, and Schedule
-    summary: Create a regular campaign, set its HTML content, then schedule delivery.
-  - url: arazzo/mailchimp-create-campaign-set-content-send-workflow.yml
-    name: Mailchimp Create Campaign, Set Content, and Send
-    summary: Create a regular campaign, set its HTML content, then send it.
-  - url: arazzo/mailchimp-create-merge-field-add-member-workflow.yml
-    name: Mailchimp Create Merge Field and Add Member
-    summary: Add a custom audience field, then add a member that populates it.
-  - url: arazzo/mailchimp-create-static-segment-add-members-workflow.yml
-    name: Mailchimp Create Static Segment and Add Members
-    summary: Create a static segment (tag-style group), then add a member to it.
-  - url: arazzo/mailchimp-create-template-campaign-send-workflow.yml
-    name: Mailchimp Create Template, Build Campaign, and Send
-    summary: Create a reusable template, build a campaign from it, then send.
-  - url: arazzo/mailchimp-find-and-pause-automation-workflow.yml
-    name: Mailchimp Find and Pause an Automation
-    summary: List classic automations, pick the first, and pause all its emails.
-  - url: arazzo/mailchimp-find-and-start-automation-workflow.yml
-    name: Mailchimp Find and Start an Automation
-    summary: List classic automations, pick the first, and start all its emails.
-  - url: arazzo/mailchimp-find-campaign-pull-report-workflow.yml
-    name: Mailchimp Find Campaign and Pull Its Report
-    summary: Search campaigns by query, then retrieve the report for the first match.
-  - url: arazzo/mailchimp-find-member-mark-vip-tag-workflow.yml
-    name: Mailchimp Find Member, Mark VIP, and Tag
-    summary: Search a member by email, flag them VIP, then apply a VIP tag.
-  - url: arazzo/mailchimp-onboard-member-to-segment-workflow.yml
-    name: Mailchimp Onboard Member into a Static Segment
-    summary: Add a member to an audience and place them into a static segment.
-  - url: arazzo/mailchimp-put-member-tag-workflow.yml
-    name: Mailchimp Add-or-Update Member and Tag
-    summary: Idempotently add or update a member with PUT, then tag them.
-  - url: arazzo/mailchimp-replicate-campaign-test-workflow.yml
-    name: Mailchimp Replicate Campaign and Send Test
-    summary: Clone an existing campaign and send a test of the copy to reviewers.
-  - url: arazzo/mailchimp-sync-static-segment-members-workflow.yml
-    name: Mailchimp Sync Static Segment Members
-    summary: Create a static segment, then batch add and remove members in one call.
-  - url: arazzo/mailchimp-upsert-member-workflow.yml
-    name: Mailchimp Upsert Audience Member
-    summary: Find a member by email and update them, otherwise add them to the audience.
+- type: Arazzo
+  url: arazzo/mailchimp-add-member-note-workflow.yml
+  name: Mailchimp Add Member and Attach a Note
+- type: Arazzo
+  url: arazzo/mailchimp-add-member-tag-workflow.yml
+  name: Mailchimp Add Member and Tag
+- type: Arazzo
+  url: arazzo/mailchimp-checklist-then-send-campaign-workflow.yml
+  name: Mailchimp Pre-Send Checklist then Send Campaign
+- type: Arazzo
+  url: arazzo/mailchimp-create-audience-add-member-workflow.yml
+  name: Mailchimp Create Audience and Add First Member
+- type: Arazzo
+  url: arazzo/mailchimp-create-campaign-content-test-workflow.yml
+  name: Mailchimp Create Campaign, Set Content, and Send Test
+- type: Arazzo
+  url: arazzo/mailchimp-create-campaign-set-content-schedule-workflow.yml
+  name: Mailchimp Create Campaign, Set Content, and Schedule
+- type: Arazzo
+  url: arazzo/mailchimp-create-campaign-set-content-send-workflow.yml
+  name: Mailchimp Create Campaign, Set Content, and Send
+- type: Arazzo
+  url: arazzo/mailchimp-create-merge-field-add-member-workflow.yml
+  name: Mailchimp Create Merge Field and Add Member
+- type: Arazzo
+  url: arazzo/mailchimp-create-static-segment-add-members-workflow.yml
+  name: Mailchimp Create Static Segment and Add Members
+- type: Arazzo
+  url: arazzo/mailchimp-create-template-campaign-send-workflow.yml
+  name: Mailchimp Create Template, Build Campaign, and Send
+- type: Arazzo
+  url: arazzo/mailchimp-find-and-pause-automation-workflow.yml
+  name: Mailchimp Find and Pause an Automation
+- type: Arazzo
+  url: arazzo/mailchimp-find-and-start-automation-workflow.yml
+  name: Mailchimp Find and Start an Automation
+- type: Arazzo
+  url: arazzo/mailchimp-find-campaign-pull-report-workflow.yml
+  name: Mailchimp Find Campaign and Pull Its Report
+- type: Arazzo
+  url: arazzo/mailchimp-find-member-mark-vip-tag-workflow.yml
+  name: Mailchimp Find Member, Mark VIP, and Tag
+- type: Arazzo
+  url: arazzo/mailchimp-onboard-member-to-segment-workflow.yml
+  name: Mailchimp Onboard Member into a Static Segment
+- type: Arazzo
+  url: arazzo/mailchimp-put-member-tag-workflow.yml
+  name: Mailchimp Add-or-Update Member and Tag
+- type: Arazzo
+  url: arazzo/mailchimp-replicate-campaign-test-workflow.yml
+  name: Mailchimp Replicate Campaign and Send Test
+- type: Arazzo
+  url: arazzo/mailchimp-sync-static-segment-members-workflow.yml
+  name: Mailchimp Sync Static Segment Members
+- type: Arazzo
+  url: arazzo/mailchimp-upsert-member-workflow.yml
+  name: Mailchimp Upsert Audience Member
 - type: LinkedIn
   url: https://www.linkedin.com/company/intuitmailchimp
 - url: https://mailchimp.com/features/
@@ -321,7 +318,7 @@ common:
     description: Scale fast with dedicated onboarding, unlimited contacts, and priority support; built for teams
   type: Pricing
 - url: https://mailchimp.com/developer/marketing/guides/client-libraries-and-sdks/
-  type: SDK
+  type: SDKs
 - url: https://status.mailchimp.com/
   type: StatusPage
 - url: https://mailchimp.com/contact/
@@ -333,7 +330,7 @@ common:
 - url: https://mailchimp.com/legal/api_use/
   type: API Use Policy
 - url: https://login.mailchimp.com/signup/
-  type: SignUp
+  type: Signup
 - url: https://github.com/mailchimp
   type: GitHubOrganization
 - url: https://login.mailchimp.com/
@@ -343,7 +340,7 @@ common:
 - url: https://stackoverflow.com/questions/tagged/mailchimp
   type: StackOverflow
 - url: https://mailchimp.com/developer/marketing/docs/mobile-sdk/
-  type: SDK
+  type: SDKs
 created: 2023/11/23
 modified: '2026-05-30'
 description: >-
