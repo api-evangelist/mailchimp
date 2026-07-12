@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/mailchimp-marketing-api-openapi.yml, openapi/mailchimp-transactional-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/mailchimp-marketing-api-openapi.yml
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: X-MC-ApiKey
+  description: Mandrill uses API key authentication. The key is passed in the JSON request body
+    as the "key" parameter for every call, or alternatively via the X-MC-ApiKey header.
+  sources:
+  - openapi/mailchimp-transactional-api-openapi.yml
