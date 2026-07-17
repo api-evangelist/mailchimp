@@ -1,0 +1,32 @@
+generated: '2026-06-20'
+method: searched
+source: live probes of /.well-known/* on the Mailchimp + Mandrill hosts
+description: >-
+  Index of /.well-known/ discovery documents probed across the Mailchimp
+  website, API hosts, and the OAuth login host. Only security.txt is published;
+  Mailchimp does not expose OIDC/OAuth authorization-server metadata, an
+  API catalog, or an ai-plugin manifest. HTTP status recorded at fetch time.
+hosts:
+  - host: https://mailchimp.com
+    documents:
+      - path: /.well-known/security.txt          # RFC 9116
+        status: 200
+        file: mailchimp-security.txt
+      - path: /.well-known/openid-configuration   # OIDC discovery
+        status: 404
+      - path: /.well-known/oauth-authorization-server  # RFC 8414
+        status: 404
+      - path: /.well-known/api-catalog             # RFC 9727
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://login.mailchimp.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+  - host: https://mandrillapp.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404

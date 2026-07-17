@@ -1,0 +1,40 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://mandrill.zendesk.com/hc/en-us/articles/360038785394-What-is-a-test-API-key-/,
+  https://mandrill.zendesk.com/hc/en-us/articles/360038804654-Does-Mandrill-Have-a-Test-Mode-or-Sandbox-
+description: >-
+  Mailchimp's sandbox/test-data surface lives in the Transactional (Mandrill)
+  API via test API keys. The Marketing API has no separate sandbox environment —
+  it operates against live account data (use a trial/free account or a test
+  audience for development). No fabricated test values are recorded here.
+apis:
+  - api: mailchimp:mailchimp-transactional-api
+    test_mode:
+      supported: true
+      mechanism: test API key
+      how_to_create: >-
+        In the Mandrill account, go to Settings > + New API Key, enter a
+        description, check "Test Key", and click Create API Key.
+      behavior:
+        - No emails are actually sent when a test API key is used.
+        - >-
+          Test-mode messages are visible in the web interface while in test
+          mode, but not while viewing the account normally.
+        - Test-mode messages do not count toward monthly send totals.
+        - >-
+          Test mode does not damage account reputation (no forced bounces or
+          spam complaints); useful for exercising bounce/complaint handling.
+      limits:
+        daily_message_limit: 10000
+      docs:
+        - https://mandrill.zendesk.com/hc/en-us/articles/360038785394-What-is-a-test-API-key-/
+        - https://mandrill.zendesk.com/hc/en-us/articles/360038804654-Does-Mandrill-Have-a-Test-Mode-or-Sandbox-
+  - api: mailchimp:mailchimp-marketing-api
+    test_mode:
+      supported: false
+      notes: >-
+        No dedicated Marketing API sandbox. Develop against a free/trial account
+        or a dedicated test audience. The OpenAPI ships Microcks
+        (x-microcks-operation) mock hints for local mocking, but that is an API
+        Evangelist / tooling convenience, not a Mailchimp-hosted sandbox.

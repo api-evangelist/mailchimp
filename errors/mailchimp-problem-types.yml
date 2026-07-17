@@ -1,0 +1,108 @@
+generated: '2026-06-20'
+method: searched
+format: rfc7807
+source: >-
+  Derived from the Problem Detail Document schema in
+  openapi/mailchimp-marketing-api-openapi.yml and the Error schema in
+  openapi/mailchimp-transactional-api-openapi.yml, enriched from the documented
+  error reference at https://mailchimp.com/developer/marketing/docs/errors/.
+docs: https://mailchimp.com/developer/marketing/docs/errors/
+description: >-
+  Two distinct error envelopes. (1) The Marketing API returns
+  application/problem+json "Problem Detail Document" objects
+  (type/title/status/detail/instance) — RFC 7807 style, per the
+  draft-nottingham-http-problem-06 predecessor. (2) The Transactional (Mandrill)
+  API returns a JSON object {status:"error", code:<int>, name:<string>,
+  message:<string>}.
+envelopes:
+  marketing:
+    media_type: application/problem+json
+    required: [type, title, status, detail, instance]
+    type_uri_base: https://mailchimp.com/developer/marketing/docs/errors/
+    fields:
+      type: An absolute URI identifying the problem type.
+      title: Short human-readable summary of the problem type.
+      status: HTTP status code.
+      detail: Human-readable explanation specific to this occurrence.
+      instance: ID of this specific occurrence (provide to support).
+  transactional:
+    media_type: application/json
+    fields:
+      status: Always "error" for error responses.
+      code: Numeric error code.
+      name: Error name/type (e.g. Invalid_Key, ValidationError).
+      message: Human-readable description.
+problems:
+  # --- Marketing API (RFC 7807 problem+json) ---
+  - status: 400
+    title: Bad Request
+    detail: >-
+      Invalid resource or JSON parse exception; the request could not be parsed
+      or failed validation.
+    remediation: Fix the request body/parameters; ensure valid JSON.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 401
+    title: API Key Invalid
+    detail: The API key is either invalid or disabled.
+    remediation: Verify the API key and its datacenter suffix; see the Quick Start guide.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 403
+    title: Forbidden
+    detail: >-
+      Access denied due to insufficient user permissions, a deactivated account,
+      or a pricing-plan restriction.
+    remediation: Check user role, account status, and plan entitlements.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 404
+    title: Resource Not Found
+    detail: The requested resource could not be found.
+    remediation: Verify the object ID and endpoint path.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 405
+    title: Method Not Allowed
+    detail: The endpoint does not support the request's HTTP method.
+    remediation: Check the API Reference for allowed methods per resource.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 414
+    title: Resource Nesting Too Deep
+    detail: A URL has too many path segments or is malformed.
+    remediation: Reduce URL nesting depth.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 422
+    title: Invalid Method Override
+    detail: The X-HTTP-Method-Override header may only be used with the POST method.
+    remediation: Use POST when supplying X-HTTP-Method-Override.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 426
+    title: Upgrade Required
+    detail: The Marketing API requires requests be made with TLS 1.2 or higher.
+    remediation: Use HTTPS with TLS 1.2+.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 429
+    title: Too Many Requests
+    detail: >-
+      Exceeded 10 simultaneous connections per user or 500 pending webhook
+      events.
+    remediation: Throttle requests; keep concurrency under 10. See rate-limits/mailchimp-rate-limits.yml.
+    api: mailchimp:mailchimp-marketing-api
+  - status: 500
+    title: Internal Server Error
+    detail: A deep, internal error has occurred.
+    remediation: Check status.mailchimp.com / @MailchimpStatus; contact support if unresolved.
+    api: mailchimp:mailchimp-marketing-api
+  # --- Transactional API (Mandrill error envelope) ---
+  - status: 400
+    title: ValidationError
+    detail: The request parameters were invalid.
+    envelope: transactional
+    api: mailchimp:mailchimp-transactional-api
+  - status: 401
+    title: Invalid_Key
+    detail: The provided API key is not valid.
+    envelope: transactional
+    api: mailchimp:mailchimp-transactional-api
+  - status: 500
+    title: GeneralError
+    detail: An unexpected error occurred on the server.
+    envelope: transactional
+    api: mailchimp:mailchimp-transactional-api

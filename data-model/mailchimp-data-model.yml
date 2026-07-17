@@ -1,0 +1,67 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from the resource/path nesting and id-reference fields in
+  openapi/mailchimp-marketing-api-openapi.yml and
+  openapi/mailchimp-transactional-api-openapi.yml, plus the object reference at
+  mailchimp.com/developer/marketing/api/. Captures the core entity-relationship
+  graph across the marketing-automation and transactional-email domains.
+docs: https://mailchimp.com/developer/marketing/api/
+notation: >-
+  relationships use has_one / has_many / belongs_to with the "via" field or path
+  segment; direction is from the entity that owns the reference. Marketing
+  members are keyed by subscriber_hash (MD5 of the lowercased email).
+entities:
+  # --- Marketing API ---
+  - {name: List, aka: Audience, domain: audience, id: list_id, description: A Mailchimp audience (mailing list).}
+  - {name: Member, aka: Subscriber, domain: audience, id: subscriber_hash, description: A contact within an audience.}
+  - {name: Segment, domain: audience, id: segment_id, description: A saved or static segment of members within a list.}
+  - {name: MergeField, domain: audience, id: merge_id, description: A custom field on a list's members.}
+  - {name: InterestCategory, domain: audience, id: interest_category_id, description: A group category (e.g. interests) on a list.}
+  - {name: Interest, domain: audience, id: interest_id, description: An individual interest/group within a category.}
+  - {name: Campaign, domain: campaigns, id: campaign_id, description: An email campaign.}
+  - {name: CampaignContent, domain: campaigns, description: The HTML/text content of a campaign.}
+  - {name: CampaignFolder, domain: campaigns, id: folder_id, description: A folder organizing campaigns.}
+  - {name: Template, domain: templates, id: template_id, description: A reusable email template.}
+  - {name: TemplateFolder, domain: templates, id: folder_id, description: A folder organizing templates.}
+  - {name: Automation, domain: automations, id: workflow_id, description: A classic automation workflow.}
+  - {name: AutomationEmail, domain: automations, id: workflow_email_id, description: An email within an automation workflow.}
+  - {name: Report, domain: reporting, id: campaign_id, description: The performance report for a campaign.}
+  - {name: Store, domain: ecommerce, id: store_id, description: An e-commerce store connected to Mailchimp.}
+  - {name: Product, domain: ecommerce, id: product_id, description: A product in a store.}
+  - {name: Order, domain: ecommerce, id: order_id, description: An order in a store.}
+  - {name: EcommerceCustomer, domain: ecommerce, id: customer_id, description: A customer of a store.}
+  - {name: LandingPage, domain: content, id: page_id, description: A landing page.}
+  - {name: Webhook, domain: audience, id: webhook_id, description: A webhook subscription on a list.}
+  # --- Transactional (Mandrill) API ---
+  - {name: TxMessage, domain: transactional, id: _id, description: A transactional message send.}
+  - {name: TxTemplate, domain: transactional, id: name, description: A transactional email template.}
+  - {name: Subaccount, domain: transactional, id: id, description: A subaccount for segmenting transactional sending.}
+  - {name: SenderDomain, domain: transactional, id: domain, description: A verified sending domain.}
+  - {name: IpPool, domain: transactional, id: pool, description: A dedicated-IP pool.}
+  - {name: TxWebhook, domain: transactional, id: id, description: A transactional event webhook.}
+  - {name: MetadataField, domain: transactional, id: name, description: A custom metadata field for messages.}
+relationships:
+  - {from: List, to: Member, type: has_many, via: "/lists/{list_id}/members"}
+  - {from: List, to: Segment, type: has_many, via: "/lists/{list_id}/segments"}
+  - {from: List, to: MergeField, type: has_many, via: "/lists/{list_id}/merge-fields"}
+  - {from: List, to: InterestCategory, type: has_many, via: "/lists/{list_id}/interest-categories"}
+  - {from: InterestCategory, to: Interest, type: has_many, via: "/interest-categories/{id}/interests"}
+  - {from: List, to: Webhook, type: has_many, via: "/lists/{list_id}/webhooks"}
+  - {from: Segment, to: Member, type: has_many, via: "/segments/{segment_id}/members"}
+  - {from: Member, to: List, type: belongs_to, via: list_id}
+  - {from: Campaign, to: List, type: belongs_to, via: recipients.list_id}
+  - {from: Campaign, to: Template, type: has_one, via: settings.template_id}
+  - {from: Campaign, to: CampaignContent, type: has_one, via: "/campaigns/{campaign_id}/content"}
+  - {from: Campaign, to: Report, type: has_one, via: "/reports/{campaign_id}"}
+  - {from: Campaign, to: CampaignFolder, type: belongs_to, via: settings.folder_id}
+  - {from: Template, to: TemplateFolder, type: belongs_to, via: folder_id}
+  - {from: Automation, to: AutomationEmail, type: has_many, via: "/automations/{workflow_id}/emails"}
+  - {from: Automation, to: List, type: belongs_to, via: recipients.list_id}
+  - {from: Store, to: Product, type: has_many, via: "/ecommerce/stores/{store_id}/products"}
+  - {from: Store, to: Order, type: has_many, via: "/ecommerce/stores/{store_id}/orders"}
+  - {from: Store, to: EcommerceCustomer, type: has_many, via: "/ecommerce/stores/{store_id}/customers"}
+  - {from: Order, to: EcommerceCustomer, type: belongs_to, via: customer.id}
+  - {from: TxMessage, to: Subaccount, type: belongs_to, via: subaccount}
+  - {from: TxMessage, to: TxTemplate, type: has_one, via: template_name}
+  - {from: IpPool, to: SenderDomain, type: has_many, via: pool sending domains}

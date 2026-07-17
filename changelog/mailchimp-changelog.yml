@@ -1,0 +1,45 @@
+generated: '2026-06-20'
+method: searched
+source: https://mailchimp.com/developer/release-notes/
+docs: https://mailchimp.com/developer/release-notes/
+description: >-
+  Structured capture of the recent window of Mailchimp's dated developer release
+  notes (covering both the Marketing and Transactional APIs). The live release
+  notes are the source of truth; this records the most recent entries. Mailchimp
+  does not use semantic version tags — changes are announced by date.
+versioning:
+  scheme: 'date-announced (major APIs are URI-path versioned: Marketing v3.0, Transactional v1.0)'
+  detail: lifecycle/mailchimp-lifecycle.yml
+entries:
+  - date: '2025-08-19'
+    title: Mailchimp Transactional status added to server status page
+    additions:
+      - Live status tracking for Transactional API servers on the Mailchimp status page.
+  - date: '2025-08-07'
+    title: New Audiences endpoints (BETA)
+    additions:
+      - Beta endpoints to create contacts using SMS numbers without an email address.
+  - date: '2024-12-06'
+    title: Overwriting campaign_id and outreach_id
+    changes:
+      - System auto-overwrites campaign_id and outreach_id to align with the new attribution model.
+  - date: '2024-06-17'
+    title: Webhook retry interval increased
+    changes:
+      - Webhooks now retry up to 20 times at 15-25 minute intervals before being disabled.
+  - date: '2024-02-12'
+    title: Updated Mailchimp Transactional client libraries
+    changes:
+      - PHP and Node.js libraries updated for PHP 8.2 compatibility and an Axios security fix.
+  - date: '2023-12-19'
+    title: New sending domain authentication requirements
+    breaking:
+      - DKIM and DMARC policy requirements enforced starting 2024-03-15.
+  - date: '2023-06-17'
+    title: Response code updated for invalid template name
+    breaking:
+      - Invalid template requests now return HTTP 404 instead of HTTP 500.
+  - date: '2023-06-05'
+    title: Retiring legacy TLS protocol versions
+    breaking:
+      - TLS 1.0/1.1 support ended 2023-07-18; TLS 1.2+ now required.

@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Mailchimp Marketing API
+  version: 1.0.0
+generated: '2026-06-20'
+method: generated
+extends: openapi/mailchimp-marketing-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: mailchimp
+      x-apievangelist-api: mailchimp:mailchimp-marketing-api
+      x-apievangelist-artifacts:
+        authentication: authentication/mailchimp-authentication.yml
+        errors: errors/mailchimp-problem-types.yml
+        conventions: conventions/mailchimp-conventions.yml
+        lifecycle: lifecycle/mailchimp-lifecycle.yml
+        data-model: data-model/mailchimp-data-model.yml
+        rate-limits: rate-limits/mailchimp-rate-limits.yml
+      x-apievangelist-agentic-access: agentic-access/mailchimp-agentic-access.yml
+  - target: $.info
+    update:
+      x-mailchimp-datacenter-note: >-
+        The <dc> in the host (e.g. us19) is the datacenter suffix of your API
+        key (the part after the dash) or the dc field from the OAuth metadata
+        endpoint. Replace the openapi server host accordingly.

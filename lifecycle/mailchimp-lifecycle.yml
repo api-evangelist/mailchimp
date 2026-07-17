@@ -1,0 +1,52 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://mailchimp.com/developer/release-notes/,
+  https://mailchimp.com/developer/marketing/docs/fundamentals/,
+  https://status.mailchimp.com/, and version prefixes in the OpenAPI servers[].
+description: >-
+  Versioning, deprecation, and operational-lifecycle posture for the Mailchimp
+  Marketing API (v3, URI-path versioned) and the Transactional/Mandrill API
+  (v1.0). Mailchimp versions by major URI path and announces changes via dated
+  release notes; it does not publish RFC 8594 Sunset/Deprecation headers.
+versioning:
+  - api: mailchimp:mailchimp-marketing-api
+    scheme: uri-path
+    current: '3.0'
+    host: https://<dc>.api.mailchimp.com/3.0
+    docs: https://mailchimp.com/developer/marketing/docs/fundamentals/
+    notes: >-
+      The <dc> segment is the datacenter suffix derived from the API key (part
+      after the dash) or the OAuth metadata endpoint.
+  - api: mailchimp:mailchimp-transactional-api
+    scheme: uri-path
+    current: '1.0'
+    host: https://mandrillapp.com/api/1.0
+    docs: https://mailchimp.com/developer/transactional/docs/fundamentals/
+deprecation:
+  policy_url: https://mailchimp.com/developer/release-notes/
+  changelog: https://mailchimp.com/developer/release-notes/
+  sunset_header: false
+  deprecation_header: false
+  notes: >-
+    Changes (new endpoints, behavior changes, retirements) are announced in the
+    dated release notes rather than via RFC 8594 headers. Notable historical
+    changes: TLS 1.0/1.1 retired (2023-07-18, TLS 1.2+ required); invalid
+    template name now returns 404 instead of 500 (2023-06-17); new sending
+    domain authentication (DKIM/DMARC) enforced 2024-03-15.
+sla:
+  url: https://mailchimp.com/legal/api_use/
+  public_uptime_target: null
+  notes: No public numeric uptime SLA is published for the developer APIs.
+status_page: https://status.mailchimp.com/
+status_notes: >-
+  Transactional (Mandrill) status was added to the Mailchimp status page on
+  2025-08-19.
+deprecated_operations: []
+deprecated_products:
+  - name: Mailchimp Open Commerce (Reaction Commerce)
+    status: discontinued
+    notes: >-
+      The open-source GraphQL commerce stack (formerly Reaction Commerce) has
+      been discontinued; documentation remains available but the project is no
+      longer maintained.

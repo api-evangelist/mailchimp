@@ -1,0 +1,75 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from openapi/mailchimp-marketing-api-openapi.yml (securityDefinitions,
+  the Problem Detail Document schema, count/offset pagination parameters) and
+  openapi/mailchimp-transactional-api-openapi.yml (apiKey scheme, Error schema),
+  plus Mailchimp OAuth and error documentation
+  (mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/,
+  /docs/errors/).
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      The Marketing API supports OAuth 2.0 authorization-code flow
+      (login.mailchimp.com/oauth2/authorize + /oauth2/token) for user-data
+      access; documented at
+      mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/.
+      Mailchimp OAuth grants full account access and does not use granular scopes.
+  - id: oidc
+    conforms: false
+    evidence: No /.well-known/openid-configuration on mailchimp.com or login.mailchimp.com (both 404).
+  - id: http-basic-auth
+    conforms: true
+    evidence: >-
+      Marketing API securityDefinitions declares basicAuth (any username + API
+      key as password).
+  - id: api-key-auth
+    conforms: true
+    evidence: >-
+      Transactional API uses an API key (JSON body "key" param or X-MC-ApiKey
+      header).
+  - id: rfc7807-problem-details
+    conforms: true
+    evidence: >-
+      Marketing API error responses are application/problem+json "Problem Detail
+      Document" objects (type/title/status/detail/instance), conforming to the
+      IETF draft-nottingham-http-problem-06 predecessor of RFC 7807.
+  - id: rfc9457-problem-details
+    conforms: partial
+    evidence: >-
+      Same problem+json envelope as RFC 7807/9457, but Mailchimp cites the older
+      draft-nottingham-06 rather than RFC 9457.
+  - id: json-api
+    conforms: false
+    evidence: Responses are plain JSON collections, not JSON:API documents.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Marketing API uses count/offset query-parameter pagination
+      (mailchimp.com/developer/marketing/docs/methods-parameters/#pagination).
+  - id: partial-response
+    conforms: true
+    evidence: >-
+      Marketing API supports fields/exclude_fields query parameters for sparse
+      field selection on most endpoints.
+  - id: webhooks
+    conforms: true
+    evidence: >-
+      Marketing API publishes webhooks (subscribe/unsubscribe/profile/cleaned/
+      upemail/campaign); captured in
+      openapi/mailchimp-marketing-webhooks-asyncapi.yml. Transactional publishes
+      message-event webhooks.
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header is documented; PUT operations
+      (putListsIdMembersId) provide upsert-style idempotence by resource id.
+  - id: fhir-r4
+    conforms: false
+  - id: scim2
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: grpc
+    conforms: false

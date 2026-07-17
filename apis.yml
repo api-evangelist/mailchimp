@@ -16,6 +16,8 @@ apis:
     type: Documentation
   - url: openapi/mailchimp-marketing-api-openapi.yml
     type: OpenAPI
+  - url: overlays/mailchimp-marketing-api-overlay.yaml
+    type: Overlay
   - url: openapi/mailchimp-marketing-webhooks-asyncapi.yml
     type: AsyncAPI
   - url: json-schema/campaign.json
@@ -61,6 +63,8 @@ apis:
     type: Documentation
   - url: openapi/mailchimp-transactional-api-openapi.yml
     type: OpenAPI
+  - url: overlays/mailchimp-transactional-api-overlay.yaml
+    type: Overlay
   - url: json-ld/context.jsonld
     type: JSONLD
   - url: https://mailchimp.com/developer/transactional/guides/quick-start/
@@ -121,6 +125,30 @@ image: https://mailchimp.com/release/plums/cxp/images/apple-touch-icon.png
 common:
 - type: AgenticAccess
   url: agentic-access/mailchimp-agentic-access.yml
+- type: Packages
+  url: packages/mailchimp-packages.yml
+- type: WellKnown
+  url: well-known/mailchimp-well-known.yml
+- type: SecurityTxt
+  url: well-known/mailchimp-security.txt
+- type: MCPServer
+  url: mcp/mailchimp-mcp.yml
+- type: LLMsTxt
+  url: llms/mailchimp-llms.txt
+- type: Conformance
+  url: conformance/mailchimp-conformance.yml
+- type: ErrorCatalog
+  url: errors/mailchimp-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/mailchimp-lifecycle.yml
+- type: Conventions
+  url: conventions/mailchimp-conventions.yml
+- type: ChangeLog
+  url: changelog/mailchimp-changelog.yml
+- type: DataModel
+  url: data-model/mailchimp-data-model.yml
+- type: Sandbox
+  url: sandbox/mailchimp-sandbox.yml
 - type: VulnerabilityDisclosure
   url: security/mailchimp-vulnerability-disclosure.yml
 - type: DomainSecurity
@@ -350,7 +378,7 @@ common:
 - url: https://mailchimp.com/developer/marketing/docs/mobile-sdk/
   type: SDKs
 created: 2023/11/23
-modified: '2026-05-30'
+modified: '2026-06-20'
 description: >-
   Mailchimp is an Intuit company providing a marketing automation platform and email marketing service for managing
   mailing lists, creating email marketing campaigns, and automating marketing workflows.

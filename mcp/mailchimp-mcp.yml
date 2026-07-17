@@ -1,0 +1,73 @@
+generated: '2026-06-20'
+method: searched
+status: published
+source: https://mailchimp.com/developer/transactional/guides/how-to-use-mailchimps-transactional-messaging-mcp/
+description: >-
+  Mailchimp publishes an official hosted MCP server for the Transactional
+  (Mandrill) Messaging API. It exposes nine tools that mirror what the
+  Transactional API can already do, plus onboarding/diagnosis helpers. There is
+  no official Mailchimp Marketing API MCP server (only third-party
+  implementations exist), so the Marketing surface is left as a derived
+  candidate below.
+servers:
+  - name: mailchimp-transactional
+    api: mailchimp:mailchimp-transactional-api
+    transport: http
+    url: https://mandrillapp.com/mcp
+    authentication:
+      type: bearer
+      detail: API key passed as a Bearer token in the Authorization header.
+    status: published
+    tools:
+      - name: account_status
+        description: Check Transactional account status.
+      - name: build_template
+        description: Build/construct a message template.
+      - name: call_api
+        description: Call a Transactional Messaging API endpoint.
+      - name: describe_api
+        description: Describe a specific API endpoint (parameters, schema).
+      - name: diagnose_failed_send
+        description: Diagnose why a message send failed.
+      - name: integrate_api
+        description: Guidance for integrating with the Transactional API.
+      - name: list_api
+        description: List available Transactional Messaging API endpoints.
+      - name: onboarding
+        description: Onboarding assistance for Transactional Messaging.
+      - name: submit_feedback
+        description: Submit feedback to Mailchimp.
+  - name: mailchimp-marketing
+    api: mailchimp:mailchimp-marketing-api
+    transport: http
+    status: candidate
+    source_note: >-
+      No official Mailchimp Marketing MCP server is published. The tools below
+      are a derived candidate set mapped from marquee Marketing API operations
+      in openapi/mailchimp-marketing-api-openapi.yml (one tool per operation).
+      This is a starting point, not a provider claim.
+    tools:
+      - name: list_audiences
+        description: List audiences (lists) in the account.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#getLists
+      - name: add_or_update_member
+        description: Add or update an audience member.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#putListsIdMembersId
+      - name: add_member_tags
+        description: Add or remove tags on an audience member.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#postListMemberTags
+      - name: create_campaign
+        description: Create a campaign.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#postCampaigns
+      - name: set_campaign_content
+        description: Set the HTML/content of a campaign.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#putCampaignsIdContent
+      - name: send_campaign
+        description: Send a campaign.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#postCampaignsIdActionsSend
+      - name: get_campaign_report
+        description: Get the report for a campaign.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#getReportsId
+      - name: list_automations
+        description: List automation workflows.
+        source_operation: openapi/mailchimp-marketing-api-openapi.yml#getAutomations

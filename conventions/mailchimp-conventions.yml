@@ -1,0 +1,76 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://mailchimp.com/developer/marketing/docs/methods-parameters/,
+  https://mailchimp.com/developer/marketing/docs/fundamentals/,
+  https://mailchimp.com/developer/transactional/docs/fundamentals/, and derived
+  from openapi/*.yml. Cross-cutting request/response semantics that apply across
+  every operation, not any single endpoint.
+description: >-
+  How the Mailchimp Marketing (v3, REST) and Transactional (Mandrill, RPC-style
+  POST) APIs behave across operations: authentication, pagination, partial
+  responses, batch operations, error envelope, rate-limit signaling, and
+  versioning.
+apis:
+  - api: mailchimp:mailchimp-marketing-api
+    base_url: https://<dc>.api.mailchimp.com/3.0
+    api_style: REST over HTTPS, JSON requests and responses
+    datacenter:
+      required: true
+      detail: >-
+        The <dc> host prefix (e.g. us19) is the suffix of the API key (part
+        after the dash) or the "dc" field from the OAuth metadata endpoint.
+    authentication:
+      schemes: [http-basic, oauth2]
+      basic: Any username + API key as the password.
+      oauth2: >-
+        Authorization-code flow via login.mailchimp.com/oauth2/authorize and
+        /oauth2/token; grants full account access (no granular scopes).
+      detail: authentication/mailchimp-authentication.yml
+    pagination:
+      style: offset
+      params: {count: max records (default 10, max 1000), offset: records to skip (default 0)}
+      response_fields: [total_items]
+      docs: https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination
+    partial_response:
+      supported: true
+      params: [fields, exclude_fields]
+      detail: Comma-separated field lists; dot notation for sub-objects.
+    batch:
+      supported: true
+      mechanism: POST /batches (batch operations endpoint)
+      limits: {ops_per_request: 1000, open_batches: 500}
+      docs: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+    idempotency:
+      header: null
+      detail: >-
+        No Idempotency-Key header; PUT endpoints (e.g. putListsIdMembersId) give
+        upsert idempotence keyed on the resource id (subscriber hash).
+    method_override:
+      header: X-HTTP-Method-Override
+      detail: Only usable with POST.
+    error_envelope:
+      media_type: application/problem+json
+      detail: errors/mailchimp-problem-types.yml
+    rate_limit_signaling:
+      concurrency_limit: 10 simultaneous connections per user
+      webhook_backpressure: 500 pending webhook events max
+      response: HTTP 429 Too Many Requests
+      detail: rate-limits/mailchimp-rate-limits.yml
+    versioning:
+      detail: lifecycle/mailchimp-lifecycle.yml
+  - api: mailchimp:mailchimp-transactional-api
+    base_url: https://mandrillapp.com/api/1.0
+    api_style: RPC-style; every call is an HTTP POST to /1.0/<method>.json
+    authentication:
+      schemes: [api-key]
+      detail: >-
+        API key sent as the "key" parameter in the JSON POST body (or via the
+        X-MC-ApiKey header).
+    request_format: JSON body on every POST; no query-string parameters.
+    error_envelope:
+      media_type: application/json
+      shape: {status: error, code: <int>, name: <string>, message: <string>}
+      detail: errors/mailchimp-problem-types.yml
+    test_mode:
+      detail: sandbox/mailchimp-sandbox.yml

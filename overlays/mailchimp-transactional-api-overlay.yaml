@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Mailchimp Transactional API
+  version: 1.0.0
+generated: '2026-06-20'
+method: generated
+extends: openapi/mailchimp-transactional-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: mailchimp
+      x-apievangelist-api: mailchimp:mailchimp-transactional-api
+      x-apievangelist-artifacts:
+        authentication: authentication/mailchimp-authentication.yml
+        errors: errors/mailchimp-problem-types.yml
+        conventions: conventions/mailchimp-conventions.yml
+        sandbox: sandbox/mailchimp-sandbox.yml
+        mcp: mcp/mailchimp-mcp.yml
+      x-apievangelist-mcp-server: https://mandrillapp.com/mcp
+  - target: $.info
+    update:
+      x-mailchimp-transactional-note: >-
+        All Transactional (Mandrill) calls are HTTP POST with the API key in the
+        JSON body "key" parameter (or the X-MC-ApiKey header). A test API key
+        exercises the API in test mode without delivering mail — see
+        sandbox/mailchimp-sandbox.yml.
