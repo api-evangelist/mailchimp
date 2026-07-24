@@ -1,0 +1,1061 @@
+swagger: '2.0'
+info:
+  version: 3.0.55
+  title: Mailchimp Marketing Abuse IPs API
+  contact:
+    name: Mailchimp API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/marketing.json
+  description: '
+
+    The Mailchimp Marketing API provides programmatic access to Mailchimp data
+
+    and functionality, allowing developers to build custom features to do
+
+    things like sync email activity and campaign analytics with their
+
+    database, manage audiences and campaigns, and more.'
+host: server.api.mailchimp.com
+basePath: /3.0
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+- application/problem+json
+security:
+- basicAuth: []
+tags:
+- name: IPs
+  description: Manage dedicated IP addresses associated with the account.
+paths:
+  /ips/list:
+    post:
+      operationId: postIpsList
+      summary: Mailchimp List Dedicated Ips
+      description: Get the list of dedicated IP addresses associated with the account, including their pool assignments, warmup status, and sending statistics.
+      tags:
+      - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+            examples:
+              PostipslistRequestExample:
+                summary: Default postIpsList request
+                x-microcks-default: true
+                value:
+                  key: example_value
+      responses:
+        '200':
+          description: An array of dedicated IP objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DedicatedIP'
+              examples:
+                Postipslist200Example:
+                  summary: Default postIpsList 200 response
+                  x-microcks-default: true
+                  value:
+                  - ip: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    pool: example_value
+                    domain: example_value
+                    custom_dns:
+                      enabled: true
+                      valid: '500123'
+                      error: example_value
+                    warmup:
+                      warming_up: true
+                      start_at: '2026-01-15T10:30:00Z'
+                      end_at: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ips/info:
+    post:
+      operationId: postIpsInfo
+      summary: Mailchimp Get Ip Info
+      description: Get detailed information about a specific dedicated IP address.
+      tags:
+      - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - ip
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                ip:
+                  type: string
+                  description: The dedicated IP address.
+            examples:
+              PostipsinfoRequestExample:
+                summary: Default postIpsInfo request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  ip: example_value
+      responses:
+        '200':
+          description: The dedicated IP details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DedicatedIP'
+              examples:
+                Postipsinfo200Example:
+                  summary: Default postIpsInfo 200 response
+                  x-microcks-default: true
+                  value:
+                    ip: example_value
+                    created_at: '2026-01-15T10:30:00Z'
+                    pool: example_value
+                    domain: example_value
+                    custom_dns:
+                      enabled: true
+                      valid: '500123'
+                      error: example_value
+                    warmup:
+                      warming_up: true
+                      start_at: '2026-01-15T10:30:00Z'
+                      end_at: '2026-01-15T10:30:00Z'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ips/list-pools:
+    post:
+      operationId: postIpsListPools
+      summary: Mailchimp List Ip Pools
+      description: Get the list of IP pools defined for the account, with the IPs assigned to each pool.
+      tags:
+      - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+            examples:
+              PostipslistpoolsRequestExample:
+                summary: Default postIpsListPools request
+                x-microcks-default: true
+                value:
+                  key: example_value
+      responses:
+        '200':
+          description: An array of IP pool objects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IPPool'
+              examples:
+                Postipslistpools200Example:
+                  summary: Default postIpsListPools 200 response
+                  x-microcks-default: true
+                  value:
+                  - name: Example Title
+                    created_at: '2026-01-15T10:30:00Z'
+                    ips:
+                    - {}
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ips/create-pool:
+    post:
+      operationId: postIpsCreatePool
+      summary: Mailchimp Create an Ip Pool
+      description: Create a new IP pool for organizing dedicated IPs.
+      tags:
+      - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - pool
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                pool:
+                  type: string
+                  description: The name of the new pool.
+            examples:
+              PostipscreatepoolRequestExample:
+                summary: Default postIpsCreatePool request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  pool: example_value
+      responses:
+        '200':
+          description: The newly created IP pool.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPPool'
+              examples:
+                Postipscreatepool200Example:
+                  summary: Default postIpsCreatePool 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    created_at: '2026-01-15T10:30:00Z'
+                    ips:
+                    - ip: example_value
+                      created_at: '2026-01-15T10:30:00Z'
+                      pool: example_value
+                      domain: example_value
+                      custom_dns: {}
+                      warmup: {}
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /ips/delete-pool:
+    post:
+      operationId: postIpsDeletePool
+      summary: Mailchimp Delete an Ip Pool
+      description: Delete an IP pool. IPs in the pool will be moved to the default pool if one exists.
+      tags:
+      - IPs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - pool
+              properties:
+                key:
+                  type: string
+                  description: A valid Mandrill API key.
+                pool:
+                  type: string
+                  description: The name of the pool to delete.
+            examples:
+              PostipsdeletepoolRequestExample:
+                summary: Default postIpsDeletePool request
+                x-microcks-default: true
+                value:
+                  key: example_value
+                  pool: example_value
+      responses:
+        '200':
+          description: Deletion confirmation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pool:
+                    type: string
+                    description: The name of the pool that was deleted.
+                  deleted:
+                    type: boolean
+                    description: Whether the pool was deleted.
+              examples:
+                Postipsdeletepool200Example:
+                  summary: Default postIpsDeletePool 200 response
+                  x-microcks-default: true
+                  value:
+                    pool: example_value
+                    deleted: true
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/InvalidKeyError'
+        '500':
+          $ref: '#/components/responses/GeneralError'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  responses:
+    ValidationError:
+      description: The request parameters were invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    GeneralError:
+      description: An unexpected error occurred on the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidKeyError:
+      description: The provided API key is not valid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      description: A standard error response from the Mandrill API.
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+          description: Always "error" for error responses.
+          example: error
+        code:
+          type: integer
+          description: The numeric error code.
+          example: 10
+        name:
+          type: string
+          description: The name/type of the error (e.g., Invalid_Key, ValidationError).
+          example: Example Title
+        message:
+          type: string
+          description: A human-readable description of the error.
+          example: example_value
+    DedicatedIP:
+      type: object
+      description: Information about a dedicated IP address.
+      properties:
+        ip:
+          type: string
+          description: The dedicated IP address.
+          example: example_value
+        created_at:
+          type: string
+          format: date-time
+          description: When the IP was provisioned.
+          example: '2026-01-15T10:30:00Z'
+        pool:
+          type: string
+          description: The IP pool this address belongs to.
+          example: example_value
+        domain:
+          type: string
+          description: The reverse DNS domain for the IP.
+          example: example_value
+        custom_dns:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether custom reverse DNS is enabled.
+            valid:
+              type: boolean
+              description: Whether the custom DNS is valid.
+            error:
+              type: string
+              description: Any DNS error.
+          description: Custom DNS settings for the IP.
+          example: example_value
+        warmup:
+          type: object
+          properties:
+            warming_up:
+              type: boolean
+              description: Whether the IP is currently in warmup mode.
+            start_at:
+              type: string
+              format: date-time
+              description: When the warmup started.
+            end_at:
+              type: string
+              format: date-time
+              description: When the warmup is expected to end.
+          description: IP warmup status.
+          example: example_value
+    IPPool:
+      type: object
+      description: An IP pool grouping dedicated IPs.
+      properties:
+        name:
+          type: string
+          description: The pool name.
+          example: Example Title
+        created_at:
+          type: string
+          format: date-time
+          description: When the pool was created.
+          example: '2026-01-15T10:30:00Z'
+        ips:
+          type: array
+          items:
+            $ref: '#/components/schemas/DedicatedIP'
+          description: The dedicated IPs in this pool.
+          example: []
+securityDefinitions:
+  basicAuth:
+    type: basic
+externalDocs:
+  description: Learn more with the full Mailchimp API documentation.
+  url: https://mailchimp.com/developer/marketing/
+x-doc-structure:
+  resources:
+    root:
+      title: API Root
+      description: The API root resource links to all other resources available in the API. Calling the root directory also returns details about the Mailchimp user account.
+      paths:
+      - /
+      subResources: []
+    chimp-chatter:
+      title: Chimp Chatter Activity
+      description: Get the latest Chimp Chatter activity from your account.
+      paths:
+      - /activity-feed/chimp-chatter
+    authorized-apps:
+      title: Authorized Apps
+      description: Manage registered, connected apps for your Mailchimp account with the Authorized Apps endpoints.
+      paths:
+      - /authorized-apps
+      - /authorized-apps/{app_id}
+    automation:
+      title: Automations
+      description: Mailchimp's classic automations feature lets you build a series of emails that send to subscribers when triggered by a specific date, activity, or event. Use the API to manage Automation workflows, emails, and queues. Does not include Customer Journeys.
+      paths:
+      - /automations
+      - /automations/{workflow_id}
+      - /automations/{workflow_id}/actions/start-all-emails
+      - /automations/{workflow_id}/actions/pause-all-emails
+      - /automations/{workflow_id}/actions/archive
+      subResources:
+      - automation-email
+      - automation-removed-subscribers
+    automation-email:
+      title: Emails
+      description: Manage individual emails in a classic automation workflow.
+      paths:
+      - /automations/{workflow_id}/emails
+      - /automations/{workflow_id}/emails/{workflow_email_id}
+      - /automations/{workflow_id}/emails/{workflow_email_id}/actions/pause
+      - /automations/{workflow_id}/emails/{workflow_email_id}/actions/start
+      subResources:
+      - automation-email-queue
+    automation-email-queue:
+      title: Queue
+      description: Manage list member queues for classic automation emails.
+      paths:
+      - /automations/{workflow_id}/emails/{workflow_email_id}/queue
+      - /automations/{workflow_id}/emails/{workflow_email_id}/queue/{subscriber_hash}
+      subResources: []
+    automation-removed-subscribers:
+      title: Removed Subscribers
+      description: Remove subscribers from a classic automation workflow.
+      paths:
+      - /automations/{workflow_id}/removed-subscribers
+      - /automations/{workflow_id}/removed-subscribers/{subscriber_hash}
+      subResources: []
+    batch-operations:
+      title: Batch Operations
+      description: Use batch operations to complete multiple operations with a single call.
+      paths:
+      - /batches
+      - /batches/{batch_id}
+    batch-webhooks:
+      title: Batch Webhooks
+      description: 'Manage webhooks for batch operations. '
+      paths:
+      - /batch-webhooks
+      - /batch-webhooks/{batch_webhook_id}
+    account-exports:
+      title: Account Exports
+      description: Generate a new export or download a finished export.
+      paths:
+      - /account-exports
+      - /account-exports/{export_id}
+    campaigns:
+      title: Campaigns
+      description: Campaigns are how you send emails to your Mailchimp list. Use the Campaigns API calls to manage campaigns in your Mailchimp account.
+      paths:
+      - /campaigns
+      - /campaigns/{campaign_id}
+      - /campaigns/{campaign_id}/actions/cancel-send
+      - /campaigns/{campaign_id}/actions/send
+      - /campaigns/{campaign_id}/actions/schedule
+      - /campaigns/{campaign_id}/actions/unschedule
+      - /campaigns/{campaign_id}/actions/pause
+      - /campaigns/{campaign_id}/actions/resume
+      - /campaigns/{campaign_id}/actions/replicate
+      - /campaigns/{campaign_id}/actions/test
+      - /campaigns/{campaign_id}/actions/create-resend
+      subResources:
+      - campaign-feedback
+      - campaign-checklist
+      - campaign-content
+    campaign-feedback:
+      title: Feedback
+      description: Post comments, reply to team feedback, and send test emails while you're working together on a Mailchimp campaign.
+      paths:
+      - /campaigns/{campaign_id}/feedback
+      - /campaigns/{campaign_id}/feedback/{feedback_id}
+    campaign-checklist:
+      title: Send Checklist
+      description: Review the send checklist for your campaign, and resolve any issues before sending.
+      paths:
+      - /campaigns/{campaign_id}/send-checklist
+    campaign-content:
+      title: Content
+      description: Manage the HTML, plain-text, and template content for your Mailchimp campaigns.
+      paths:
+      - /campaigns/{campaign_id}/content
+    connected-sites:
+      title: Connected Sites
+      description: Manage sites you've connected to your Mailchimp account.
+      paths:
+      - /connected-sites
+      - /connected-sites/{connected_site_id}
+      - /connected-sites/{connected_site_id}/actions/verify-script-installation
+    conversations:
+      title: Conversations
+      description: Conversation tracking lets you view subscribers' replies to your campaigns in your Mailchimp account.
+      paths:
+      - /conversations
+      - /conversations/{conversation_id}
+      subResources:
+      - conversation-messages
+    conversation-messages:
+      title: Messages
+      description: Manage messages in a specific campaign conversation.
+      paths:
+      - /conversations/{conversation_id}/messages
+      - /conversations/{conversation_id}/messages/{message_id}
+    customer-journeys-journeys-steps-actions:
+      title: Customer Journeys
+      description: Manage Customer Journey automated workflows
+      paths:
+      - /customer-journeys/journeys/{journey_id}/steps/{step_id}/actions/trigger
+      subResources: []
+    file-manager:
+      title: File Manager
+      description: Manage files for your Mailchimp account. The File Manager is a place to store images, documents, and other files you include or link to in your campaigns, templates, or signup forms.
+      paths: []
+      subResources:
+      - file-manager-folders
+      - file-manager-files
+    file-manager-folders:
+      title: File Manager Folders
+      description: Manage specific folders in the File Manager for your Mailchimp account.
+      paths:
+      - /file-manager/folders
+      - /file-manager/folders/{folder_id}
+      subResources:
+      - file-manager-folders-files
+    file-manager-files:
+      title: File Manager Files
+      description: Manage specific files in the File Manager for your Mailchimp account.
+      paths:
+      - /file-manager/files
+      - /file-manager/files/{file_id}
+    file-manager-folders-files:
+      title: Files in Folder
+      description: Manage specific files in a folder.
+      paths:
+      - /file-manager/folders/{folder_id}/files
+    landing-pages:
+      title: Landing Pages
+      description: Manage your Landing Pages, including publishing and unpublishing.
+      paths:
+      - /landing-pages
+      - /landing-pages/{page_id}
+      - /landing-pages/{page_id}/actions/publish
+      - /landing-pages/{page_id}/actions/unpublish
+      subResources:
+      - landing-pages_content
+    landing-pages_content:
+      title: Content
+      description: The HTML content for your Mailchimp landing pages.
+      paths:
+      - /landing-pages/{page_id}/content
+    lists:
+      title: Lists/Audiences
+      description: Your Mailchimp list, also known as your audience, is where you store and manage all of your contacts.
+      paths:
+      - /lists
+      - /lists/{list_id}
+      subResources:
+      - interest-categories
+      - list-segments
+      - abuse-reports
+      - list-activity
+      - list-clients
+      - list-growth-history
+      - list-imports
+      - list-members
+      - list-merges
+      - list-webhooks
+      - list-signup-forms
+      - list-locations
+      - lists-tags-search
+      - prebuilt-segments
+      - list-preview-segment
+      - list-surveys
+      - list-sms-program
+    list-members:
+      title: Members
+      description: Manage members of a specific Mailchimp list, including currently subscribed, unsubscribed, and bounced members.
+      paths:
+      - /lists/{list_id}/members
+      - /lists/{list_id}/members/{subscriber_hash}
+      - /lists/{list_id}/members/{subscriber_hash}/actions/delete-permanent
+      subResources:
+      - list-member-activity
+      - list-member-activity-feed
+      - list-member-goal
+      - list-member-notes
+      - list-member-tags
+      - list-member-events
+    list-merges:
+      title: Merge Fields
+      description: Manage merge fields for an audience. See [Merge Field documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/) for more.
+      paths:
+      - /lists/{list_id}/merge-fields
+      - /lists/{list_id}/merge-fields/{merge_id}
+      subResources: []
+    abuse-reports:
+      title: Abuse Reports
+      description: Manage abuse complaints for a specific list. An abuse complaint occurs when your recipient reports an email as spam in their mail program.
+      paths:
+      - /lists/{list_id}/abuse-reports
+      - /lists/{list_id}/abuse-reports/{report_id}
+    list-activity:
+      title: Activity
+      description: Get recent daily, aggregated activity stats for your list. For example, view unsubscribes, signups, total emails sent, opens, clicks, and more, for up to 180 days.
+      paths:
+      - /lists/{list_id}/activity
+    list-clients:
+      title: Clients
+      description: Get information about the most popular email clients for subscribers in a specific Mailchimp list.
+      paths:
+      - /lists/{list_id}/clients
+    list-growth-history:
+      title: Growth History
+      description: View a summary of the month-by-month growth activity for a specific list.
+      paths:
+      - /lists/{list_id}/growth-history
+      - /lists/{list_id}/growth-history/{month}
+    list-webhooks:
+      title: Webhooks
+      description: Manage webhooks for a specific Mailchimp list.
+      paths:
+      - /lists/{list_id}/webhooks
+      - /lists/{list_id}/webhooks/{webhook_id}
+    list-surveys:
+      title: Surveys
+      description: Get survey data for this audience.
+      paths:
+      - /lists/{list_id}/surveys
+      - /lists/{list_id}/surveys/{survey_id}
+      - /lists/{list_id}/surveys/{survey_id}/actions/publish
+      - /lists/{list_id}/surveys/{survey_id}/actions/unpublish
+      - /lists/{list_id}/surveys/{survey_id}/actions/create-email
+    interest-categories:
+      title: Interest Categories
+      description: Manage interest categories for a specific list. Interest categories organize interests, which are used to group subscribers based on their preferences. These correspond to 'group titles' in the Mailchimp application.
+      paths:
+      - /lists/{list_id}/interest-categories
+      - /lists/{list_id}/interest-categories/{interest_category_id}
+      subResources:
+      - interests
+    interests:
+      title: Interests
+      description: Manage interests for a specific Mailchimp list. Assign subscribers to interests to group them together. Interests are referred to as 'group names' in the Mailchimp application.
+      paths:
+      - /lists/{list_id}/interest-categories/{interest_category_id}/interests
+      - /lists/{list_id}/interest-categories/{interest_category_id}/interests/{interest_id}
+    lists-tags-search:
+      title: Tag Search
+      description: Search for tags on a list by name.
+      paths:
+      - /lists/{list_id}/tag-search
+    list-segments:
+      title: Segments
+      description: Manage segments and tags for a specific Mailchimp list. A segment is a section of your list that includes only those subscribers who share specific common field information. Tags are labels you create to help organize your contacts.
+      paths:
+      - /lists/{list_id}/segments
+      - /lists/{list_id}/segments/{segment_id}
+      subResources:
+      - list-segment-members
+    list-segment-members:
+      title: Segment Members
+      description: Manage list members in a saved segment.
+      paths:
+      - /lists/{list_id}/segments/{segment_id}/members
+      - /lists/{list_id}/segments/{segment_id}/members/{subscriber_hash}
+    list-member-activity:
+      title: Member Activity
+      description: Get details about a subscriber's recent activity. Use the new activity-feed endpoint to access more events for a given contact.
+      paths:
+      - /lists/{list_id}/members/{subscriber_hash}/activity
+    list-member-activity-feed:
+      title: Member Activity Feed
+      description: Get details about a subscriber's recent activity.
+      paths:
+      - /lists/{list_id}/members/{subscriber_hash}/activity-feed
+    list-member-goal:
+      title: Member Goals
+      description: Get information about recent goal events for a specific list member.
+      paths:
+      - /lists/{list_id}/members/{subscriber_hash}/goals
+    list-member-notes:
+      title: Member Notes
+      description: Retrieve recent notes for a specific list member.
+      paths:
+      - /lists/{list_id}/members/{subscriber_hash}/notes
+      - /lists/{list_id}/members/{subscriber_hash}/notes/{note_id}
+    list-member-tags:
+      title: Member Tags
+      description: Manage all the tags that have been assigned to a contact.
+      paths:
+      - /lists/{list_id}/members/{subscriber_hash}/tags
+    list-member-events:
+      title: Events
+      description: 'Use the Events endpoint to collect website or in-app actions and trigger targeted automations. '
+      paths:
+      - /lists/{list_id}/members/{subscriber_hash}/events
+    list-signup-forms:
+      title: Signup Forms
+      description: Manage list signup forms.
+      paths:
+      - /lists/{list_id}/signup-forms
+    list-locations:
+      title: Locations
+      description: Get the locations (countries) that the list's subscribers have been tagged to based on geocoding their IP address.
+      paths:
+      - /lists/{list_id}/locations
+    reports:
+      title: Reports
+      description: 'Manage campaign reports for your Mailchimp account. All Reports endpoints are read-only. Mailchimp''s campaign and automation reports analyze clicks, opens, subscribers'' social activity, e-commerce data, and more. Note: Campaign IDs for A/B Testing Campaigns are available through the Campaign API Endpoint''s Read method.'
+      paths:
+      - /reports
+      - /reports/{campaign_id}
+      subResources:
+      - campaign-abuse
+      - campaign-advice
+      - click-reports
+      - domain-performance-reports
+      - eepurl-reports
+      - email-activity-reports
+      - location-reports
+      - sent-to-reports
+      - sub-reports
+      - unsub-reports
+      - open-reports
+      - campaign-ecommerce-product-activity
+    campaign-abuse:
+      title: Campaign Abuse
+      description: Get information about campaign abuse complaints.
+      paths:
+      - /reports/{campaign_id}/abuse-reports
+      - /reports/{campaign_id}/abuse-reports/{report_id}
+    campaign-advice:
+      title: Campaign Advice
+      description: Get recent feedback based on a campaign's statistics.
+      paths:
+      - /reports/{campaign_id}/advice
+    open-reports:
+      title: Campaign Open Reports
+      description: 'Get a detailed report about any emails in a specific campaign that were opened by the recipient. '
+      paths:
+      - /reports/{campaign_id}/open-details
+      - /reports/{campaign_id}/open-details/{subscriber_hash}
+    click-reports:
+      title: Click Reports
+      description: Get detailed information about links clicked in campaigns.
+      paths:
+      - /reports/{campaign_id}/click-details
+      - /reports/{campaign_id}/click-details/{link_id}
+      subResources:
+      - link-clickers
+    campaign-ecommerce-product-activity:
+      title: Ecommerce Product Activity
+      description: Ecommerce product activity report for a campaign.
+      paths:
+      - /reports/{campaign_id}/ecommerce-product-activity
+    link-clickers:
+      title: Click Reports Members
+      description: Get information about specific subscribers who clicked on links in a campaign.
+      paths:
+      - /reports/{campaign_id}/click-details/{link_id}/members
+      - /reports/{campaign_id}/click-details/{link_id}/members/{subscriber_hash}
+    domain-performance-reports:
+      title: Domain Performance
+      description: Get statistics for the top-performing domains from a campaign.
+      paths:
+      - /reports/{campaign_id}/domain-performance
+    eepurl-reports:
+      title: EepURL Reports
+      description: Get a summary of social activity for the campaign, tracked by EepURL.
+      paths:
+      - /reports/{campaign_id}/eepurl
+    email-activity-reports:
+      title: Email Activity
+      description: Get list member activity for a specific campaign.
+      paths:
+      - /reports/{campaign_id}/email-activity
+      - /reports/{campaign_id}/email-activity/{subscriber_hash}
+    location-reports:
+      title: Location
+      description: Get top open locations for a specific campaign.
+      paths:
+      - /reports/{campaign_id}/locations
+    sent-to-reports:
+      title: Sent To
+      description: Get details about campaign recipients.
+      paths:
+      - /reports/{campaign_id}/sent-to
+      - /reports/{campaign_id}/sent-to/{subscriber_hash}
+    sub-reports:
+      title: Sub-Reports
+      description: A list of reports for child campaigns of a specific parent campaign. For example, use this endpoint to view Multivariate, RSS, and A/B Testing Campaign reports.
+      paths:
+      - /reports/{campaign_id}/sub-reports
+    unsub-reports:
+      title: Unsubscribes
+      description: Get information about list members who unsubscribed from a specific campaign.
+      paths:
+      - /reports/{campaign_id}/unsubscribed
+      - /reports/{campaign_id}/unsubscribed/{subscriber_hash}
+    templates:
+      title: Templates
+      description: 'Manage your Mailchimp templates. A template is an HTML file used to create the layout and basic design for a campaign. '
+      paths:
+      - /templates
+      - /templates/{template_id}
+      subResources:
+      - template-default-content
+    template-default-content:
+      title: Default Content
+      description: Manage the default content for a Mailchimp template.
+      paths:
+      - /templates/{template_id}/default-content
+    template-folders:
+      title: Template Folders
+      description: Organize your templates using folders.
+      paths:
+      - /template-folders
+      - /template-folders/{folder_id}
+    campaign-folders:
+      title: Campaign Folders
+      description: Organize your campaigns using folders.
+      paths:
+      - /campaign-folders
+      - /campaign-folders/{folder_id}
+    ecommerce-stores:
+      title: E-commerce Stores
+      description: Connect your E-commerce Store to Mailchimp to take advantage of powerful reporting and personalization features and to learn more about your customers.
+      paths:
+      - /ecommerce/stores
+      - /ecommerce/stores/{store_id}
+      subResources:
+      - ecommerce-customers
+      - ecommerce-orders
+      - ecommerce-products
+      - ecommerce-carts
+      - ecommerce-promo-rules
+    ecommerce-customers:
+      title: Customers
+      description: Add Customers to your Store to track their orders and to view E-Commerce Data for your Mailchimp lists and campaigns. Each Customer is connected to a Mailchimp list member, so adding a Customer can also add or update a list member.
+      paths:
+      - /ecommerce/stores/{store_id}/customers
+      - /ecommerce/stores/{store_id}/customers/{customer_id}
+    ecommerce-promo-rules:
+      title: Promo Rules
+      description: Promo Rules help you create promo codes for your campaigns. Promo Rules define generic information about promo codes like expiration time, start time, amount of discount being offered etc. For a given promo rule you can define if it's a percentage discount or a fixed amount and if it applies for the order as a whole or if it's per item or free shipping. You can then create promo codes for this price rule. Promo codes contain the actual code that is applied at checkout along with some other information. Price Rules have one to many relationship with promo codes.
+      paths:
+      - /ecommerce/stores/{store_id}/promo-rules
+      - /ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}
+      subResources:
+      - ecommerce-promo-codes
+    ecommerce-promo-codes:
+      title: Promo Codes
+      description: Promo codes can be created for a given price rule. All the promo codes under a price rule share the generic information defined for that rule like the amount, type, expiration date etc. Promo code defines the more specific information about a promo code like the actual code, redemption_url, usage_count, etc that's unique to a code. Promo Code must be defined under a promo rule.
+      paths:
+      - /ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes
+      - /ecommerce/stores/{store_id}/promo-rules/{promo_rule_id}/promo-codes/{promo_code_id}
+    ecommerce-orders:
+      title: Orders
+      description: Orders represent successful e-commerce transactions, and this data can be used to provide more detailed campaign reports, track sales, and personalize emails to your targeted consumers, and view other e-commerce data in your Mailchimp account.
+      paths:
+      - /ecommerce/orders
+      - /ecommerce/stores/{store_id}/orders
+      - /ecommerce/stores/{store_id}/orders/{order_id}
+      subResources:
+      - ecommerce-order-lines
+    ecommerce-order-lines:
+      title: Order Lines
+      description: Each Order contains one or more Order Lines, which represent a specific Product Variant that a Customer purchases.
+      paths:
+      - /ecommerce/stores/{store_id}/orders/{order_id}/lines
+      - /ecommerce/stores/{store_id}/orders/{order_id}/lines/{line_id}
+    ecommerce-products:
+      title: Products
+      description: E-commerce items for sale in your store need to be created as Products so you can add the items to a Cart or an Order. Each Product requires at least one Product Variant.
+      paths:
+      - /ecommerce/stores/{store_id}/products
+      - /ecommerce/stores/{store_id}/products/{product_id}
+      subResources:
+      - ecommerce-product-variants
+      - ecommerce-product-images
+    ecommerce-product-variants:
+      title: Product Variants
+      description: A Product Variant represents a specific item for purchase, and is contained within a parent Product. At least one Product Variant is required for each Product.
+      paths:
+      - /ecommerce/stores/{store_id}/products/{product_id}/variants
+      - /ecommerce/stores/{store_id}/products/{product_id}/variants/{variant_id}
+    ecommerce-product-images:
+      title: Product Images
+      description: A Product Image represents a specific product image.
+      paths:
+      - /ecommerce/stores/{store_id}/products/{product_id}/images
+      - /ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}
+    ecommerce-carts:
+      title: Carts
+      description: Use Carts to represent unfinished e-commerce transactions. This can be used to create an Abandoned Cart workflow, or to save a consumers shopping cart pending a successful Order.
+      paths:
+      - /ecommerce/stores/{store_id}/carts
+      - /ecommerce/stores/{store_id}/carts/{cart_id}
+      subResources:
+      - ecommerce-cart-lines
+    ecommerce-cart-lines:
+      title: Cart Lines
+      description: Each Cart contains one or more Cart Lines, which represent a specific Product Variant that a Customer has added to their shopping cart.
+      paths:
+      - /ecommerce/stores/{store_id}/carts/{cart_id}/lines
+      - /ecommerce/stores/{store_id}/carts/{cart_id}/lines/{line_id}
+    facebook-ads:
+      title: Facebook Ads
+      description: Get information about Facebook Ads.
+      paths:
+      - /facebook-ads
+      - /facebook-ads/{outreach_id}
+    ping:
+      title: Ping
+      description: A health check endpoint for Mailchimp API 3.0.
+      paths:
+      - /ping
+    reporting:
+      title: Reporting
+      description: Reporting for various campaign types.
+      paths: []
+      subResources:
+      - reporting-facebook-ads
+      - reporting-google-ads
+      - reporting-landing-pages
+      - reporting-postcards
+      - reporting-social-posts
+      - reporting-surveys
+      - reporting-websites
+    reporting-facebook-ads:
+      title: Facebook Ads
+      description: 'Get information about Facebook Ad reports. '
+      paths:
+      - /reporting/facebook-ads
+      - /reporting/facebook-ads/{outreach_id}
+      - /reporting/facebook-ads/{outreach_id}/ecommerce-product-activity
+    reporting-landing-pages:
+      title: Landing Pages
+      description: Get information about Landing Page reports.
+      paths:
+      - /reporting/landing-pages
+      - /reporting/landing-pages/{outreach_id}
+    reporting-surveys:
+      title: Surveys
+      description: Get an overall report for a [hosted survey](https://mailchimp.com/help/create-a-survey/).
+      paths:
+      - /reporting/surveys
+      - /reporting/surveys/{survey_id}
+      subResources:
+      - reporting-surveys-questions
+      - reporting-surveys-responses
+    reporting-surveys-questions:
+      title: Survey Questions
+      description: Get reports by question on a [hosted survey](https://mailchimp.com/help/create-a-survey/).
+      paths:
+      - /reporting/surveys/{survey_id}/questions
+      - /reporting/surveys/{survey_id}/questions/{question_id}
+      subResources:
+      - reporting-surveys-questions-answers
+    reporting-surveys-questions-answers:
+      title: Survey Question Answers
+      description: Answers to specific questions on a [hosted survey](https://mailchimp.com/help/create-a-survey/).
+      paths:
+      - /reporting/surveys/{survey_id}/questions/{question_id}/answers
+    reporting-surveys-responses:
+      title: Survey Responses
+      description: Get survey response reports for a [hosted survey](https://mailchimp.com/help/create-a-survey/).
+      paths:
+      - /reporting/surveys/{survey_id}/responses
+      - /reporting/surveys/{survey_id}/responses/{response_id}
+    search-campaigns:
+      title: Search Campaigns
+      description: Search all of an account's campaigns for the specified query terms.
+      paths:
+      - /search-campaigns
+    search-members:
+      title: Search Members
+      description: Search the account or a specific list for members that match the specified query terms.
+      paths:
+      - /search-members
+    verified-domains:
+      x-hidden: false
+      title: Verified Domains
+      description: Manage the domains on your account that can be used for sending email campaigns.
+      paths:
+      - /verified-domains
+      - /verified-domains/{domain_name}
+      - /verified-domains/{domain_name}/actions/verify
+      subresources: []
