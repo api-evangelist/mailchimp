@@ -1,0 +1,198 @@
+{
+  "item": [
+    {
+      "id": "e4fa9fd2-a0ae-4310-8529-b6df5d71fabf",
+      "name": "Replicate",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "609e008b-6750-4c05-829c-8643ac01fd20",
+          "name": "Mailchimp Replicate Campaign",
+          "request": {
+            "name": "Mailchimp Replicate Campaign",
+            "description": {
+              "content": "Replicate a campaign in saved or send status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaigns",
+                ":campaign_id",
+                "actions",
+                "replicate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The unique id for the campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95350b67-05ef-4b1f-9ba8-269da7975534",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id",
+                    "actions",
+                    "replicate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique id for the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"variate\",\n  \"id\": \"string\",\n  \"web_id\": 1507,\n  \"parent_campaign_id\": \"string\",\n  \"create_time\": \"1982-09-15T00:30:56.121Z\",\n  \"archive_url\": \"string\",\n  \"long_archive_url\": \"string\",\n  \"status\": \"sending\",\n  \"emails_sent\": 9470,\n  \"send_time\": \"1983-03-01T18:25:34.145Z\",\n  \"content_type\": \"string\",\n  \"needs_block_refresh\": false,\n  \"resendable\": true,\n  \"recipients\": {\n    \"list_id\": \"string\",\n    \"list_name\": \"string\",\n    \"segment_text\": \"string\",\n    \"recipient_count\": 8816,\n    \"segment_opts\": {\n      \"saved_segment_id\": 7380,\n      \"prebuilt_segment_id\": \"subscribers-female\",\n      \"match\": \"all\",\n      \"conditions\": [\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    }\n  },\n  \"settings\": {\n    \"subject_line\": \"string\",\n    \"preview_text\": \"string\",\n    \"title\": \"string\",\n    \"from_name\": \"string\",\n    \"reply_to\": \"string\",\n    \"use_conversation\": false,\n    \"to_name\": \"string\",\n    \"folder_id\": \"string\",\n    \"authenticate\": true,\n    \"auto_footer\": false,\n    \"inline_css\": true,\n    \"auto_tweet\": true,\n    \"auto_fb_post\": [\n      \"string\",\n      \"string\"\n    ],\n    \"fb_comments\": false,\n    \"timewarp\": false,\n    \"template_id\": 319,\n    \"drag_and_drop\": true\n  },\n  \"variate_settings\": {\n    \"winner_criteria\": \"opens\",\n    \"winning_combination_id\": \"string\",\n    \"winning_campaign_id\": \"string\",\n    \"wait_time\": 9541,\n    \"test_size\": 1815,\n    \"subject_lines\": [\n      \"string\",\n      \"string\"\n    ],\n    \"send_times\": [\n      \"1976-02-05T07:20:46.944Z\",\n      \"2016-11-20T13:42:00.683Z\"\n    ],\n    \"from_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"reply_to_addresses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"contents\": [\n      \"string\",\n      \"string\"\n    ],\n    \"combinations\": [\n      {\n        \"id\": \"string\",\n        \"subject_line\": 4030,\n        \"send_time\": 328,\n        \"from_name\": 9405,\n        \"reply_to\": 7798,\n        \"content_description\": 6989,\n        \"recipients\": 336\n      },\n      {\n        \"id\": \"string\",\n        \"subject_line\": 1961,\n        \"send_time\": 4735,\n        \"from_name\": 1216,\n        \"reply_to\": 8712,\n        \"content_description\": 3295,\n        \"recipients\": 3824\n      }\n    ]\n  },\n  \"tracking\": {\n    \"opens\": false,\n    \"html_clicks\": true,\n    \"text_clicks\": true,\n    \"goal_tracking\": false,\n    \"ecomm360\": true,\n    \"google_analytics\": \"string\",\n    \"clicktale\": \"string\",\n    \"salesforce\": {\n      \"campaign\": false,\n      \"notes\": true\n    },\n    \"capsule\": {\n      \"notes\": false\n    }\n  },\n  \"rss_opts\": {\n    \"feed_url\": \"https://fk.rqCD4y6sY8LNW.ypVwzoFY-2p-sSWV8\",\n    \"frequency\": \"daily\",\n    \"schedule\": {\n      \"hour\": 16,\n      \"daily_send\": {\n        \"sunday\": false,\n        \"monday\": false,\n        \"tuesday\": false,\n        \"wednesday\": true,\n        \"thursday\": true,\n        \"friday\": true,\n        \"saturday\": false\n      },\n      \"weekly_send_day\": \"thursday\",\n      \"monthly_send_date\": 28.090529245766074\n    },\n    \"last_sent\": \"1953-11-26T05:16:25.761Z\",\n    \"constrain_rss_img\": false\n  },\n  \"ab_split_opts\": {\n    \"split_test\": \"schedule\",\n    \"pick_winner\": \"clicks\",\n    \"wait_units\": \"hours\",\n    \"wait_time\": 7291,\n    \"split_size\": 7,\n    \"from_name_a\": \"string\",\n    \"from_name_b\": \"string\",\n    \"reply_email_a\": \"string\",\n    \"reply_email_b\": \"string\",\n    \"subject_a\": \"string\",\n    \"subject_b\": \"string\",\n    \"send_time_a\": \"2004-04-12T13:06:03.148Z\",\n    \"send_time_b\": \"1975-06-06T05:09:35.291Z\",\n    \"send_time_winner\": \"string\"\n  },\n  \"social_card\": {\n    \"image_url\": \"string\",\n    \"description\": \"string\",\n    \"title\": \"string\"\n  },\n  \"report_summary\": {\n    \"opens\": 468,\n    \"unique_opens\": 7347,\n    \"open_rate\": 7840.606647979684,\n    \"clicks\": 1823,\n    \"subscriber_clicks\": 6318,\n    \"click_rate\": 6468.950921461429,\n    \"ecommerce\": {\n      \"total_orders\": 3185,\n      \"total_spent\": 1359.3861319910704,\n      \"total_revenue\": 7543.874106144949\n    }\n  },\n  \"delivery_status\": {\n    \"enabled\": true,\n    \"can_cancel\": false,\n    \"status\": \"delivered\",\n    \"emails_sent\": 7823,\n    \"emails_canceled\": 4990\n  },\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79f96493-270a-46e2-9547-da77fb5a6c32",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns",
+                    ":campaign_id",
+                    "actions",
+                    "replicate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique id for the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a24975b7-3b56-4c01-a6f5-16c0b3ba77b7",
+    "name": "Mailchimp Marketing Abuse Replicate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

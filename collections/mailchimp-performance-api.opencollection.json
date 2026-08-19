@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Performance API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Domain Performance Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/domain-performance",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get statistics for the top-performing email domains in a campaign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

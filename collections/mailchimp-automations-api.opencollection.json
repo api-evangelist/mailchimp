@@ -1,0 +1,472 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Automations API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Automations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations",
+            "params": [
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "before_create_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to automations created before this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_create_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to automations created after this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_start_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to automations started before this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_start_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to automations started after this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "status",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the results to automations with the specified status."
+              }
+            ]
+          },
+          "docs": "Get a summary of an account's classic automations."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations"
+          },
+          "docs": "Create a new classic automation in your Mailchimp account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Automation Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Get a summary of an individual classic automation workflow's settings and content. The `trigger_settings` object returns information for the first email in the workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause Automation Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/pause-all-emails",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Pause all emails in a specific classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Start Automation Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/start-all-emails",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Start all emails in a classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Archive Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/archive",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Archiving will permanently end your automation and keep the report data. Youll be able to replicate your archived automation, but you cant restart it."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Automated Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Get a summary of the emails in a classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Workflow Email Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Get information about an individual classic automation workflow email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Workflow Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Update settings for a classic automation workflow email.  Only works with workflows of type: abandonedBrowse, abandonedCart, emailFollowup, or singleWelcome."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Workflow Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Removes an individual classic automation workflow email. Emails from certain workflow types, including the Abandoned Cart Email (abandonedCart) and Product Retargeting Email (abandonedBrowse) Workflows, cannot be deleted."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Automated Email Subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/queue",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Get information about a classic automation email queue."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Subscriber to Workflow Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/queue",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Manually add a subscriber to a workflow, bypassing the default trigger settings. You can also use this endpoint to trigger a series of automated emails in an API 3.0 workflow type."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Automated Email Subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/queue/:subscriber_hash",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific subscriber in a classic automation email queue."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause Automated Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/actions/pause",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Pause an automated email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Start Automated Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/actions/start",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Start an automated email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Subscribers Removed From Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/removed-subscribers",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Get information about subscribers who were removed from a classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Remove Subscriber From Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/removed-subscribers",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Remove a subscriber from a specific classic automation workflow. You can remove a subscriber at any point in an automation workflow, regardless of how many emails they've been sent from that workflow. Once they're removed, they can never be added back to the same workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Subscriber Removed From Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/removed-subscribers/:subscriber_hash",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific subscriber who was removed from a classic automation workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

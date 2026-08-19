@@ -1,10 +1,11 @@
-generated: '2026-06-20'
+generated: '2026-08-13'
 method: searched
 source: >-
   https://mailchimp.com/developer/marketing/docs/methods-parameters/,
   https://mailchimp.com/developer/marketing/docs/fundamentals/,
-  https://mailchimp.com/developer/transactional/docs/fundamentals/, and derived
-  from openapi/*.yml. Cross-cutting request/response semantics that apply across
+  https://mailchimp.com/developer/transactional/docs/fundamentals/,
+  https://mailchimp.com/developer/marketing/guides/sync-audience-data-webhooks/
+  (all re-read 2026-08-13), and derived from openapi/*.yml. Cross-cutting request/response semantics that apply across
   every operation, not any single endpoint.
 description: >-
   How the Mailchimp Marketing (v3, REST) and Transactional (Mandrill, RPC-style
@@ -55,8 +56,32 @@ apis:
     rate_limit_signaling:
       concurrency_limit: 10 simultaneous connections per user
       webhook_backpressure: 500 pending webhook events max
-      response: HTTP 429 Too Many Requests
+      response: HTTP 429 Too Many Requests (or a bare HTTP 403 with no JSON body at very high volume)
+      response_headers: none
+      response_headers_note: >-
+        No X-RateLimit-*, RateLimit-* or Retry-After headers are returned or
+        documented (re-checked 2026-08-13). A client cannot read remaining budget
+        at runtime; it can only cap its own concurrency and back off on 429/403.
+      request_timeout_seconds: 120
       detail: rate-limits/mailchimp-rate-limits.yml
+    webhooks:
+      delivery: HTTP POST, application/x-www-form-urlencoded
+      envelope: {type: event name, fired_at: timestamp, data: event payload}
+      ack_deadline_seconds: 10
+      retry: increasing intervals over ~75 minutes; persistently failing hooks may be disabled
+      signature:
+        header: X-Mailchimp-Signature
+        format: 't={unix_seconds},v1={hex_sha256}'
+        algorithm: HMAC-SHA256 over "{timestamp}.{raw_body}" keyed with the webhook signing secret
+        secret: >-
+          Returned once as signing_secret when the webhook is created (API or UI);
+          it cannot be retrieved later — delete and recreate the webhook if lost.
+        tolerance_seconds: 300
+        comparison: constant-time required
+        optional: true
+        docs: https://mailchimp.com/developer/marketing/guides/sync-audience-data-webhooks/
+        checked: '2026-08-13'
+      detail: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
     versioning:
       detail: lifecycle/mailchimp-lifecycle.yml
   - api: mailchimp:mailchimp-transactional-api
@@ -72,5 +97,19 @@ apis:
       media_type: application/json
       shape: {status: error, code: <int>, name: <string>, message: <string>}
       detail: errors/mailchimp-problem-types.yml
+      note: >-
+        A 200 response is not a success signal for a send. /messages/send returns
+        an array with one entry per recipient carrying its own status
+        (sent/queued/scheduled/rejected/invalid) and reject_reason; branch on that.
+    idempotency:
+      header: null
+      detail: >-
+        No idempotency key of any kind. A retried /messages/send delivers a second
+        message. Before retrying, reconcile with /messages/info (by the returned
+        _id) or /messages/search.
+    versioning:
+      documented_base: https://mandrillapp.com/api/1.0/
+      contract_base: /api/1.3 (spec 1.4.1, harvested 2026-08-13)
+      detail: lifecycle/mailchimp-lifecycle.yml
     test_mode:
       detail: sandbox/mailchimp-sandbox.yml

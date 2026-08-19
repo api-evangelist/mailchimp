@@ -1,0 +1,269 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Messages API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/conversations/:conversation_id/messages",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "conversation_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the conversation."
+              },
+              {
+                "name": "is_read",
+                "value": "example_value",
+                "type": "query",
+                "description": "Whether a conversation message has been marked as read."
+              },
+              {
+                "name": "before_timestamp",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to messages created before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_timestamp",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to messages created after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              }
+            ]
+          },
+          "docs": "Get messages from a specific conversation. Conversations has been deprecated in favor of Inbox and these endpoints don't include Inbox data. Past Conversations are still available via this endpoint, but new campaign replies and other Inbox messages arent available using this endpoint."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/conversations/:conversation_id/messages/:message_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "conversation_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the conversation."
+              },
+              {
+                "name": "message_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the conversation message."
+              }
+            ]
+          },
+          "docs": "Get an individual message in a conversation. Conversations has been deprecated in favor of Inbox and these endpoints don't include Inbox data. Past Conversations are still available via this endpoint, but new campaign replies and other Inbox messages arent available using this endpoint."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send a Transactional Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a new transactional message through Mandrill. Supports HTML and plain-text content, inline images, attachments, merge variables, metadata, and per-recipient customization."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send an Email Using a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a new transactional message using a stored template. Template content blocks can be overridden with the template_content parameter. Merge variables in the template are populated from the message object."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search Sent Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search recently sent messages and return matching results. You can filter by sending status, sender, tags, recipient, subject, and date range. Results are limited to the last 7 days."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search Message Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/search-time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search the content of recently sent messages and return aggregated hourly statistics for matching messages over time."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Message Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the information for a single recently sent message including delivery status, open/click tracking, and metadata."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Message Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/content",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the full content of a recently sent message including the HTML body, text body, headers, and attachments."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Parse a Raw Mime Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/parse",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Parse the full MIME document for an email message, returning the subject, recipients, HTML body, text body, headers, and attachments."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send a Raw Mime Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send-raw",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Take a raw MIME document and send it exactly as provided. Mandrill will not modify the message content, but will track opens and clicks if the appropriate headers are included."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Scheduled Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/list-scheduled",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of messages that are scheduled for future delivery. Messages can be scheduled up to 7 days in advance."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Cancel a Scheduled Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/cancel-scheduled",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a message that has been scheduled for future delivery. The message must not have already been sent."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Reschedule a Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/reschedule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reschedule a message that was previously scheduled for future delivery to a new date and time."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

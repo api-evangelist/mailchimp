@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Signup API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Signup Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/signup-forms",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get signup forms for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Customize Signup Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/signup-forms",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Customize a list's default signup form."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,459 @@
+{
+  "item": [
+    {
+      "id": "a5a23cf4-1d11-408c-ab02-c0446f9de95a",
+      "name": "Sent",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "65d6ac02-5152-453c-8b32-cbb8f5074178",
+          "name": "Mailchimp List Campaign Recipients",
+          "request": {
+            "name": "Mailchimp List Campaign Recipients",
+            "description": {
+              "content": "Get information about campaign recipients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":campaign_id",
+                "sent-to"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The unique id for the campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35753426-77c7-4344-a4ec-d7732582476f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":campaign_id",
+                    "sent-to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique id for the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sent_to\": [\n    {\n      \"email_id\": \"string\",\n      \"email_address\": \"string\",\n      \"merge_fields\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"vip\": false,\n      \"status\": \"sent\",\n      \"open_count\": 4650,\n      \"last_open\": \"1961-10-11T08:59:44.791Z\",\n      \"absplit_group\": \"b\",\n      \"gmt_offset\": 8642,\n      \"campaign_id\": \"string\",\n      \"list_id\": \"string\",\n      \"list_is_active\": false,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"email_id\": \"string\",\n      \"email_address\": \"string\",\n      \"merge_fields\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"vip\": true,\n      \"status\": \"hard\",\n      \"open_count\": 2992,\n      \"last_open\": \"2012-06-13T06:10:17.190Z\",\n      \"absplit_group\": \"b\",\n      \"gmt_offset\": 4964,\n      \"campaign_id\": \"string\",\n      \"list_id\": \"string\",\n      \"list_is_active\": false,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"campaign_id\": \"string\",\n  \"total_items\": 8491,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abcbac49-0f02-444a-82d9-be11022c5c5f",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":campaign_id",
+                    "sent-to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique id for the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b095d12b-1b38-449e-b2c7-2b4fe5dedc2e",
+          "name": "Mailchimp Get Campaign Recipient Info",
+          "request": {
+            "name": "Mailchimp Get Campaign Recipient Info",
+            "description": {
+              "content": "Get information about a specific campaign recipient.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":campaign_id",
+                "sent-to",
+                ":subscriber_hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaign_id",
+                  "description": "(Required) The unique id for the campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriber_hash",
+                  "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77df78d6-1833-4b80-9046-7619f5db55dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":campaign_id",
+                    "sent-to",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique id for the campaign."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email_id\": \"string\",\n  \"email_address\": \"string\",\n  \"merge_fields\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"vip\": true,\n  \"status\": \"hard\",\n  \"open_count\": 8914,\n  \"last_open\": \"1977-08-13T03:33:01.982Z\",\n  \"absplit_group\": \"b\",\n  \"gmt_offset\": 6102,\n  \"campaign_id\": \"string\",\n  \"list_id\": \"string\",\n  \"list_is_active\": false,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85bf5aac-497b-4c27-b6da-bc9bb59e0c69",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":campaign_id",
+                    "sent-to",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaign_id",
+                      "description": "(Required) The unique id for the campaign."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0aac91a5-0ec5-41f9-b021-2e7616f14b53",
+    "name": "Mailchimp Marketing Abuse Sent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

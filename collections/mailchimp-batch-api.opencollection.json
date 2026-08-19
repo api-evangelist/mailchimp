@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Batch API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Batch Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/batch-webhooks",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get all webhooks that have been configured for batches."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Batch Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/batch-webhooks"
+          },
+          "docs": "Configure a webhook that will fire whenever any batch request completes processing.  You may only have a maximum of 20 batch webhooks."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Batch Webhook Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/batch-webhooks/:batch_webhook_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "batch_webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the batch webhook."
+              }
+            ]
+          },
+          "docs": "Get information about a specific batch webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Batch Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/batch-webhooks/:batch_webhook_id",
+            "params": [
+              {
+                "name": "batch_webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the batch webhook."
+              }
+            ]
+          },
+          "docs": "Update a webhook that will fire whenever any batch request completes processing."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Batch Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/batch-webhooks/:batch_webhook_id",
+            "params": [
+              {
+                "name": "batch_webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the batch webhook."
+              }
+            ]
+          },
+          "docs": "Remove a batch webhook. Webhooks will no longer be sent to the given URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2420 @@
+{
+  "item": [
+    {
+      "id": "f3681f11-b302-4786-962c-79a047c917d6",
+      "name": "Reporting",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0dfe0a8-7df2-480a-a6a7-3347504bf0a6",
+          "name": "Mailchimp List Facebook Ads Reports",
+          "request": {
+            "name": "Mailchimp List Facebook Ads Reports",
+            "description": {
+              "content": "Get reports of Facebook ads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "facebook-ads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Returns files sorted by the specified field."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_dir",
+                  "value": "<string>",
+                  "description": "Determines the order direction for sorted results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18a068c2-77fd-4826-a83e-adc008ff1f09",
+              "name": "List of Facebook Ad Report Instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"facebook_ads\": [\n    {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    },\n    {\n      \"value\": \"<Error: Could not resolve allOf schema\"\n    }\n  ],\n  \"total_items\": 4691,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fbe22e4-7bf0-492a-8329-1d306b942045",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74c91b56-6d7d-4514-840e-a4481915f59c",
+          "name": "Mailchimp Get Facebook Ad Report",
+          "request": {
+            "name": "Mailchimp Get Facebook Ad Report",
+            "description": {
+              "content": "Get report of a Facebook ad.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "facebook-ads",
+                ":outreach_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "outreach_id",
+                  "description": "(Required) The outreach id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9166c41-ecf6-4aa2-9ca3-eb2e94ac0179",
+              "name": "Facebook Ad report Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a90af803-8719-4d53-a945-bbcd9536da83",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a826d43c-9afb-4578-be7b-e3b914515ea9",
+          "name": "Mailchimp List Facebook Ecommerce Report",
+          "request": {
+            "name": "Mailchimp List Facebook Ecommerce Report",
+            "description": {
+              "content": "Get breakdown of product activity for an outreach.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "facebook-ads",
+                ":outreach_id",
+                "ecommerce-product-activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Returns files sorted by the specified field."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "outreach_id",
+                  "description": "(Required) The outreach id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62a53252-567c-4c56-8c1d-0d93820df4e8",
+              "name": "Ecommerce Product Activity Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id",
+                    "ecommerce-product-activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"title\": \"string\",\n      \"sku\": \"string\",\n      \"image_url\": \"string\",\n      \"total_revenue\": 9361.057524666438,\n      \"total_purchased\": 3951.9408919689427,\n      \"currency_code\": \"string\",\n      \"recommendation_total\": 7341,\n      \"recommendation_purchased\": 428\n    },\n    {\n      \"title\": \"string\",\n      \"sku\": \"string\",\n      \"image_url\": \"string\",\n      \"total_revenue\": 8127.915112079705,\n      \"total_purchased\": 6195.742086149404,\n      \"currency_code\": \"string\",\n      \"recommendation_total\": 5587,\n      \"recommendation_purchased\": 5429\n    }\n  ],\n  \"total_items\": 2245,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96a831b9-aaea-4103-8b82-174182aa4861",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id",
+                    "ecommerce-product-activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c215c16-5b2c-4b3b-9f7b-fdcff039fff7",
+          "name": "Mailchimp Get Landing Page Report",
+          "request": {
+            "name": "Mailchimp Get Landing Page Report",
+            "description": {
+              "content": "Get report of a landing page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "landing-pages",
+                ":outreach_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "outreach_id",
+                  "description": "(Required) The outreach id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3e08b62-b858-43b4-adf4-c19c1389439e",
+              "name": "Landing Page Report Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "landing-pages",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"00dfc2e1f0\",\n  \"name\": \"string\",\n  \"title\": \"string\",\n  \"url\": \"string\",\n  \"published_at\": \"1953-03-27T05:19:36.002Z\",\n  \"unpublished_at\": \"1956-09-30T17:10:50.142Z\",\n  \"status\": \"string\",\n  \"list_id\": \"string\",\n  \"visits\": 2623,\n  \"unique_visits\": 376,\n  \"subscribes\": 4773,\n  \"clicks\": 1488,\n  \"conversion_rate\": 8076.166053200825,\n  \"timeseries\": {\n    \"daily_stats\": {\n      \"clicks\": [\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 13\n        },\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 13\n        }\n      ],\n      \"visits\": [\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 11\n        },\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 11\n        }\n      ],\n      \"unique_visits\": [\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 1\n        },\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 1\n        }\n      ]\n    },\n    \"weekly_stats\": {\n      \"clicks\": [\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 23\n        },\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 23\n        }\n      ],\n      \"visits\": [\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 49\n        },\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 49\n        }\n      ],\n      \"unique_visits\": [\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 1\n        },\n        {\n          \"date\": \"2018-04-25\",\n          \"val\": 1\n        }\n      ]\n    }\n  },\n  \"ecommerce\": {\n    \"total_revenue\": 4912.880146179721,\n    \"currency_code\": \"string\",\n    \"total_orders\": 2421,\n    \"average_order_revenue\": 2123.391574632486\n  },\n  \"web_id\": 33345484,\n  \"list_name\": \"Test List\",\n  \"signup_tags\": [\n    {\n      \"tag_id\": 6460,\n      \"tag_name\": \"string\"\n    },\n    {\n      \"tag_id\": 4706,\n      \"tag_name\": \"string\"\n    }\n  ],\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73fce834-1839-46ee-9549-e2b85b9d01ac",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "landing-pages",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fdc500a-6532-450c-b74f-668bbdc92baf",
+          "name": "Mailchimp List Landing Pages Reports",
+          "request": {
+            "name": "Mailchimp List Landing Pages Reports",
+            "description": {
+              "content": "Get reports of landing pages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "landing-pages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b4888c0-6789-4013-9618-3c68e05c092e",
+              "name": "List of Landing Page Report Instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "landing-pages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"landing_pages\": [\n    {\n      \"id\": \"00dfc2e1f0\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"published_at\": \"2005-05-23T00:25:53.978Z\",\n      \"unpublished_at\": \"1961-08-15T10:53:57.658Z\",\n      \"status\": \"string\",\n      \"list_id\": \"string\",\n      \"visits\": 723,\n      \"unique_visits\": 885,\n      \"subscribes\": 6087,\n      \"clicks\": 5180,\n      \"conversion_rate\": 1539.094379312933,\n      \"timeseries\": {\n        \"daily_stats\": {\n          \"clicks\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 13\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 13\n            }\n          ],\n          \"visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 11\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 11\n            }\n          ],\n          \"unique_visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            }\n          ]\n        },\n        \"weekly_stats\": {\n          \"clicks\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 23\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 23\n            }\n          ],\n          \"visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 49\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 49\n            }\n          ],\n          \"unique_visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            }\n          ]\n        }\n      },\n      \"ecommerce\": {\n        \"total_revenue\": 6133.942506180316,\n        \"currency_code\": \"string\",\n        \"total_orders\": 4279,\n        \"average_order_revenue\": 8328.732819074636\n      },\n      \"web_id\": 33345484,\n      \"list_name\": \"Test List\",\n      \"signup_tags\": [\n        {\n          \"tag_id\": 9087,\n          \"tag_name\": \"string\"\n        },\n        {\n          \"tag_id\": 5995,\n          \"tag_name\": \"string\"\n        }\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"00dfc2e1f0\",\n      \"name\": \"string\",\n      \"title\": \"string\",\n      \"url\": \"string\",\n      \"published_at\": \"1965-06-30T15:34:25.639Z\",\n      \"unpublished_at\": \"2018-11-12T01:28:44.221Z\",\n      \"status\": \"string\",\n      \"list_id\": \"string\",\n      \"visits\": 8465,\n      \"unique_visits\": 4380,\n      \"subscribes\": 1288,\n      \"clicks\": 3119,\n      \"conversion_rate\": 2619.6801009991377,\n      \"timeseries\": {\n        \"daily_stats\": {\n          \"clicks\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 13\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 13\n            }\n          ],\n          \"visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 11\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 11\n            }\n          ],\n          \"unique_visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            }\n          ]\n        },\n        \"weekly_stats\": {\n          \"clicks\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 23\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 23\n            }\n          ],\n          \"visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 49\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 49\n            }\n          ],\n          \"unique_visits\": [\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            },\n            {\n              \"date\": \"2018-04-25\",\n              \"val\": 1\n            }\n          ]\n        }\n      },\n      \"ecommerce\": {\n        \"total_revenue\": 8603.500724294701,\n        \"currency_code\": \"string\",\n        \"total_orders\": 4222,\n        \"average_order_revenue\": 1985.5816145850824\n      },\n      \"web_id\": 33345484,\n      \"list_name\": \"Test List\",\n      \"signup_tags\": [\n        {\n          \"tag_id\": 6692,\n          \"tag_name\": \"string\"\n        },\n        {\n          \"tag_id\": 7606,\n          \"tag_name\": \"string\"\n        }\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 7079,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e96ba070-7ade-4724-ad3d-c720dc8fe05e",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "landing-pages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a4d5f77-f703-4b91-bc4f-2ed0c6a93332",
+          "name": "Mailchimp List Survey Reports",
+          "request": {
+            "name": "Mailchimp List Survey Reports",
+            "description": {
+              "content": "Get reports for surveys.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b1702d7-b341-4ab2-8825-ae5caa0c3058",
+              "name": "List of Survey Report Instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"surveys\": [\n    {\n      \"id\": \"040d2c2e1f0\",\n      \"web_id\": 165,\n      \"list_id\": \"string\",\n      \"list_name\": \"string\",\n      \"title\": \"New product ideas\",\n      \"url\": \"string\",\n      \"status\": \"published\",\n      \"published_at\": \"2017-08-04T11:09:01+00:00\",\n      \"created_at\": \"2017-08-04T11:09:01+00:00\",\n      \"updated_at\": \"2017-08-04T11:09:01+00:00\",\n      \"total_responses\": 810\n    },\n    {\n      \"id\": \"040d2c2e1f0\",\n      \"web_id\": 165,\n      \"list_id\": \"string\",\n      \"list_name\": \"string\",\n      \"title\": \"New product ideas\",\n      \"url\": \"string\",\n      \"status\": \"published\",\n      \"published_at\": \"2017-08-04T11:09:01+00:00\",\n      \"created_at\": \"2017-08-04T11:09:01+00:00\",\n      \"updated_at\": \"2017-08-04T11:09:01+00:00\",\n      \"total_responses\": 810\n    }\n  ],\n  \"total_items\": 8913,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d23f120-8f55-4a56-9e5a-24e2601fea26",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45cfb4e9-a0d9-4eaf-9e6e-86cf8b642c3c",
+          "name": "Mailchimp Get Survey Report",
+          "request": {
+            "name": "Mailchimp Get Survey Report",
+            "description": {
+              "content": "Get report for a survey.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys",
+                ":survey_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) The ID of the survey."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8a5bf68-4eb1-4018-9d52-7033df33b53d",
+              "name": "Survey Report Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"040d2c2e1f0\",\n  \"web_id\": 165,\n  \"list_id\": \"string\",\n  \"list_name\": \"string\",\n  \"title\": \"New product ideas\",\n  \"url\": \"string\",\n  \"status\": \"published\",\n  \"published_at\": \"2017-08-04T11:09:01+00:00\",\n  \"created_at\": \"2017-08-04T11:09:01+00:00\",\n  \"updated_at\": \"2017-08-04T11:09:01+00:00\",\n  \"total_responses\": 810\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "875a116f-c9eb-419d-a073-fd121fc03486",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "749fc00b-afd9-4aa3-9669-5f8176424a7d",
+          "name": "Mailchimp List Survey Question Reports",
+          "request": {
+            "name": "Mailchimp List Survey Question Reports",
+            "description": {
+              "content": "Get reports for survey questions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys",
+                ":survey_id",
+                "questions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) The ID of the survey."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "361c3af6-d584-4c2f-9d77-1da1065270d9",
+              "name": "List of Survey Question Report Instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"questions\": [\n    {\n      \"id\": \"string\",\n      \"survey_id\": \"string\",\n      \"query\": \"string\",\n      \"type\": \"pickOne\",\n      \"total_responses\": 810,\n      \"is_required\": false,\n      \"has_other\": false,\n      \"other_label\": \"string\",\n      \"average_rating\": 2.5,\n      \"range_low_label\": \"string\",\n      \"range_high_label\": \"string\",\n      \"placeholder_label\": \"string\",\n      \"subscribe_checkbox_enabled\": false,\n      \"subscribe_checkbox_label\": \"string\",\n      \"merge_field\": {\n        \"id\": 324,\n        \"label\": \"string\",\n        \"type\": \"zip\"\n      },\n      \"options\": [\n        {\n          \"label\": \"string\",\n          \"id\": \"string\",\n          \"count\": 3512\n        },\n        {\n          \"label\": \"string\",\n          \"id\": \"string\",\n          \"count\": 1418\n        }\n      ],\n      \"contact_counts\": {\n        \"known\": 3570,\n        \"unknown\": 3266,\n        \"new\": 119\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"survey_id\": \"string\",\n      \"query\": \"string\",\n      \"type\": \"email\",\n      \"total_responses\": 810,\n      \"is_required\": false,\n      \"has_other\": true,\n      \"other_label\": \"string\",\n      \"average_rating\": 2.5,\n      \"range_low_label\": \"string\",\n      \"range_high_label\": \"string\",\n      \"placeholder_label\": \"string\",\n      \"subscribe_checkbox_enabled\": false,\n      \"subscribe_checkbox_label\": \"string\",\n      \"merge_field\": {\n        \"id\": 1794,\n        \"label\": \"string\",\n        \"type\": \"number\"\n      },\n      \"options\": [\n        {\n          \"label\": \"string\",\n          \"id\": \"string\",\n          \"count\": 5764\n        },\n        {\n          \"label\": \"string\",\n          \"id\": \"string\",\n          \"count\": 287\n        }\n      ],\n      \"contact_counts\": {\n        \"known\": 4510,\n        \"unknown\": 1592,\n        \"new\": 1862\n      }\n    }\n  ],\n  \"total_items\": 7619,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f4f13f6-811e-4a9b-9440-cb1bc4968d29",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01b50466-029e-4c47-b809-b9314e55c46c",
+          "name": "Mailchimp Get Survey Question Report",
+          "request": {
+            "name": "Mailchimp Get Survey Question Report",
+            "description": {
+              "content": "Get report for a survey question.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys",
+                ":survey_id",
+                "questions",
+                ":question_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) The ID of the survey."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "question_id",
+                  "description": "(Required) The ID of the survey question."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6fe7ccd2-4f9b-4d9c-92aa-201dc9c57f3e",
+              "name": "Survey Question Report Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions",
+                    ":question_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "question_id",
+                      "description": "(Required) The ID of the survey question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"survey_id\": \"string\",\n  \"query\": \"string\",\n  \"type\": \"range\",\n  \"total_responses\": 810,\n  \"is_required\": false,\n  \"has_other\": true,\n  \"other_label\": \"string\",\n  \"average_rating\": 2.5,\n  \"range_low_label\": \"string\",\n  \"range_high_label\": \"string\",\n  \"placeholder_label\": \"string\",\n  \"subscribe_checkbox_enabled\": false,\n  \"subscribe_checkbox_label\": \"string\",\n  \"merge_field\": {\n    \"id\": 2735,\n    \"label\": \"string\",\n    \"type\": \"radio\"\n  },\n  \"options\": [\n    {\n      \"label\": \"string\",\n      \"id\": \"string\",\n      \"count\": 9561\n    },\n    {\n      \"label\": \"string\",\n      \"id\": \"string\",\n      \"count\": 9580\n    }\n  ],\n  \"contact_counts\": {\n    \"known\": 3526,\n    \"unknown\": 822,\n    \"new\": 716\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc4fef7f-1ba2-4401-977b-e594c94bb2f4",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions",
+                    ":question_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "question_id",
+                      "description": "(Required) The ID of the survey question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d74a417e-8f26-4668-9a86-e39a971611cf",
+          "name": "Mailchimp List Answers for Question",
+          "request": {
+            "name": "Mailchimp List Answers for Question",
+            "description": {
+              "content": "Get answers for a survey question.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys",
+                ":survey_id",
+                "questions",
+                ":question_id",
+                "answers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "respondent_familiarity_is",
+                  "value": "<string>",
+                  "description": "Filter survey responses by familiarity of the respondents."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) The ID of the survey."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "question_id",
+                  "description": "(Required) The ID of the survey question."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8d401fd-69d7-4139-be8d-96d748c4022f",
+              "name": "List of Survey Question Answers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions",
+                    ":question_id",
+                    "answers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "respondent_familiarity_is",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "question_id",
+                      "description": "(Required) The ID of the survey question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"answers\": [\n    {\n      \"id\": \"string\",\n      \"value\": \"string\",\n      \"response_id\": \"string\",\n      \"submitted_at\": \"1993-08-20T19:02:51.897Z\",\n      \"contact\": {\n        \"email_id\": \"string\",\n        \"contact_id\": \"string\",\n        \"status\": \"Non-Subscribed\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"full_name\": \"string\",\n        \"consents_to_one_to_one_messaging\": false,\n        \"avatar_url\": \"string\"\n      },\n      \"is_new_contact\": true\n    },\n    {\n      \"id\": \"string\",\n      \"value\": \"string\",\n      \"response_id\": \"string\",\n      \"submitted_at\": \"2013-07-25T05:14:43.860Z\",\n      \"contact\": {\n        \"email_id\": \"string\",\n        \"contact_id\": \"string\",\n        \"status\": \"Archived\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"full_name\": \"string\",\n        \"consents_to_one_to_one_messaging\": true,\n        \"avatar_url\": \"string\"\n      },\n      \"is_new_contact\": true\n    }\n  ],\n  \"total_items\": 4216,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "649a1aaa-5013-4a6b-ac19-13c07b18855b",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions",
+                    ":question_id",
+                    "answers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "respondent_familiarity_is",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "question_id",
+                      "description": "(Required) The ID of the survey question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79b47857-bd26-4e72-b8ca-a3b117b2fb0d",
+          "name": "Mailchimp List Survey Responses",
+          "request": {
+            "name": "Mailchimp List Survey Responses",
+            "description": {
+              "content": "Get responses to a survey.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys",
+                ":survey_id",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "answered_question",
+                  "value": "<integer>",
+                  "description": "The ID of the question that was answered."
+                },
+                {
+                  "disabled": false,
+                  "key": "chose_answer",
+                  "value": "<string>",
+                  "description": "The ID of the option chosen to filter responses on."
+                },
+                {
+                  "disabled": false,
+                  "key": "respondent_familiarity_is",
+                  "value": "<string>",
+                  "description": "Filter survey responses by familiarity of the respondents."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) The ID of the survey."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5489b040-aa76-427e-b50f-8d7536fe3f7e",
+              "name": "List of survey responses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "answered_question",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "chose_answer",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "respondent_familiarity_is",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responses\": [\n    {\n      \"response_id\": \"string\",\n      \"submitted_at\": \"1989-09-05T04:02:11.031Z\",\n      \"contact\": {\n        \"email_id\": \"string\",\n        \"contact_id\": \"string\",\n        \"status\": \"Cleaned\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"full_name\": \"string\",\n        \"consents_to_one_to_one_messaging\": false,\n        \"avatar_url\": \"string\"\n      },\n      \"is_new_contact\": false\n    },\n    {\n      \"response_id\": \"string\",\n      \"submitted_at\": \"1967-02-27T05:27:27.925Z\",\n      \"contact\": {\n        \"email_id\": \"string\",\n        \"contact_id\": \"string\",\n        \"status\": \"Non-Subscribed\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"full_name\": \"string\",\n        \"consents_to_one_to_one_messaging\": false,\n        \"avatar_url\": \"string\"\n      },\n      \"is_new_contact\": true\n    }\n  ],\n  \"total_items\": 9362,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3e87543-dc5e-4e48-83d2-529716256fc3",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "answered_question",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "chose_answer",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "respondent_familiarity_is",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e776364-26cc-49d7-8238-b9533be6a6d7",
+          "name": "Mailchimp Get Survey Response",
+          "request": {
+            "name": "Mailchimp Get Survey Response",
+            "description": {
+              "content": "Get a single survey response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys",
+                ":survey_id",
+                "responses",
+                ":response_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) The ID of the survey."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "response_id",
+                  "description": "(Required) The ID of the survey response."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48f8a4d9-92fd-4aa5-9e41-cdd1d134cbfe",
+              "name": "Get a single survey response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "responses",
+                    ":response_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "response_id",
+                      "description": "(Required) The ID of the survey response."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response_id\": \"string\",\n  \"submitted_at\": \"1993-10-30T12:50:13.830Z\",\n  \"contact\": {\n    \"email_id\": \"string\",\n    \"contact_id\": \"string\",\n    \"status\": \"Unsubscribed\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"full_name\": \"string\",\n    \"consents_to_one_to_one_messaging\": false,\n    \"avatar_url\": \"string\"\n  },\n  \"is_new_contact\": true,\n  \"results\": [\n    {\n      \"question_id\": \"string\",\n      \"question_type\": \"pickMany\",\n      \"query\": \"string\",\n      \"answer\": \"string\"\n    },\n    {\n      \"question_id\": \"string\",\n      \"question_type\": \"pickOne\",\n      \"query\": \"string\",\n      \"answer\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "733aa591-7a48-4985-aa8a-5ca226e7d68e",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "responses",
+                    ":response_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "response_id",
+                      "description": "(Required) The ID of the survey response."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1e18e839-bc28-4cfd-b39b-0ff6e5a16973",
+    "name": "Mailchimp Marketing Abuse Reporting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

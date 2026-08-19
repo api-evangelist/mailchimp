@@ -1,0 +1,2144 @@
+{
+  "item": [
+    {
+      "id": "10d2c2a1-c42e-410b-9c34-0622e6c49882",
+      "name": "Carts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2eb4668-a4d1-4e17-bb27-8a0c10112e00",
+          "name": "Mailchimp List Carts",
+          "request": {
+            "name": "Mailchimp List Carts",
+            "description": {
+              "content": "Get information about a store's carts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4e36857-e287-4077-8664-02db936a84d1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"carts\": [\n    {\n      \"id\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"email_address\": \"string\",\n        \"opt_in_status\": false,\n        \"company\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"orders_count\": 4,\n        \"total_spent\": 100,\n        \"address\": {\n          \"address1\": \"675 Ponce de Leon Ave NE\",\n          \"address2\": \"Suite 5000\",\n          \"city\": \"Atlanta\",\n          \"province\": \"Georgia\",\n          \"province_code\": \"GA\",\n          \"postal_code\": \"30308\",\n          \"country\": \"United States\",\n          \"country_code\": \"US\"\n        },\n        \"created_at\": \"2015-07-15T19:28:00+00:00\",\n        \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n        \"_links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"POST\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"DELETE\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      \"campaign_id\": \"839488a60b\",\n      \"checkout_url\": \"string\",\n      \"currency_code\": \"string\",\n      \"order_total\": 4187.118497340482,\n      \"tax_total\": 3292.080229255332,\n      \"lines\": [\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"quantity\": 8338,\n          \"price\": 1295.6355607550418,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"GET\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"quantity\": 7346,\n          \"price\": 191.7436474012213,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"GET\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"email_address\": \"string\",\n        \"opt_in_status\": false,\n        \"company\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"orders_count\": 4,\n        \"total_spent\": 100,\n        \"address\": {\n          \"address1\": \"675 Ponce de Leon Ave NE\",\n          \"address2\": \"Suite 5000\",\n          \"city\": \"Atlanta\",\n          \"province\": \"Georgia\",\n          \"province_code\": \"GA\",\n          \"postal_code\": \"30308\",\n          \"country\": \"United States\",\n          \"country_code\": \"US\"\n        },\n        \"created_at\": \"2015-07-15T19:28:00+00:00\",\n        \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n        \"_links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"PUT\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"PUT\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      \"campaign_id\": \"839488a60b\",\n      \"checkout_url\": \"string\",\n      \"currency_code\": \"string\",\n      \"order_total\": 5843.171998745787,\n      \"tax_total\": 5339.994485117833,\n      \"lines\": [\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"quantity\": 8268,\n          \"price\": 6254.72205331947,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"HEAD\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"GET\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"quantity\": 2184,\n          \"price\": 9647.999076739057,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"OPTIONS\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PUT\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 3011,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53af039c-be05-4a7a-94fc-b001484f8026",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6416639c-a2b2-49c7-bd9c-7700f918464c",
+          "name": "Mailchimp Add Cart",
+          "request": {
+            "name": "Mailchimp Add Cart",
+            "description": {
+              "content": "Add a new cart to a store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"province\": \"<string>\",\n      \"province_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"order_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"campaign_id\": \"<string>\",\n  \"checkout_url\": \"<string>\",\n  \"tax_total\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "684287d2-536d-4220-bfc6-d129081756f4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"order_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"campaign_id\": \"839488a60b\",\n  \"checkout_url\": \"<string>\",\n  \"tax_total\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"email_address\": \"string\",\n    \"opt_in_status\": true,\n    \"company\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"orders_count\": 4,\n    \"total_spent\": 100,\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    },\n    \"created_at\": \"2015-07-15T19:28:00+00:00\",\n    \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n    \"_links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"GET\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"POST\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      }\n    ]\n  },\n  \"campaign_id\": \"839488a60b\",\n  \"checkout_url\": \"string\",\n  \"currency_code\": \"string\",\n  \"order_total\": 3488.1092433396475,\n  \"tax_total\": 8055.249077251502,\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 7527,\n      \"price\": 4390.05167987066,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 1428,\n      \"price\": 4057.0854966788274,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"created_at\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90df2f5a-7604-45af-8ff2-960c99fa59b8",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"order_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    }\n  ],\n  \"campaign_id\": \"839488a60b\",\n  \"checkout_url\": \"<string>\",\n  \"tax_total\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac9e375a-9522-4ec9-9788-addd4c105d8e",
+          "name": "Mailchimp Get Cart Info",
+          "request": {
+            "name": "Mailchimp Get Cart Info",
+            "description": {
+              "content": "Get information about a specific cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13e3dd0c-b8d1-4c01-91e5-9738db4a74a8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"email_address\": \"string\",\n    \"opt_in_status\": true,\n    \"company\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"orders_count\": 4,\n    \"total_spent\": 100,\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    },\n    \"created_at\": \"2015-07-15T19:28:00+00:00\",\n    \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n    \"_links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"GET\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"POST\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      }\n    ]\n  },\n  \"campaign_id\": \"839488a60b\",\n  \"checkout_url\": \"string\",\n  \"currency_code\": \"string\",\n  \"order_total\": 3488.1092433396475,\n  \"tax_total\": 8055.249077251502,\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 7527,\n      \"price\": 4390.05167987066,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 1428,\n      \"price\": 4057.0854966788274,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"created_at\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d84a278e-8d85-4451-83b8-ab231964a568",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7438acda-13ca-4ea9-a4fb-752d1542b45a",
+          "name": "Mailchimp Update Cart",
+          "request": {
+            "name": "Mailchimp Update Cart",
+            "description": {
+              "content": "Update a specific cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer\": {\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"province\": \"<string>\",\n      \"province_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"campaign_id\": \"<string>\",\n  \"checkout_url\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "797e45e7-aea2-4aa9-854c-5d8c28bb0c40",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": {\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"campaign_id\": \"839488a60b\",\n  \"checkout_url\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"email_address\": \"string\",\n    \"opt_in_status\": true,\n    \"company\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"orders_count\": 4,\n    \"total_spent\": 100,\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    },\n    \"created_at\": \"2015-07-15T19:28:00+00:00\",\n    \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n    \"_links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"GET\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"POST\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      }\n    ]\n  },\n  \"campaign_id\": \"839488a60b\",\n  \"checkout_url\": \"string\",\n  \"currency_code\": \"string\",\n  \"order_total\": 3488.1092433396475,\n  \"tax_total\": 8055.249077251502,\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 7527,\n      \"price\": 4390.05167987066,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 1428,\n      \"price\": 4057.0854966788274,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"created_at\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1589e0d4-9955-495d-a67a-b432df3fdceb",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": {\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"campaign_id\": \"839488a60b\",\n  \"checkout_url\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7729b3b8-7546-4882-a1e8-11c0e309cec8",
+          "name": "Mailchimp Delete Cart",
+          "request": {
+            "name": "Mailchimp Delete Cart",
+            "description": {
+              "content": "Delete a cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a5c9bc8-c2ad-470a-937b-774848bc19d8",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d9ed4a22-1b44-4543-966d-60fb7a210aaa",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa72f498-7b6e-4ae8-ac82-911e265a14b7",
+          "name": "Mailchimp List Cart Line Items",
+          "request": {
+            "name": "Mailchimp List Cart Line Items",
+            "description": {
+              "content": "Get information about a cart's line items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id",
+                "lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a06145fd-2774-499c-8d67-c479523ff1af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"cart_id\": \"string\",\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 4531,\n      \"price\": 6483.915659654234,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"quantity\": 2987,\n      \"price\": 9299.142165772862,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 1511,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af5766ed-be22-472d-bd2e-1d3aad4625c4",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0a72b45-a492-442b-b883-656b56114f9f",
+          "name": "Mailchimp Add Cart Line Item",
+          "request": {
+            "name": "Mailchimp Add Cart Line Item",
+            "description": {
+              "content": "Add a new line item to an existing cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id",
+                "lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8a10989-105b-47bc-ae0e-d0cdea2bbb2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"product_id\": \"string\",\n  \"product_title\": \"string\",\n  \"product_variant_id\": \"string\",\n  \"product_variant_title\": \"string\",\n  \"quantity\": 4902,\n  \"price\": 8792.139627177994,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e51f7b75-30e6-4955-bd71-4dc1106e7422",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee70e8e1-0538-41d8-bb2e-144b8c1c3381",
+          "name": "Mailchimp Get Cart Line Item",
+          "request": {
+            "name": "Mailchimp Get Cart Line Item",
+            "description": {
+              "content": "Get information about a specific cart line item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id",
+                "lines",
+                ":line_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_id",
+                  "description": "(Required) The id for the line item of a cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "915a7a5a-7285-4484-a412-97c2ebd11f07",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of a cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"product_id\": \"string\",\n  \"product_title\": \"string\",\n  \"product_variant_id\": \"string\",\n  \"product_variant_title\": \"string\",\n  \"quantity\": 4902,\n  \"price\": 8792.139627177994,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "724a856f-1df4-4630-9a44-51a8de4ef8c0",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of a cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f96e8020-c045-44f2-912b-c71786ca5d39",
+          "name": "Mailchimp Update Cart Line Item",
+          "request": {
+            "name": "Mailchimp Update Cart Line Item",
+            "description": {
+              "content": "Update a specific cart line item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id",
+                "lines",
+                ":line_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_id",
+                  "description": "(Required) The id for the line item of a cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68490fda-2433-48db-aabc-c035dd2d86f7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of a cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"product_id\": \"string\",\n  \"product_title\": \"string\",\n  \"product_variant_id\": \"string\",\n  \"product_variant_title\": \"string\",\n  \"quantity\": 4902,\n  \"price\": 8792.139627177994,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecf1447d-575d-43a7-b8cf-c432a7cb1efc",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of a cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f661ef42-fcea-47f9-810c-0eabfe976052",
+          "name": "Mailchimp Delete Cart Line Item",
+          "request": {
+            "name": "Mailchimp Delete Cart Line Item",
+            "description": {
+              "content": "Delete a specific cart line item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "carts",
+                ":cart_id",
+                "lines",
+                ":line_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cart_id",
+                  "description": "(Required) The id for the cart."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_id",
+                  "description": "(Required) The id for the line item of a cart."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0358f9c-b104-4f01-bc75-7668bbabf432",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of a cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4e7034c7-b5fa-49ae-8227-c8efbd2710bb",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "carts",
+                    ":cart_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cart_id",
+                      "description": "(Required) The id for the cart."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of a cart."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "127f6cd1-0f56-4a1c-8bea-9c4754a706f7",
+    "name": "Mailchimp Marketing Abuse Carts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

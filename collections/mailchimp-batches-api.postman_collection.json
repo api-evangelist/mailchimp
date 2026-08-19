@@ -1,0 +1,695 @@
+{
+  "item": [
+    {
+      "id": "847cc58f-8a93-4d01-9cd5-d5d90958cc5a",
+      "name": "Batches",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bfec05dd-fcc1-4f08-9e03-6ef5f45a8b1c",
+          "name": "Mailchimp List Batch Requests",
+          "request": {
+            "name": "Mailchimp List Batch Requests",
+            "description": {
+              "content": "Get a summary of batch requests that have been made.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "265c5448-9341-4804-a88c-87310cd6952d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"batches\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"preprocessing\",\n      \"total_operations\": 8436,\n      \"finished_operations\": 570,\n      \"errored_operations\": 3515,\n      \"submitted_at\": \"1956-04-03T07:19:33.075Z\",\n      \"completed_at\": \"1994-04-15T10:14:21.558Z\",\n      \"response_body_url\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"preprocessing\",\n      \"total_operations\": 8407,\n      \"finished_operations\": 7646,\n      \"errored_operations\": 1095,\n      \"submitted_at\": \"1976-08-18T14:10:43.059Z\",\n      \"completed_at\": \"1975-12-21T03:40:52.269Z\",\n      \"response_body_url\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 5626,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20a81092-8334-4d90-88fb-8ef5a2072ea7",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "272302bd-015b-4d85-addd-d1d1134e463b",
+          "name": "Mailchimp Start Batch Operation",
+          "request": {
+            "name": "Mailchimp Start Batch Operation",
+            "description": {
+              "content": "Begin processing a batch operations request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": [\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"params\": \"<object>\",\n      \"body\": \"<string>\",\n      \"operation_id\": \"<string>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"path\": \"<string>\",\n      \"params\": \"<object>\",\n      \"body\": \"<string>\",\n      \"operation_id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9886b8e8-589e-4d54-b166-5a830343b6fb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"method\": \"POST\",\n      \"path\": \"/lists\",\n      \"params\": \"<object>\",\n      \"body\": \"{\\\"title\\\":\\\"Test\\\"}\",\n      \"operation_id\": \"my-id-123\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"/lists\",\n      \"params\": \"<object>\",\n      \"body\": \"{\\\"title\\\":\\\"Test\\\"}\",\n      \"operation_id\": \"my-id-123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"finished\",\n  \"total_operations\": 4306,\n  \"finished_operations\": 1262,\n  \"errored_operations\": 1324,\n  \"submitted_at\": \"2007-03-27T15:21:22.537Z\",\n  \"completed_at\": \"2013-01-13T02:16:36.006Z\",\n  \"response_body_url\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "362a6f90-5f08-4a76-914a-737bbcb3fb01",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"method\": \"POST\",\n      \"path\": \"/lists\",\n      \"params\": \"<object>\",\n      \"body\": \"{\\\"title\\\":\\\"Test\\\"}\",\n      \"operation_id\": \"my-id-123\"\n    },\n    {\n      \"method\": \"POST\",\n      \"path\": \"/lists\",\n      \"params\": \"<object>\",\n      \"body\": \"{\\\"title\\\":\\\"Test\\\"}\",\n      \"operation_id\": \"my-id-123\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38559aa4-4a77-4e8a-bebb-c8979ab6eb2e",
+          "name": "Mailchimp Get Batch Operation Status",
+          "request": {
+            "name": "Mailchimp Get Batch Operation Status",
+            "description": {
+              "content": "Get the status of a batch request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batches",
+                ":batch_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batch_id",
+                  "description": "(Required) The unique id for the batch operation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8869fb98-78be-49b1-a91b-bc01474125ad",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The unique id for the batch operation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"finished\",\n  \"total_operations\": 4306,\n  \"finished_operations\": 1262,\n  \"errored_operations\": 1324,\n  \"submitted_at\": \"2007-03-27T15:21:22.537Z\",\n  \"completed_at\": \"2013-01-13T02:16:36.006Z\",\n  \"response_body_url\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eeb2d16d-9b4c-4894-b945-52b83570af9f",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The unique id for the batch operation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8679c011-3c04-4bbb-a1d3-976bc29844ab",
+          "name": "Mailchimp Delete Batch Request",
+          "request": {
+            "name": "Mailchimp Delete Batch Request",
+            "description": {
+              "content": "Stops a batch request from running. Since only one batch request is run at a time, this can be used to cancel a long running request. The results of any completed operations will not be available after this call.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batches",
+                ":batch_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batch_id",
+                  "description": "(Required) The unique id for the batch operation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05f5d809-8054-4971-b9b5-8dbc6050cba6",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The unique id for the batch operation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55e0d144-276c-4175-a45c-2eb1a3866f3c",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batches",
+                    ":batch_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batch_id",
+                      "description": "(Required) The unique id for the batch operation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cc248b1b-b0aa-43be-9aa9-84442af19576",
+    "name": "Mailchimp Marketing Abuse Batches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

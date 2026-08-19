@@ -1,0 +1,390 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Surveys API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Surveys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get Information About All Surveys for a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/surveys",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get information about all available surveys for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Get details about a specific survey."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Publish a Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/publish",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Publish a survey that is in draft, unpublished, or has been previously published and edited."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Unpublish a Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/unpublish",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Unpublish a survey that has been published."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Create a Survey Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/create-email",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Utilize the List ID and Survey ID to generate a Campaign that links to your survey."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Survey Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get reports for surveys."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Survey Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Get report for a survey."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Survey Question Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id/questions",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Get reports for survey questions."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Survey Question Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id/questions/:question_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              },
+              {
+                "name": "question_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey question."
+              }
+            ]
+          },
+          "docs": "Get report for a survey question."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Answers for Question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id/questions/:question_id/answers",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              },
+              {
+                "name": "question_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey question."
+              },
+              {
+                "name": "respondent_familiarity_is",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter survey responses by familiarity of the respondents."
+              }
+            ]
+          },
+          "docs": "Get answers for a survey question."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Survey Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id/responses",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              },
+              {
+                "name": "answered_question",
+                "value": "example_value",
+                "type": "query",
+                "description": "The ID of the question that was answered."
+              },
+              {
+                "name": "chose_answer",
+                "value": "example_value",
+                "type": "query",
+                "description": "The ID of the option chosen to filter responses on."
+              },
+              {
+                "name": "respondent_familiarity_is",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter survey responses by familiarity of the respondents."
+              }
+            ]
+          },
+          "docs": "Get responses to a survey."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Survey Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id/responses/:response_id",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              },
+              {
+                "name": "response_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey response."
+              }
+            ]
+          },
+          "docs": "Get a single survey response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

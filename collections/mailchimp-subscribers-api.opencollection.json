@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Subscribers API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscribers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Subscribers Removed From Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/removed-subscribers",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Get information about subscribers who were removed from a classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Remove Subscriber From Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/removed-subscribers",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Remove a subscriber from a specific classic automation workflow. You can remove a subscriber at any point in an automation workflow, regardless of how many emails they've been sent from that workflow. Once they're removed, they can never be added back to the same workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Subscriber Removed From Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/removed-subscribers/:subscriber_hash",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific subscriber who was removed from a classic automation workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Pause API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pause",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Pause Automation Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/pause-all-emails",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Pause all emails in a specific classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause Automated Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/actions/pause",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Pause an automated email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause Rss Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/pause",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Pause an RSS-Driven campaign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

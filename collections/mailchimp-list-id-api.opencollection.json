@@ -1,0 +1,2347 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse List_id API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List_id",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get List Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "include_total_contacts",
+                "value": "example_value",
+                "type": "query",
+                "description": "Return the total_contacts field in the stats response, which contains an approximate count of all contacts in any state."
+              }
+            ]
+          },
+          "docs": "Get information about a specific list in your Mailchimp account. Results include list members who have signed up but haven't confirmed their subscription yet and unsubscribed or cleaned."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Batch Subscribe or Unsubscribe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "skip_merge_validation",
+                "value": "example_value",
+                "type": "query",
+                "description": "If skip_merge_validation is true, member data will be accepted without merge field values, even if the merge field is usually required. This defaults to false."
+              },
+              {
+                "name": "skip_duplicate_check",
+                "value": "example_value",
+                "type": "query",
+                "description": "If skip_duplicate_check is true, we will ignore duplicates sent in the request when using the batch sub/unsub on the lists endpoint. The status of the first appearance in the request will be saved. This defaults to false."
+              }
+            ]
+          },
+          "docs": "Batch subscribe or unsubscribe list members."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Lists",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Update the settings for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete List",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Delete a list from your Mailchimp account. If you delete a list, you'll lose the list historyincluding subscriber activity, unsubscribes, complaints, and bounces. Youll also lose subscribers email addresses, unless you exported and backed up your list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Abuse Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/abuse-reports",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get all abuse reports for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Abuse Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/abuse-reports/:report_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "report_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the abuse report."
+              }
+            ]
+          },
+          "docs": "Get details about a specific abuse report."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Recent Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/activity",
+            "params": [
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get up to the previous 180 days of daily detailed aggregated activity stats for a list, not including Automation activity."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Top Email Clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/clients",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get a list of the top email clients based on user-agent strings."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Growth History Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/growth-history",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns files sorted by the specified field."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              }
+            ]
+          },
+          "docs": "Get a month-by-month summary of a specific list's growth activity."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Growth History by Month",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/growth-history/:month",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "month",
+                "value": "example_value",
+                "type": "path",
+                "description": "A specific month of list growth history."
+              }
+            ]
+          },
+          "docs": "Get a summary of a specific list's growth activity for a specific month and year."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Interest Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results a type of interest group"
+              }
+            ]
+          },
+          "docs": "Get information about a list's interest categories."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Interest Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Create a new interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Interest Category Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get information about a specific interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Interest Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              }
+            ]
+          },
+          "docs": "Update a specific interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Interest Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              }
+            ]
+          },
+          "docs": "Delete a specific interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Interests in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get a list of this category's interests."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              }
+            ]
+          },
+          "docs": "Create a new interest or 'group name' for a specific category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests/:interest_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "interest_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The specific interest or 'group name'."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get interests or 'group names' for a specific category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests/:interest_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "interest_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The specific interest or 'group name'."
+              }
+            ]
+          },
+          "docs": "Update interests or 'group names' for a specific category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests/:interest_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "interest_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The specific interest or 'group name'."
+              }
+            ]
+          },
+          "docs": "Delete interests or group names in a specific category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/segments",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "Limit results based on segment type."
+              },
+              {
+                "name": "since_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments created after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments created before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "include_cleaned",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include cleaned members in response"
+              },
+              {
+                "name": "include_transactional",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include transactional members in response"
+              },
+              {
+                "name": "include_unsubscribed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include unsubscribed members in response"
+              },
+              {
+                "name": "since_updated_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments update after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_updated_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments update before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              }
+            ]
+          },
+          "docs": "Get information about all available segments for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/segments",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Create a new segment in a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Segment Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              },
+              {
+                "name": "include_cleaned",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include cleaned members in response"
+              },
+              {
+                "name": "include_transactional",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include transactional members in response"
+              },
+              {
+                "name": "include_unsubscribed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include unsubscribed members in response"
+              }
+            ]
+          },
+          "docs": "Get information about a specific segment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Batch Add or Remove Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Batch add/remove list members to static segment"
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Update a specific segment in a list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Delete a specific segment in a list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Members in Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id/members",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              },
+              {
+                "name": "include_cleaned",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include cleaned members in response"
+              },
+              {
+                "name": "include_transactional",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include transactional members in response"
+              },
+              {
+                "name": "include_unsubscribed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include unsubscribed members in response"
+              }
+            ]
+          },
+          "docs": "Get information about members in a saved segment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Member to Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id/members",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Add a member to a static segment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Remove List Member From Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id/members/:subscriber_hash",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Remove a member from the specified static segment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search for Tags on a List by Name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/tag-search",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "The search query used to filter tags.  The search query will be compared to each tag as a prefix, so all tags that have a name starting with this field will be returned."
+              }
+            ]
+          },
+          "docs": "Search for tags on a list by name. If no name is provided, will return all tags on the list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Members Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "email_type",
+                "value": "user@example.com",
+                "type": "query",
+                "description": "The email type."
+              },
+              {
+                "name": "status",
+                "value": "example_value",
+                "type": "query",
+                "description": "The subscriber's status."
+              },
+              {
+                "name": "since_timestamp_opt",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results to subscribers who opted-in after the set timeframe. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_timestamp_opt",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results to subscribers who opted-in before the set timeframe. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_last_changed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results to subscribers whose information changed after the set timeframe. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_last_changed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results to subscribers whose information changed before the set timeframe. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "unique_email_id",
+                "value": "user@example.com",
+                "type": "query",
+                "description": "A unique identifier for the email address across all Mailchimp lists."
+              },
+              {
+                "name": "vip_only",
+                "value": "example_value",
+                "type": "query",
+                "description": "A filter to return only the list's VIP members. Passing `true` will restrict results to VIP list members, passing `false` will return all list members."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "query",
+                "description": "The unique id for the interest category."
+              },
+              {
+                "name": "interest_ids",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used to filter list members by interests. Must be accompanied by interest_category_id and interest_match. The value must be a comma separated list of interest ids present for any supplied interest categories."
+              },
+              {
+                "name": "interest_match",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used to filter list members by interests. Must be accompanied by interest_category_id and interest_ids. \"any\" will match a member with any of the interest supplied, \"all\" will only match members with every interest supplied, and \"none\" will match members without any of the interest supplied."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns files sorted by the specified field."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              },
+              {
+                "name": "since_last_campaign",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter subscribers by those subscribed/unsubscribed/pending/cleaned since last email campaign send. Member status is required to use this filter."
+              },
+              {
+                "name": "unsubscribed_since",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter subscribers by those unsubscribed since a specific date. Using any status other than unsubscribed with this filter will result in an error."
+              }
+            ]
+          },
+          "docs": "Get information about members in a specific Mailchimp list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Member to List",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/members",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "skip_merge_validation",
+                "value": "example_value",
+                "type": "query",
+                "description": "If skip_merge_validation is true, member data will be accepted without merge field values, even if the merge field is usually required. This defaults to false."
+              }
+            ]
+          },
+          "docs": "Add a new member to the list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Member Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              }
+            ]
+          },
+          "docs": "Get information about a specific list member, including a currently subscribed, unsubscribed, or bounced member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add or Update List Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "skip_merge_validation",
+                "value": "example_value",
+                "type": "query",
+                "description": "If skip_merge_validation is true, member data will be accepted without merge field values, even if the merge field is usually required. This defaults to false."
+              }
+            ]
+          },
+          "docs": "Add or update a list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update List Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "skip_merge_validation",
+                "value": "example_value",
+                "type": "query",
+                "description": "If skip_merge_validation is true, member data will be accepted without merge field values, even if the merge field is usually required. This defaults to false."
+              }
+            ]
+          },
+          "docs": "Update information for a specific list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Archive List Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              }
+            ]
+          },
+          "docs": "Archive a list member. To permanently delete, use the delete-permanent action."
+        },
+        {
+          "info": {
+            "name": "Mailchimp View Recent Activity 50",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/activity",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "action",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma seperated list of actions to return."
+              }
+            ]
+          },
+          "docs": "Get the last 50 events of a member's activity on a specific list, including opens, clicks, and unsubscribes."
+        },
+        {
+          "info": {
+            "name": "Mailchimp View Recent Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/activity-feed",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "activity_filters",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of activity filters that correspond to a set of activity types, e.g \"?activity_filters=open,bounce,click\"."
+              }
+            ]
+          },
+          "docs": "Get a member's activity on a specific list, including opens, clicks, and unsubscribes."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Member Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/tags",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get the tags on a list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add or Remove Member Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/tags",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Add or remove tags from a list member. If a tag that does not exist is passed in and set as 'active', a new tag will be created."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Member Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/events",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get events for a contact."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/events",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              }
+            ]
+          },
+          "docs": "Add an event for a list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Member Goal Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/goals",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get the last 50 Goal events for a member on a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Recent Member Notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/notes",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns notes sorted by the specified field."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get recent notes for a specific list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Member Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/notes",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Add a new note for a specific subscriber."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Member Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/notes/:note_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "note_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the note."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get a specific note for a specific list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/notes/:note_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "note_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the note."
+              }
+            ]
+          },
+          "docs": "Update a specific note for a specific list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Note",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/notes/:note_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "note_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the note."
+              }
+            ]
+          },
+          "docs": "Delete a specific note for a specific list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete List Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/actions/delete-permanent",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Delete all personally identifiable information related to a list member, and remove them from a list. This will make it impossible to re-import the list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Merge Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/merge-fields",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "The merge field type."
+              },
+              {
+                "name": "required",
+                "value": "example_value",
+                "type": "query",
+                "description": "Whether it's a required merge field."
+              }
+            ]
+          },
+          "docs": "Get a list of all merge fields for an audience."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Merge Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/merge-fields",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Add a new merge field for a specific audience."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Merge Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/merge-fields/:merge_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "merge_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the merge field."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get information about a specific merge field."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Merge Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/merge-fields/:merge_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "merge_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the merge field."
+              }
+            ]
+          },
+          "docs": "Update a specific merge field."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Merge Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/merge-fields/:merge_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "merge_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the merge field."
+              }
+            ]
+          },
+          "docs": "Delete a specific merge field."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get information about all webhooks for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Create a new webhook for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Webhook Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The webhook's id."
+              }
+            ]
+          },
+          "docs": "Get information about a specific webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The webhook's id."
+              }
+            ]
+          },
+          "docs": "Update the settings for an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The webhook's id."
+              }
+            ]
+          },
+          "docs": "Delete a specific webhook in a list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Signup Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/signup-forms",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get signup forms for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Customize Signup Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/signup-forms",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Customize a list's default signup form."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/locations",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get the locations (countries) that the list's subscribers have been tagged to based on geocoding their IP address."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Information About All Surveys for a List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/surveys",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get information about all available surveys for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Get details about a specific survey."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Publish a Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/publish",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Publish a survey that is in draft, unpublished, or has been previously published and edited."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Unpublish a Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/unpublish",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Unpublish a survey that has been published."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Create a Survey Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/create-email",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Utilize the List ID and Survey ID to generate a Campaign that links to your survey."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

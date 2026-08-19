@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Senders API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Senders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Senders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of all sender email addresses that have been used in the account, with aggregate statistics for each sender."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Sender Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of sender domains that have been configured for the account, including DKIM and SPF verification status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Sender Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/add-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new sender domain to the account for verification."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Check a Sender Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/check-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check the DNS settings for a sender domain to verify DKIM and SPF configuration status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Verify a Sender Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/verify-domain",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a verification email to the specified mailbox at the domain to confirm domain ownership."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Sender Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed information for a single sender address, including aggregate sending statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Sender Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the recent sending history for a sender address, aggregated by hourly time slots."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3462 @@
+{
+  "item": [
+    {
+      "id": "6cbab959-22e5-4ad5-8dfd-542ccd65e741",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45ff0541-9f40-4446-a153-56309726f707",
+          "name": "Mailchimp List Product",
+          "request": {
+            "name": "Mailchimp List Product",
+            "description": {
+              "content": "Get information about a store's products.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2266e605-8467-4be6-a9b6-479548d18ef3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"products\": [\n    {\n      \"id\": \"string\",\n      \"currency_code\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"handle\": \"cat-hat\",\n      \"url\": \"string\",\n      \"description\": \"This is a cat hat.\",\n      \"type\": \"Accessories\",\n      \"vendor\": \"string\",\n      \"image_url\": \"string\",\n      \"variants\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"Cat Hat\",\n          \"url\": \"string\",\n          \"sku\": \"string\",\n          \"price\": 120.24763423920781,\n          \"inventory_quantity\": 3900,\n          \"image_url\": \"string\",\n          \"backorders\": \"string\",\n          \"visibility\": \"string\",\n          \"created_at\": \"2015-07-15T19:28:00+00:00\",\n          \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"HEAD\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"Cat Hat\",\n          \"url\": \"string\",\n          \"sku\": \"string\",\n          \"price\": 6722.200804508599,\n          \"inventory_quantity\": 9658,\n          \"image_url\": \"string\",\n          \"backorders\": \"string\",\n          \"visibility\": \"string\",\n          \"created_at\": \"2015-07-15T19:28:00+00:00\",\n          \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"POST\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"GET\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"string\",\n          \"variant_ids\": [\n            \"string\",\n            \"string\"\n          ],\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"OPTIONS\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"string\",\n          \"variant_ids\": [\n            \"string\",\n            \"string\"\n          ],\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"POST\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PUT\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"currency_code\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"handle\": \"cat-hat\",\n      \"url\": \"string\",\n      \"description\": \"This is a cat hat.\",\n      \"type\": \"Accessories\",\n      \"vendor\": \"string\",\n      \"image_url\": \"string\",\n      \"variants\": [\n        {\n          \"id\": \"string\",\n          \"title\": \"Cat Hat\",\n          \"url\": \"string\",\n          \"sku\": \"string\",\n          \"price\": 2217.191185150699,\n          \"inventory_quantity\": 5820,\n          \"image_url\": \"string\",\n          \"backorders\": \"string\",\n          \"visibility\": \"string\",\n          \"created_at\": \"2015-07-15T19:28:00+00:00\",\n          \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"GET\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"HEAD\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"title\": \"Cat Hat\",\n          \"url\": \"string\",\n          \"sku\": \"string\",\n          \"price\": 2676.4666032341456,\n          \"inventory_quantity\": 6307,\n          \"image_url\": \"string\",\n          \"backorders\": \"string\",\n          \"visibility\": \"string\",\n          \"created_at\": \"2015-07-15T19:28:00+00:00\",\n          \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"images\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"string\",\n          \"variant_ids\": [\n            \"string\",\n            \"string\"\n          ],\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"POST\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"string\",\n          \"variant_ids\": [\n            \"string\",\n            \"string\"\n          ],\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 4305,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8502b24-4ff7-4d83-b977-b5a3bcd1166a",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "228f45a5-cb2f-4e3d-8ae7-f5ce08cd3b78",
+          "name": "Mailchimp Add Product",
+          "request": {
+            "name": "Mailchimp Add Product",
+            "description": {
+              "content": "Add a new product to a store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"variants\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    }\n  ],\n  \"handle\": \"<string>\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"image_url\": \"<string>\",\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eff54da7-2ee6-4fdf-8e48-7509e3f7303b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"title\": \"Cat Hat\",\n  \"variants\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    }\n  ],\n  \"handle\": \"cat-hat\",\n  \"url\": \"<string>\",\n  \"description\": \"This is a cat hat.\",\n  \"type\": \"Accessories\",\n  \"vendor\": \"<string>\",\n  \"image_url\": \"<string>\",\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"currency_code\": \"string\",\n  \"title\": \"Cat Hat\",\n  \"handle\": \"cat-hat\",\n  \"url\": \"string\",\n  \"description\": \"This is a cat hat.\",\n  \"type\": \"Accessories\",\n  \"vendor\": \"string\",\n  \"image_url\": \"string\",\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 452.4829138429942,\n      \"inventory_quantity\": 568,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 265.81195028648307,\n      \"inventory_quantity\": 4999,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20f46e6e-a704-412d-988b-36a4527dd0f0",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"title\": \"Cat Hat\",\n  \"variants\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    }\n  ],\n  \"handle\": \"cat-hat\",\n  \"url\": \"<string>\",\n  \"description\": \"This is a cat hat.\",\n  \"type\": \"Accessories\",\n  \"vendor\": \"<string>\",\n  \"image_url\": \"<string>\",\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e51b855a-98bb-4773-8cfa-a22f1e35a034",
+          "name": "Mailchimp Get Product Info",
+          "request": {
+            "name": "Mailchimp Get Product Info",
+            "description": {
+              "content": "Get information about a specific product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57efb012-e017-4316-a0d4-977db14386ec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"currency_code\": \"string\",\n  \"title\": \"Cat Hat\",\n  \"handle\": \"cat-hat\",\n  \"url\": \"string\",\n  \"description\": \"This is a cat hat.\",\n  \"type\": \"Accessories\",\n  \"vendor\": \"string\",\n  \"image_url\": \"string\",\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 452.4829138429942,\n      \"inventory_quantity\": 568,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 265.81195028648307,\n      \"inventory_quantity\": 4999,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccb0dd8f-00d2-430a-9c61-c08778cc97d5",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a9ba3dc-2bf4-49a6-91e6-7c1f4a9f89f7",
+          "name": "Mailchimp Update Product",
+          "request": {
+            "name": "Mailchimp Update Product",
+            "description": {
+              "content": "Update a specific product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"handle\": \"<string>\",\n  \"url\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"image_url\": \"<string>\",\n  \"variants\": [\n    {\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "69d131f3-5c6f-4d19-936a-5d6630ef3ed2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Cat Hat\",\n  \"handle\": \"cat-hat\",\n  \"url\": \"<string>\",\n  \"description\": \"This is a cat hat.\",\n  \"type\": \"Accessories\",\n  \"vendor\": \"<string>\",\n  \"image_url\": \"<string>\",\n  \"variants\": [\n    {\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    },\n    {\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"currency_code\": \"string\",\n  \"title\": \"Cat Hat\",\n  \"handle\": \"cat-hat\",\n  \"url\": \"string\",\n  \"description\": \"This is a cat hat.\",\n  \"type\": \"Accessories\",\n  \"vendor\": \"string\",\n  \"image_url\": \"string\",\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 452.4829138429942,\n      \"inventory_quantity\": 568,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 265.81195028648307,\n      \"inventory_quantity\": 4999,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bcb5f1d-4c00-47e9-9295-63d83565c141",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Cat Hat\",\n  \"handle\": \"cat-hat\",\n  \"url\": \"<string>\",\n  \"description\": \"This is a cat hat.\",\n  \"type\": \"Accessories\",\n  \"vendor\": \"<string>\",\n  \"image_url\": \"<string>\",\n  \"variants\": [\n    {\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    },\n    {\n      \"title\": \"Cat Hat\",\n      \"url\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"price\": \"<number>\",\n      \"inventory_quantity\": \"<integer>\",\n      \"image_url\": \"<string>\",\n      \"backorders\": \"<string>\",\n      \"visibility\": \"<string>\"\n    }\n  ],\n  \"images\": [\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"url\": \"<string>\",\n      \"variant_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"published_at_foreign\": \"2015-07-15T19:28:00+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8a564a1-09d4-428b-9cbc-64afedd6f669",
+          "name": "Mailchimp Delete Product",
+          "request": {
+            "name": "Mailchimp Delete Product",
+            "description": {
+              "content": "Delete a product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f550100f-9e1c-407c-b650-18ba67d7e9fd",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ac3a242-48a5-48cd-b35e-acc86c86f8fb",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff673697-2c36-427f-9423-d497328e7c52",
+          "name": "Mailchimp List Product Variants",
+          "request": {
+            "name": "Mailchimp List Product Variants",
+            "description": {
+              "content": "Get information about a product's variants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "variants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dde8bce7-43e5-4ac2-8ae5-b257e11f8337",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"product_id\": \"string\",\n  \"variants\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 6886.919683106728,\n      \"inventory_quantity\": 7640,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"Cat Hat\",\n      \"url\": \"string\",\n      \"sku\": \"string\",\n      \"price\": 3635.5752681636445,\n      \"inventory_quantity\": 9863,\n      \"image_url\": \"string\",\n      \"backorders\": \"string\",\n      \"visibility\": \"string\",\n      \"created_at\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 8895,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34805cb6-9929-4b26-8aa8-82044d79eede",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f526011-d6d8-46a9-ad55-d4e838659ec0",
+          "name": "Mailchimp Add Product Variant",
+          "request": {
+            "name": "Mailchimp Add Product Variant",
+            "description": {
+              "content": "Add a new variant to the product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "variants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"url\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"price\": \"<number>\",\n  \"inventory_quantity\": \"<integer>\",\n  \"image_url\": \"<string>\",\n  \"backorders\": \"<string>\",\n  \"visibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e23f2762-5153-4aa5-a734-ab11e25cb961",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"Cat Hat\",\n  \"url\": \"string\",\n  \"sku\": \"string\",\n  \"price\": 5057.8682152741285,\n  \"inventory_quantity\": 8858,\n  \"image_url\": \"string\",\n  \"backorders\": \"string\",\n  \"visibility\": \"string\",\n  \"created_at\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7d554f0-f962-4937-91d6-1922cb17faba",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ea5fdcd-6f5b-4859-9887-ebfdb76762df",
+          "name": "Mailchimp Get Product Variant Info",
+          "request": {
+            "name": "Mailchimp Get Product Variant Info",
+            "description": {
+              "content": "Get information about a specific product variant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "variants",
+                ":variant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) The id for the product variant."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53c97af0-4888-4570-b0fa-05e07d0c9fbd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"Cat Hat\",\n  \"url\": \"string\",\n  \"sku\": \"string\",\n  \"price\": 5057.8682152741285,\n  \"inventory_quantity\": 8858,\n  \"image_url\": \"string\",\n  \"backorders\": \"string\",\n  \"visibility\": \"string\",\n  \"created_at\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0926e15b-1129-489f-8f4f-01c8c8ae0617",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3223930-2e20-4968-8634-e32604b8f2f2",
+          "name": "Mailchimp Add or Update Product Variant",
+          "request": {
+            "name": "Mailchimp Add or Update Product Variant",
+            "description": {
+              "content": "Add or update a product variant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "variants",
+                ":variant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) The id for the product variant."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"url\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"price\": \"<number>\",\n  \"inventory_quantity\": \"<integer>\",\n  \"image_url\": \"<string>\",\n  \"backorders\": \"<string>\",\n  \"visibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e54c132-bd07-4ce5-a0d1-cf7f5c8fa4e8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"Cat Hat\",\n  \"url\": \"string\",\n  \"sku\": \"string\",\n  \"price\": 5057.8682152741285,\n  \"inventory_quantity\": 8858,\n  \"image_url\": \"string\",\n  \"backorders\": \"string\",\n  \"visibility\": \"string\",\n  \"created_at\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0984a35a-0974-48ba-a449-400b1c72e4bc",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5a388ad-815a-44f3-ad16-495bcac18e09",
+          "name": "Mailchimp Update Product Variant",
+          "request": {
+            "name": "Mailchimp Update Product Variant",
+            "description": {
+              "content": "Update a product variant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "variants",
+                ":variant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) The id for the product variant."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"url\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"price\": \"<number>\",\n  \"inventory_quantity\": \"<integer>\",\n  \"image_url\": \"<string>\",\n  \"backorders\": \"<string>\",\n  \"visibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "095f21a3-a8f6-462c-a149-63b8e1bfa55c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Cat Hat\",\n  \"url\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"price\": \"<number>\",\n  \"inventory_quantity\": \"<integer>\",\n  \"image_url\": \"<string>\",\n  \"backorders\": \"<string>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"Cat Hat\",\n  \"url\": \"string\",\n  \"sku\": \"string\",\n  \"price\": 5057.8682152741285,\n  \"inventory_quantity\": 8858,\n  \"image_url\": \"string\",\n  \"backorders\": \"string\",\n  \"visibility\": \"string\",\n  \"created_at\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bcd743c-8250-4712-aeb6-35650c1429e4",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Cat Hat\",\n  \"url\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"price\": \"<number>\",\n  \"inventory_quantity\": \"<integer>\",\n  \"image_url\": \"<string>\",\n  \"backorders\": \"<string>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3224b761-a5de-43de-b27b-ac83bbd58f24",
+          "name": "Mailchimp Delete Product Variant",
+          "request": {
+            "name": "Mailchimp Delete Product Variant",
+            "description": {
+              "content": "Delete a product variant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "variants",
+                ":variant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variant_id",
+                  "description": "(Required) The id for the product variant."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b58d3c61-b23b-441f-a533-d5b6878111ab",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bcbbfa81-e0e5-4f06-8aef-a021c9cf2f3b",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "variants",
+                    ":variant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "variant_id",
+                      "description": "(Required) The id for the product variant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0c9c715-b602-48d1-8efd-62f17da9d77a",
+          "name": "Mailchimp List Product Images",
+          "request": {
+            "name": "Mailchimp List Product Images",
+            "description": {
+              "content": "Get information about a product's images.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45fcd3b5-20d0-4e2d-9f7e-c867b391fad4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"product_id\": \"string\",\n  \"images\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"string\",\n      \"variant_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 7670,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4732c280-51a1-41c8-bba3-e7fe321a3717",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed94a05c-069f-4e00-8b1e-94b90fddbaa7",
+          "name": "Mailchimp Add Product Image",
+          "request": {
+            "name": "Mailchimp Add Product Image",
+            "description": {
+              "content": "Add a new image to the product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"variant_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e576a5f-ea00-47fb-9e8c-fdd2bfef5f8d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"variant_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"url\": \"string\",\n  \"variant_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c460869-5836-492f-a4da-a4df67717ae3",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"variant_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68888c0b-f801-4b6c-b768-9cdc119672cf",
+          "name": "Mailchimp Get Product Image Info",
+          "request": {
+            "name": "Mailchimp Get Product Image Info",
+            "description": {
+              "content": "Get information about a specific product image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "images",
+                ":image_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "image_id",
+                  "description": "(Required) The id for the product image."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e51324e-03cd-4d02-bb20-f5185eb7e25a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images",
+                    ":image_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "image_id",
+                      "description": "(Required) The id for the product image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"url\": \"string\",\n  \"variant_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2762cee5-3a29-43fc-8c7c-99f99d28fd80",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images",
+                    ":image_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "image_id",
+                      "description": "(Required) The id for the product image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fedbe2f3-5453-44b6-a61f-5b2c0a11e9c8",
+          "name": "Mailchimp Update Product Image",
+          "request": {
+            "name": "Mailchimp Update Product Image",
+            "description": {
+              "content": "Update a product image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "images",
+                ":image_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "image_id",
+                  "description": "(Required) The id for the product image."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"variant_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "150ab22a-39cc-4bcf-ac44-33c932677276",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images",
+                    ":image_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "image_id",
+                      "description": "(Required) The id for the product image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"variant_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"url\": \"string\",\n  \"variant_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc1a9e30-897b-44a8-bfb1-2bd8c252001c",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images",
+                    ":image_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "image_id",
+                      "description": "(Required) The id for the product image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"url\": \"<string>\",\n  \"variant_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5024e1a2-366b-44b1-9155-ff394960608d",
+          "name": "Mailchimp Delete Product Image",
+          "request": {
+            "name": "Mailchimp Delete Product Image",
+            "description": {
+              "content": "Delete a product image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "products",
+                ":product_id",
+                "images",
+                ":image_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "product_id",
+                  "description": "(Required) The id for the product of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "image_id",
+                  "description": "(Required) The id for the product image."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e104539-8b93-4d98-adf4-3766ce64b38c",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images",
+                    ":image_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "image_id",
+                      "description": "(Required) The id for the product image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7a0847e-8ce4-4b8c-af8d-df9efe7d3755",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "products",
+                    ":product_id",
+                    "images",
+                    ":image_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "product_id",
+                      "description": "(Required) The id for the product of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "image_id",
+                      "description": "(Required) The id for the product image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a96962c8-a72c-46ad-9636-c2d9b00c9cd7",
+    "name": "Mailchimp Marketing Abuse Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

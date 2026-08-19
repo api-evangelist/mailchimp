@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Landing Pages API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Landing Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get Landing Page Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/landing-pages/:page_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "page_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the page."
+              }
+            ]
+          },
+          "docs": "Get information about a specific page."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/landing-pages/:page_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the page."
+              }
+            ]
+          },
+          "docs": "Update a landing page."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/landing-pages/:page_id",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the page."
+              }
+            ]
+          },
+          "docs": "Delete a landing page."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Unpublish Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/landing-pages/:page_id/actions/unpublish",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the page."
+              }
+            ]
+          },
+          "docs": "Unpublish a landing page that is in draft or has been published."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

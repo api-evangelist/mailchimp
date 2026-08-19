@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Subaccounts API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subaccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Subaccounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of subaccounts defined for the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new subaccount under the main account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Subaccount Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed information about a specific subaccount."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing subaccount's name, notes, or quota."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a subaccount. Any future email for the subaccount will be sent from the primary account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/pause",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pause a subaccount's sending. Any future messages sent through the subaccount will be queued but not delivered until the subaccount is resumed."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Resume a Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/resume",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resume a paused subaccount, allowing it to send messages again."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

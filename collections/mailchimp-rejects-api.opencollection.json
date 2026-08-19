@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Rejects API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rejects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Rejections",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve all entries in the rejection blacklist. These are email addresses that have previously hard-bounced or been reported as spam, and will be automatically rejected."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Rejection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually add an email address to the rejection blacklist. Messages to this address will be rejected."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Rejection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an email address from the rejection blacklist, allowing messages to be delivered to it again."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

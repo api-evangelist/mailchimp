@@ -1,0 +1,1014 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Reports API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Abuse Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/abuse-reports",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get all abuse reports for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Abuse Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/abuse-reports/:report_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "report_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the abuse report."
+              }
+            ]
+          },
+          "docs": "Get details about a specific abuse report."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "The campaign type."
+              },
+              {
+                "name": "before_send_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to campaigns sent before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_send_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to campaigns sent after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              }
+            ]
+          },
+          "docs": "Get campaign reports."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get report details for a specific sent campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Abuse Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/abuse-reports",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get a list of abuse complaints for a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Abuse Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/abuse-reports/:report_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "report_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the abuse report."
+              }
+            ]
+          },
+          "docs": "Get information about a specific abuse report for a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/advice",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get feedback based on a campaign's statistics. Advice feedback is based on campaign stats like opens, clicks, unsubscribes, bounces, and more."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/click-details",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns click reports sorted by the specified field."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              }
+            ]
+          },
+          "docs": "Get information about clicks on specific links in your Mailchimp campaigns."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Link Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/click-details/:link_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "link_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the link."
+              }
+            ]
+          },
+          "docs": "Get click details for a specific link in a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Clicked Link Subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/click-details/:link_id/members",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "link_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the link."
+              }
+            ]
+          },
+          "docs": "Get information about list members who clicked on a specific link in a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Clicked Link Subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/click-details/:link_id/members/:subscriber_hash",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "link_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the link."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific subscriber who clicked a link in a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Open Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/open-details",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "since",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results to campaign open events that occur after a specific time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns open reports sorted by the specified field."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              }
+            ]
+          },
+          "docs": "Get detailed information about any campaign emails that were opened by a list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Opened Campaign Subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/open-details/:subscriber_hash",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific subscriber who opened a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Domain Performance Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/domain-performance",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get statistics for the top-performing email domains in a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Eepurl Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/eepurl",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get a summary of social activity for the campaign, tracked by EepURL."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Email Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/email-activity",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "since",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results to email activity events that occur after a specific time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              }
+            ]
+          },
+          "docs": "Get a list of member's subscriber activity in a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Subscriber Email Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/email-activity/:subscriber_hash",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              },
+              {
+                "name": "since",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results to email activity events that occur after a specific time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              }
+            ]
+          },
+          "docs": "Get a specific list member's activity in a campaign including opens, clicks, and bounces."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Top Open Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/locations",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get top open locations for a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/sent-to",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get information about campaign recipients."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Recipient Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/sent-to/:subscriber_hash",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific campaign recipient."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Child Campaign Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/sub-reports",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get a list of reports with child campaigns for a specific parent campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Unsubscribed Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/unsubscribed",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get information about members who have unsubscribed from a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Unsubscribed Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/unsubscribed/:subscriber_hash",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific list member who unsubscribed from a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Product Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/ecommerce-product-activity",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns files sorted by the specified field."
+              }
+            ]
+          },
+          "docs": "Get breakdown of product activity for a campaign"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

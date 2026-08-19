@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Verify API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verify",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Verify Connected Site Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/connected-sites/:connected_site_id/actions/verify-script-installation",
+            "params": [
+              {
+                "name": "connected_site_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier for the site."
+              }
+            ]
+          },
+          "docs": "Verify that the connected sites script has been installed, either via the script URL or fragment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Verify Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/verified-domains/:domain_name/actions/verify",
+            "params": [
+              {
+                "name": "domain_name",
+                "value": "example_value",
+                "type": "path",
+                "description": "The domain name."
+              }
+            ]
+          },
+          "docs": "Verify a domain for sending."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

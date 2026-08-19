@@ -1,0 +1,2144 @@
+{
+  "item": [
+    {
+      "id": "ad5747b0-f94e-470a-92c4-6b223a549d8b",
+      "name": "Promo",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "333cc65c-1ece-44bc-8fd5-3b516e23993a",
+          "name": "Mailchimp List Promo Rules",
+          "request": {
+            "name": "Mailchimp List Promo Rules",
+            "description": {
+              "content": "Get information about a store's promo rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "475279a1-af40-4d9d-993c-9ec72f9cd836",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"promo_rules\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"50% off Total Order\",\n      \"description\": \"Save BIG during our summer sale!\",\n      \"starts_at\": \"1970-04-20T14:41:43.455Z\",\n      \"ends_at\": \"string\",\n      \"amount\": 0.5,\n      \"type\": \"percentage\",\n      \"target\": \"shipping\",\n      \"enabled\": true,\n      \"created_at_foreign\": \"2021-07-25T09:39:00.524Z\",\n      \"updated_at_foreign\": \"1947-05-05T03:57:33.892Z\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"50% off Total Order\",\n      \"description\": \"Save BIG during our summer sale!\",\n      \"starts_at\": \"1959-03-09T00:44:45.826Z\",\n      \"ends_at\": \"string\",\n      \"amount\": 0.5,\n      \"type\": \"percentage\",\n      \"target\": \"per_item\",\n      \"enabled\": false,\n      \"created_at_foreign\": \"1989-09-19T22:07:57.326Z\",\n      \"updated_at_foreign\": \"1967-06-12T12:57:01.751Z\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 5799,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d018d55a-fe9f-4173-b384-7638926becdf",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8571a417-87b3-48bd-b319-569ac9b06be9",
+          "name": "Mailchimp Add Promo Rule",
+          "request": {
+            "name": "Mailchimp Add Promo Rule",
+            "description": {
+              "content": "Add a new promo rule to a store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"title\": \"<string>\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<Promo date-time>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c42a4bbd-83ce-4fa2-8cbc-79b41632eb34",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"Save BIG during our summer sale!\",\n  \"amount\": 0.5,\n  \"type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"title\": \"50% off Total Order\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<Promo date-time>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"50% off Total Order\",\n  \"description\": \"Save BIG during our summer sale!\",\n  \"starts_at\": \"1955-02-13T16:02:31.301Z\",\n  \"ends_at\": \"string\",\n  \"amount\": 0.5,\n  \"type\": \"fixed\",\n  \"target\": \"shipping\",\n  \"enabled\": false,\n  \"created_at_foreign\": \"1994-01-05T20:18:38.325Z\",\n  \"updated_at_foreign\": \"1983-01-14T10:48:00.106Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc32d3b8-1ae7-4e30-be97-e0aa8efc488a",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"description\": \"Save BIG during our summer sale!\",\n  \"amount\": 0.5,\n  \"type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"title\": \"50% off Total Order\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<Promo date-time>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4b4bd4b-da09-404b-b0f5-2f86fe993e0c",
+          "name": "Mailchimp Get Promo Rule",
+          "request": {
+            "name": "Mailchimp Get Promo Rule",
+            "description": {
+              "content": "Get information about a specific promo rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa36b2d1-d8a0-4250-b273-a4aee5388bdf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"50% off Total Order\",\n  \"description\": \"Save BIG during our summer sale!\",\n  \"starts_at\": \"1955-02-13T16:02:31.301Z\",\n  \"ends_at\": \"string\",\n  \"amount\": 0.5,\n  \"type\": \"fixed\",\n  \"target\": \"shipping\",\n  \"enabled\": false,\n  \"created_at_foreign\": \"1994-01-05T20:18:38.325Z\",\n  \"updated_at_foreign\": \"1983-01-14T10:48:00.106Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cd9f48d-7ccd-43a0-94e4-966022570fd4",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c3bea5f-7520-445c-8849-6fe9fcd98c0b",
+          "name": "Mailchimp Update Promo Rule",
+          "request": {
+            "name": "Mailchimp Update Promo Rule",
+            "description": {
+              "content": "Update a promo rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<Promo date-time>\",\n  \"amount\": \"<float>\",\n  \"type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e68c8c78-4f41-4e9d-94b2-03502d4b3bb3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"50% off Total Order\",\n  \"description\": \"Save BIG during our summer sale!\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<Promo date-time>\",\n  \"amount\": 0.5,\n  \"type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"50% off Total Order\",\n  \"description\": \"Save BIG during our summer sale!\",\n  \"starts_at\": \"1955-02-13T16:02:31.301Z\",\n  \"ends_at\": \"string\",\n  \"amount\": 0.5,\n  \"type\": \"fixed\",\n  \"target\": \"shipping\",\n  \"enabled\": false,\n  \"created_at_foreign\": \"1994-01-05T20:18:38.325Z\",\n  \"updated_at_foreign\": \"1983-01-14T10:48:00.106Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af19ff8a-05b8-493a-9149-65a668f44ff8",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"50% off Total Order\",\n  \"description\": \"Save BIG during our summer sale!\",\n  \"starts_at\": \"<dateTime>\",\n  \"ends_at\": \"<Promo date-time>\",\n  \"amount\": 0.5,\n  \"type\": \"<string>\",\n  \"target\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce3d8b1c-ca04-4c23-a3e4-1d0583bf7277",
+          "name": "Mailchimp Delete Promo Rule",
+          "request": {
+            "name": "Mailchimp Delete Promo Rule",
+            "description": {
+              "content": "Delete a promo rule from a store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19c0d5a8-014c-4e32-b4bd-72bb5b75ae76",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e21f598-8f29-4f03-82f6-1420287c32fb",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1782ac0-4297-43d1-8864-8b75a075fed2",
+          "name": "Mailchimp List Promo Codes",
+          "request": {
+            "name": "Mailchimp List Promo Codes",
+            "description": {
+              "content": "Get information about a store's promo codes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id",
+                "promo-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "736346f6-7431-4ffc-8781-182b1809ffba",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"promo_codes\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"summersale\",\n      \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n      \"usage_count\": 8812,\n      \"enabled\": true,\n      \"created_at_foreign\": \"2001-10-17T09:29:15.837Z\",\n      \"updated_at_foreign\": \"1965-12-30T15:36:08.302Z\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"summersale\",\n      \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n      \"usage_count\": 5196,\n      \"enabled\": true,\n      \"created_at_foreign\": \"1964-11-30T05:43:57.722Z\",\n      \"updated_at_foreign\": \"2008-03-20T19:38:25.252Z\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 9657,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccfd6703-3fad-414a-a62d-6d81969bb8ff",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fd89046-f11d-45a3-bf5d-f432300a19ae",
+          "name": "Mailchimp Add Promo Code",
+          "request": {
+            "name": "Mailchimp Add Promo Code",
+            "description": {
+              "content": "Add a new promo code to a store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id",
+                "promo-codes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"code\": \"<string>\",\n  \"redemption_url\": \"<string>\",\n  \"usage_count\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2929fe23-42c5-462c-97ff-646a19a28bd6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"code\": \"summersale\",\n  \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n  \"usage_count\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"code\": \"summersale\",\n  \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n  \"usage_count\": 7391,\n  \"enabled\": false,\n  \"created_at_foreign\": \"1986-04-28T07:31:28.555Z\",\n  \"updated_at_foreign\": \"1970-02-14T10:21:44.844Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16dbcae0-af3d-4a31-a63b-589494572c97",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"code\": \"summersale\",\n  \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n  \"usage_count\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41a9edee-4cc6-47e4-b13e-0df12ef60337",
+          "name": "Mailchimp Get Promo Code",
+          "request": {
+            "name": "Mailchimp Get Promo Code",
+            "description": {
+              "content": "Get information about a specific promo code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id",
+                "promo-codes",
+                ":promo_code_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_code_id",
+                  "description": "(Required) The id for the promo code of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16241742-ff7c-4a1e-bff7-fabb6c19060f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes",
+                    ":promo_code_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_code_id",
+                      "description": "(Required) The id for the promo code of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"code\": \"summersale\",\n  \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n  \"usage_count\": 7391,\n  \"enabled\": false,\n  \"created_at_foreign\": \"1986-04-28T07:31:28.555Z\",\n  \"updated_at_foreign\": \"1970-02-14T10:21:44.844Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e16486a2-0d88-49fa-847d-a587499c3ef0",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes",
+                    ":promo_code_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_code_id",
+                      "description": "(Required) The id for the promo code of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65167a06-df6b-46b1-8d76-ba4ccc016566",
+          "name": "Mailchimp Update Promo Code",
+          "request": {
+            "name": "Mailchimp Update Promo Code",
+            "description": {
+              "content": "Update a promo code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id",
+                "promo-codes",
+                ":promo_code_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_code_id",
+                  "description": "(Required) The id for the promo code of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"redemption_url\": \"<string>\",\n  \"usage_count\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2258f0b7-b1ce-4da5-88c3-9a0453331913",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes",
+                    ":promo_code_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_code_id",
+                      "description": "(Required) The id for the promo code of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"summersale\",\n  \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n  \"usage_count\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"code\": \"summersale\",\n  \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n  \"usage_count\": 7391,\n  \"enabled\": false,\n  \"created_at_foreign\": \"1986-04-28T07:31:28.555Z\",\n  \"updated_at_foreign\": \"1970-02-14T10:21:44.844Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e83e5a7-6652-4578-a690-1241b116e560",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes",
+                    ":promo_code_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_code_id",
+                      "description": "(Required) The id for the promo code of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"summersale\",\n  \"redemption_url\": \"A url that applies promo code directly at checkout or a url that points to sale page or store url\",\n  \"usage_count\": \"<integer>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fb37ea8-73fc-4257-94f1-0de5ec5c7200",
+          "name": "Mailchimp Delete Promo Code",
+          "request": {
+            "name": "Mailchimp Delete Promo Code",
+            "description": {
+              "content": "Delete a promo code from a store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "promo-rules",
+                ":promo_rule_id",
+                "promo-codes",
+                ":promo_code_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_rule_id",
+                  "description": "(Required) The id for the promo rule of a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promo_code_id",
+                  "description": "(Required) The id for the promo code of a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "548060f1-7d07-4f4e-9684-6a43f26d86ff",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes",
+                    ":promo_code_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_code_id",
+                      "description": "(Required) The id for the promo code of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "716e9a51-79fa-4312-895e-d79aa4082f7d",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "promo-rules",
+                    ":promo_rule_id",
+                    "promo-codes",
+                    ":promo_code_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_rule_id",
+                      "description": "(Required) The id for the promo rule of a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promo_code_id",
+                      "description": "(Required) The id for the promo code of a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "43f330e7-31dd-47f6-8398-cbd8c8d399a0",
+    "name": "Mailchimp Marketing Abuse Promo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

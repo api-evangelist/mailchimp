@@ -1,0 +1,1040 @@
+{
+  "item": [
+    {
+      "id": "944dc80a-bc82-4d19-a770-0a3abf161235",
+      "name": "Merge",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8deed2bc-7b35-4698-bce9-228d497e6eb8",
+          "name": "Mailchimp List Merge Fields",
+          "request": {
+            "name": "Mailchimp List Merge Fields",
+            "description": {
+              "content": "Get a list of all merge fields for an audience.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "merge-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The merge field type."
+                },
+                {
+                  "disabled": false,
+                  "key": "required",
+                  "value": "<boolean>",
+                  "description": "Whether it's a required merge field."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "652f8fb0-3a48-4c52-aa9c-e055d964e970",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "type",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "required",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merge_fields\": [\n    {\n      \"merge_id\": 8292,\n      \"tag\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"phone\",\n      \"required\": true,\n      \"default_value\": \"string\",\n      \"public\": false,\n      \"display_order\": 8663,\n      \"options\": {\n        \"default_country\": 4309,\n        \"phone_format\": \"string\",\n        \"date_format\": \"string\",\n        \"choices\": [\n          \"First Choice\",\n          \"Second Choice\",\n          \"Third Choice\"\n        ],\n        \"size\": 3130\n      },\n      \"help_text\": \"string\",\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"merge_id\": 2707,\n      \"tag\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"birthday\",\n      \"required\": true,\n      \"default_value\": \"string\",\n      \"public\": true,\n      \"display_order\": 3117,\n      \"options\": {\n        \"default_country\": 3245,\n        \"phone_format\": \"string\",\n        \"date_format\": \"string\",\n        \"choices\": [\n          \"First Choice\",\n          \"Second Choice\",\n          \"Third Choice\"\n        ],\n        \"size\": 7526\n      },\n      \"help_text\": \"string\",\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"list_id\": \"string\",\n  \"total_items\": 9633,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b5198b6-3007-463e-b5ea-b9e9a7502f0d",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "type",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "required",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c6af812-1b2a-4f8c-9b52-384d38ded95b",
+          "name": "Mailchimp Add Merge Field",
+          "request": {
+            "name": "Mailchimp Add Merge Field",
+            "description": {
+              "content": "Add a new merge field for a specific audience.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "merge-fields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"default_value\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"display_order\": \"<integer>\",\n  \"options\": {\n    \"default_country\": \"<integer>\",\n    \"phone_format\": \"<string>\",\n    \"date_format\": \"<string>\",\n    \"choices\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"size\": \"<integer>\"\n  },\n  \"help_text\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e27f548-b171-40da-b1cc-75376a403c82",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"default_value\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"display_order\": \"<integer>\",\n  \"options\": {\n    \"default_country\": \"<integer>\",\n    \"phone_format\": \"<string>\",\n    \"date_format\": \"<string>\",\n    \"choices\": [\n      \"First Choice\",\n      \"Second Choice\",\n      \"Third Choice\"\n    ],\n    \"size\": \"<integer>\"\n  },\n  \"help_text\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merge_id\": 2701,\n  \"tag\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"text\",\n  \"required\": true,\n  \"default_value\": \"string\",\n  \"public\": false,\n  \"display_order\": 502,\n  \"options\": {\n    \"default_country\": 6145,\n    \"phone_format\": \"string\",\n    \"date_format\": \"string\",\n    \"choices\": [\n      \"First Choice\",\n      \"Second Choice\",\n      \"Third Choice\"\n    ],\n    \"size\": 1231\n  },\n  \"help_text\": \"string\",\n  \"list_id\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9817475a-3344-4f48-b401-c0f7cda1296f",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"default_value\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"display_order\": \"<integer>\",\n  \"options\": {\n    \"default_country\": \"<integer>\",\n    \"phone_format\": \"<string>\",\n    \"date_format\": \"<string>\",\n    \"choices\": [\n      \"First Choice\",\n      \"Second Choice\",\n      \"Third Choice\"\n    ],\n    \"size\": \"<integer>\"\n  },\n  \"help_text\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "129f957f-5958-42bf-b4c0-614c59183ec0",
+          "name": "Mailchimp Get Merge Field",
+          "request": {
+            "name": "Mailchimp Get Merge Field",
+            "description": {
+              "content": "Get information about a specific merge field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "merge-fields",
+                ":merge_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merge_id",
+                  "description": "(Required) The id for the merge field."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04f1a535-6678-4da3-afa0-fc5776be42e7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields",
+                    ":merge_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merge_id",
+                      "description": "(Required) The id for the merge field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merge_id\": 2701,\n  \"tag\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"text\",\n  \"required\": true,\n  \"default_value\": \"string\",\n  \"public\": false,\n  \"display_order\": 502,\n  \"options\": {\n    \"default_country\": 6145,\n    \"phone_format\": \"string\",\n    \"date_format\": \"string\",\n    \"choices\": [\n      \"First Choice\",\n      \"Second Choice\",\n      \"Third Choice\"\n    ],\n    \"size\": 1231\n  },\n  \"help_text\": \"string\",\n  \"list_id\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccd03938-8032-4521-8c39-fd390d0a8c9c",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields",
+                    ":merge_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merge_id",
+                      "description": "(Required) The id for the merge field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ad066e3-e7bb-4b87-902d-d672a156e50f",
+          "name": "Mailchimp Update Merge Field",
+          "request": {
+            "name": "Mailchimp Update Merge Field",
+            "description": {
+              "content": "Update a specific merge field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "merge-fields",
+                ":merge_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merge_id",
+                  "description": "(Required) The id for the merge field."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"default_value\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"display_order\": \"<integer>\",\n  \"options\": {\n    \"default_country\": \"<integer>\",\n    \"phone_format\": \"<string>\",\n    \"date_format\": \"<string>\",\n    \"choices\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"help_text\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ccca3078-3808-4f84-a962-ee5aabca63c2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields",
+                    ":merge_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merge_id",
+                      "description": "(Required) The id for the merge field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"default_value\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"display_order\": \"<integer>\",\n  \"options\": {\n    \"default_country\": \"<integer>\",\n    \"phone_format\": \"<string>\",\n    \"date_format\": \"<string>\",\n    \"choices\": [\n      \"First Choice\",\n      \"Second Choice\",\n      \"Third Choice\"\n    ]\n  },\n  \"help_text\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merge_id\": 2701,\n  \"tag\": \"string\",\n  \"name\": \"string\",\n  \"type\": \"text\",\n  \"required\": true,\n  \"default_value\": \"string\",\n  \"public\": false,\n  \"display_order\": 502,\n  \"options\": {\n    \"default_country\": 6145,\n    \"phone_format\": \"string\",\n    \"date_format\": \"string\",\n    \"choices\": [\n      \"First Choice\",\n      \"Second Choice\",\n      \"Third Choice\"\n    ],\n    \"size\": 1231\n  },\n  \"help_text\": \"string\",\n  \"list_id\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f41b9077-81b5-4ac6-a0c0-6697c48d1780",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields",
+                    ":merge_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merge_id",
+                      "description": "(Required) The id for the merge field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"required\": \"<boolean>\",\n  \"default_value\": \"<string>\",\n  \"public\": \"<boolean>\",\n  \"display_order\": \"<integer>\",\n  \"options\": {\n    \"default_country\": \"<integer>\",\n    \"phone_format\": \"<string>\",\n    \"date_format\": \"<string>\",\n    \"choices\": [\n      \"First Choice\",\n      \"Second Choice\",\n      \"Third Choice\"\n    ]\n  },\n  \"help_text\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7de9e215-8544-41d6-893f-f14a2e157808",
+          "name": "Mailchimp Delete Merge Field",
+          "request": {
+            "name": "Mailchimp Delete Merge Field",
+            "description": {
+              "content": "Delete a specific merge field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "merge-fields",
+                ":merge_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merge_id",
+                  "description": "(Required) The id for the merge field."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d65b687-8096-475b-93d0-12c05a254466",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields",
+                    ":merge_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merge_id",
+                      "description": "(Required) The id for the merge field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f8fddbf-727e-45ab-9674-5a8b70810739",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "merge-fields",
+                    ":merge_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merge_id",
+                      "description": "(Required) The id for the merge field."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "37eec1e5-331e-400e-9075-98b2758b69dd",
+    "name": "Mailchimp Marketing Abuse Merge API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

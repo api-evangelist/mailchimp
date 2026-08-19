@@ -1,4 +1,4 @@
-generated: '2026-06-20'
+generated: '2026-08-13'
 method: derived
 source: >-
   Derived from openapi/mailchimp-marketing-api-openapi.yml (securityDefinitions,
@@ -58,7 +58,7 @@ standards:
     evidence: >-
       Marketing API publishes webhooks (subscribe/unsubscribe/profile/cleaned/
       upemail/campaign); captured in
-      openapi/mailchimp-marketing-webhooks-asyncapi.yml. Transactional publishes
+      asyncapi/mailchimp-marketing-webhooks-asyncapi.yml. Transactional publishes
       message-event webhooks.
   - id: idempotency
     conforms: false
@@ -73,3 +73,39 @@ standards:
     conforms: false
   - id: grpc
     conforms: false
+  - id: rfc9116-security-txt
+    conforms: partial
+    evidence: >-
+      https://mailchimp.com/.well-known/security.txt is served (HTTP 200,
+      2026-08-13) but carries only a Contact line; RFC 9116 requires Expires.
+  - id: rfc8414-oauth-metadata
+    conforms: false
+    evidence: >-
+      No /.well-known/oauth-authorization-server on mailchimp.com or
+      login.mailchimp.com (both 404, 2026-08-13).
+  - id: rfc9727-api-catalog
+    conforms: false
+    evidence: /.well-known/api-catalog returns 404 on mailchimp.com (2026-08-13).
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: >-
+      Deprecation is announced in prose and dated release notes; no Sunset or
+      Deprecation response headers, and no operation is flagged deprecated in
+      either first-party spec. See lifecycle/mailchimp-lifecycle.yml.
+  - id: a2a-agent-card
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+      mailchimp.com, mandrillapp.com and us1.api.mailchimp.com (2026-08-13).
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Hosted Model Context Protocol endpoint at https://mandrillapp.com/mcp
+      answers JSON-RPC (HTTP 200, tools/list auth-gated behind a bearer API key,
+      probed 2026-08-13). Transactional API only. See mcp/mailchimp-mcp.yml.
+compliance_program:
+  published: true
+  url: https://mailchimp.com/about/security/
+  certifications: [SOC 2, ISO 27001, EU-U.S. Data Privacy Framework, GDPR, VPAT]
+  detail: security/mailchimp-trust-center.yml
+  checked: '2026-08-13'

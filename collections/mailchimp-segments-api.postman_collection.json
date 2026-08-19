@@ -1,0 +1,2051 @@
+{
+  "item": [
+    {
+      "id": "0c9f1578-2d7f-4297-918f-28ed4b6472cb",
+      "name": "Segments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13a444ca-86bc-4292-8cf1-abd3eec0aa6c",
+          "name": "Mailchimp List Segments",
+          "request": {
+            "name": "Mailchimp List Segments",
+            "description": {
+              "content": "Get information about all available segments for a specific list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Limit results based on segment type."
+                },
+                {
+                  "disabled": false,
+                  "key": "since_created_at",
+                  "value": "<string>",
+                  "description": "Restrict results to segments created after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "before_created_at",
+                  "value": "<string>",
+                  "description": "Restrict results to segments created before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_cleaned",
+                  "value": "<boolean>",
+                  "description": "Include cleaned members in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_transactional",
+                  "value": "<boolean>",
+                  "description": "Include transactional members in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unsubscribed",
+                  "value": "<boolean>",
+                  "description": "Include unsubscribed members in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "since_updated_at",
+                  "value": "<string>",
+                  "description": "Restrict results to segments update after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "before_updated_at",
+                  "value": "<string>",
+                  "description": "Restrict results to segments update before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04f5dbb0-61a6-4a69-b265-02c657c3cd58",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "type",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "since_created_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "before_created_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "include_cleaned",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_transactional",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_unsubscribed",
+                      "value": "false"
+                    },
+                    {
+                      "key": "since_updated_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "before_updated_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"segments\": [\n    {\n      \"id\": 2797,\n      \"name\": \"string\",\n      \"member_count\": 4874,\n      \"type\": \"static\",\n      \"created_at\": \"1951-05-03T20:12:03.716Z\",\n      \"updated_at\": \"1979-12-02T07:01:05.160Z\",\n      \"options\": {\n        \"match\": \"any\",\n        \"conditions\": [\n          {\n            \"condition_type\": \"Aim\",\n            \"field\": \"aim\",\n            \"op\": \"open\",\n            \"value\": \"any\"\n          },\n          {\n            \"condition_type\": \"Aim\",\n            \"field\": \"aim\",\n            \"op\": \"open\",\n            \"value\": \"any\"\n          }\n        ]\n      },\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 1815,\n      \"name\": \"string\",\n      \"member_count\": 3396,\n      \"type\": \"fuzzy\",\n      \"created_at\": \"1960-09-19T08:20:06.521Z\",\n      \"updated_at\": \"1950-08-07T02:12:53.736Z\",\n      \"options\": {\n        \"match\": \"all\",\n        \"conditions\": [\n          {\n            \"condition_type\": \"Aim\",\n            \"field\": \"aim\",\n            \"op\": \"open\",\n            \"value\": \"any\"\n          },\n          {\n            \"condition_type\": \"Aim\",\n            \"field\": \"aim\",\n            \"op\": \"open\",\n            \"value\": \"any\"\n          }\n        ]\n      },\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"list_id\": \"string\",\n  \"total_items\": 1375,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "503f5d13-26a7-4e2d-a433-6669bd76344b",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "type",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "since_created_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "before_created_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "include_cleaned",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_transactional",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_unsubscribed",
+                      "value": "false"
+                    },
+                    {
+                      "key": "since_updated_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    },
+                    {
+                      "key": "before_updated_at",
+                      "value": "2026-01-15T10:30:00Z"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fddcf6a-e19d-4498-8e3e-ef2466cdc992",
+          "name": "Mailchimp Add Segment",
+          "request": {
+            "name": "Mailchimp Add Segment",
+            "description": {
+              "content": "Create a new segment in a specific list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"static_segment\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"options\": {\n    \"match\": \"<string>\",\n    \"conditions\": [\n      {\n        \"condition_type\": \"<string>\",\n        \"field\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"condition_type\": \"<string>\",\n        \"field\": \"<string>\",\n        \"op\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3afff98-762c-4ed7-8e2a-96580b61dfe5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"static_segment\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"options\": {\n    \"match\": \"<string>\",\n    \"conditions\": [\n      {\n        \"condition_type\": \"<string>\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      },\n      {\n        \"condition_type\": \"<string>\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8948,\n  \"name\": \"string\",\n  \"member_count\": 9799,\n  \"type\": \"saved\",\n  \"created_at\": \"1992-01-29T23:39:15.911Z\",\n  \"updated_at\": \"1975-03-04T13:05:50.733Z\",\n  \"options\": {\n    \"match\": \"all\",\n    \"conditions\": [\n      {\n        \"condition_type\": \"Aim\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      },\n      {\n        \"condition_type\": \"Aim\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      }\n    ]\n  },\n  \"list_id\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c6b4b41-88d2-4737-8f38-02e6bf53b487",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"static_segment\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"options\": {\n    \"match\": \"<string>\",\n    \"conditions\": [\n      {\n        \"condition_type\": \"<string>\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      },\n      {\n        \"condition_type\": \"<string>\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbac5945-4e36-4c70-91a7-fee1a6d1d1d4",
+          "name": "Mailchimp Get Segment Info",
+          "request": {
+            "name": "Mailchimp Get Segment Info",
+            "description": {
+              "content": "Get information about a specific segment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments",
+                ":segment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_cleaned",
+                  "value": "<boolean>",
+                  "description": "Include cleaned members in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_transactional",
+                  "value": "<boolean>",
+                  "description": "Include transactional members in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unsubscribed",
+                  "value": "<boolean>",
+                  "description": "Include unsubscribed members in response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segment_id",
+                  "description": "(Required) The unique id for the segment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32b6ebd7-9607-41f5-b127-0fc5b0dfea61",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include_cleaned",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_transactional",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_unsubscribed",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8948,\n  \"name\": \"string\",\n  \"member_count\": 9799,\n  \"type\": \"saved\",\n  \"created_at\": \"1992-01-29T23:39:15.911Z\",\n  \"updated_at\": \"1975-03-04T13:05:50.733Z\",\n  \"options\": {\n    \"match\": \"all\",\n    \"conditions\": [\n      {\n        \"condition_type\": \"Aim\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      },\n      {\n        \"condition_type\": \"Aim\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      }\n    ]\n  },\n  \"list_id\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10a66094-d949-4090-9909-5e0f7e0d82b3",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "include_cleaned",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_transactional",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_unsubscribed",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d8dcaca-c64b-494d-bdcf-d21291907571",
+          "name": "Mailchimp Delete Segment",
+          "request": {
+            "name": "Mailchimp Delete Segment",
+            "description": {
+              "content": "Delete a specific segment in a list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments",
+                ":segment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segment_id",
+                  "description": "(Required) The unique id for the segment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ee06afd-4b0b-462f-bf97-4a735f8bbc2b",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80929e1d-ea4b-467c-a7a9-623480753b76",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b4b5f70-a72d-4787-b7f7-061bf462b637",
+          "name": "Mailchimp Update Segment",
+          "request": {
+            "name": "Mailchimp Update Segment",
+            "description": {
+              "content": "Update a specific segment in a list.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments",
+                ":segment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segment_id",
+                  "description": "(Required) The unique id for the segment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"static_segment\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"options\": {\n    \"match\": \"<string>\",\n    \"conditions\": [\n      [\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      [\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"<string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7aff9f27-be24-4762-925d-8431421aa4e4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"static_segment\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"options\": {\n    \"match\": \"<string>\",\n    \"conditions\": [\n      [\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ],\n      [\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8948,\n  \"name\": \"string\",\n  \"member_count\": 9799,\n  \"type\": \"saved\",\n  \"created_at\": \"1992-01-29T23:39:15.911Z\",\n  \"updated_at\": \"1975-03-04T13:05:50.733Z\",\n  \"options\": {\n    \"match\": \"all\",\n    \"conditions\": [\n      {\n        \"condition_type\": \"Aim\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      },\n      {\n        \"condition_type\": \"Aim\",\n        \"field\": \"aim\",\n        \"op\": \"open\",\n        \"value\": \"any\"\n      }\n    ]\n  },\n  \"list_id\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1feb593-82d7-4717-8242-91cefae4f2ad",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"static_segment\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"options\": {\n    \"match\": \"<string>\",\n    \"conditions\": [\n      [\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ],\n      [\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"<string>\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99afecd7-2c28-4aaa-a950-41058182b3e5",
+          "name": "Mailchimp Batch Add or Remove Members",
+          "request": {
+            "name": "Mailchimp Batch Add or Remove Members",
+            "description": {
+              "content": "Batch add/remove list members to static segment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments",
+                ":segment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segment_id",
+                  "description": "(Required) The unique id for the segment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"members_to_add\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"members_to_remove\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "83a3face-fa71-43d0-af85-fe883432791f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members_to_add\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"members_to_remove\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"members_added\": [\n    {\n      \"id\": \"string\",\n      \"email_address\": \"string\",\n      \"unique_email_id\": \"string\",\n      \"email_type\": \"string\",\n      \"status\": \"unsubscribed\",\n      \"merge_fields\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"interests\": {\n        \"key_0\": true,\n        \"key_1\": true\n      },\n      \"stats\": {\n        \"avg_open_rate\": 6041.720570483092,\n        \"avg_click_rate\": 4231.007849005686\n      },\n      \"ip_signup\": \"string\",\n      \"timestamp_signup\": \"1976-05-19T06:38:19.882Z\",\n      \"ip_opt\": \"string\",\n      \"timestamp_opt\": \"1995-07-25T17:16:26.251Z\",\n      \"member_rating\": 646,\n      \"last_changed\": \"2021-06-30T11:06:18.041Z\",\n      \"language\": \"string\",\n      \"vip\": true,\n      \"email_client\": \"string\",\n      \"location\": {\n        \"latitude\": 7993.11415396204,\n        \"longitude\": 3905.8301195411814,\n        \"gmtoff\": 4935,\n        \"dstoff\": 3233,\n        \"country_code\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"last_note\": {\n        \"note_id\": 1929,\n        \"created_at\": \"1952-06-10T19:37:13.389Z\",\n        \"created_by\": \"string\",\n        \"note\": \"string\"\n      },\n      \"tags_count\": 8172,\n      \"tags\": [\n        {\n          \"id\": 7058,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 5716,\n          \"name\": \"string\"\n        }\n      ],\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"email_address\": \"string\",\n      \"unique_email_id\": \"string\",\n      \"email_type\": \"string\",\n      \"status\": \"pending\",\n      \"merge_fields\": {\n        \"key_0\": {}\n      },\n      \"interests\": {\n        \"key_0\": true,\n        \"key_1\": true\n      },\n      \"stats\": {\n        \"avg_open_rate\": 6686.698196468335,\n        \"avg_click_rate\": 5220.840430884634\n      },\n      \"ip_signup\": \"string\",\n      \"timestamp_signup\": \"1953-02-22T16:41:55.644Z\",\n      \"ip_opt\": \"string\",\n      \"timestamp_opt\": \"2012-01-08T05:54:00.956Z\",\n      \"member_rating\": 4632,\n      \"last_changed\": \"1968-04-25T14:30:55.233Z\",\n      \"language\": \"string\",\n      \"vip\": false,\n      \"email_client\": \"string\",\n      \"location\": {\n        \"latitude\": 8154.10032680545,\n        \"longitude\": 5156.669954792385,\n        \"gmtoff\": 4021,\n        \"dstoff\": 4079,\n        \"country_code\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"last_note\": {\n        \"note_id\": 6318,\n        \"created_at\": \"1949-11-11T04:44:07.210Z\",\n        \"created_by\": \"string\",\n        \"note\": \"string\"\n      },\n      \"tags_count\": 6934,\n      \"tags\": [\n        {\n          \"id\": 2847,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 6969,\n          \"name\": \"string\"\n        }\n      ],\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"members_removed\": [\n    {\n      \"id\": \"string\",\n      \"email_address\": \"string\",\n      \"unique_email_id\": \"string\",\n      \"email_type\": \"string\",\n      \"status\": \"cleaned\",\n      \"merge_fields\": {\n        \"key_0\": {}\n      },\n      \"interests\": {\n        \"key_0\": true,\n        \"key_1\": true\n      },\n      \"stats\": {\n        \"avg_open_rate\": 4011.457596418981,\n        \"avg_click_rate\": 1305.884086853898\n      },\n      \"ip_signup\": \"string\",\n      \"timestamp_signup\": \"1968-03-02T16:51:20.137Z\",\n      \"ip_opt\": \"string\",\n      \"timestamp_opt\": \"1977-08-04T07:36:22.835Z\",\n      \"member_rating\": 3531,\n      \"last_changed\": \"1951-01-03T18:12:08.217Z\",\n      \"language\": \"string\",\n      \"vip\": false,\n      \"email_client\": \"string\",\n      \"location\": {\n        \"latitude\": 4145.971456795715,\n        \"longitude\": 4459.950625188086,\n        \"gmtoff\": 2952,\n        \"dstoff\": 2869,\n        \"country_code\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"last_note\": {\n        \"note_id\": 8585,\n        \"created_at\": \"2000-06-29T17:34:54.652Z\",\n        \"created_by\": \"string\",\n        \"note\": \"string\"\n      },\n      \"tags_count\": 4643,\n      \"tags\": [\n        {\n          \"id\": 2300,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 5473,\n          \"name\": \"string\"\n        }\n      ],\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"email_address\": \"string\",\n      \"unique_email_id\": \"string\",\n      \"email_type\": \"string\",\n      \"status\": \"transactional\",\n      \"merge_fields\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"interests\": {\n        \"key_0\": false,\n        \"key_1\": false\n      },\n      \"stats\": {\n        \"avg_open_rate\": 7000.55862312223,\n        \"avg_click_rate\": 7043.028292970792\n      },\n      \"ip_signup\": \"string\",\n      \"timestamp_signup\": \"2016-12-08T14:37:55.421Z\",\n      \"ip_opt\": \"string\",\n      \"timestamp_opt\": \"2011-06-26T17:03:10.657Z\",\n      \"member_rating\": 8684,\n      \"last_changed\": \"1981-02-15T16:11:17.078Z\",\n      \"language\": \"string\",\n      \"vip\": true,\n      \"email_client\": \"string\",\n      \"location\": {\n        \"latitude\": 6362.013796161478,\n        \"longitude\": 2349.8244952137115,\n        \"gmtoff\": 1790,\n        \"dstoff\": 4449,\n        \"country_code\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"last_note\": {\n        \"note_id\": 8629,\n        \"created_at\": \"1990-10-22T05:59:58.139Z\",\n        \"created_by\": \"string\",\n        \"note\": \"string\"\n      },\n      \"tags_count\": 886,\n      \"tags\": [\n        {\n          \"id\": 5034,\n          \"name\": \"string\"\n        },\n        {\n          \"id\": 4977,\n          \"name\": \"string\"\n        }\n      ],\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"email_addresses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"error\": \"string\"\n    },\n    {\n      \"email_addresses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"error\": \"string\"\n    }\n  ],\n  \"total_added\": 42,\n  \"total_removed\": 42,\n  \"error_count\": 42,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a855087a-2fd7-4ff6-b2f1-4fe861b85e0d",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"members_to_add\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"members_to_remove\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfe41223-0072-46e3-abef-05b0d693eafe",
+          "name": "Mailchimp List Members in Segment",
+          "request": {
+            "name": "Mailchimp List Members in Segment",
+            "description": {
+              "content": "Get information about members in a saved segment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments",
+                ":segment_id",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_cleaned",
+                  "value": "<boolean>",
+                  "description": "Include cleaned members in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_transactional",
+                  "value": "<boolean>",
+                  "description": "Include transactional members in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_unsubscribed",
+                  "value": "<boolean>",
+                  "description": "Include unsubscribed members in response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segment_id",
+                  "description": "(Required) The unique id for the segment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b4e87bb-578a-492d-9dd0-5b87c866c7d8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "include_cleaned",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_transactional",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_unsubscribed",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"members\": [\n    {\n      \"id\": \"string\",\n      \"email_address\": \"string\",\n      \"full_name\": \"string\",\n      \"unique_email_id\": \"string\",\n      \"email_type\": \"string\",\n      \"status\": \"subscribed\",\n      \"merge_fields\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"interests\": {\n        \"key_0\": false,\n        \"key_1\": true\n      },\n      \"stats\": {\n        \"avg_open_rate\": 7184.135945929638,\n        \"avg_click_rate\": 39.72984368161736\n      },\n      \"ip_signup\": \"string\",\n      \"timestamp_signup\": \"2013-03-20T00:43:54.567Z\",\n      \"ip_opt\": \"string\",\n      \"timestamp_opt\": \"2009-12-09T05:31:35.497Z\",\n      \"member_rating\": 755,\n      \"last_changed\": \"1959-10-06T19:20:23.484Z\",\n      \"language\": \"string\",\n      \"vip\": false,\n      \"email_client\": \"string\",\n      \"location\": {\n        \"latitude\": 6680.194903229636,\n        \"longitude\": 3964.1219489806645,\n        \"gmtoff\": 4687,\n        \"dstoff\": 3390,\n        \"country_code\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"last_note\": {\n        \"note_id\": 4881,\n        \"created_at\": \"1959-05-27T00:50:38.760Z\",\n        \"created_by\": \"string\",\n        \"note\": \"string\"\n      },\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"email_address\": \"string\",\n      \"full_name\": \"string\",\n      \"unique_email_id\": \"string\",\n      \"email_type\": \"string\",\n      \"status\": \"transactional\",\n      \"merge_fields\": {\n        \"key_0\": {}\n      },\n      \"interests\": {\n        \"key_0\": true\n      },\n      \"stats\": {\n        \"avg_open_rate\": 485.29563705955627,\n        \"avg_click_rate\": 3342.388677408792\n      },\n      \"ip_signup\": \"string\",\n      \"timestamp_signup\": \"2000-12-04T21:04:43.391Z\",\n      \"ip_opt\": \"string\",\n      \"timestamp_opt\": \"1995-05-09T19:33:35.796Z\",\n      \"member_rating\": 8329,\n      \"last_changed\": \"1977-04-11T06:52:10.290Z\",\n      \"language\": \"string\",\n      \"vip\": false,\n      \"email_client\": \"string\",\n      \"location\": {\n        \"latitude\": 2437.2148292408137,\n        \"longitude\": 2274.7089264065967,\n        \"gmtoff\": 7027,\n        \"dstoff\": 1179,\n        \"country_code\": \"string\",\n        \"timezone\": \"string\"\n      },\n      \"last_note\": {\n        \"note_id\": 1303,\n        \"created_at\": \"1979-09-11T11:11:42.580Z\",\n        \"created_by\": \"string\",\n        \"note\": \"string\"\n      },\n      \"list_id\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 2191,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67c811ae-c53f-4230-8820-92464b57c240",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "include_cleaned",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_transactional",
+                      "value": "false"
+                    },
+                    {
+                      "key": "include_unsubscribed",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ae313da-b38f-4115-a14c-26cfdfbd505b",
+          "name": "Mailchimp Add Member to Segment",
+          "request": {
+            "name": "Mailchimp Add Member to Segment",
+            "description": {
+              "content": "Add a member to a static segment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments",
+                ":segment_id",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segment_id",
+                  "description": "(Required) The unique id for the segment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbf5a38b-905e-410d-92bd-2883fab11487",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"email_address\": \"string\",\n  \"full_name\": \"string\",\n  \"unique_email_id\": \"string\",\n  \"email_type\": \"string\",\n  \"status\": \"transactional\",\n  \"merge_fields\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"interests\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"stats\": {\n    \"avg_open_rate\": 9602.7754517174,\n    \"avg_click_rate\": 2932.442827090521\n  },\n  \"ip_signup\": \"string\",\n  \"timestamp_signup\": \"1979-11-12T22:27:28.073Z\",\n  \"ip_opt\": \"string\",\n  \"timestamp_opt\": \"1972-10-21T13:31:45.239Z\",\n  \"member_rating\": 2600,\n  \"last_changed\": \"1981-07-08T00:34:03.713Z\",\n  \"language\": \"string\",\n  \"vip\": true,\n  \"email_client\": \"string\",\n  \"location\": {\n    \"latitude\": 8728.356485291119,\n    \"longitude\": 4810.916896194767,\n    \"gmtoff\": 2458,\n    \"dstoff\": 6142,\n    \"country_code\": \"string\",\n    \"timezone\": \"string\"\n  },\n  \"last_note\": {\n    \"note_id\": 1074,\n    \"created_at\": \"1959-03-01T05:40:01.421Z\",\n    \"created_by\": \"string\",\n    \"note\": \"string\"\n  },\n  \"list_id\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd249d0d-9d75-47b6-91a4-11685cc36343",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc707b23-5519-4788-b4bc-4aaabf40df7f",
+          "name": "Mailchimp Remove List Member From Segment",
+          "request": {
+            "name": "Mailchimp Remove List Member From Segment",
+            "description": {
+              "content": "Remove a member from the specified static segment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lists",
+                ":list_id",
+                "segments",
+                ":segment_id",
+                "members",
+                ":subscriber_hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "list_id",
+                  "description": "(Required) The unique ID for the list."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segment_id",
+                  "description": "(Required) The unique id for the segment."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriber_hash",
+                  "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec1e4e65-1bec-4163-922b-cc78196f708b",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id",
+                    "members",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "18d1c8a3-8e5d-42bb-bfce-db401a21e5bc",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lists",
+                    ":list_id",
+                    "segments",
+                    ":segment_id",
+                    "members",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "list_id",
+                      "description": "(Required) The unique ID for the list."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "segment_id",
+                      "description": "(Required) The unique id for the segment."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7425a271-205c-4d2b-82c0-2792df0b1c07",
+    "name": "Mailchimp Marketing Abuse Segments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Feedback API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get team feedback while you're working together on a Mailchimp campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Campaign Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Add feedback on a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Feedback Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback/:feedback_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "feedback_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the feedback message."
+              }
+            ]
+          },
+          "docs": "Get a specific feedback message from a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Campaign Feedback Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback/:feedback_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "feedback_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the feedback message."
+              }
+            ]
+          },
+          "docs": "Update a specific feedback message for a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Campaign Feedback Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback/:feedback_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "feedback_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the feedback message."
+              }
+            ]
+          },
+          "docs": "Remove a specific feedback message for a campaign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,466 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Folders API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Template Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/template-folders",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get all folders used to organize templates."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Template Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/template-folders"
+          },
+          "docs": "Create a new template folder."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Template Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/template-folders/:folder_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the template folder."
+              }
+            ]
+          },
+          "docs": "Get information about a specific folder used to organize templates."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Template Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/template-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the template folder."
+              }
+            ]
+          },
+          "docs": "Update a specific folder used to organize templates."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Template Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/template-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the template folder."
+              }
+            ]
+          },
+          "docs": "Delete a specific template folder, and mark all the templates in the folder as 'unfiled'."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaign-folders",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get all folders used to organize campaigns."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaign-folders"
+          },
+          "docs": "Create a new campaign folder."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaign-folders/:folder_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign folder."
+              }
+            ]
+          },
+          "docs": "Get information about a specific folder used to organize campaigns."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/campaign-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign folder."
+              }
+            ]
+          },
+          "docs": "Update a specific folder used to organize campaigns."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/campaign-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign folder."
+              }
+            ]
+          },
+          "docs": "Delete a specific campaign folder, and mark all the campaigns in the folder as 'unfiled'."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file-manager/folders",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "created_by",
+                "value": "example_value",
+                "type": "query",
+                "description": "The Mailchimp account user who created the File Manager file."
+              },
+              {
+                "name": "before_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict the response to files created before the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict the response to files created after the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              }
+            ]
+          },
+          "docs": "Get a list of all folders in the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/file-manager/folders"
+          },
+          "docs": "Create a new folder in the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file-manager/folders/:folder_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager folder."
+              }
+            ]
+          },
+          "docs": "Get information about a specific folder in the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/file-manager/folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager folder."
+              }
+            ]
+          },
+          "docs": "Update a specific File Manager folder."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/file-manager/folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager folder."
+              }
+            ]
+          },
+          "docs": "Delete a specific folder in the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Stored Files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file-manager/folders/:folder_id/files",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager folder."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "The file type for the File Manager file."
+              },
+              {
+                "name": "created_by",
+                "value": "example_value",
+                "type": "query",
+                "description": "The Mailchimp account user who created the File Manager file."
+              },
+              {
+                "name": "before_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict the response to files created before the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict the response to files created after the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns files sorted by the specified field."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              }
+            ]
+          },
+          "docs": "Get a list of available images and files stored in this folder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Events API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Member Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/events",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get events for a contact."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/events",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id."
+              }
+            ]
+          },
+          "docs": "Add an event for a list member."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

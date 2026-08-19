@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Tags API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get all the tags that have been used in the account, along with aggregate sending statistics for each tag."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Tag Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return more detailed information about a single tag including aggregate statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a tag permanently. Deleting a tag removes it from all messages that have been tagged with it, and permanently removes the tag statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Tag Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the recent sending history for a tag, aggregated by hourly time slots."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get All Tags Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/all-time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return hourly aggregated statistics for all tags in the account over the last 30 days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

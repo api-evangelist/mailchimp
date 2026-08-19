@@ -1,0 +1,497 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Actions API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Pause Automation Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/pause-all-emails",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Pause all emails in a specific classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Start Automation Emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/start-all-emails",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Start all emails in a classic automation workflow."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Archive Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/archive",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Archiving will permanently end your automation and keep the report data. Youll be able to replicate your archived automation, but you cant restart it."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause Automated Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/actions/pause",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Pause an automated email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Start Automated Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/actions/start",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Start an automated email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Cancel Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/cancel-send",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Cancel a Regular or Plain-Text Campaign after you send, before all of your recipients receive it. This feature is included with Mailchimp Pro."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Replicate Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/replicate",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Replicate a campaign in saved or send status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/send",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Send a Mailchimp campaign. For RSS Campaigns, the campaign will send according to its schedule. All other campaigns will send immediately."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Schedule Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/schedule",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Schedule a campaign for delivery. If you're using Multivariate Campaigns to test send times or sending RSS Campaigns, use the send action instead."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Unschedule Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/unschedule",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Unschedule a scheduled campaign that hasn't started sending."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send Test Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/test",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Send a test email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause Rss Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/pause",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Pause an RSS-Driven campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Resume Rss Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/resume",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Resume an RSS-Driven campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Resend Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/create-resend",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Remove the guesswork for resending a campaign to certain segments. You can use this endpoint as a shortcut to replicate a campaign and resend it to common segments, such as those who didn't open the campaign, or any new subscribers since it was sent."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Verify Connected Site Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/connected-sites/:connected_site_id/actions/verify-script-installation",
+            "params": [
+              {
+                "name": "connected_site_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier for the site."
+              }
+            ]
+          },
+          "docs": "Verify that the connected sites script has been installed, either via the script URL or fragment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Customer Journeys Api Trigger for a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/customer-journeys/journeys/:journey_id/steps/:step_id/actions/trigger",
+            "params": [
+              {
+                "name": "journey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the Journey."
+              },
+              {
+                "name": "step_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the Step."
+              }
+            ]
+          },
+          "docs": "A step trigger in a Customer Journey. To use it, create a starting point or step from the Customer Journey builder in the app using the Customer Journeys API condition. Well provide a url during the process that includes the {journey_id} and {step_id}. Youll then be able to use this endpoint to trigger the condition for the posted contact."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete List Member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/members/:subscriber_hash/actions/delete-permanent",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Delete all personally identifiable information related to a list member, and remove them from a list. This will make it impossible to re-import the list member."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Publish a Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/publish",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Publish a survey that is in draft, unpublished, or has been previously published and edited."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Unpublish a Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/unpublish",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Unpublish a survey that has been published."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Create a Survey Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/create-email",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Utilize the List ID and Survey ID to generate a Campaign that links to your survey."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Publish Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/landing-pages/:page_id/actions/publish",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the page."
+              }
+            ]
+          },
+          "docs": "Publish a landing page that is in draft, unpublished, or has been previously published and edited."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Unpublish Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/landing-pages/:page_id/actions/unpublish",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the page."
+              }
+            ]
+          },
+          "docs": "Unpublish a landing page that is in draft or has been published."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Verify Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/verified-domains/:domain_name/actions/verify",
+            "params": [
+              {
+                "name": "domain_name",
+                "value": "example_value",
+                "type": "path",
+                "description": "The domain name."
+              }
+            ]
+          },
+          "docs": "Verify a domain for sending."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

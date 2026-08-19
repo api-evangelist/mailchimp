@@ -1,16 +1,21 @@
-generated: '2026-06-20'
-method: searched
-source: live probes of /.well-known/* on the Mailchimp + Mandrill hosts
+generated: '2026-08-13'
+method: probed
+source: live probes of /.well-known/* on the Mailchimp website, API, login and Mandrill hosts
+checked: '2026-08-13'
 description: >-
-  Index of /.well-known/ discovery documents probed across the Mailchimp
-  website, API hosts, and the OAuth login host. Only security.txt is published;
-  Mailchimp does not expose OIDC/OAuth authorization-server metadata, an
-  API catalog, or an ai-plugin manifest. HTTP status recorded at fetch time.
+  Index of /.well-known/ discovery documents probed across the Mailchimp website,
+  the Marketing API host, the OAuth login host and the Transactional (Mandrill)
+  host. Only security.txt is served, and it carries a single Contact line. There
+  is no OIDC discovery, no RFC 8414 authorization-server metadata, no RFC 9728
+  protected-resource document, no RFC 9727 api-catalog and no ai-plugin manifest.
+  Every 404 below returned an HTML error page, not a document. HTTP status
+  recorded at fetch time.
 hosts:
   - host: https://mailchimp.com
     documents:
       - path: /.well-known/security.txt          # RFC 9116
         status: 200
+        content_type: text/plain
         file: mailchimp-security.txt
       - path: /.well-known/openid-configuration   # OIDC discovery
         status: 404
@@ -20,13 +25,45 @@ hosts:
         status: 404
       - path: /.well-known/ai-plugin.json
         status: 404
+      - path: /.well-known/oauth-protected-resource   # RFC 9728
+        status: 404
+      - path: /.well-known/agent-card.json         # A2A 1.0.0
+        status: 404
+      - path: /.well-known/agent.json              # A2A pre-0.3 legacy
+        status: 404
   - host: https://login.mailchimp.com
     documents:
       - path: /.well-known/openid-configuration
         status: 404
       - path: /.well-known/oauth-authorization-server
         status: 404
+  - host: https://us1.api.mailchimp.com
+    note: >-
+      The Marketing API host is data-center scoped (https://<dc>.api.mailchimp.com);
+      us1 was probed as a representative data center.
+    documents:
+      - path: /.well-known/openapi.json
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
   - host: https://mandrillapp.com
     documents:
       - path: /.well-known/security.txt
         status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource   # RFC 9728 — probed for the MCP endpoint
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+summary:
+  served: 1
+  probed: 21
+  documents_found: [security.txt]
+  api_catalog: false
+  oidc_discovery: false
+  agent_card: false

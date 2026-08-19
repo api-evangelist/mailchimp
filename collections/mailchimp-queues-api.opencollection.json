@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Queues API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Automated Email Subscribers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/queue",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Get information about a classic automation email queue."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Subscriber to Workflow Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/queue",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              }
+            ]
+          },
+          "docs": "Manually add a subscriber to a workflow, bypassing the default trigger settings. You can also use this endpoint to trigger a series of automated emails in an API 3.0 workflow type."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Automated Email Subscriber",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/automations/:workflow_id/emails/:workflow_email_id/queue/:subscriber_hash",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              },
+              {
+                "name": "workflow_email_id",
+                "value": "user@example.com",
+                "type": "path",
+                "description": "The unique id for the Automation workflow email."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Get information about a specific subscriber in a classic automation email queue."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

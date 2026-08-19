@@ -1,0 +1,2438 @@
+{
+  "item": [
+    {
+      "id": "8f3b2a7a-f665-49a4-ba14-9e0d57816d8b",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2563e4a-4b5e-4d9f-9544-72ddfef45954",
+          "name": "Mailchimp List Account Orders",
+          "request": {
+            "name": "Mailchimp List Account Orders",
+            "description": {
+              "content": "Get information about an account's orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaign_id",
+                  "value": "<string>",
+                  "description": "Restrict results to orders with a specific `campaign_id` value."
+                },
+                {
+                  "disabled": false,
+                  "key": "outreach_id",
+                  "value": "<string>",
+                  "description": "Restrict results to orders with a specific `outreach_id` value."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<string>",
+                  "description": "Restrict results to orders made by a specific customer."
+                },
+                {
+                  "disabled": false,
+                  "key": "has_outreach",
+                  "value": "<boolean>",
+                  "description": "Restrict results to orders that have an outreach attached. For example, an email campaign or Facebook ad."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "928c743b-6de4-44a9-bdd6-8243a9da8534",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "campaign_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "outreach_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "has_outreach",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"id\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"email_address\": \"string\",\n        \"opt_in_status\": false,\n        \"company\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"orders_count\": 4,\n        \"total_spent\": 100,\n        \"address\": {\n          \"address1\": \"675 Ponce de Leon Ave NE\",\n          \"address2\": \"Suite 5000\",\n          \"city\": \"Atlanta\",\n          \"province\": \"Georgia\",\n          \"province_code\": \"GA\",\n          \"postal_code\": \"30308\",\n          \"country\": \"United States\",\n          \"country_code\": \"US\"\n        },\n        \"created_at\": \"2015-07-15T19:28:00+00:00\",\n        \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n        \"_links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"PUT\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"DELETE\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      \"store_id\": \"string\",\n      \"campaign_id\": \"839488a60b\",\n      \"landing_site\": \"http://www.example.com?source=abc\",\n      \"financial_status\": \"string\",\n      \"fulfillment_status\": \"string\",\n      \"currency_code\": \"string\",\n      \"order_total\": 6638.965787376591,\n      \"order_url\": \"string\",\n      \"discount_total\": 4515.260998484792,\n      \"tax_total\": 9072.747950916353,\n      \"shipping_total\": 7538.732781309561,\n      \"tracking_code\": \"prec\",\n      \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"shipping_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"billing_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"promos\": [\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 3115.2737479380166,\n          \"type\": \"fixed\"\n        },\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 3564.545208250003,\n          \"type\": \"fixed\"\n        }\n      ],\n      \"lines\": [\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 2149,\n          \"price\": 4774.487309951874,\n          \"discount\": 3042.778981464639,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PUT\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"OPTIONS\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 7116,\n          \"price\": 1402.009891834971,\n          \"discount\": 8171.811801077299,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"POST\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"outreach\": {\n        \"id\": \"839488a60b\",\n        \"name\": \"Freddie's Jokes\",\n        \"type\": \"regular\",\n        \"published_time\": \"2017-06-06T13:56:12+00:00\"\n      },\n      \"tracking_number\": \"string\",\n      \"tracking_carrier\": \"string\",\n      \"tracking_url\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"OPTIONS\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"email_address\": \"string\",\n        \"opt_in_status\": true,\n        \"company\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"orders_count\": 4,\n        \"total_spent\": 100,\n        \"address\": {\n          \"address1\": \"675 Ponce de Leon Ave NE\",\n          \"address2\": \"Suite 5000\",\n          \"city\": \"Atlanta\",\n          \"province\": \"Georgia\",\n          \"province_code\": \"GA\",\n          \"postal_code\": \"30308\",\n          \"country\": \"United States\",\n          \"country_code\": \"US\"\n        },\n        \"created_at\": \"2015-07-15T19:28:00+00:00\",\n        \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n        \"_links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"DELETE\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"OPTIONS\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      \"store_id\": \"string\",\n      \"campaign_id\": \"839488a60b\",\n      \"landing_site\": \"http://www.example.com?source=abc\",\n      \"financial_status\": \"string\",\n      \"fulfillment_status\": \"string\",\n      \"currency_code\": \"string\",\n      \"order_total\": 2762.8844383123787,\n      \"order_url\": \"string\",\n      \"discount_total\": 849.1872193094696,\n      \"tax_total\": 6246.090519044716,\n      \"shipping_total\": 8853.427126181738,\n      \"tracking_code\": \"prec\",\n      \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"shipping_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"billing_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"promos\": [\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 7671.820372213772,\n          \"type\": \"fixed\"\n        },\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 2121.146822365841,\n          \"type\": \"fixed\"\n        }\n      ],\n      \"lines\": [\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 9493,\n          \"price\": 3964.734829942923,\n          \"discount\": 1641.6268068712902,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"POST\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 6590,\n          \"price\": 6816.071970979162,\n          \"discount\": 3253.4298378409476,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"outreach\": {\n        \"id\": \"839488a60b\",\n        \"name\": \"Freddie's Jokes\",\n        \"type\": \"regular\",\n        \"published_time\": \"2017-06-06T13:56:12+00:00\"\n      },\n      \"tracking_number\": \"string\",\n      \"tracking_carrier\": \"string\",\n      \"tracking_url\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 5504,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f5232bb-03c3-46eb-9b67-790e9a1452ed",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "campaign_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "outreach_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "has_outreach",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4ea2245-4c41-4e03-aae8-ca9a94e69754",
+          "name": "Mailchimp List Orders",
+          "request": {
+            "name": "Mailchimp List Orders",
+            "description": {
+              "content": "Get information about a store's orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<string>",
+                  "description": "Restrict results to orders made by a specific customer."
+                },
+                {
+                  "disabled": false,
+                  "key": "has_outreach",
+                  "value": "<boolean>",
+                  "description": "Restrict results to orders that have an outreach attached. For example, an email campaign or Facebook ad."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaign_id",
+                  "value": "<string>",
+                  "description": "Restrict results to orders with a specific `campaign_id` value."
+                },
+                {
+                  "disabled": false,
+                  "key": "outreach_id",
+                  "value": "<string>",
+                  "description": "Restrict results to orders with a specific `outreach_id` value."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6757c536-da56-4dad-974c-55fa2203ba99",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "has_outreach",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "campaign_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "outreach_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"orders\": [\n    {\n      \"id\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"email_address\": \"string\",\n        \"opt_in_status\": false,\n        \"company\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"orders_count\": 4,\n        \"total_spent\": 100,\n        \"address\": {\n          \"address1\": \"675 Ponce de Leon Ave NE\",\n          \"address2\": \"Suite 5000\",\n          \"city\": \"Atlanta\",\n          \"province\": \"Georgia\",\n          \"province_code\": \"GA\",\n          \"postal_code\": \"30308\",\n          \"country\": \"United States\",\n          \"country_code\": \"US\"\n        },\n        \"created_at\": \"2015-07-15T19:28:00+00:00\",\n        \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n        \"_links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"OPTIONS\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"PATCH\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      \"store_id\": \"string\",\n      \"campaign_id\": \"839488a60b\",\n      \"landing_site\": \"http://www.example.com?source=abc\",\n      \"financial_status\": \"string\",\n      \"fulfillment_status\": \"string\",\n      \"currency_code\": \"string\",\n      \"order_total\": 4372.712789173702,\n      \"order_url\": \"string\",\n      \"discount_total\": 6481.264544546598,\n      \"tax_total\": 8865.408403012432,\n      \"shipping_total\": 4332.6907059168625,\n      \"tracking_code\": \"prec\",\n      \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"shipping_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"billing_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"promos\": [\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 8583.465768019554,\n          \"type\": \"percentage\"\n        },\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 9472.675363173375,\n          \"type\": \"fixed\"\n        }\n      ],\n      \"lines\": [\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 7107,\n          \"price\": 8659.927283482093,\n          \"discount\": 1892.81177864414,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"POST\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 3330,\n          \"price\": 156.14206621340833,\n          \"discount\": 6930.220509157313,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PUT\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"outreach\": {\n        \"id\": \"839488a60b\",\n        \"name\": \"Freddie's Jokes\",\n        \"type\": \"regular\",\n        \"published_time\": \"2017-06-06T13:56:12+00:00\"\n      },\n      \"tracking_number\": \"string\",\n      \"tracking_carrier\": \"string\",\n      \"tracking_url\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"email_address\": \"string\",\n        \"opt_in_status\": true,\n        \"company\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"orders_count\": 4,\n        \"total_spent\": 100,\n        \"address\": {\n          \"address1\": \"675 Ponce de Leon Ave NE\",\n          \"address2\": \"Suite 5000\",\n          \"city\": \"Atlanta\",\n          \"province\": \"Georgia\",\n          \"province_code\": \"GA\",\n          \"postal_code\": \"30308\",\n          \"country\": \"United States\",\n          \"country_code\": \"US\"\n        },\n        \"created_at\": \"2015-07-15T19:28:00+00:00\",\n        \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n        \"_links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"POST\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"method\": \"PUT\",\n            \"targetSchema\": \"string\",\n            \"schema\": \"string\"\n          }\n        ]\n      },\n      \"store_id\": \"string\",\n      \"campaign_id\": \"839488a60b\",\n      \"landing_site\": \"http://www.example.com?source=abc\",\n      \"financial_status\": \"string\",\n      \"fulfillment_status\": \"string\",\n      \"currency_code\": \"string\",\n      \"order_total\": 7614.802590316777,\n      \"order_url\": \"string\",\n      \"discount_total\": 5746.882899428718,\n      \"tax_total\": 5565.08653052096,\n      \"shipping_total\": 6028.919295417284,\n      \"tracking_code\": \"prec\",\n      \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n      \"shipping_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"billing_address\": {\n        \"name\": \"Freddie Chimpenheimer\",\n        \"address1\": \"675 Ponce de Leon Ave NE\",\n        \"address2\": \"Suite 5000\",\n        \"city\": \"Atlanta\",\n        \"province\": \"Georgia\",\n        \"province_code\": \"GA\",\n        \"postal_code\": \"30308\",\n        \"country\": \"United States\",\n        \"country_code\": \"US\",\n        \"longitude\": -75.68903,\n        \"latitude\": 45.427408,\n        \"phone\": \"8675309\",\n        \"company\": \"string\"\n      },\n      \"promos\": [\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 3118.651262282425,\n          \"type\": \"fixed\"\n        },\n        {\n          \"code\": \"string\",\n          \"amount_discounted\": 5274.281393254647,\n          \"type\": \"percentage\"\n        }\n      ],\n      \"lines\": [\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 8993,\n          \"price\": 6124.9354929548435,\n          \"discount\": 601.8180184040712,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"POST\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"DELETE\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"product_id\": \"string\",\n          \"product_title\": \"string\",\n          \"product_variant_id\": \"string\",\n          \"product_variant_title\": \"string\",\n          \"image_url\": \"string\",\n          \"quantity\": 2577,\n          \"price\": 4241.739561495403,\n          \"discount\": 6515.319539804727,\n          \"_links\": [\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PATCH\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            },\n            {\n              \"rel\": \"string\",\n              \"href\": \"string\",\n              \"method\": \"PUT\",\n              \"targetSchema\": \"string\",\n              \"schema\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"outreach\": {\n        \"id\": \"839488a60b\",\n        \"name\": \"Freddie's Jokes\",\n        \"type\": \"regular\",\n        \"published_time\": \"2017-06-06T13:56:12+00:00\"\n      },\n      \"tracking_number\": \"string\",\n      \"tracking_carrier\": \"string\",\n      \"tracking_url\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 3423,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2398a248-7ffb-4cbb-a633-52b2c31485f8",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "has_outreach",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "campaign_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "outreach_id",
+                      "value": "500123"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1051b5e6-9d5b-46a4-88c1-64fd2e589f78",
+          "name": "Mailchimp Add Order",
+          "request": {
+            "name": "Mailchimp Add Order",
+            "description": {
+              "content": "Add a new order to a store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"province\": \"<string>\",\n      \"province_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    }\n  ],\n  \"campaign_id\": \"<string>\",\n  \"landing_site\": \"<string>\",\n  \"financial_status\": \"<string>\",\n  \"fulfillment_status\": \"<string>\",\n  \"order_url\": \"<string>\",\n  \"discount_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"shipping_total\": \"<number>\",\n  \"tracking_code\": \"<string>\",\n  \"processed_at_foreign\": \"<dateTime>\",\n  \"cancelled_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"province\": \"<string>\",\n    \"province_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"longitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"phone\": \"<string>\",\n    \"company\": \"<string>\"\n  },\n  \"billing_address\": {\n    \"name\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"province\": \"<string>\",\n    \"province_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"longitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"phone\": \"<string>\",\n    \"company\": \"<string>\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"<string>\"\n  },\n  \"tracking_number\": \"<string>\",\n  \"tracking_carrier\": \"<string>\",\n  \"tracking_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f36bf21-cf71-4c01-89b7-02ee04e0bbd0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    }\n  ],\n  \"campaign_id\": \"839488a60b\",\n  \"landing_site\": \"http://www.example.com?source=abc\",\n  \"financial_status\": \"<string>\",\n  \"fulfillment_status\": \"<string>\",\n  \"order_url\": \"<string>\",\n  \"discount_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"shipping_total\": \"<number>\",\n  \"tracking_code\": \"<string>\",\n  \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"shipping_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"billing_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"839488a60b\"\n  },\n  \"tracking_number\": \"<string>\",\n  \"tracking_carrier\": \"<string>\",\n  \"tracking_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"email_address\": \"string\",\n    \"opt_in_status\": false,\n    \"company\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"orders_count\": 4,\n    \"total_spent\": 100,\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    },\n    \"created_at\": \"2015-07-15T19:28:00+00:00\",\n    \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n    \"_links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"PUT\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"HEAD\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      }\n    ]\n  },\n  \"store_id\": \"string\",\n  \"campaign_id\": \"839488a60b\",\n  \"landing_site\": \"http://www.example.com?source=abc\",\n  \"financial_status\": \"string\",\n  \"fulfillment_status\": \"string\",\n  \"currency_code\": \"string\",\n  \"order_total\": 1970.8456855562117,\n  \"order_url\": \"string\",\n  \"discount_total\": 7502.983854221591,\n  \"tax_total\": 1837.520891546458,\n  \"shipping_total\": 1429.2138513631157,\n  \"tracking_code\": \"prec\",\n  \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"shipping_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"string\"\n  },\n  \"billing_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"string\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"string\",\n      \"amount_discounted\": 594.527519510628,\n      \"type\": \"percentage\"\n    },\n    {\n      \"code\": \"string\",\n      \"amount_discounted\": 9696.08956200013,\n      \"type\": \"percentage\"\n    }\n  ],\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 8272,\n      \"price\": 6463.2274325265025,\n      \"discount\": 57.91836653153415,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 3806,\n      \"price\": 8238.43277175179,\n      \"discount\": 2538.355022564408,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"839488a60b\",\n    \"name\": \"Freddie's Jokes\",\n    \"type\": \"regular\",\n    \"published_time\": \"2017-06-06T13:56:12+00:00\"\n  },\n  \"tracking_number\": \"string\",\n  \"tracking_carrier\": \"string\",\n  \"tracking_url\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed737ea1-6042-4b0b-a1b8-fc22626fb6b2",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email_address\": \"<string>\",\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"lines\": [\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    }\n  ],\n  \"campaign_id\": \"839488a60b\",\n  \"landing_site\": \"http://www.example.com?source=abc\",\n  \"financial_status\": \"<string>\",\n  \"fulfillment_status\": \"<string>\",\n  \"order_url\": \"<string>\",\n  \"discount_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"shipping_total\": \"<number>\",\n  \"tracking_code\": \"<string>\",\n  \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"shipping_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"billing_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"839488a60b\"\n  },\n  \"tracking_number\": \"<string>\",\n  \"tracking_carrier\": \"<string>\",\n  \"tracking_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce4dd347-bfe1-4a17-adf1-e9d5e5d07f98",
+          "name": "Mailchimp Get Order Info",
+          "request": {
+            "name": "Mailchimp Get Order Info",
+            "description": {
+              "content": "Get information about a specific order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "832f4a36-3b0b-4b4f-a618-1355238846ad",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"email_address\": \"string\",\n    \"opt_in_status\": false,\n    \"company\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"orders_count\": 4,\n    \"total_spent\": 100,\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    },\n    \"created_at\": \"2015-07-15T19:28:00+00:00\",\n    \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n    \"_links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"PUT\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"HEAD\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      }\n    ]\n  },\n  \"store_id\": \"string\",\n  \"campaign_id\": \"839488a60b\",\n  \"landing_site\": \"http://www.example.com?source=abc\",\n  \"financial_status\": \"string\",\n  \"fulfillment_status\": \"string\",\n  \"currency_code\": \"string\",\n  \"order_total\": 1970.8456855562117,\n  \"order_url\": \"string\",\n  \"discount_total\": 7502.983854221591,\n  \"tax_total\": 1837.520891546458,\n  \"shipping_total\": 1429.2138513631157,\n  \"tracking_code\": \"prec\",\n  \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"shipping_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"string\"\n  },\n  \"billing_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"string\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"string\",\n      \"amount_discounted\": 594.527519510628,\n      \"type\": \"percentage\"\n    },\n    {\n      \"code\": \"string\",\n      \"amount_discounted\": 9696.08956200013,\n      \"type\": \"percentage\"\n    }\n  ],\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 8272,\n      \"price\": 6463.2274325265025,\n      \"discount\": 57.91836653153415,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 3806,\n      \"price\": 8238.43277175179,\n      \"discount\": 2538.355022564408,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"839488a60b\",\n    \"name\": \"Freddie's Jokes\",\n    \"type\": \"regular\",\n    \"published_time\": \"2017-06-06T13:56:12+00:00\"\n  },\n  \"tracking_number\": \"string\",\n  \"tracking_carrier\": \"string\",\n  \"tracking_url\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0451bf1e-eeeb-4caf-9915-c6dc6ec8aafc",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7150dc3-ded5-4029-bf52-285b96f0af5b",
+          "name": "Mailchimp Update Order",
+          "request": {
+            "name": "Mailchimp Update Order",
+            "description": {
+              "content": "Update a specific order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer\": {\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"province\": \"<string>\",\n      \"province_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  },\n  \"campaign_id\": \"<string>\",\n  \"landing_site\": \"<string>\",\n  \"financial_status\": \"<string>\",\n  \"fulfillment_status\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"order_url\": \"<string>\",\n  \"discount_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"shipping_total\": \"<number>\",\n  \"tracking_code\": \"<string>\",\n  \"processed_at_foreign\": \"<dateTime>\",\n  \"cancelled_at_foreign\": \"<dateTime>\",\n  \"updated_at_foreign\": \"<dateTime>\",\n  \"shipping_address\": {\n    \"name\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"province\": \"<string>\",\n    \"province_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"longitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"phone\": \"<string>\",\n    \"company\": \"<string>\"\n  },\n  \"billing_address\": {\n    \"name\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"province\": \"<string>\",\n    \"province_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"longitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"phone\": \"<string>\",\n    \"company\": \"<string>\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    }\n  ],\n  \"lines\": [\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"<string>\"\n  },\n  \"tracking_number\": \"<string>\",\n  \"tracking_carrier\": \"<string>\",\n  \"tracking_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0c22ea2b-4a7f-44b4-927d-4fdbe85aab29",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": {\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"campaign_id\": \"839488a60b\",\n  \"landing_site\": \"http://www.example.com?source=abc\",\n  \"financial_status\": \"<string>\",\n  \"fulfillment_status\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"order_url\": \"<string>\",\n  \"discount_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"shipping_total\": \"<number>\",\n  \"tracking_code\": \"<string>\",\n  \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"shipping_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"billing_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    }\n  ],\n  \"lines\": [\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"839488a60b\"\n  },\n  \"tracking_number\": \"<string>\",\n  \"tracking_carrier\": \"<string>\",\n  \"tracking_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"email_address\": \"string\",\n    \"opt_in_status\": false,\n    \"company\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"orders_count\": 4,\n    \"total_spent\": 100,\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    },\n    \"created_at\": \"2015-07-15T19:28:00+00:00\",\n    \"updated_at\": \"2015-07-15T19:28:00+00:00\",\n    \"_links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"PUT\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"string\",\n        \"method\": \"HEAD\",\n        \"targetSchema\": \"string\",\n        \"schema\": \"string\"\n      }\n    ]\n  },\n  \"store_id\": \"string\",\n  \"campaign_id\": \"839488a60b\",\n  \"landing_site\": \"http://www.example.com?source=abc\",\n  \"financial_status\": \"string\",\n  \"fulfillment_status\": \"string\",\n  \"currency_code\": \"string\",\n  \"order_total\": 1970.8456855562117,\n  \"order_url\": \"string\",\n  \"discount_total\": 7502.983854221591,\n  \"tax_total\": 1837.520891546458,\n  \"shipping_total\": 1429.2138513631157,\n  \"tracking_code\": \"prec\",\n  \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"shipping_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"string\"\n  },\n  \"billing_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"string\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"string\",\n      \"amount_discounted\": 594.527519510628,\n      \"type\": \"percentage\"\n    },\n    {\n      \"code\": \"string\",\n      \"amount_discounted\": 9696.08956200013,\n      \"type\": \"percentage\"\n    }\n  ],\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 8272,\n      \"price\": 6463.2274325265025,\n      \"discount\": 57.91836653153415,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 3806,\n      \"price\": 8238.43277175179,\n      \"discount\": 2538.355022564408,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"839488a60b\",\n    \"name\": \"Freddie's Jokes\",\n    \"type\": \"regular\",\n    \"published_time\": \"2017-06-06T13:56:12+00:00\"\n  },\n  \"tracking_number\": \"string\",\n  \"tracking_carrier\": \"string\",\n  \"tracking_url\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8258f85a-25f0-43e5-b694-e3b555f632a5",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer\": {\n    \"opt_in_status\": \"<boolean>\",\n    \"company\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"address\": {\n      \"address1\": \"675 Ponce de Leon Ave NE\",\n      \"address2\": \"Suite 5000\",\n      \"city\": \"Atlanta\",\n      \"province\": \"Georgia\",\n      \"province_code\": \"GA\",\n      \"postal_code\": \"30308\",\n      \"country\": \"United States\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"campaign_id\": \"839488a60b\",\n  \"landing_site\": \"http://www.example.com?source=abc\",\n  \"financial_status\": \"<string>\",\n  \"fulfillment_status\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"order_url\": \"<string>\",\n  \"discount_total\": \"<number>\",\n  \"tax_total\": \"<number>\",\n  \"shipping_total\": \"<number>\",\n  \"tracking_code\": \"<string>\",\n  \"processed_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"cancelled_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"updated_at_foreign\": \"2015-07-15T19:28:00+00:00\",\n  \"shipping_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"billing_address\": {\n    \"name\": \"Freddie Chimpenheimer\",\n    \"address1\": \"675 Ponce de Leon Ave NE\",\n    \"address2\": \"Suite 5000\",\n    \"city\": \"Atlanta\",\n    \"province\": \"Georgia\",\n    \"province_code\": \"GA\",\n    \"postal_code\": \"30308\",\n    \"country\": \"United States\",\n    \"country_code\": \"US\",\n    \"longitude\": -75.68903,\n    \"latitude\": 45.427408,\n    \"phone\": \"8675309\",\n    \"company\": \"<string>\"\n  },\n  \"promos\": [\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"amount_discounted\": \"<number>\"\n    }\n  ],\n  \"lines\": [\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    },\n    {\n      \"product_id\": \"<string>\",\n      \"product_variant_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"discount\": \"<number>\"\n    }\n  ],\n  \"outreach\": {\n    \"id\": \"839488a60b\"\n  },\n  \"tracking_number\": \"<string>\",\n  \"tracking_carrier\": \"<string>\",\n  \"tracking_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e12b5fbd-fdb7-489a-a8dd-57847f309d30",
+          "name": "Mailchimp Delete Order",
+          "request": {
+            "name": "Mailchimp Delete Order",
+            "description": {
+              "content": "Delete an order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c0bd061-7851-411b-a5d6-b92adfd37bb2",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "091d5006-cdec-4640-ae1f-a39d2e172c8e",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "172e4d23-4e1f-4abc-a240-d71848d3483b",
+          "name": "Mailchimp List Order Line Items",
+          "request": {
+            "name": "Mailchimp List Order Line Items",
+            "description": {
+              "content": "Get information about an order's line items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id",
+                "lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a33fe7c7-0abf-4596-bbcc-8b21d6624a92",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"store_id\": \"string\",\n  \"order_id\": \"string\",\n  \"lines\": [\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 5251,\n      \"price\": 6742.6894557984,\n      \"discount\": 2995.618539002434,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"product_id\": \"string\",\n      \"product_title\": \"string\",\n      \"product_variant_id\": \"string\",\n      \"product_variant_title\": \"string\",\n      \"image_url\": \"string\",\n      \"quantity\": 3116,\n      \"price\": 6999.888421981209,\n      \"discount\": 5332.672135295697,\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 4680,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14582d88-c89e-4921-b4c1-64b994d7df27",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec0586bd-5b82-4fc6-ab3d-e7167967fb2e",
+          "name": "Mailchimp Add Order Line Item",
+          "request": {
+            "name": "Mailchimp Add Order Line Item",
+            "description": {
+              "content": "Add a new line item to an existing order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id",
+                "lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\",\n  \"discount\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b6ba616-a0dc-4b8d-ae2b-c1cc8e91c3c6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\",\n  \"discount\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"product_id\": \"string\",\n  \"product_title\": \"string\",\n  \"product_variant_id\": \"string\",\n  \"product_variant_title\": \"string\",\n  \"image_url\": \"string\",\n  \"quantity\": 2272,\n  \"price\": 921.5556697803895,\n  \"discount\": 5875.056418409716,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2b1fb17-8f8e-4467-921d-463f1ecc5e95",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\",\n  \"discount\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "262ba056-f74c-4c4b-ad5a-0624dcd35074",
+          "name": "Mailchimp Get Order Line Item",
+          "request": {
+            "name": "Mailchimp Get Order Line Item",
+            "description": {
+              "content": "Get information about a specific order line item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id",
+                "lines",
+                ":line_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_id",
+                  "description": "(Required) The id for the line item of an order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ab18290-6ddf-47bd-8047-7303fdced379",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of an order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"product_id\": \"string\",\n  \"product_title\": \"string\",\n  \"product_variant_id\": \"string\",\n  \"product_variant_title\": \"string\",\n  \"image_url\": \"string\",\n  \"quantity\": 2272,\n  \"price\": 921.5556697803895,\n  \"discount\": 5875.056418409716,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9226a99-7e88-4a4c-ae03-48fb782bffc8",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of an order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d27ac2f7-5805-4903-bed9-3061bc764745",
+          "name": "Mailchimp Update Order Line Item",
+          "request": {
+            "name": "Mailchimp Update Order Line Item",
+            "description": {
+              "content": "Update a specific order line item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id",
+                "lines",
+                ":line_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_id",
+                  "description": "(Required) The id for the line item of an order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\",\n  \"discount\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "486200b4-7e63-4b9f-8a3a-4e4fef100960",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of an order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\",\n  \"discount\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"product_id\": \"string\",\n  \"product_title\": \"string\",\n  \"product_variant_id\": \"string\",\n  \"product_variant_title\": \"string\",\n  \"image_url\": \"string\",\n  \"quantity\": 2272,\n  \"price\": 921.5556697803895,\n  \"discount\": 5875.056418409716,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c50a898e-a72e-4da3-8aaa-73f36254377c",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of an order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"product_id\": \"<string>\",\n  \"product_variant_id\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"price\": \"<number>\",\n  \"discount\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb8f1727-d25d-4595-8406-d316a06f0325",
+          "name": "Mailchimp Delete Order Line Item",
+          "request": {
+            "name": "Mailchimp Delete Order Line Item",
+            "description": {
+              "content": "Delete a specific order line item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecommerce",
+                "stores",
+                ":store_id",
+                "orders",
+                ":order_id",
+                "lines",
+                ":line_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "store_id",
+                  "description": "(Required) The store id."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "order_id",
+                  "description": "(Required) The id for the order in a store."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_id",
+                  "description": "(Required) The id for the line item of an order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a32f26c-c661-465e-9804-68da3dd4e44b",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of an order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be3f9ede-5a4f-4ad8-87bc-1b847e81d110",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecommerce",
+                    "stores",
+                    ":store_id",
+                    "orders",
+                    ":order_id",
+                    "lines",
+                    ":line_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "store_id",
+                      "description": "(Required) The store id."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "order_id",
+                      "description": "(Required) The id for the order in a store."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_id",
+                      "description": "(Required) The id for the line item of an order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6c2f18b7-917d-44a7-92a1-d7fe12194573",
+    "name": "Mailchimp Marketing Abuse Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse IPs API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "IPs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Dedicated Ips",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of dedicated IP addresses associated with the account, including their pool assignments, warmup status, and sending statistics."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Ip Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed information about a specific dedicated IP address."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Ip Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/list-pools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of IP pools defined for the account, with the IPs assigned to each pool."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Create an Ip Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/create-pool",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new IP pool for organizing dedicated IPs."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete an Ip Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/delete-pool",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete an IP pool. IPs in the pool will be moved to the default pool if one exists."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

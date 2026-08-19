@@ -1,0 +1,3082 @@
+{
+  "item": [
+    {
+      "id": "9df3093e-c32e-434c-a977-95a362fe2808",
+      "name": "Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56e37310-977f-4718-bfd1-f8003eaea9dc",
+          "name": "Mailchimp List Templates",
+          "request": {
+            "name": "Mailchimp List Templates",
+            "description": {
+              "content": "Get a list of an account's available templates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_by",
+                  "value": "<string>",
+                  "description": "The Mailchimp account user who created the template."
+                },
+                {
+                  "disabled": false,
+                  "key": "since_date_created",
+                  "value": "<string>",
+                  "description": "Restrict the response to templates created after the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "before_date_created",
+                  "value": "<string>",
+                  "description": "Restrict the response to templates created before the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Limit results based on template type."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Limit results based on category."
+                },
+                {
+                  "disabled": false,
+                  "key": "folder_id",
+                  "value": "<string>",
+                  "description": "The unique folder id."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Returns user templates sorted by the specified field."
+                },
+                {
+                  "disabled": false,
+                  "key": "content_type",
+                  "value": "<string>",
+                  "description": "Limit results based on how the template's content is put together. Only templates of type `user` can be filtered by `content_type`. If you want to retrieve saved templates created with the legacy email editor, then filter `content_type` to `template`. If you'd rather pull your saved templates for the new editor, filter to `multichannel`. For code your own templates, filter to `html`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_dir",
+                  "value": "<string>",
+                  "description": "Determines the order direction for sorted results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c5069e6-546b-406f-8148-5733d8554af0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "created_by",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "since_date_created",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "before_date_created",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "type",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "category",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "folder_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"templates\": [\n    {\n      \"id\": 6381,\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"drag_and_drop\": true,\n      \"responsive\": true,\n      \"category\": \"string\",\n      \"date_created\": \"1951-05-14T16:54:04.954Z\",\n      \"date_edited\": \"2007-06-05T02:29:18.406Z\",\n      \"created_by\": \"string\",\n      \"edited_by\": \"string\",\n      \"active\": true,\n      \"folder_id\": \"string\",\n      \"thumbnail\": \"string\",\n      \"share_url\": \"string\",\n      \"content_type\": \"html\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 7335,\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"drag_and_drop\": true,\n      \"responsive\": false,\n      \"category\": \"string\",\n      \"date_created\": \"2003-01-10T08:10:38.593Z\",\n      \"date_edited\": \"1991-06-08T13:44:23.459Z\",\n      \"created_by\": \"string\",\n      \"edited_by\": \"string\",\n      \"active\": true,\n      \"folder_id\": \"string\",\n      \"thumbnail\": \"string\",\n      \"share_url\": \"string\",\n      \"content_type\": \"html\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 3949,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddac44fc-ad81-46e4-a9c4-8431d139f9c8",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "created_by",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "since_date_created",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "before_date_created",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "type",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "category",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "folder_id",
+                      "value": "500123"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "content_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "878b6cdf-293f-4d39-b2ae-c0a439d5393a",
+          "name": "Mailchimp Add Template",
+          "request": {
+            "name": "Mailchimp Add Template",
+            "description": {
+              "content": "Create a new template for the account. Only Classic templates are supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"html\": \"<string>\",\n  \"folder_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "254e80d2-6c34-4c88-8fc2-1704ead65d85",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2254,\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"drag_and_drop\": false,\n  \"responsive\": true,\n  \"category\": \"string\",\n  \"date_created\": \"1966-05-28T03:20:55.376Z\",\n  \"date_edited\": \"1967-02-08T13:44:37.793Z\",\n  \"created_by\": \"string\",\n  \"edited_by\": \"string\",\n  \"active\": true,\n  \"folder_id\": \"string\",\n  \"thumbnail\": \"string\",\n  \"share_url\": \"string\",\n  \"content_type\": \"html\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ab917f5-7470-4585-8ff9-240e01fa4646",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c99fc45b-0375-4790-8eb1-76b3a1873960",
+          "name": "Mailchimp Get Template Info",
+          "request": {
+            "name": "Mailchimp Get Template Info",
+            "description": {
+              "content": "Get information about a specific template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The unique id for the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2e501ba-cb29-45eb-98a9-94e23f1234c3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2254,\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"drag_and_drop\": false,\n  \"responsive\": true,\n  \"category\": \"string\",\n  \"date_created\": \"1966-05-28T03:20:55.376Z\",\n  \"date_edited\": \"1967-02-08T13:44:37.793Z\",\n  \"created_by\": \"string\",\n  \"edited_by\": \"string\",\n  \"active\": true,\n  \"folder_id\": \"string\",\n  \"thumbnail\": \"string\",\n  \"share_url\": \"string\",\n  \"content_type\": \"html\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2aefc23f-a198-4c6f-8749-34809e3b0566",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71c987e8-2460-4bea-88e2-07ed14ed43d1",
+          "name": "Mailchimp Update Template",
+          "request": {
+            "name": "Mailchimp Update Template",
+            "description": {
+              "content": "Update the name, HTML, or `folder_id` of an existing template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The unique id for the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"html\": \"<string>\",\n  \"folder_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43fa5a5d-8c53-4d36-8cd6-0a4f0783c02e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2254,\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"drag_and_drop\": false,\n  \"responsive\": true,\n  \"category\": \"string\",\n  \"date_created\": \"1966-05-28T03:20:55.376Z\",\n  \"date_edited\": \"1967-02-08T13:44:37.793Z\",\n  \"created_by\": \"string\",\n  \"edited_by\": \"string\",\n  \"active\": true,\n  \"folder_id\": \"string\",\n  \"thumbnail\": \"string\",\n  \"share_url\": \"string\",\n  \"content_type\": \"html\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83b84dff-5c2e-48fa-a277-9b7129634b50",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0058374f-5c90-423a-83a9-7661c2fe7821",
+          "name": "Mailchimp Delete Template",
+          "request": {
+            "name": "Mailchimp Delete Template",
+            "description": {
+              "content": "Delete a specific template.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":template_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The unique id for the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20e0a682-8831-4a7d-a1ed-5050e394360f",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9b0de9bf-41d0-4fc4-8c7c-44a6f62ce3d0",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b001e78-8e5f-4c0d-81bb-3983a0ec15c6",
+          "name": "Mailchimp View Default Content",
+          "request": {
+            "name": "Mailchimp View Default Content",
+            "description": {
+              "content": "Get the sections that you can edit in a template, including each section's default content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                ":template_id",
+                "default-content"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "template_id",
+                  "description": "(Required) The unique id for the template."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "211f3793-65ec-4138-b5d0-f8b66f49d701",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "default-content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sections\": {\n    \"key_0\": {}\n  },\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03c237d5-6ab5-4c88-84a8-2fc48a3f5279",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    ":template_id",
+                    "default-content"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "template_id",
+                      "description": "(Required) The unique id for the template."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7105a5a-9fb3-4584-a32d-fc0ba4e87c22",
+          "name": "Mailchimp Add a New Template",
+          "request": {
+            "name": "Mailchimp Add a New Template",
+            "description": {
+              "content": "Create a new template on the Mandrill server. Templates can contain merge variables and mc:edit content blocks for dynamic content injection at send time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"from_email\": \"<email>\",\n  \"from_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"code\": \"<string>\",\n  \"text\": \"<string>\",\n  \"publish\": true,\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22ac4070-1a63-4351-90e8-1dcb82513ac6",
+              "name": "The newly created template object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"labels\": [\n    \"example_value\"\n  ],\n  \"code\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish_name\": \"example_value\",\n  \"publish_code\": \"example_value\",\n  \"publish_subject\": \"example_value\",\n  \"publish_from_email\": \"user@example.com\",\n  \"publish_from_name\": \"example_value\",\n  \"publish_text\": \"example_value\",\n  \"published_at\": \"2026-01-15T10:30:00Z\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13180a17-97f1-4968-a66f-87236cbb437e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f62a9f0d-7e74-41b4-ae0c-2b00047f5bfd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca56dbad-09be-4a6f-9054-ee4f974bff64",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d26568ef-e135-4c59-bd00-1917460bc620",
+          "name": "Mailchimp Get Template Info",
+          "request": {
+            "name": "Mailchimp Get Template Info",
+            "description": {
+              "content": "Get the details for a specific template, including its code, default values, and publish status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16537cbf-fa43-4237-af39-8e153ca266db",
+              "name": "The template details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"labels\": [\n    \"example_value\"\n  ],\n  \"code\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish_name\": \"example_value\",\n  \"publish_code\": \"example_value\",\n  \"publish_subject\": \"example_value\",\n  \"publish_from_email\": \"user@example.com\",\n  \"publish_from_name\": \"example_value\",\n  \"publish_text\": \"example_value\",\n  \"published_at\": \"2026-01-15T10:30:00Z\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b8cd0e5-a61e-4e32-8117-807e8008d84d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7cc1764-c3eb-43c4-aec5-354366f007fd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "990c77c5-9009-4555-b718-6f74869c4811",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92e3d2b7-8f5a-49df-923e-2a5b56170943",
+          "name": "Mailchimp Update a Template",
+          "request": {
+            "name": "Mailchimp Update a Template",
+            "description": {
+              "content": "Update an existing template with new values for any of its fields. Only the fields you include in the request body will be updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"from_email\": \"<email>\",\n  \"from_name\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"code\": \"<string>\",\n  \"text\": \"<string>\",\n  \"publish\": \"<boolean>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0e82e0b-6b5b-417d-8a46-863f59e31ae1",
+              "name": "The updated template details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"labels\": [\n    \"example_value\"\n  ],\n  \"code\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish_name\": \"example_value\",\n  \"publish_code\": \"example_value\",\n  \"publish_subject\": \"example_value\",\n  \"publish_from_email\": \"user@example.com\",\n  \"publish_from_name\": \"example_value\",\n  \"publish_text\": \"example_value\",\n  \"published_at\": \"2026-01-15T10:30:00Z\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a29e45e-4933-4713-95cc-0fa75879dbb1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11ed1abd-7680-48d9-94e2-ed612b742773",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eebed833-1ed3-4024-9456-e2dce8d9f843",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"code\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish\": true,\n  \"labels\": [\n    \"example_value\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d80887e-8e97-4cd3-b1ad-f5e8007b56c5",
+          "name": "Mailchimp Publish a Template",
+          "request": {
+            "name": "Mailchimp Publish a Template",
+            "description": {
+              "content": "Publish the most recent draft of an existing template, making it available for sending.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9cb706f3-3ba3-4f62-89ab-d2591da502d9",
+              "name": "The published template details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"labels\": [\n    \"example_value\"\n  ],\n  \"code\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish_name\": \"example_value\",\n  \"publish_code\": \"example_value\",\n  \"publish_subject\": \"example_value\",\n  \"publish_from_email\": \"user@example.com\",\n  \"publish_from_name\": \"example_value\",\n  \"publish_text\": \"example_value\",\n  \"published_at\": \"2026-01-15T10:30:00Z\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dfd5f24-a71e-4c80-b2df-ced401382b3a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e84ac817-96a4-457b-ae9b-eca135c66a31",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "347c3b3d-f322-4b3b-8515-41c2d3ca6c15",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3b36ec4-c658-417b-ab60-91670d5a8d29",
+          "name": "Mailchimp Delete a Template",
+          "request": {
+            "name": "Mailchimp Delete a Template",
+            "description": {
+              "content": "Permanently delete a template from the account. This action cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc5d3ff4-60a0-4db4-88f1-86d5c80151ce",
+              "name": "The deleted template details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"labels\": [\n    \"example_value\"\n  ],\n  \"code\": \"example_value\",\n  \"subject\": \"example_value\",\n  \"from_email\": \"user@example.com\",\n  \"from_name\": \"example_value\",\n  \"text\": \"example_value\",\n  \"publish_name\": \"example_value\",\n  \"publish_code\": \"example_value\",\n  \"publish_subject\": \"example_value\",\n  \"publish_from_email\": \"user@example.com\",\n  \"publish_from_name\": \"example_value\",\n  \"publish_text\": \"example_value\",\n  \"published_at\": \"2026-01-15T10:30:00Z\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "370da1c4-10d6-46c8-86e6-4b07568cd367",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82731706-e3f9-4b78-946a-a18a86621552",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "de758c84-24dc-4d27-ba28-45a5d47bfe4d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3acdf710-3f83-4963-87bc-4b1a7c345353",
+          "name": "Mailchimp List Templates",
+          "request": {
+            "name": "Mailchimp List Templates",
+            "description": {
+              "content": "Get a list of all templates available in the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"label\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b606434a-dc88-4945-a2f6-1f36647b1739",
+              "name": "An array of template info objects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"label\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"slug\": \"example_value\",\n    \"name\": \"Example Title\",\n    \"labels\": [\n      \"example_value\"\n    ],\n    \"code\": \"example_value\",\n    \"subject\": \"example_value\",\n    \"from_email\": \"user@example.com\",\n    \"from_name\": \"example_value\",\n    \"text\": \"example_value\",\n    \"publish_name\": \"example_value\",\n    \"publish_code\": \"example_value\",\n    \"publish_subject\": \"example_value\",\n    \"publish_from_email\": \"user@example.com\",\n    \"publish_from_name\": \"example_value\",\n    \"publish_text\": \"example_value\",\n    \"published_at\": \"2026-01-15T10:30:00Z\",\n    \"created_at\": \"2026-01-15T10:30:00Z\",\n    \"updated_at\": \"2026-01-15T10:30:00Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74834769-3598-41b5-af01-1042710fa956",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"label\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b110a47-1508-4c5f-a074-5d637bdc3597",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"label\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aa480e10-1899-4a5f-818e-0821ba558ad3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"label\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3600d00f-91c1-476b-8d34-8f34173510bf",
+          "name": "Mailchimp Get Template Time Series",
+          "request": {
+            "name": "Mailchimp Get Template Time Series",
+            "description": {
+              "content": "Return the recent sending history for a template, aggregated by hourly time slots.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "time-series"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3cf16f6-4809-4f29-a951-53ae1930bdc4",
+              "name": "An array of time series data for the template.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "time-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"time\": \"2026-01-15T10:30:00Z\",\n    \"sent\": 10,\n    \"hard_bounces\": 10,\n    \"soft_bounces\": 10,\n    \"rejects\": 10,\n    \"complaints\": 10,\n    \"unsubs\": 10,\n    \"opens\": 10,\n    \"unique_opens\": 10,\n    \"clicks\": 10,\n    \"unique_clicks\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9159874d-35f8-42d9-bd89-e6d9d26ec4f1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "time-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd5b1e2f-e494-49a5-bc2f-4759abb6ec33",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "time-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b90c5875-da3f-4571-a22e-f08aa0fd3753",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "time-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66505be9-4533-4c32-a4d2-885dfcf068f8",
+          "name": "Mailchimp Render a Template",
+          "request": {
+            "name": "Mailchimp Render a Template",
+            "description": {
+              "content": "Render a template with the provided merge variables and template content, returning the final HTML that would be sent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "templates",
+                "render"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"template_name\": \"<string>\",\n  \"template_content\": [\n    {\n      \"name\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ],\n  \"merge_vars\": [\n    {\n      \"name\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"content\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "693e7c45-5c11-4a59-9afc-62fd88661ca1",
+              "name": "The rendered template HTML.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "render"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"template_name\": \"example_value\",\n  \"template_content\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ],\n  \"merge_vars\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"html\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7689ce20-7fdf-4154-89f9-c317f495b923",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "render"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"template_name\": \"example_value\",\n  \"template_content\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ],\n  \"merge_vars\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3a409384-6f6e-446e-93ac-0d6358567ed4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "render"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"template_name\": \"example_value\",\n  \"template_content\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ],\n  \"merge_vars\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b066d094-e7c1-4830-bd90-cdeb36fe1cac",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "templates",
+                    "render"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"template_name\": \"example_value\",\n  \"template_content\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ],\n  \"merge_vars\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": \"example_value\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "877cb1fb-a3be-45a4-9739-2726d3ee7c68",
+    "name": "Mailchimp Marketing Abuse Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

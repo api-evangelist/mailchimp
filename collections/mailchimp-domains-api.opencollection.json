@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Domains API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Domain Performance Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reports/:campaign_id/domain-performance",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get statistics for the top-performing email domains in a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Domain Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/verified-domains/:domain_name",
+            "params": [
+              {
+                "name": "domain_name",
+                "value": "example_value",
+                "type": "path",
+                "description": "The domain name."
+              }
+            ]
+          },
+          "docs": "Get the details for a single domain on the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/verified-domains/:domain_name",
+            "params": [
+              {
+                "name": "domain_name",
+                "value": "example_value",
+                "type": "path",
+                "description": "The domain name."
+              }
+            ]
+          },
+          "docs": "Delete a verified domain from the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Verify Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/verified-domains/:domain_name/actions/verify",
+            "params": [
+              {
+                "name": "domain_name",
+                "value": "example_value",
+                "type": "path",
+                "description": "The domain name."
+              }
+            ]
+          },
+          "docs": "Verify a domain for sending."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Sending Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/verified-domains"
+          },
+          "docs": "Get all of the sending domains on the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Domain to Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/verified-domains"
+          },
+          "docs": "Add a domain to the account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

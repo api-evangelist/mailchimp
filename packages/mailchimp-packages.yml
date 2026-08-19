@@ -1,12 +1,26 @@
-generated: '2026-06-20'
+generated: '2026-08-13'
 method: searched
-source: https://mailchimp.com/developer/tools/
+source: >-
+  https://mailchimp.com/developer/tools/ plus the registry metadata endpoints
+  (registry.npmjs.org, pypi.org/pypi/*/json, rubygems.org/api/v1/gems/*.json,
+  repo.packagist.org/p2/*.json) and the GitHub repositories in the mailchimp org,
+  all read 2026-08-13.
 description: >-
-  First-party Mailchimp client libraries and mobile SDKs. Verified against the
-  public package registries (each returned HTTP 200 at fetch time) and the
-  Mailchimp developer tools/SDK documentation. The server-side Marketing and
-  Transactional libraries are auto-generated and published from
+  First-party Mailchimp client libraries and mobile SDKs. The server-side
+  Marketing and Transactional libraries are auto-generated and published from
   https://github.com/mailchimp/mailchimp-client-lib-codegen.
+currency:
+  checked: '2026-08-13'
+  finding: >-
+    The four MARKETING client libraries are frozen. Every one of them last
+    published 3.0.80 on 2022-11-02 — the same day across npm, PyPI, RubyGems and
+    Packagist, and the same date the four source repositories were last pushed —
+    while the Marketing API contract Mailchimp serves at
+    https://api.mailchimp.com/schema/3.0/Swagger.json is version 3.0.91. The
+    official SDKs are eleven spec revisions and nearly four years behind the API
+    they wrap. The four TRANSACTIONAL libraries are current: 1.4.1, published
+    2026-03-24, matching the 1.4.1 spec in
+    openapi/mailchimp-transactional-api-openapi-original.json.
 packages:
   # --- Marketing API SDKs ---
   - language: javascript
@@ -17,6 +31,8 @@ packages:
     install: npm install @mailchimp/mailchimp_marketing
     official: true
     api: mailchimp:mailchimp-marketing-api
+    version: 3.0.80
+    published: '2022-11-02'
   - language: python
     registry: pypi
     name: mailchimp-marketing
@@ -25,6 +41,8 @@ packages:
     install: pip install mailchimp-marketing
     official: true
     api: mailchimp:mailchimp-marketing-api
+    version: 3.0.80
+    published: '2022-11-02'
   - language: php
     registry: packagist
     name: mailchimp/marketing
@@ -33,6 +51,8 @@ packages:
     install: composer require mailchimp/marketing
     official: true
     api: mailchimp:mailchimp-marketing-api
+    version: 3.0.80
+    published: '2022-11-02'
   - language: ruby
     registry: rubygems
     name: MailchimpMarketing
@@ -41,6 +61,8 @@ packages:
     install: gem install MailchimpMarketing
     official: true
     api: mailchimp:mailchimp-marketing-api
+    version: 3.0.80
+    published: '2022-11-02'
   # --- Transactional (Mandrill) API SDKs ---
   - language: javascript
     registry: npm
@@ -50,6 +72,8 @@ packages:
     install: npm install @mailchimp/mailchimp_transactional
     official: true
     api: mailchimp:mailchimp-transactional-api
+    version: 1.4.1
+    published: '2026-03-24'
   - language: python
     registry: pypi
     name: mailchimp-transactional
@@ -58,6 +82,8 @@ packages:
     install: pip install mailchimp-transactional
     official: true
     api: mailchimp:mailchimp-transactional-api
+    version: 1.4.1
+    published: '2026-03-24'
   - language: php
     registry: packagist
     name: mailchimp/transactional
@@ -66,6 +92,8 @@ packages:
     install: composer require mailchimp/transactional
     official: true
     api: mailchimp:mailchimp-transactional-api
+    version: 1.4.1
+    published: '2026-03-24'
   - language: ruby
     registry: rubygems
     name: MailchimpTransactional
@@ -74,6 +102,8 @@ packages:
     install: gem install MailchimpTransactional
     official: true
     api: mailchimp:mailchimp-transactional-api
+    version: 1.4.1
+    published: '2026-03-24'
   # --- Mobile SDKs ---
   - language: swift
     registry: github
@@ -82,7 +112,13 @@ packages:
     source: https://github.com/mailchimp/Mailchimp-SDK-iOS
     install: Swift Package Manager / CocoaPods (see repo)
     official: true
-    notes: Mobile audience/contact SDK for iOS (marketing signup and contact management).
+    version: v2.0.4
+    published: null
+    notes: >-
+      Mobile audience/contact SDK for iOS (marketing signup and contact
+      management). Distributed from the repository rather than a package registry,
+      so there is no registry metadata endpoint to date the release; version read
+      from the latest git tag (v2.0.4). Repository last pushed 2025-04-25.
   - language: kotlin
     registry: github
     name: Mailchimp-SDK-Android
@@ -90,4 +126,25 @@ packages:
     source: https://github.com/mailchimp/Mailchimp-SDK-Android
     install: Gradle (see repo)
     official: true
-    notes: Mobile audience/contact SDK for Android (marketing signup and contact management).
+    version: null
+    published: null
+    notes: >-
+      Mobile audience/contact SDK for Android. No package-registry listing and no
+      semantic version tag on the repository — the newest tag is a branch-shaped
+      label (event-listener-2), so a consumer cannot tell which build they are
+      pulling. Repository last pushed 2026-02-12.
+tooling:
+  - name: mailchimp-client-lib-codegen
+    url: https://github.com/mailchimp/mailchimp-client-lib-codegen
+    official: true
+    note: >-
+      The generator Mailchimp uses to build and publish both SDK families, and the
+      canonical home of the two API specs (spec/marketing.json,
+      spec/transactional.json). Last pushed 2026-07-16.
+cli:
+  present: false
+  note: >-
+    Mailchimp publishes no first-party CLI. All 30 public repositories in the
+    mailchimp GitHub org were reviewed on 2026-08-13; the developer tooling is
+    client libraries, platform plugins (WooCommerce, Magento, WordPress) and the
+    codegen tool. No cli/ artifact is emitted.

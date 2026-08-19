@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Search API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Search for Tags on a List by Name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/tag-search",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "The search query used to filter tags.  The search query will be compared to each tag as a prefix, so all tags that have a name starting with this field will be returned."
+              }
+            ]
+          },
+          "docs": "Search for tags on a list by name. If no name is provided, will return all tags on the list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search-campaigns",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The search query used to filter results."
+              }
+            ]
+          },
+          "docs": "Search all campaigns for the specified query terms."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search-members",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The search query used to filter results. Query should be a valid email, or a string representing a contact's first or last name."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "query",
+                "description": "The unique id for the list."
+              }
+            ]
+          },
+          "docs": "Search for list members. This search can be restricted to a specific list, or can be used to search across all lists in an account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

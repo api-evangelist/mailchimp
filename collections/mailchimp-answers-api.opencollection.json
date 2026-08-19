@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Answers API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Answers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Answers for Question",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id/questions/:question_id/answers",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              },
+              {
+                "name": "question_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey question."
+              },
+              {
+                "name": "respondent_familiarity_is",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter survey responses by familiarity of the respondents."
+              }
+            ]
+          },
+          "docs": "Get answers for a survey question."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

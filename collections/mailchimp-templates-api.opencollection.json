@@ -1,0 +1,340 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Templates API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/templates",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "created_by",
+                "value": "example_value",
+                "type": "query",
+                "description": "The Mailchimp account user who created the template."
+              },
+              {
+                "name": "since_date_created",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to templates created after the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_date_created",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to templates created before the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "Limit results based on template type."
+              },
+              {
+                "name": "category",
+                "value": "example_value",
+                "type": "query",
+                "description": "Limit results based on category."
+              },
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "query",
+                "description": "The unique folder id."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns user templates sorted by the specified field."
+              },
+              {
+                "name": "content_type",
+                "value": "example_value",
+                "type": "query",
+                "description": "Limit results based on how the template's content is put together. Only templates of type `user` can be filtered by `content_type`. If you want to retrieve saved templates created with the legacy email editor, then filter `content_type` to `template`. If you'd rather pull your saved templates for the new editor, filter to `multichannel`. For code your own templates, filter to `html`."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              }
+            ]
+          },
+          "docs": "Get a list of an account's available templates."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates"
+          },
+          "docs": "Create a new template for the account. Only Classic templates are supported."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Template Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/templates/:template_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "template_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the template."
+              }
+            ]
+          },
+          "docs": "Get information about a specific template."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the template."
+              }
+            ]
+          },
+          "docs": "Update the name, HTML, or `folder_id` of an existing template."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the template."
+              }
+            ]
+          },
+          "docs": "Delete a specific template."
+        },
+        {
+          "info": {
+            "name": "Mailchimp View Default Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/templates/:template_id/default-content",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "template_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the template."
+              }
+            ]
+          },
+          "docs": "Get the sections that you can edit in a template, including each section's default content."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a New Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new template on the Mandrill server. Templates can contain merge variables and mc:edit content blocks for dynamic content injection at send time."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Template Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the details for a specific template, including its code, default values, and publish status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing template with new values for any of its fields. Only the fields you include in the request body will be updated."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Publish a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/publish",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish the most recent draft of an existing template, making it available for sending."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a template from the account. This action cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a list of all templates available in the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Template Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/time-series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return the recent sending history for a template, aggregated by hourly time slots."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Render a Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/render",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Render a template with the provided merge variables and template content, returning the final HTML that would be sent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

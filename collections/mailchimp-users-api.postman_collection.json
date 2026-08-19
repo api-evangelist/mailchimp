@@ -1,0 +1,724 @@
+{
+  "item": [
+    {
+      "id": "cb388f5b-7f6f-49e8-b4e9-93af8701fc54",
+      "name": "Users",
+      "description": {
+        "content": "Retrieve information about the authenticated Mandrill account.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6b4d3c25-6305-4b8a-9f29-ea7e5af8385f",
+          "name": "Mailchimp Get User Info",
+          "request": {
+            "name": "Mailchimp Get User Info",
+            "description": {
+              "content": "Return the information about the API-connected user, including username, reputation, hourly quota, and account-level statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4512916-311b-430b-944e-532df4868de3",
+              "name": "Account information for the authenticated user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"example_value\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"public_id\": \"500123\",\n  \"reputation\": 10,\n  \"hourly_quota\": \"https://www.example.com\",\n  \"backlog\": 10,\n  \"stats\": {\n    \"today\": {\n      \"sent\": 10,\n      \"hard_bounces\": 10,\n      \"soft_bounces\": 10,\n      \"rejects\": 10,\n      \"complaints\": 10,\n      \"unsubs\": 10,\n      \"opens\": 10,\n      \"unique_opens\": 10,\n      \"clicks\": 10,\n      \"unique_clicks\": 10\n    },\n    \"last_7_days\": {\n      \"sent\": 10,\n      \"hard_bounces\": 10,\n      \"soft_bounces\": 10,\n      \"rejects\": 10,\n      \"complaints\": 10,\n      \"unsubs\": 10,\n      \"opens\": 10,\n      \"unique_opens\": 10,\n      \"clicks\": 10,\n      \"unique_clicks\": 10\n    },\n    \"last_30_days\": {\n      \"sent\": 10,\n      \"hard_bounces\": 10,\n      \"soft_bounces\": 10,\n      \"rejects\": 10,\n      \"complaints\": 10,\n      \"unsubs\": 10,\n      \"opens\": 10,\n      \"unique_opens\": 10,\n      \"clicks\": 10,\n      \"unique_clicks\": 10\n    },\n    \"last_60_days\": {\n      \"sent\": 10,\n      \"hard_bounces\": 10,\n      \"soft_bounces\": 10,\n      \"rejects\": 10,\n      \"complaints\": 10,\n      \"unsubs\": 10,\n      \"opens\": 10,\n      \"unique_opens\": 10,\n      \"clicks\": 10,\n      \"unique_clicks\": 10\n    },\n    \"last_90_days\": {\n      \"sent\": 10,\n      \"hard_bounces\": 10,\n      \"soft_bounces\": 10,\n      \"rejects\": 10,\n      \"complaints\": 10,\n      \"unsubs\": 10,\n      \"opens\": 10,\n      \"unique_opens\": 10,\n      \"clicks\": 10,\n      \"unique_clicks\": 10\n    },\n    \"all_time\": {\n      \"sent\": 10,\n      \"hard_bounces\": 10,\n      \"soft_bounces\": 10,\n      \"rejects\": 10,\n      \"complaints\": 10,\n      \"unsubs\": 10,\n      \"opens\": 10,\n      \"unique_opens\": 10,\n      \"clicks\": 10,\n      \"unique_clicks\": 10\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "331d1a62-1712-47ba-b765-7417279c2dc9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4cc8657-fd3c-47ae-9915-322fb8a2dc16",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c3ffe90-d637-4326-b96c-29392c394baa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87f766a1-22f6-48cb-a0de-63abf20f7b44",
+          "name": "Mailchimp Ping the Api",
+          "request": {
+            "name": "Mailchimp Ping the Api",
+            "description": {
+              "content": "Validate an API key and respond to a ping. Returns the string PONG! if the API key is valid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74ce9bcc-0bfc-4d22-bf4e-6b9a181392f0",
+              "name": "A successful ping response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"example_value\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d427612-d976-40ef-b54f-6bdda12cb893",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "931d2b3f-4b56-41ea-9f85-47c136137fd7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a612e43-c424-41b7-8c2b-c9da98c5a072",
+          "name": "Mailchimp List Account Senders",
+          "request": {
+            "name": "Mailchimp List Account Senders",
+            "description": {
+              "content": "Return the senders that have tried to use this account, both verified and unverified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                "senders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8aeb72f7-ace0-459e-957b-916bb5301d1f",
+              "name": "An array of sender objects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "senders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"example_value\",\n    \"created_at\": \"2026-01-15T10:30:00Z\",\n    \"sent\": 10,\n    \"hard_bounces\": 10,\n    \"soft_bounces\": 10,\n    \"rejects\": 10,\n    \"complaints\": 10,\n    \"unsubs\": 10,\n    \"opens\": 10,\n    \"clicks\": 10,\n    \"unique_opens\": 10,\n    \"unique_clicks\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "327d609f-962f-44de-a62c-086f4f23c152",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "senders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61bc9e5e-2cc6-4a15-9eb3-d89d8b659eb4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "senders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "307c3a9f-b65c-4fe3-b663-a9aaf6216d5d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    "senders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "213cb7e0-fbc9-4e33-99f2-cb27a8839c68",
+    "name": "Mailchimp Marketing Abuse Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

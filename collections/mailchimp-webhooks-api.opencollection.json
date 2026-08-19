@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Webhooks API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Batch Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/batch-webhooks",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get all webhooks that have been configured for batches."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Batch Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/batch-webhooks"
+          },
+          "docs": "Configure a webhook that will fire whenever any batch request completes processing.  You may only have a maximum of 20 batch webhooks."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Batch Webhook Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/batch-webhooks/:batch_webhook_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "batch_webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the batch webhook."
+              }
+            ]
+          },
+          "docs": "Get information about a specific batch webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Batch Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/batch-webhooks/:batch_webhook_id",
+            "params": [
+              {
+                "name": "batch_webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the batch webhook."
+              }
+            ]
+          },
+          "docs": "Update a webhook that will fire whenever any batch request completes processing."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Batch Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/batch-webhooks/:batch_webhook_id",
+            "params": [
+              {
+                "name": "batch_webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the batch webhook."
+              }
+            ]
+          },
+          "docs": "Remove a batch webhook. Webhooks will no longer be sent to the given URL."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Get information about all webhooks for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Create a new webhook for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Webhook Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The webhook's id."
+              }
+            ]
+          },
+          "docs": "Get information about a specific webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The webhook's id."
+              }
+            ]
+          },
+          "docs": "Update the settings for an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "webhook_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The webhook's id."
+              }
+            ]
+          },
+          "docs": "Delete a specific webhook in a list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of all configured webhooks for the account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook. Mandrill will attempt a HEAD request to the provided URL to verify the webhook endpoint."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Webhook Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/info",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the details for a specific webhook by its unique ID."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the URL, description, or events for an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a webhook by its unique ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

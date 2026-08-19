@@ -1,0 +1,152 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  Derived by binding the published tool list in mcp/mailchimp-mcp.yml (Mailchimp
+  Transactional Messaging MCP server, documented at
+  https://mailchimp.com/developer/transactional/guides/how-to-use-mailchimps-transactional-messaging-mcp/)
+  to operationIds verified in openapi/mailchimp-transactional-api-openapi-original.json
+  (Mailchimp Transactional API 1.4.1) and
+  openapi/mailchimp-marketing-api-openapi-original.json (Marketing API 3.0.91),
+  both harvested 2026-08-13.
+description: >-
+  What the Mailchimp MCP surface can do versus what the REST surface can do. The
+  hosted MCP server covers the TRANSACTIONAL API ONLY, and most of its tools are
+  meta-tools — they describe, diagnose or proxy the API rather than mapping to one
+  operation. The entire Marketing API (298 operations) has no first-party MCP tool
+  at all. Live tools/list introspection is auth-gated, so input schemas were not
+  read from the server; bindings below are by name and documented semantics.
+surfaces:
+  openapi:
+    - file: openapi/mailchimp-transactional-api-openapi-original.json
+      api: mailchimp:mailchimp-transactional-api
+      operations: 99
+      gated: false
+    - file: openapi/mailchimp-marketing-api-openapi-original.json
+      api: mailchimp:mailchimp-marketing-api
+      operations: 298
+      gated: false
+  graphql:
+    endpoint: null
+    note: >-
+      The only Mailchimp GraphQL surface is Open Commerce (formerly Reaction
+      Commerce), a discontinued self-hosted stack with no Mailchimp-operated
+      endpoint. See graphql/mailchimp-graphql.md.
+  mcp:
+    url: https://mandrillapp.com/mcp
+    transport: http
+    gated: true
+    probe:
+      fetched: '2026-08-13'
+      method: 'POST tools/list (jsonrpc 2.0)'
+      http_status: 200
+      body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization: Bearer <api_key> required"},"id":null}'
+      note: >-
+        The endpoint is live and answers JSON-RPC, but tools/list requires a
+        Transactional API key as a bearer token. Tool names and descriptions below
+        come from Mailchimp's published guide, not from an authenticated
+        introspection, so no inputSchema was captured.
+crosswalk:
+  - tool: account_status
+    category: account
+    rest: [postUsersInfo, postUsersPing]
+    binding: rest
+    confidence: high
+    note: /users/info returns account reputation, quota and backlog; /users/ping is the credential check.
+  - tool: call_api
+    category: proxy
+    rest: ['*']
+    binding: rest
+    confidence: low
+    note: >-
+      A generic proxy tool — it can invoke any Transactional endpoint, so it fans
+      out to all 99 operations rather than binding to one. Its real input contract
+      is the endpoint name plus that endpoint's own parameters.
+  - tool: describe_api
+    category: introspection
+    rest: []
+    binding: none
+    confidence: high
+    note: >-
+      Returns the parameters/schema of a named Transactional endpoint — a
+      server-side read of the same spec captured in openapi/. No REST operation
+      exposes this.
+  - tool: list_api
+    category: introspection
+    rest: []
+    binding: none
+    confidence: high
+    note: Enumerates available Transactional endpoints; a spec-listing helper with no REST equivalent.
+  - tool: diagnose_failed_send
+    category: troubleshooting
+    rest: [postMessagesInfo, postMessagesSearch, postRejectsList]
+    binding: rest
+    confidence: medium
+    note: >-
+      A composite. The underlying facts come from message info/search plus the
+      rejection (denylist) registry; the diagnosis itself is server-side reasoning.
+  - tool: build_template
+    category: content
+    rest: [postTemplatesAdd, postTemplatesUpdate, postTemplatesRender]
+    binding: rest
+    confidence: low
+    note: >-
+      Template construction assistance. Persisting or rendering a template maps to
+      the /templates operations, but the drafting step has no REST equivalent.
+  - tool: integrate_api
+    category: guidance
+    rest: []
+    binding: none
+    confidence: high
+  - tool: onboarding
+    category: guidance
+    rest: []
+    binding: none
+    confidence: high
+  - tool: submit_feedback
+    category: meta
+    rest: []
+    binding: none
+    confidence: high
+mcp_only:
+  - tool: describe_api
+    reason: Spec introspection served by the MCP host; the equivalent for a REST client is reading the OpenAPI.
+  - tool: list_api
+    reason: Endpoint enumeration served by the MCP host; no /endpoints operation exists in the API.
+  - tool: integrate_api
+    reason: Documentation/guidance generation, not an API capability.
+  - tool: onboarding
+    reason: Guided account setup, not an API capability.
+  - tool: submit_feedback
+    reason: Feedback channel to Mailchimp; no public REST endpoint.
+rest_only:
+  - capability: Marketing API — the entire surface
+    api: mailchimp:mailchimp-marketing-api
+    operations: 298
+    note: >-
+      Audiences, members, tags, segments, campaigns, content, automations,
+      journeys, reports, e-commerce stores/orders/products, file manager,
+      templates, landing pages, batches and webhooks. No first-party MCP tool
+      exists for any of it; mcp/mailchimp-mcp.yml carries an API Evangelist
+      candidate tool set, not a Mailchimp server.
+  - capability: Transactional — inbound email processing
+    operations: [postInboundDomains, postInboundAddDomain, postInboundRoutes, postInboundAddRoute, postInboundSendRaw]
+  - capability: Transactional — dedicated IP and pool management
+    operations: [postIpsProvision, postIpsStartWarmup, postIpsSetPool, postIpsCreatePool, postIpsCheckCustomDns]
+  - capability: Transactional — webhook registration
+    operations: [postWebhooksAdd, postWebhooksList, postWebhooksUpdate, postWebhooksDelete]
+  - capability: Transactional — subaccounts
+    operations: [postSubaccountsAdd, postSubaccountsList, postSubaccountsInfo, postSubaccountsPause, postSubaccountsResume]
+  - capability: Transactional — exports and activity search
+    operations: [postExportsActivity, postExportsRejects, postExportsList, postMessagesSearchTimeSeries]
+coverage:
+  tools_named: 9
+  tools_bound_to_rest: 4
+  tools_mcp_only: 5
+  rest_operations_total: 397
+  rest_operations_transactional: 99
+  rest_operations_marketing: 298
+  rest_operations_with_a_tool: 8
+  note: >-
+    Excludes the generic call_api proxy from the bound count for rest coverage —
+    it can reach any endpoint but names none. Marketing API coverage by
+    first-party MCP is zero.

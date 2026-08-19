@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse File Manager API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "File Manager",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file-manager/files/:file_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "file_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager file."
+              }
+            ]
+          },
+          "docs": "Get information about a specific file in the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update File",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/file-manager/files/:file_id",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager file."
+              }
+            ]
+          },
+          "docs": "Update a file in the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete File",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/file-manager/files/:file_id",
+            "params": [
+              {
+                "name": "file_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager file."
+              }
+            ]
+          },
+          "docs": "Remove a specific file from the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/file-manager/folders/:folder_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager folder."
+              }
+            ]
+          },
+          "docs": "Get information about a specific folder in the File Manager."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/file-manager/folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager folder."
+              }
+            ]
+          },
+          "docs": "Update a specific File Manager folder."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/file-manager/folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the File Manager folder."
+              }
+            ]
+          },
+          "docs": "Delete a specific folder in the File Manager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

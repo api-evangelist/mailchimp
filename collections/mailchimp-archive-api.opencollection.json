@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Archive API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Archive",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Archive Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/automations/:workflow_id/actions/archive",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the Automation workflow."
+              }
+            ]
+          },
+          "docs": "Archiving will permanently end your automation and keep the report data. Youll be able to replicate your archived automation, but you cant restart it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

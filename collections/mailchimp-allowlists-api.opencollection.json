@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Allowlists API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Allowlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Allowlist Entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/allowlists/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get all email addresses on the account allowlist. Allowlisted addresses bypass the rejection blacklist."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add an Allowlist Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/allowlists/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an email address to the allowlist, allowing messages to bypass the rejection blacklist."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete an Allowlist Entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/allowlists/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove an email address from the allowlist. The address will no longer bypass the rejection blacklist."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

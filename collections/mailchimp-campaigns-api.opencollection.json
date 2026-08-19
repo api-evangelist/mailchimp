@@ -1,0 +1,750 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Campaigns API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Folders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaign-folders",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get all folders used to organize campaigns."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaign-folders"
+          },
+          "docs": "Create a new campaign folder."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaign-folders/:folder_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign folder."
+              }
+            ]
+          },
+          "docs": "Get information about a specific folder used to organize campaigns."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/campaign-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign folder."
+              }
+            ]
+          },
+          "docs": "Update a specific folder used to organize campaigns."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Campaign Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/campaign-folders/:folder_id",
+            "params": [
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign folder."
+              }
+            ]
+          },
+          "docs": "Delete a specific campaign folder, and mark all the campaigns in the folder as 'unfiled'."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "The campaign type."
+              },
+              {
+                "name": "status",
+                "value": "example_value",
+                "type": "query",
+                "description": "The status of the campaign."
+              },
+              {
+                "name": "before_send_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to campaigns sent before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_send_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to campaigns sent after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_create_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to campaigns created before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "since_create_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict the response to campaigns created after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "query",
+                "description": "The unique id for the list."
+              },
+              {
+                "name": "folder_id",
+                "value": "500123",
+                "type": "query",
+                "description": "The unique folder id."
+              },
+              {
+                "name": "member_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Retrieve campaigns sent to a particular list member. Member ID is The MD5 hash of the lowercase version of the list members email address."
+              },
+              {
+                "name": "sort_field",
+                "value": "example_value",
+                "type": "query",
+                "description": "Returns files sorted by the specified field."
+              },
+              {
+                "name": "sort_dir",
+                "value": "example_value",
+                "type": "query",
+                "description": "Determines the order direction for sorted results."
+              },
+              {
+                "name": "include_resend_shortcut_eligibility",
+                "value": "example_value",
+                "type": "query",
+                "description": "Return the `resend_shortcut_eligibility` field in the response, which tells you if the campaign is eligible for the various Campaign Resend Shortcuts offered."
+              }
+            ]
+          },
+          "docs": "Get all campaigns in an account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns"
+          },
+          "docs": "Create a new Mailchimp campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "include_resend_shortcut_eligibility",
+                "value": "example_value",
+                "type": "query",
+                "description": "Return the `resend_shortcut_eligibility` field in the response, which tells you if the campaign is eligible for the various Campaign Resend Shortcuts offered."
+              }
+            ]
+          },
+          "docs": "Get information about a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Campaign Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Update some or all of the settings for a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/campaigns/:campaign_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Remove a campaign from your Mailchimp account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Cancel Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/cancel-send",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Cancel a Regular or Plain-Text Campaign after you send, before all of your recipients receive it. This feature is included with Mailchimp Pro."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Replicate Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/replicate",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Replicate a campaign in saved or send status."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/send",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Send a Mailchimp campaign. For RSS Campaigns, the campaign will send according to its schedule. All other campaigns will send immediately."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Schedule Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/schedule",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Schedule a campaign for delivery. If you're using Multivariate Campaigns to test send times or sending RSS Campaigns, use the send action instead."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Unschedule Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/unschedule",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Unschedule a scheduled campaign that hasn't started sending."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Send Test Email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/test",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Send a test email."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Pause Rss Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/pause",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Pause an RSS-Driven campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Resume Rss Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/resume",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Resume an RSS-Driven campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Resend Campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/actions/create-resend",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Remove the guesswork for resending a campaign to certain segments. You can use this endpoint as a shortcut to replicate a campaign and resend it to common segments, such as those who didn't open the campaign, or any new subscribers since it was sent."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/content",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get the the HTML and plain-text content for a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Set Campaign Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/content",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Set the content for a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Campaign Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Get team feedback while you're working together on a Mailchimp campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Campaign Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Add feedback on a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Feedback Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback/:feedback_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "feedback_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the feedback message."
+              }
+            ]
+          },
+          "docs": "Get a specific feedback message from a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Campaign Feedback Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback/:feedback_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "feedback_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the feedback message."
+              }
+            ]
+          },
+          "docs": "Update a specific feedback message for a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Campaign Feedback Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/feedback/:feedback_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              },
+              {
+                "name": "feedback_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the feedback message."
+              }
+            ]
+          },
+          "docs": "Remove a specific feedback message for a campaign."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Campaign Send Checklist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/campaigns/:campaign_id/send-checklist",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "campaign_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the campaign."
+              }
+            ]
+          },
+          "docs": "Review the send checklist for a campaign, and resolve any issues before sending."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Search Campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/search-campaigns",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "query",
+                "value": "example_value",
+                "type": "query",
+                "description": "The search query used to filter results."
+              }
+            ]
+          },
+          "docs": "Search all campaigns for the specified query terms."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "41ad8a2f-fe12-4ea7-9c6d-0d0d8542197d",
+      "name": "Facebook Ads",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62a87f85-83c0-4ea9-86cb-d9988e2e2a3f",
+          "name": "Mailchimp List Facebook Ads",
+          "request": {
+            "name": "Mailchimp List Facebook Ads",
+            "description": {
+              "content": "Get list of Facebook ads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "facebook-ads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Returns files sorted by the specified field."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_dir",
+                  "value": "<string>",
+                  "description": "Determines the order direction for sorted results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b7f3356-13a2-412d-afec-534e467a0118",
+              "name": "List of Facebook Ad Instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "facebook-ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"facebook_ads\": [\n    {\n      \"id\": \"string\",\n      \"web_id\": 1826,\n      \"name\": \"string\",\n      \"type\": \"reconfirm\",\n      \"status\": \"save\",\n      \"show_report\": true,\n      \"create_time\": \"2020-07-24T16:35:59.246Z\",\n      \"start_time\": \"1977-02-26T17:03:16.081Z\",\n      \"updated_at\": \"1960-07-19T16:29:50.848Z\",\n      \"canceled_at\": \"1967-05-24T09:55:01.964Z\",\n      \"published_time\": \"1995-06-21T03:30:43.722Z\",\n      \"has_segment\": false,\n      \"report_summary\": {\n        \"opens\": 4612,\n        \"unique_opens\": 262,\n        \"open_rate\": 4413.594139690412,\n        \"clicks\": 6160,\n        \"subscriber_clicks\": 683,\n        \"click_rate\": 7251.319346173991,\n        \"visits\": 1313,\n        \"unique_visits\": 1529,\n        \"conversion_rate\": 894.9135426906151,\n        \"subscribes\": 3099,\n        \"ecommerce\": {\n          \"total_revenue\": 8388.718080879644,\n          \"currency_code\": \"string\",\n          \"average_order_revenue\": 8483.56190132102\n        },\n        \"impressions\": 4261.016140815713,\n        \"reach\": 8692,\n        \"engagements\": 5585,\n        \"total_sent\": 6482\n      },\n      \"recipients\": {\n        \"list_id\": \"string\",\n        \"list_is_active\": true,\n        \"list_name\": \"string\",\n        \"segment_text\": \"string\",\n        \"recipient_count\": 4298,\n        \"segment_opts\": {\n          \"saved_segment_id\": 120,\n          \"prebuilt_segment_id\": \"subscribers-female\",\n          \"match\": \"any\",\n          \"conditions\": [\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            },\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            }\n          ]\n        }\n      },\n      \"thumbnail\": \"string\",\n      \"email_source_name\": \"string\",\n      \"paused_at\": \"2009-03-05T23:20:02.042Z\",\n      \"end_time\": \"1975-04-12T03:57:59.818Z\",\n      \"needs_attention\": true,\n      \"was_canceled_by_facebook\": true,\n      \"is_connected\": true,\n      \"has_audience\": false,\n      \"has_content\": false,\n      \"channel\": {\n        \"fb_placement_feed\": true,\n        \"fb_placement_audience\": false,\n        \"ig_placement_feed\": false\n      },\n      \"feedback\": {\n        \"content\": \"string\",\n        \"audience\": \"string\",\n        \"budget\": \"string\",\n        \"compliance\": \"string\"\n      },\n      \"site\": {\n        \"id\": 43,\n        \"name\": \"My Connected Site\",\n        \"url\": \"www.example.com\"\n      },\n      \"audience\": {\n        \"type\": \"Custom Audience\",\n        \"source_type\": \"facebook\",\n        \"email_source\": {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"is_segment\": false,\n          \"segment_type\": \"string\",\n          \"list_name\": \"string\"\n        },\n        \"include_source_in_target\": true,\n        \"lookalike_country_code\": \"string\",\n        \"targeting_specs\": {\n          \"gender\": 0,\n          \"min_age\": 5229,\n          \"max_age\": 5839,\n          \"locations\": {\n            \"countries\": [\n              \"string\",\n              \"string\"\n            ],\n            \"regions\": [\n              \"string\",\n              \"string\"\n            ],\n            \"cities\": [\n              \"string\",\n              \"string\"\n            ],\n            \"zips\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"interests\": [\n            {\n              \"name\": \"string\"\n            },\n            {\n              \"name\": \"string\"\n            }\n          ]\n        }\n      },\n      \"budget\": {\n        \"duration\": 86400,\n        \"total_amount\": 500,\n        \"currency_code\": \"USD\"\n      },\n      \"content\": {\n        \"title\": \"string\",\n        \"link_url\": \"string\",\n        \"message\": \"string\",\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"call_to_action\": \"string\",\n        \"attachments\": [\n          {\n            \"name\": \"string\",\n            \"link_url\": \"string\",\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"call_to_action\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"link_url\": \"string\",\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"call_to_action\": \"string\"\n          }\n        ]\n      },\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"web_id\": 7577,\n      \"name\": \"string\",\n      \"type\": \"reconfirm\",\n      \"status\": \"pending\",\n      \"show_report\": false,\n      \"create_time\": \"1978-01-02T06:52:10.321Z\",\n      \"start_time\": \"1975-02-04T02:08:47.823Z\",\n      \"updated_at\": \"1982-02-23T20:22:42.213Z\",\n      \"canceled_at\": \"2004-01-13T08:08:56.233Z\",\n      \"published_time\": \"2006-03-31T20:48:27.355Z\",\n      \"has_segment\": false,\n      \"report_summary\": {\n        \"opens\": 4297,\n        \"unique_opens\": 3405,\n        \"open_rate\": 7828.670921438071,\n        \"clicks\": 2482,\n        \"subscriber_clicks\": 6100,\n        \"click_rate\": 2929.1173948764826,\n        \"visits\": 7378,\n        \"unique_visits\": 1496,\n        \"conversion_rate\": 2459.926336920488,\n        \"subscribes\": 2970,\n        \"ecommerce\": {\n          \"total_revenue\": 1328.5824435103343,\n          \"currency_code\": \"string\",\n          \"average_order_revenue\": 8271.364439612444\n        },\n        \"impressions\": 4085.9349795337075,\n        \"reach\": 6177,\n        \"engagements\": 7283,\n        \"total_sent\": 9073\n      },\n      \"recipients\": {\n        \"list_id\": \"string\",\n        \"list_is_active\": true,\n        \"list_name\": \"string\",\n        \"segment_text\": \"string\",\n        \"recipient_count\": 240,\n        \"segment_opts\": {\n          \"saved_segment_id\": 1601,\n          \"prebuilt_segment_id\": \"subscribers-female\",\n          \"match\": \"all\",\n          \"conditions\": [\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            },\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            }\n          ]\n        }\n      },\n      \"thumbnail\": \"string\",\n      \"email_source_name\": \"string\",\n      \"paused_at\": \"1954-04-22T05:01:14.026Z\",\n      \"end_time\": \"1977-11-27T14:44:55.605Z\",\n      \"needs_attention\": true,\n      \"was_canceled_by_facebook\": false,\n      \"is_connected\": true,\n      \"has_audience\": true,\n      \"has_content\": false,\n      \"channel\": {\n        \"fb_placement_feed\": true,\n        \"fb_placement_audience\": false,\n        \"ig_placement_feed\": false\n      },\n      \"feedback\": {\n        \"content\": \"string\",\n        \"audience\": \"string\",\n        \"budget\": \"string\",\n        \"compliance\": \"string\"\n      },\n      \"site\": {\n        \"id\": 43,\n        \"name\": \"My Connected Site\",\n        \"url\": \"www.example.com\"\n      },\n      \"audience\": {\n        \"type\": \"Lookalike Audience\",\n        \"source_type\": \"facebook\",\n        \"email_source\": {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"is_segment\": true,\n          \"segment_type\": \"string\",\n          \"list_name\": \"string\"\n        },\n        \"include_source_in_target\": true,\n        \"lookalike_country_code\": \"string\",\n        \"targeting_specs\": {\n          \"gender\": 1,\n          \"min_age\": 428,\n          \"max_age\": 6936,\n          \"locations\": {\n            \"countries\": [\n              \"string\",\n              \"string\"\n            ],\n            \"regions\": [\n              \"string\",\n              \"string\"\n            ],\n            \"cities\": [\n              \"string\",\n              \"string\"\n            ],\n            \"zips\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"interests\": [\n            {\n              \"name\": \"string\"\n            },\n            {\n              \"name\": \"string\"\n            }\n          ]\n        }\n      },\n      \"budget\": {\n        \"duration\": 86400,\n        \"total_amount\": 500,\n        \"currency_code\": \"USD\"\n      },\n      \"content\": {\n        \"title\": \"string\",\n        \"link_url\": \"string\",\n        \"message\": \"string\",\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"call_to_action\": \"string\",\n        \"attachments\": [\n          {\n            \"name\": \"string\",\n            \"link_url\": \"string\",\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"call_to_action\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"link_url\": \"string\",\n            \"description\": \"string\",\n            \"image_url\": \"string\",\n            \"call_to_action\": \"string\"\n          }\n        ]\n      },\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 4652,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc0eec51-c09a-4fe8-837b-6bc2c66d00b6",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "facebook-ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "166aef3d-b572-46e3-88eb-60a67f7bab4a",
+    "name": "Mailchimp Marketing Abuse Facebook Ads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

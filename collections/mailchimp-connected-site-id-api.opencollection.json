@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Connected_site_id API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connected_site_id",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get Connected Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/connected-sites/:connected_site_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "connected_site_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier for the site."
+              }
+            ]
+          },
+          "docs": "Get information about a specific connected site."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Connected Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/connected-sites/:connected_site_id",
+            "params": [
+              {
+                "name": "connected_site_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier for the site."
+              }
+            ]
+          },
+          "docs": "Remove a connected site from your Mailchimp account."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Verify Connected Site Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/connected-sites/:connected_site_id/actions/verify-script-installation",
+            "params": [
+              {
+                "name": "connected_site_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique identifier for the site."
+              }
+            ]
+          },
+          "docs": "Verify that the connected sites script has been installed, either via the script URL or fragment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

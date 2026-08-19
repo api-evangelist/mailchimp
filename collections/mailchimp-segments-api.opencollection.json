@@ -1,0 +1,381 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Segments API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/segments",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "Limit results based on segment type."
+              },
+              {
+                "name": "since_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments created after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_created_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments created before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "include_cleaned",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include cleaned members in response"
+              },
+              {
+                "name": "include_transactional",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include transactional members in response"
+              },
+              {
+                "name": "include_unsubscribed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include unsubscribed members in response"
+              },
+              {
+                "name": "since_updated_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments update after the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              },
+              {
+                "name": "before_updated_at",
+                "value": "2026-01-15T10:30:00Z",
+                "type": "query",
+                "description": "Restrict results to segments update before the set time. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+              }
+            ]
+          },
+          "docs": "Get information about all available segments for a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/segments",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Create a new segment in a specific list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Segment Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              },
+              {
+                "name": "include_cleaned",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include cleaned members in response"
+              },
+              {
+                "name": "include_transactional",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include transactional members in response"
+              },
+              {
+                "name": "include_unsubscribed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include unsubscribed members in response"
+              }
+            ]
+          },
+          "docs": "Get information about a specific segment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Batch Add or Remove Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Batch add/remove list members to static segment"
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Update a specific segment in a list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Delete a specific segment in a list."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Members in Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id/members",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              },
+              {
+                "name": "include_cleaned",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include cleaned members in response"
+              },
+              {
+                "name": "include_transactional",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include transactional members in response"
+              },
+              {
+                "name": "include_unsubscribed",
+                "value": "example_value",
+                "type": "query",
+                "description": "Include unsubscribed members in response"
+              }
+            ]
+          },
+          "docs": "Get information about members in a saved segment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Member to Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id/members",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              }
+            ]
+          },
+          "docs": "Add a member to a static segment."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Remove List Member From Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/segments/:segment_id/members/:subscriber_hash",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "segment_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the segment."
+              },
+              {
+                "name": "subscriber_hash",
+                "value": "example_value",
+                "type": "path",
+                "description": "The MD5 hash of the lowercase version of the list member's email address."
+              }
+            ]
+          },
+          "docs": "Remove a member from the specified static segment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

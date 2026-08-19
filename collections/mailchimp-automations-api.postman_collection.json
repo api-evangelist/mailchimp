@@ -1,0 +1,3178 @@
+{
+  "item": [
+    {
+      "id": "ac526b6d-0c92-4b8f-b276-3d8793def087",
+      "name": "Automations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5bc0ba6a-0542-4a1a-a24f-2773007b7469",
+          "name": "Mailchimp List Automations",
+          "request": {
+            "name": "Mailchimp List Automations",
+            "description": {
+              "content": "Get a summary of an account's classic automations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "before_create_time",
+                  "value": "<dateTime>",
+                  "description": "Restrict the response to automations created before this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "since_create_time",
+                  "value": "<dateTime>",
+                  "description": "Restrict the response to automations created after this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "before_start_time",
+                  "value": "<dateTime>",
+                  "description": "Restrict the response to automations started before this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "since_start_time",
+                  "value": "<dateTime>",
+                  "description": "Restrict the response to automations started after this time. Uses the ISO 8601 time format: 2015-10-21T15:41:36+00:00."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Restrict the results to automations with the specified status."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32886576-259e-45df-8d83-e03437cca311",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "before_create_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since_create_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before_start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since_start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"automations\": [\n    {\n      \"id\": \"string\",\n      \"create_time\": \"1963-02-06T05:54:08.266Z\",\n      \"start_time\": \"2015-12-08T04:44:40.830Z\",\n      \"status\": \"paused\",\n      \"emails_sent\": 3570,\n      \"recipients\": {\n        \"list_id\": \"string\",\n        \"list_is_active\": false,\n        \"list_name\": \"string\",\n        \"segment_opts\": {\n          \"saved_segment_id\": 1761,\n          \"match\": \"all\",\n          \"conditions\": [\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            },\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            }\n          ]\n        },\n        \"store_id\": \"1a2df69xxx\"\n      },\n      \"settings\": {\n        \"title\": \"string\",\n        \"from_name\": \"string\",\n        \"reply_to\": \"string\",\n        \"use_conversation\": true,\n        \"to_name\": \"string\",\n        \"authenticate\": true,\n        \"auto_footer\": true,\n        \"inline_css\": true\n      },\n      \"tracking\": {\n        \"opens\": true,\n        \"html_clicks\": false,\n        \"text_clicks\": false,\n        \"goal_tracking\": false,\n        \"ecomm360\": true,\n        \"google_analytics\": \"string\",\n        \"clicktale\": \"string\",\n        \"salesforce\": {\n          \"campaign\": false,\n          \"notes\": false\n        },\n        \"capsule\": {\n          \"notes\": false\n        }\n      },\n      \"trigger_settings\": {\n        \"workflow_type\": \"abandonedCart\",\n        \"workflow_title\": \"string\",\n        \"runtime\": {\n          \"days\": [\n            \"wednesday\",\n            \"saturday\"\n          ],\n          \"hours\": {\n            \"type\": \"send_between\"\n          }\n        },\n        \"workflow_emails_count\": 3546\n      },\n      \"report_summary\": {\n        \"opens\": 4854,\n        \"unique_opens\": 3404,\n        \"open_rate\": 6389.271877296297,\n        \"clicks\": 9544,\n        \"subscriber_clicks\": 4405,\n        \"click_rate\": 1390.1622216811838\n      },\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"create_time\": \"2015-02-03T04:29:31.108Z\",\n      \"start_time\": \"1953-03-18T01:59:22.509Z\",\n      \"status\": \"sending\",\n      \"emails_sent\": 3257,\n      \"recipients\": {\n        \"list_id\": \"string\",\n        \"list_is_active\": true,\n        \"list_name\": \"string\",\n        \"segment_opts\": {\n          \"saved_segment_id\": 9927,\n          \"match\": \"any\",\n          \"conditions\": [\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            },\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            }\n          ]\n        },\n        \"store_id\": \"1a2df69xxx\"\n      },\n      \"settings\": {\n        \"title\": \"string\",\n        \"from_name\": \"string\",\n        \"reply_to\": \"string\",\n        \"use_conversation\": true,\n        \"to_name\": \"string\",\n        \"authenticate\": false,\n        \"auto_footer\": true,\n        \"inline_css\": true\n      },\n      \"tracking\": {\n        \"opens\": false,\n        \"html_clicks\": false,\n        \"text_clicks\": true,\n        \"goal_tracking\": true,\n        \"ecomm360\": false,\n        \"google_analytics\": \"string\",\n        \"clicktale\": \"string\",\n        \"salesforce\": {\n          \"campaign\": false,\n          \"notes\": false\n        },\n        \"capsule\": {\n          \"notes\": false\n        }\n      },\n      \"trigger_settings\": {\n        \"workflow_type\": \"mandrill\",\n        \"workflow_title\": \"string\",\n        \"runtime\": {\n          \"days\": [\n            \"thursday\",\n            \"thursday\"\n          ],\n          \"hours\": {\n            \"type\": \"send_asap\"\n          }\n        },\n        \"workflow_emails_count\": 4169\n      },\n      \"report_summary\": {\n        \"opens\": 612,\n        \"unique_opens\": 3850,\n        \"open_rate\": 9573.567828334688,\n        \"clicks\": 3386,\n        \"subscriber_clicks\": 9326,\n        \"click_rate\": 2030.1484454851682\n      },\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 8039,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f24fb75c-4041-4866-ab95-db358700003a",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "before_create_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since_create_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before_start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "since_start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc0acbd4-1cbb-415e-8121-8711772c9003",
+          "name": "Mailchimp Add Automation",
+          "request": {
+            "name": "Mailchimp Add Automation",
+            "description": {
+              "content": "Create a new classic automation in your Mailchimp account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": {\n    \"list_id\": \"<string>\",\n    \"store_id\": \"<string>\"\n  },\n  \"trigger_settings\": {\n    \"workflow_type\": \"<string>\"\n  },\n  \"settings\": {\n    \"from_name\": \"<string>\",\n    \"reply_to\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbd9d039-c593-4e8c-a53b-a6f51026b459",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": {\n    \"list_id\": \"1a2df69xxx\",\n    \"store_id\": \"1a2df69xxx\"\n  },\n  \"trigger_settings\": {\n    \"workflow_type\": \"<string>\"\n  },\n  \"settings\": {\n    \"from_name\": \"<string>\",\n    \"reply_to\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"create_time\": \"1968-07-31T23:32:58.666Z\",\n  \"start_time\": \"1992-07-27T00:26:07.388Z\",\n  \"status\": \"paused\",\n  \"emails_sent\": 2524,\n  \"recipients\": {\n    \"list_id\": \"string\",\n    \"list_is_active\": false,\n    \"list_name\": \"string\",\n    \"segment_opts\": {\n      \"saved_segment_id\": 1205,\n      \"match\": \"all\",\n      \"conditions\": [\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    },\n    \"store_id\": \"1a2df69xxx\"\n  },\n  \"settings\": {\n    \"title\": \"string\",\n    \"from_name\": \"string\",\n    \"reply_to\": \"string\",\n    \"use_conversation\": false,\n    \"to_name\": \"string\",\n    \"authenticate\": true,\n    \"auto_footer\": false,\n    \"inline_css\": false\n  },\n  \"tracking\": {\n    \"opens\": true,\n    \"html_clicks\": true,\n    \"text_clicks\": true,\n    \"goal_tracking\": true,\n    \"ecomm360\": true,\n    \"google_analytics\": \"string\",\n    \"clicktale\": \"string\",\n    \"salesforce\": {\n      \"campaign\": false,\n      \"notes\": true\n    },\n    \"capsule\": {\n      \"notes\": true\n    }\n  },\n  \"trigger_settings\": {\n    \"workflow_type\": \"productFollowup\",\n    \"workflow_title\": \"string\",\n    \"runtime\": {\n      \"days\": [\n        \"saturday\",\n        \"tuesday\"\n      ],\n      \"hours\": {\n        \"type\": \"send_asap\"\n      }\n    },\n    \"workflow_emails_count\": 8253\n  },\n  \"report_summary\": {\n    \"opens\": 3631,\n    \"unique_opens\": 3692,\n    \"open_rate\": 6856.743795326029,\n    \"clicks\": 6886,\n    \"subscriber_clicks\": 7380,\n    \"click_rate\": 2616.057737699967\n  },\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f00415ea-7ff8-4279-ada4-fc71a8390c78",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipients\": {\n    \"list_id\": \"1a2df69xxx\",\n    \"store_id\": \"1a2df69xxx\"\n  },\n  \"trigger_settings\": {\n    \"workflow_type\": \"<string>\"\n  },\n  \"settings\": {\n    \"from_name\": \"<string>\",\n    \"reply_to\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9664344c-f34b-446b-b485-33bbe13d5ce5",
+          "name": "Mailchimp Get Automation Info",
+          "request": {
+            "name": "Mailchimp Get Automation Info",
+            "description": {
+              "content": "Get a summary of an individual classic automation workflow's settings and content. The `trigger_settings` object returns information for the first email in the workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d04d8a9-baf2-4924-a052-312779c43f8d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"create_time\": \"1968-07-31T23:32:58.666Z\",\n  \"start_time\": \"1992-07-27T00:26:07.388Z\",\n  \"status\": \"paused\",\n  \"emails_sent\": 2524,\n  \"recipients\": {\n    \"list_id\": \"string\",\n    \"list_is_active\": false,\n    \"list_name\": \"string\",\n    \"segment_opts\": {\n      \"saved_segment_id\": 1205,\n      \"match\": \"all\",\n      \"conditions\": [\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    },\n    \"store_id\": \"1a2df69xxx\"\n  },\n  \"settings\": {\n    \"title\": \"string\",\n    \"from_name\": \"string\",\n    \"reply_to\": \"string\",\n    \"use_conversation\": false,\n    \"to_name\": \"string\",\n    \"authenticate\": true,\n    \"auto_footer\": false,\n    \"inline_css\": false\n  },\n  \"tracking\": {\n    \"opens\": true,\n    \"html_clicks\": true,\n    \"text_clicks\": true,\n    \"goal_tracking\": true,\n    \"ecomm360\": true,\n    \"google_analytics\": \"string\",\n    \"clicktale\": \"string\",\n    \"salesforce\": {\n      \"campaign\": false,\n      \"notes\": true\n    },\n    \"capsule\": {\n      \"notes\": true\n    }\n  },\n  \"trigger_settings\": {\n    \"workflow_type\": \"productFollowup\",\n    \"workflow_title\": \"string\",\n    \"runtime\": {\n      \"days\": [\n        \"saturday\",\n        \"tuesday\"\n      ],\n      \"hours\": {\n        \"type\": \"send_asap\"\n      }\n    },\n    \"workflow_emails_count\": 8253\n  },\n  \"report_summary\": {\n    \"opens\": 3631,\n    \"unique_opens\": 3692,\n    \"open_rate\": 6856.743795326029,\n    \"clicks\": 6886,\n    \"subscriber_clicks\": 7380,\n    \"click_rate\": 2616.057737699967\n  },\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ec449c8-855a-4e6c-9c09-4789242b0715",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e72cfd3e-9919-47d2-93b5-3c4e68610a06",
+          "name": "Mailchimp Pause Automation Emails",
+          "request": {
+            "name": "Mailchimp Pause Automation Emails",
+            "description": {
+              "content": "Pause all emails in a specific classic automation workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "actions",
+                "pause-all-emails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08791dfc-33dc-4547-864b-ffe11c89127c",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "actions",
+                    "pause-all-emails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "383bdf82-83e1-4ab7-a8ab-21f713769287",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "actions",
+                    "pause-all-emails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2670797-df40-49ee-8875-14c778100e37",
+          "name": "Mailchimp Start Automation Emails",
+          "request": {
+            "name": "Mailchimp Start Automation Emails",
+            "description": {
+              "content": "Start all emails in a classic automation workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "actions",
+                "start-all-emails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1ed260d-184d-4aaa-ac84-0bb6282f5616",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "actions",
+                    "start-all-emails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a14dddb-428a-46d3-a3fc-bbc1b83b1a23",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "actions",
+                    "start-all-emails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "243f1e95-7987-4b5f-84f3-1c4244ae4d30",
+          "name": "Mailchimp Archive Automation",
+          "request": {
+            "name": "Mailchimp Archive Automation",
+            "description": {
+              "content": "Archiving will permanently end your automation and keep the report data. Youll be able to replicate your archived automation, but you cant restart it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "actions",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5988caf3-86e5-44f7-a368-43e2c0b687dd",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "actions",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "08024b21-a987-4316-a14c-6be09e1d9514",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "actions",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b4d51b6-eb6c-4339-8403-28d8d8d6b48d",
+          "name": "Mailchimp List Automated Emails",
+          "request": {
+            "name": "Mailchimp List Automated Emails",
+            "description": {
+              "content": "Get a summary of the emails in a classic automation workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff225e07-c447-4cc6-b067-c02f21715df7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emails\": [\n    {\n      \"id\": \"string\",\n      \"web_id\": 33345484,\n      \"workflow_id\": \"string\",\n      \"position\": 5372,\n      \"delay\": {\n        \"amount\": 9120,\n        \"type\": \"now\",\n        \"direction\": \"before\",\n        \"action\": \"group_add\",\n        \"action_description\": \"subscribers purchase anything from your store\",\n        \"full_description\": \"1 day after subscribers purchase anything from your store\"\n      },\n      \"create_time\": \"1964-03-02T18:21:43.741Z\",\n      \"start_time\": \"2013-12-24T17:56:36.943Z\",\n      \"archive_url\": \"string\",\n      \"status\": \"sending\",\n      \"emails_sent\": 541,\n      \"send_time\": \"1962-11-27T13:37:25.156Z\",\n      \"content_type\": \"string\",\n      \"needs_block_refresh\": true,\n      \"has_logo_merge_tag\": true,\n      \"recipients\": {\n        \"list_id\": \"string\",\n        \"list_is_active\": false,\n        \"list_name\": \"string\",\n        \"segment_text\": \"string\",\n        \"recipient_count\": 1950,\n        \"segment_opts\": {\n          \"saved_segment_id\": 4713,\n          \"prebuilt_segment_id\": \"subscribers-female\",\n          \"match\": \"all\",\n          \"conditions\": [\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            },\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            }\n          ]\n        }\n      },\n      \"settings\": {\n        \"subject_line\": \"string\",\n        \"preview_text\": \"string\",\n        \"title\": \"string\",\n        \"from_name\": \"string\",\n        \"reply_to\": \"string\",\n        \"authenticate\": true,\n        \"auto_footer\": true,\n        \"inline_css\": false,\n        \"auto_tweet\": false,\n        \"auto_fb_post\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fb_comments\": false,\n        \"template_id\": 9626,\n        \"drag_and_drop\": true\n      },\n      \"tracking\": {\n        \"opens\": true,\n        \"html_clicks\": true,\n        \"text_clicks\": true,\n        \"goal_tracking\": true,\n        \"ecomm360\": true,\n        \"google_analytics\": \"string\",\n        \"clicktale\": \"string\",\n        \"salesforce\": {\n          \"campaign\": true,\n          \"notes\": false\n        },\n        \"capsule\": {\n          \"notes\": false\n        }\n      },\n      \"social_card\": {\n        \"image_url\": \"string\",\n        \"description\": \"string\",\n        \"title\": \"string\"\n      },\n      \"trigger_settings\": {\n        \"workflow_type\": \"categoryFollowup\",\n        \"workflow_title\": \"string\",\n        \"runtime\": {\n          \"days\": [\n            \"saturday\",\n            \"tuesday\"\n          ],\n          \"hours\": {\n            \"type\": \"send_between\"\n          }\n        },\n        \"workflow_emails_count\": 9612\n      },\n      \"report_summary\": {\n        \"opens\": 3399,\n        \"unique_opens\": 1247,\n        \"open_rate\": 5541.488106784268,\n        \"clicks\": 952,\n        \"subscriber_clicks\": 4939,\n        \"click_rate\": 2580.58245806743\n      },\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"DELETE\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"web_id\": 33345484,\n      \"workflow_id\": \"string\",\n      \"position\": 3828,\n      \"delay\": {\n        \"amount\": 3449,\n        \"type\": \"week\",\n        \"direction\": \"after\",\n        \"action\": \"opened_email\",\n        \"action_description\": \"subscribers purchase anything from your store\",\n        \"full_description\": \"1 day after subscribers purchase anything from your store\"\n      },\n      \"create_time\": \"1992-10-07T06:10:38.119Z\",\n      \"start_time\": \"1981-06-05T18:20:25.623Z\",\n      \"archive_url\": \"string\",\n      \"status\": \"sending\",\n      \"emails_sent\": 3958,\n      \"send_time\": \"1989-10-02T09:49:50.674Z\",\n      \"content_type\": \"string\",\n      \"needs_block_refresh\": true,\n      \"has_logo_merge_tag\": true,\n      \"recipients\": {\n        \"list_id\": \"string\",\n        \"list_is_active\": true,\n        \"list_name\": \"string\",\n        \"segment_text\": \"string\",\n        \"recipient_count\": 9389,\n        \"segment_opts\": {\n          \"saved_segment_id\": 7113,\n          \"prebuilt_segment_id\": \"subscribers-female\",\n          \"match\": \"all\",\n          \"conditions\": [\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            },\n            {\n              \"condition_type\": \"Aim\",\n              \"field\": \"aim\",\n              \"op\": \"open\",\n              \"value\": \"any\"\n            }\n          ]\n        }\n      },\n      \"settings\": {\n        \"subject_line\": \"string\",\n        \"preview_text\": \"string\",\n        \"title\": \"string\",\n        \"from_name\": \"string\",\n        \"reply_to\": \"string\",\n        \"authenticate\": true,\n        \"auto_footer\": false,\n        \"inline_css\": true,\n        \"auto_tweet\": true,\n        \"auto_fb_post\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fb_comments\": false,\n        \"template_id\": 2705,\n        \"drag_and_drop\": false\n      },\n      \"tracking\": {\n        \"opens\": true,\n        \"html_clicks\": true,\n        \"text_clicks\": true,\n        \"goal_tracking\": false,\n        \"ecomm360\": true,\n        \"google_analytics\": \"string\",\n        \"clicktale\": \"string\",\n        \"salesforce\": {\n          \"campaign\": false,\n          \"notes\": true\n        },\n        \"capsule\": {\n          \"notes\": false\n        }\n      },\n      \"social_card\": {\n        \"image_url\": \"string\",\n        \"description\": \"string\",\n        \"title\": \"string\"\n      },\n      \"trigger_settings\": {\n        \"workflow_type\": \"abandonedBrowse\",\n        \"workflow_title\": \"string\",\n        \"runtime\": {\n          \"days\": [\n            \"saturday\",\n            \"wednesday\"\n          ],\n          \"hours\": {\n            \"type\": \"send_between\"\n          }\n        },\n        \"workflow_emails_count\": 7515\n      },\n      \"report_summary\": {\n        \"opens\": 4546,\n        \"unique_opens\": 3054,\n        \"open_rate\": 2502.2867088547328,\n        \"clicks\": 6324,\n        \"subscriber_clicks\": 9825,\n        \"click_rate\": 7821.673452330969\n      },\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"HEAD\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 9397,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a6cf04a-ded6-4b45-a66f-bc409bc941a0",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e6e8f57-81d6-498a-82e1-34df79b176a0",
+          "name": "Mailchimp Get Workflow Email Info",
+          "request": {
+            "name": "Mailchimp Get Workflow Email Info",
+            "description": {
+              "content": "Get information about an individual classic automation workflow email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "444e36ac-2a68-4c93-b0e9-ad0a83cdb2e9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"web_id\": 33345484,\n  \"workflow_id\": \"string\",\n  \"position\": 9173,\n  \"delay\": {\n    \"amount\": 6582,\n    \"type\": \"day\",\n    \"direction\": \"after\",\n    \"action\": \"previous_campaign_opened\",\n    \"action_description\": \"subscribers purchase anything from your store\",\n    \"full_description\": \"1 day after subscribers purchase anything from your store\"\n  },\n  \"create_time\": \"1958-02-04T08:04:29.224Z\",\n  \"start_time\": \"1955-09-21T01:32:30.163Z\",\n  \"archive_url\": \"string\",\n  \"status\": \"paused\",\n  \"emails_sent\": 8633,\n  \"send_time\": \"1992-08-02T02:13:34.305Z\",\n  \"content_type\": \"string\",\n  \"needs_block_refresh\": true,\n  \"has_logo_merge_tag\": true,\n  \"recipients\": {\n    \"list_id\": \"string\",\n    \"list_is_active\": false,\n    \"list_name\": \"string\",\n    \"segment_text\": \"string\",\n    \"recipient_count\": 9887,\n    \"segment_opts\": {\n      \"saved_segment_id\": 6307,\n      \"prebuilt_segment_id\": \"subscribers-female\",\n      \"match\": \"any\",\n      \"conditions\": [\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    }\n  },\n  \"settings\": {\n    \"subject_line\": \"string\",\n    \"preview_text\": \"string\",\n    \"title\": \"string\",\n    \"from_name\": \"string\",\n    \"reply_to\": \"string\",\n    \"authenticate\": false,\n    \"auto_footer\": false,\n    \"inline_css\": true,\n    \"auto_tweet\": false,\n    \"auto_fb_post\": [\n      \"string\",\n      \"string\"\n    ],\n    \"fb_comments\": false,\n    \"template_id\": 4614,\n    \"drag_and_drop\": true\n  },\n  \"tracking\": {\n    \"opens\": true,\n    \"html_clicks\": false,\n    \"text_clicks\": false,\n    \"goal_tracking\": false,\n    \"ecomm360\": false,\n    \"google_analytics\": \"string\",\n    \"clicktale\": \"string\",\n    \"salesforce\": {\n      \"campaign\": false,\n      \"notes\": true\n    },\n    \"capsule\": {\n      \"notes\": true\n    }\n  },\n  \"social_card\": {\n    \"image_url\": \"string\",\n    \"description\": \"string\",\n    \"title\": \"string\"\n  },\n  \"trigger_settings\": {\n    \"workflow_type\": \"purchaseFollowup\",\n    \"workflow_title\": \"string\",\n    \"runtime\": {\n      \"days\": [\n        \"saturday\",\n        \"friday\"\n      ],\n      \"hours\": {\n        \"type\": \"send_between\"\n      }\n    },\n    \"workflow_emails_count\": 3062\n  },\n  \"report_summary\": {\n    \"opens\": 9801,\n    \"unique_opens\": 8872,\n    \"open_rate\": 6926.775068037503,\n    \"clicks\": 5103,\n    \"subscriber_clicks\": 8297,\n    \"click_rate\": 8121.060799489005\n  },\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c11b8358-8d7c-46ac-85ce-55ec588a9a0c",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7cb4ed39-7142-401b-9809-e1d223d1d1bc",
+          "name": "Mailchimp Delete Workflow Email",
+          "request": {
+            "name": "Mailchimp Delete Workflow Email",
+            "description": {
+              "content": "Removes an individual classic automation workflow email. Emails from certain workflow types, including the Abandoned Cart Email (abandonedCart) and Product Retargeting Email (abandonedBrowse) Workflows, cannot be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cafb8374-0764-438a-b1ee-1868ad9a44bb",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2591549a-2353-4437-b4ec-3f2602179d26",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aff4f24a-7161-40b6-8c1f-dbeaf671e4d4",
+          "name": "Mailchimp Update Workflow Email",
+          "request": {
+            "name": "Mailchimp Update Workflow Email",
+            "description": {
+              "content": "Update settings for a classic automation workflow email.  Only works with workflows of type: abandonedBrowse, abandonedCart, emailFollowup, or singleWelcome.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"settings\": {\n    \"subject_line\": \"<string>\",\n    \"preview_text\": \"<string>\",\n    \"title\": \"<string>\",\n    \"from_name\": \"<string>\",\n    \"reply_to\": \"<string>\"\n  },\n  \"delay\": {\n    \"action\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"direction\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61a61242-68cc-4e7b-8357-2ad62582999c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"settings\": {\n    \"subject_line\": \"<string>\",\n    \"preview_text\": \"<string>\",\n    \"title\": \"<string>\",\n    \"from_name\": \"<string>\",\n    \"reply_to\": \"<string>\"\n  },\n  \"delay\": {\n    \"action\": \"signup\",\n    \"amount\": 1,\n    \"type\": \"day\",\n    \"direction\": \"after\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"web_id\": 33345484,\n  \"workflow_id\": \"string\",\n  \"position\": 9173,\n  \"delay\": {\n    \"amount\": 6582,\n    \"type\": \"day\",\n    \"direction\": \"after\",\n    \"action\": \"previous_campaign_opened\",\n    \"action_description\": \"subscribers purchase anything from your store\",\n    \"full_description\": \"1 day after subscribers purchase anything from your store\"\n  },\n  \"create_time\": \"1958-02-04T08:04:29.224Z\",\n  \"start_time\": \"1955-09-21T01:32:30.163Z\",\n  \"archive_url\": \"string\",\n  \"status\": \"paused\",\n  \"emails_sent\": 8633,\n  \"send_time\": \"1992-08-02T02:13:34.305Z\",\n  \"content_type\": \"string\",\n  \"needs_block_refresh\": true,\n  \"has_logo_merge_tag\": true,\n  \"recipients\": {\n    \"list_id\": \"string\",\n    \"list_is_active\": false,\n    \"list_name\": \"string\",\n    \"segment_text\": \"string\",\n    \"recipient_count\": 9887,\n    \"segment_opts\": {\n      \"saved_segment_id\": 6307,\n      \"prebuilt_segment_id\": \"subscribers-female\",\n      \"match\": \"any\",\n      \"conditions\": [\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    }\n  },\n  \"settings\": {\n    \"subject_line\": \"string\",\n    \"preview_text\": \"string\",\n    \"title\": \"string\",\n    \"from_name\": \"string\",\n    \"reply_to\": \"string\",\n    \"authenticate\": false,\n    \"auto_footer\": false,\n    \"inline_css\": true,\n    \"auto_tweet\": false,\n    \"auto_fb_post\": [\n      \"string\",\n      \"string\"\n    ],\n    \"fb_comments\": false,\n    \"template_id\": 4614,\n    \"drag_and_drop\": true\n  },\n  \"tracking\": {\n    \"opens\": true,\n    \"html_clicks\": false,\n    \"text_clicks\": false,\n    \"goal_tracking\": false,\n    \"ecomm360\": false,\n    \"google_analytics\": \"string\",\n    \"clicktale\": \"string\",\n    \"salesforce\": {\n      \"campaign\": false,\n      \"notes\": true\n    },\n    \"capsule\": {\n      \"notes\": true\n    }\n  },\n  \"social_card\": {\n    \"image_url\": \"string\",\n    \"description\": \"string\",\n    \"title\": \"string\"\n  },\n  \"trigger_settings\": {\n    \"workflow_type\": \"purchaseFollowup\",\n    \"workflow_title\": \"string\",\n    \"runtime\": {\n      \"days\": [\n        \"saturday\",\n        \"friday\"\n      ],\n      \"hours\": {\n        \"type\": \"send_between\"\n      }\n    },\n    \"workflow_emails_count\": 3062\n  },\n  \"report_summary\": {\n    \"opens\": 9801,\n    \"unique_opens\": 8872,\n    \"open_rate\": 6926.775068037503,\n    \"clicks\": 5103,\n    \"subscriber_clicks\": 8297,\n    \"click_rate\": 8121.060799489005\n  },\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae9c7fc1-321d-43ab-9332-100913057f14",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"settings\": {\n    \"subject_line\": \"<string>\",\n    \"preview_text\": \"<string>\",\n    \"title\": \"<string>\",\n    \"from_name\": \"<string>\",\n    \"reply_to\": \"<string>\"\n  },\n  \"delay\": {\n    \"action\": \"signup\",\n    \"amount\": 1,\n    \"type\": \"day\",\n    \"direction\": \"after\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04bfd276-716d-4b55-aafe-040f5124e84d",
+          "name": "Mailchimp List Automated Email Subscribers",
+          "request": {
+            "name": "Mailchimp List Automated Email Subscribers",
+            "description": {
+              "content": "Get information about a classic automation email queue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id",
+                "queue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21b3c73b-173f-4b15-97f4-2650fab48430",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_id\": \"string\",\n  \"email_id\": \"string\",\n  \"queue\": [\n    {\n      \"email_address\": \"string\",\n      \"id\": \"string\",\n      \"workflow_id\": \"string\",\n      \"email_id\": \"string\",\n      \"list_id\": \"string\",\n      \"next_send\": \"1972-02-05T08:30:59.962Z\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"GET\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"email_address\": \"string\",\n      \"id\": \"string\",\n      \"workflow_id\": \"string\",\n      \"email_id\": \"string\",\n      \"list_id\": \"string\",\n      \"next_send\": \"1947-04-27T03:39:55.670Z\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PATCH\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 8544,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "837e6ddc-e1e9-43b8-9a05-fab01baa173f",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b3003e0-edd8-4a38-9cef-900a5365866b",
+          "name": "Mailchimp Add Subscriber to Workflow Email",
+          "request": {
+            "name": "Mailchimp Add Subscriber to Workflow Email",
+            "description": {
+              "content": "Manually add a subscriber to a workflow, bypassing the default trigger settings. You can also use this endpoint to trigger a series of automated emails in an API 3.0 workflow type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id",
+                "queue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e3ca286-e71e-40fa-aab4-0ddd4df43221",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"workflow_id\": \"string\",\n  \"email_id\": \"string\",\n  \"list_id\": \"string\",\n  \"list_is_active\": true,\n  \"email_address\": \"string\",\n  \"next_send\": \"1978-08-03T18:01:20.860Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cadfbd6-59e6-4775-af9c-057d08744516",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a67d4a0-4218-46f9-8f4d-ca603314c776",
+          "name": "Mailchimp Get Automated Email Subscriber",
+          "request": {
+            "name": "Mailchimp Get Automated Email Subscriber",
+            "description": {
+              "content": "Get information about a specific subscriber in a classic automation email queue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id",
+                "queue",
+                ":subscriber_hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriber_hash",
+                  "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffd72563-d0a9-48d5-93e7-670fecfbeea6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "queue",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"workflow_id\": \"string\",\n  \"email_id\": \"string\",\n  \"list_id\": \"string\",\n  \"list_is_active\": true,\n  \"email_address\": \"string\",\n  \"next_send\": \"1978-08-03T18:01:20.860Z\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PATCH\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50a76b5b-0ad8-47a1-99f8-6b1e131c5300",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "queue",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8e615be-f9d2-4715-81e7-0300af098c67",
+          "name": "Mailchimp Pause Automated Email",
+          "request": {
+            "name": "Mailchimp Pause Automated Email",
+            "description": {
+              "content": "Pause an automated email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id",
+                "actions",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d621fb95-b28b-490a-9b96-9054d93667f2",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "actions",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b38f89db-b00c-4d62-8707-6a048c013d16",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "actions",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "343db077-6a07-4831-ae38-1361dc8c1be2",
+          "name": "Mailchimp Start Automated Email",
+          "request": {
+            "name": "Mailchimp Start Automated Email",
+            "description": {
+              "content": "Start an automated email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "emails",
+                ":workflow_email_id",
+                "actions",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_email_id",
+                  "description": "(Required) The unique id for the Automation workflow email."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddced141-f225-4541-93f5-ba90fcdffd13",
+              "name": "Empty Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "actions",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3f7043f-801d-4489-8338-6c643a8cf0a0",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "emails",
+                    ":workflow_email_id",
+                    "actions",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_email_id",
+                      "description": "(Required) The unique id for the Automation workflow email."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c073933-2540-4946-9739-e9d1ed7447ac",
+          "name": "Mailchimp List Subscribers Removed From Workflow",
+          "request": {
+            "name": "Mailchimp List Subscribers Removed From Workflow",
+            "description": {
+              "content": "Get information about subscribers who were removed from a classic automation workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "removed-subscribers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "691d4cac-7736-4ddc-a7a9-95bd3e3e85d2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "removed-subscribers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow_id\": \"string\",\n  \"subscribers\": [\n    {\n      \"id\": \"string\",\n      \"workflow_id\": \"string\",\n      \"list_id\": \"string\",\n      \"email_address\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"POST\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"workflow_id\": \"string\",\n      \"list_id\": \"string\",\n      \"email_address\": \"string\",\n      \"_links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"method\": \"PUT\",\n          \"targetSchema\": \"string\",\n          \"schema\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": 373,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"OPTIONS\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "227c9095-5802-491a-bed2-83be9eee22a8",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "removed-subscribers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5fdce6e-6ca7-4a0e-a34a-7667c31b2a10",
+          "name": "Mailchimp Remove Subscriber From Workflow",
+          "request": {
+            "name": "Mailchimp Remove Subscriber From Workflow",
+            "description": {
+              "content": "Remove a subscriber from a specific classic automation workflow. You can remove a subscriber at any point in an automation workflow, regardless of how many emails they've been sent from that workflow. Once they're removed, they can never be added back to the same workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "removed-subscribers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ae1e2c05-39bb-46f5-b51c-236f5165fee6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "removed-subscribers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"workflow_id\": \"string\",\n  \"list_id\": \"string\",\n  \"email_address\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a46736d-829c-46df-84a5-20560d8a6343",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "removed-subscribers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ed56615-c973-4339-95bc-7729bd006599",
+          "name": "Mailchimp Get Subscriber Removed From Workflow",
+          "request": {
+            "name": "Mailchimp Get Subscriber Removed From Workflow",
+            "description": {
+              "content": "Get information about a specific subscriber who was removed from a classic automation workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":workflow_id",
+                "removed-subscribers",
+                ":subscriber_hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflow_id",
+                  "description": "(Required) The unique id for the Automation workflow."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriber_hash",
+                  "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73d76dfd-39cd-44e9-a43f-6a238a02b539",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "removed-subscribers",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"workflow_id\": \"string\",\n  \"list_id\": \"string\",\n  \"email_address\": \"string\",\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"GET\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed17efad-323b-4a75-84fe-4741fcd16f9b",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":workflow_id",
+                    "removed-subscribers",
+                    ":subscriber_hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflow_id",
+                      "description": "(Required) The unique id for the Automation workflow."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriber_hash",
+                      "description": "(Required) The MD5 hash of the lowercase version of the list member's email address."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "276b29b9-5662-4353-b678-91d89ecd5d7a",
+    "name": "Mailchimp Marketing Abuse Automations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

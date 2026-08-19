@@ -1,0 +1,346 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Carts API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Carts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              }
+            ]
+          },
+          "docs": "Get information about a store's carts."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              }
+            ]
+          },
+          "docs": "Add a new cart to a store."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Cart Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              }
+            ]
+          },
+          "docs": "Get information about a specific cart."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              }
+            ]
+          },
+          "docs": "Update a specific cart."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              }
+            ]
+          },
+          "docs": "Delete a cart."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Cart Line Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id/lines",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              }
+            ]
+          },
+          "docs": "Get information about a cart's line items."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Cart Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id/lines",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              }
+            ]
+          },
+          "docs": "Add a new line item to an existing cart."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Cart Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id/lines/:line_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              },
+              {
+                "name": "line_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the line item of a cart."
+              }
+            ]
+          },
+          "docs": "Get information about a specific cart line item."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Cart Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id/lines/:line_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              },
+              {
+                "name": "line_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the line item of a cart."
+              }
+            ]
+          },
+          "docs": "Update a specific cart line item."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Cart Line Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/carts/:cart_id/lines/:line_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "cart_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the cart."
+              },
+              {
+                "name": "line_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the line item of a cart."
+              }
+            ]
+          },
+          "docs": "Delete a specific cart line item."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

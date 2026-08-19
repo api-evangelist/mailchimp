@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Publish API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Publish",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Publish a Survey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/surveys/:survey_id/actions/publish",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              }
+            ]
+          },
+          "docs": "Publish a survey that is in draft, unpublished, or has been previously published and edited."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Publish Landing Page",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/landing-pages/:page_id/actions/publish",
+            "params": [
+              {
+                "name": "page_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique id for the page."
+              }
+            ]
+          },
+          "docs": "Publish a landing page that is in draft, unpublished, or has been previously published and edited."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

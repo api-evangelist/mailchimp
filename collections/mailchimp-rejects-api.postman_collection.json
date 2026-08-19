@@ -1,0 +1,771 @@
+{
+  "item": [
+    {
+      "id": "ead1cbf8-4406-4cab-9e29-479b648f09bc",
+      "name": "Rejects",
+      "description": {
+        "content": "Manage the rejection blacklist, which prevents delivery to addresses that have previously bounced or been reported as spam.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d7852728-a2f0-41f2-80c0-3cf3d8fb366f",
+          "name": "Mailchimp List Rejections",
+          "request": {
+            "name": "Mailchimp List Rejections",
+            "description": {
+              "content": "Retrieve all entries in the rejection blacklist. These are email addresses that have previously hard-bounced or been reported as spam, and will be automatically rejected.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rejects",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"email\": \"<email>\",\n  \"include_expired\": false,\n  \"subaccount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30198653-ca50-44d6-8b8b-a0b28d1d8776",
+              "name": "An array of rejection entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"include_expired\": true,\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"email\": \"user@example.com\",\n    \"reason\": \"hard-bounce\",\n    \"detail\": \"example_value\",\n    \"created_at\": \"2026-01-15T10:30:00Z\",\n    \"last_event_at\": \"2026-01-15T10:30:00Z\",\n    \"expires_at\": \"2026-01-15T10:30:00Z\",\n    \"expired\": true,\n    \"subaccount\": \"example_value\",\n    \"sender\": {\n      \"address\": \"example_value\",\n      \"created_at\": \"2026-01-15T10:30:00Z\",\n      \"sent\": 10,\n      \"hard_bounces\": 10,\n      \"soft_bounces\": 10,\n      \"rejects\": 10,\n      \"complaints\": 10,\n      \"unsubs\": 10,\n      \"opens\": 10,\n      \"clicks\": 10\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98acdcca-395b-460f-9a13-26566f346cea",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"include_expired\": true,\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "73572eca-078a-44c7-9b98-46f95bc78ff9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"include_expired\": true,\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "066caeab-9c10-443d-b4d9-55fed90007a7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"include_expired\": true,\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10c55173-6f28-43e6-a381-923bfb0acaaa",
+          "name": "Mailchimp Add a Rejection",
+          "request": {
+            "name": "Mailchimp Add a Rejection",
+            "description": {
+              "content": "Manually add an email address to the rejection blacklist. Messages to this address will be rejected.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rejects",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"email\": \"<email>\",\n  \"comment\": \"<string>\",\n  \"subaccount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d006506-deb7-49ce-9011-710cf5b1e16a",
+              "name": "Details about the newly added rejection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"comment\": \"example_value\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"user@example.com\",\n  \"added\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b30dd59f-501c-43b1-be92-1001b2bed6b3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"comment\": \"example_value\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "491455ca-d1ca-4397-b904-94df06c709aa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"comment\": \"example_value\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0155fad4-05e1-4432-8b59-5835e7e4582a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"comment\": \"example_value\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84ef6140-d262-4535-be52-96d559a6f69c",
+          "name": "Mailchimp Delete a Rejection",
+          "request": {
+            "name": "Mailchimp Delete a Rejection",
+            "description": {
+              "content": "Remove an email address from the rejection blacklist, allowing messages to be delivered to it again.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rejects",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"email\": \"<email>\",\n  \"subaccount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d544010e-27a3-4125-adc1-9718cf8de609",
+              "name": "Details about the removed rejection.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"email\": \"user@example.com\",\n  \"deleted\": true,\n  \"subaccount\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70c8364d-0c02-4555-a5d3-94bbe75a291f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7531bdc-c056-4bd7-ab06-bf93325d084b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b224bd8-3178-4a5a-95e7-0495c87efcec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rejects",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"example_value\",\n  \"email\": \"user@example.com\",\n  \"subaccount\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a6bad61d-52dc-499e-b0ce-6de56a9676bc",
+    "name": "Mailchimp Marketing Abuse Rejects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

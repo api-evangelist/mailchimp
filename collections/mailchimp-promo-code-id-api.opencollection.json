@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Promo_code_id API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Promo_code_id",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get Promo Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/promo-rules/:promo_rule_id/promo-codes/:promo_code_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "promo_rule_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the promo rule of a store."
+              },
+              {
+                "name": "promo_code_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the promo code of a store."
+              }
+            ]
+          },
+          "docs": "Get information about a specific promo code."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Promo Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/promo-rules/:promo_rule_id/promo-codes/:promo_code_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "promo_rule_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the promo rule of a store."
+              },
+              {
+                "name": "promo_code_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the promo code of a store."
+              }
+            ]
+          },
+          "docs": "Update a promo code."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Promo Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/promo-rules/:promo_rule_id/promo-codes/:promo_code_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "promo_rule_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the promo rule of a store."
+              },
+              {
+                "name": "promo_code_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the promo code of a store."
+              }
+            ]
+          },
+          "docs": "Delete a promo code from a store."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,197 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Images API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Product Images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/products/:product_id/images",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "product_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product of a store."
+              }
+            ]
+          },
+          "docs": "Get information about a product's images."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Product Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/products/:product_id/images",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "product_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product of a store."
+              }
+            ]
+          },
+          "docs": "Add a new image to the product."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Product Image Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/products/:product_id/images/:image_id",
+            "params": [
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "product_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product of a store."
+              },
+              {
+                "name": "image_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product image."
+              }
+            ]
+          },
+          "docs": "Get information about a specific product image."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Product Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/products/:product_id/images/:image_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "product_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product of a store."
+              },
+              {
+                "name": "image_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product image."
+              }
+            ]
+          },
+          "docs": "Update a product image."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Product Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ecommerce/stores/:store_id/products/:product_id/images/:image_id",
+            "params": [
+              {
+                "name": "store_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The store id."
+              },
+              {
+                "name": "product_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product of a store."
+              },
+              {
+                "name": "image_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the product image."
+              }
+            ]
+          },
+          "docs": "Delete a product image."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

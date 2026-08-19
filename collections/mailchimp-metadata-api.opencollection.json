@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Metadata API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Metadata Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get the list of custom metadata fields defined for the account. Metadata fields can be attached to messages for tracking."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add a Metadata Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new custom metadata field that can be indexed and used for filtering in message searches."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update a Metadata Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/update",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing metadata field's display template."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete a Metadata Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete a metadata field. Metadata attached to messages using this field will no longer be searchable."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

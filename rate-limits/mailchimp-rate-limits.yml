@@ -4,30 +4,121 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Mailchimp
 providerId: mailchimp
 created: '2026-05-04'
-modified: '2026-05-04'
+# 2026-08-13: re-read from the provider's own documentation and upgraded from the
+# 2026-05-04 bulk-sweep generation to a searched artifact. Every limit below is
+# quoted from a page fetched on that date; see evidence[].
+method: searched
+modified: '2026-08-13'
 reconciled: true
+source: https://mailchimp.com/developer/marketing/docs/fundamentals/
+docs:
+  - https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - https://mailchimp.com/developer/marketing/guides/run-async-requests-batch-endpoint/
+  - https://mailchimp.com/developer/marketing/guides/sync-audience-data-webhooks/
 tags:
   - Rate Limiting
   - Email
-description: Mailchimp Marketing API enforces concurrency-based rate limiting.
-sources:
-  - https://mailchimp.com/pricing/marketing/
-  - https://mailchimp.com/developer/marketing/docs/fundamentals/
+description: >-
+  Mailchimp rate-limits the Marketing API by CONCURRENCY, not by a request quota
+  over a window. There is no published per-minute or per-hour ceiling, and — the
+  finding that matters most for an agent — the API returns NO rate-limit response
+  headers at all. A client cannot read how much budget it has left; it can only
+  hold its own concurrency below 10 and react to a 429. At very high volume the
+  throttle can also surface as a bare 403 with no JSON body, which a naive client
+  will misread as an authorization failure.
 headers: {}
+headerNotes: >-
+  Probed and searched 2026-08-13: no X-RateLimit-*, RateLimit-*, or Retry-After
+  headers are documented anywhere in the Marketing or Transactional
+  documentation, and none appear in either first-party specification
+  (openapi/mailchimp-marketing-api-openapi-original.json 3.0.91,
+  openapi/mailchimp-transactional-api-openapi-original.json 1.4.1). An empty
+  headers map here is a measured absence, not a gap in the harvest.
 responseCodes:
   throttled: 429
+  throttled_alternate: 403
+  throttled_alternate_note: >-
+    "At exceptionally high volumes, you may receive an HTTP 429 or 403 without a
+    JSON body."
 limits:
   - name: Concurrent API connections
+    api: mailchimp:mailchimp-marketing-api
     scope: user/datacenter
     metric: concurrent
     limit: 10
-    notes: Up to 10 simultaneous connections per user across all apps.
-  - name: Batch operations max
+    notes: >-
+      "The Marketing API has a limit of 10 simultaneous connections. You'll receive
+      a 429 error if you reach the limit." Counted per user across all apps.
+      Mailchimp states there are currently no options to raise the limit on a
+      per-customer basis.
+  - name: Request timeout
+    api: mailchimp:mailchimp-marketing-api
+    scope: request
+    metric: seconds
+    limit: 120
+    timeFrame: request
+    notes: >-
+      "The Marketing API has a 120-second timeout on API calls." Mitigate with
+      pagination (count/offset), partial response (fields/exclude_fields), or the
+      batch endpoint.
+  - name: Batch operations per request
+    api: mailchimp:mailchimp-marketing-api
     scope: request
     metric: operations
     limit: 1000
     timeFrame: request
   - name: Open batch operations
+    api: mailchimp:mailchimp-marketing-api
     scope: user
     metric: concurrent_batches
     limit: 500
+  - name: Webhook callback response time
+    api: mailchimp:mailchimp-marketing-api
+    scope: consumer endpoint
+    metric: seconds
+    limit: 10
+    notes: >-
+      "If the URL is unavailable or takes more than 10 seconds to respond, the
+      request is canceled and the system will try again later. Retries happen at
+      increasing intervals over the course of 75 minutes." Persistently failing
+      webhooks may be dropped or disabled at Mailchimp's discretion.
+  - name: Webhook signature replay window
+    api: mailchimp:mailchimp-marketing-api
+    scope: consumer endpoint
+    metric: seconds
+    limit: 300
+    notes: >-
+      Reject a signed delivery whose X-Mailchimp-Signature timestamp is more than
+      5 minutes old.
+  - name: Test-mode message limit
+    api: mailchimp:mailchimp-transactional-api
+    scope: account
+    metric: messages
+    limit: 10000
+    timeFrame: day
+    notes: >-
+      Applies to a Transactional test API key; see sandbox/mailchimp-sandbox.yml.
+notes:
+  transactional: >-
+    Mailchimp publishes no numeric request-rate limit for the Transactional
+    (Mandrill) API. Sending volume is governed by the purchased email block and by
+    account reputation/backlog (readable via /users/info), not by a documented
+    calls-per-second ceiling. The documentation page linked from older references,
+    /developer/transactional/docs/rate-limits/, 302s to the developer home
+    (verified 2026-08-13) — it no longer exists.
+evidence:
+  - source: https://mailchimp.com/developer/marketing/docs/fundamentals/
+    http_status: 200
+    quotes:
+      - "The Marketing API has a limit of 10 simultaneous connections."
+      - "At exceptionally high volumes, you may receive an HTTP 429 or 403 without a JSON body."
+      - "The Marketing API has a 120-second timeout on API calls."
+      - "Currently there are no options to raise the limit on a per-customer basis."
+  - source: https://mailchimp.com/developer/marketing/guides/sync-audience-data-webhooks/
+    http_status: 200
+    quotes:
+      - "If the URL is unavailable or takes more than 10 seconds to respond, the request is canceled and the system will try again later."
+      - "Retries happen at increasing intervals over the course of 75 minutes."
+  - source: https://mailchimp.com/developer/transactional/docs/rate-limits/
+    http_status: 200
+    note: Redirects to https://mailchimp.com/developer/ — no Transactional rate-limit page is published.

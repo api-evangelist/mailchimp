@@ -1,0 +1,633 @@
+{
+  "item": [
+    {
+      "id": "df4f0cff-9da9-4ff7-a983-ba2be0bb0c1b",
+      "name": "Outreach_id",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd60030a-a6da-4eea-b079-1969db8a7fb9",
+          "name": "Mailchimp Get Facebook Ad Info",
+          "request": {
+            "name": "Mailchimp Get Facebook Ad Info",
+            "description": {
+              "content": "Get details of a Facebook ad.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "facebook-ads",
+                ":outreach_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "outreach_id",
+                  "description": "(Required) The outreach id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24bc2cc0-b38c-427b-8f6a-608d381e766e",
+              "name": "Facebook Ad Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "facebook-ads",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"web_id\": 5843,\n  \"name\": \"string\",\n  \"type\": \"customer_journey\",\n  \"status\": \"active\",\n  \"show_report\": true,\n  \"create_time\": \"1993-09-25T10:20:34.475Z\",\n  \"start_time\": \"2011-08-20T07:08:50.448Z\",\n  \"updated_at\": \"2013-06-17T18:56:05.275Z\",\n  \"canceled_at\": \"1987-07-18T09:38:57.311Z\",\n  \"published_time\": \"2017-10-18T19:19:44.464Z\",\n  \"has_segment\": true,\n  \"report_summary\": {\n    \"opens\": 937,\n    \"unique_opens\": 3975,\n    \"open_rate\": 9610.540183284447,\n    \"clicks\": 1956,\n    \"subscriber_clicks\": 3367,\n    \"click_rate\": 1837.619749009256,\n    \"visits\": 8229,\n    \"unique_visits\": 7933,\n    \"conversion_rate\": 8547.555916967214,\n    \"subscribes\": 2415,\n    \"ecommerce\": {\n      \"total_revenue\": 9327.168653736266,\n      \"currency_code\": \"string\",\n      \"average_order_revenue\": 8427.994885429007\n    },\n    \"impressions\": 6753.380588866215,\n    \"reach\": 3852,\n    \"engagements\": 4360,\n    \"total_sent\": 5404\n  },\n  \"recipients\": {\n    \"list_id\": \"string\",\n    \"list_is_active\": false,\n    \"list_name\": \"string\",\n    \"segment_text\": \"string\",\n    \"recipient_count\": 4115,\n    \"segment_opts\": {\n      \"saved_segment_id\": 4789,\n      \"prebuilt_segment_id\": \"subscribers-female\",\n      \"match\": \"any\",\n      \"conditions\": [\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        },\n        {\n          \"condition_type\": \"Aim\",\n          \"field\": \"aim\",\n          \"op\": \"open\",\n          \"value\": \"any\"\n        }\n      ]\n    }\n  },\n  \"thumbnail\": \"string\",\n  \"email_source_name\": \"string\",\n  \"paused_at\": \"1946-11-17T13:54:03.426Z\",\n  \"end_time\": \"1986-09-03T18:04:37.955Z\",\n  \"needs_attention\": true,\n  \"was_canceled_by_facebook\": false,\n  \"is_connected\": true,\n  \"has_audience\": true,\n  \"has_content\": true,\n  \"channel\": {\n    \"fb_placement_feed\": true,\n    \"fb_placement_audience\": false,\n    \"ig_placement_feed\": false\n  },\n  \"feedback\": {\n    \"content\": \"string\",\n    \"audience\": \"string\",\n    \"budget\": \"string\",\n    \"compliance\": \"string\"\n  },\n  \"site\": {\n    \"id\": 43,\n    \"name\": \"My Connected Site\",\n    \"url\": \"www.example.com\"\n  },\n  \"audience\": {\n    \"type\": \"Custom Audience\",\n    \"source_type\": \"list\",\n    \"email_source\": {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"is_segment\": true,\n      \"segment_type\": \"string\",\n      \"list_name\": \"string\"\n    },\n    \"include_source_in_target\": true,\n    \"lookalike_country_code\": \"string\",\n    \"targeting_specs\": {\n      \"gender\": 1,\n      \"min_age\": 294,\n      \"max_age\": 2402,\n      \"locations\": {\n        \"countries\": [\n          \"string\",\n          \"string\"\n        ],\n        \"regions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"cities\": [\n          \"string\",\n          \"string\"\n        ],\n        \"zips\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"interests\": [\n        {\n          \"name\": \"string\"\n        },\n        {\n          \"name\": \"string\"\n        }\n      ]\n    }\n  },\n  \"budget\": {\n    \"duration\": 86400,\n    \"total_amount\": 500,\n    \"currency_code\": \"USD\"\n  },\n  \"content\": {\n    \"title\": \"string\",\n    \"link_url\": \"string\",\n    \"message\": \"string\",\n    \"description\": \"string\",\n    \"image_url\": \"string\",\n    \"call_to_action\": \"string\",\n    \"attachments\": [\n      {\n        \"name\": \"string\",\n        \"link_url\": \"string\",\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"call_to_action\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"link_url\": \"string\",\n        \"description\": \"string\",\n        \"image_url\": \"string\",\n        \"call_to_action\": \"string\"\n      }\n    ]\n  },\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"PUT\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a9b6ad5-5ed1-4a7c-856a-fe68261c15a3",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "facebook-ads",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84c75ab3-545d-41c7-92fc-3c080a9470d8",
+          "name": "Mailchimp Get Facebook Ad Report",
+          "request": {
+            "name": "Mailchimp Get Facebook Ad Report",
+            "description": {
+              "content": "Get report of a Facebook ad.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "facebook-ads",
+                ":outreach_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "outreach_id",
+                  "description": "(Required) The outreach id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7fcff551-eb0b-4cf3-8690-e8943a38b754",
+              "name": "Facebook Ad report Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b17ead37-d7da-4734-902d-98e53899c32d",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a685917a-f4f2-43dc-ae2e-3583d60c1432",
+          "name": "Mailchimp List Facebook Ecommerce Report",
+          "request": {
+            "name": "Mailchimp List Facebook Ecommerce Report",
+            "description": {
+              "content": "Get breakdown of product activity for an outreach.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "facebook-ads",
+                ":outreach_id",
+                "ecommerce-product-activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "10",
+                  "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_field",
+                  "value": "<string>",
+                  "description": "Returns files sorted by the specified field."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "outreach_id",
+                  "description": "(Required) The outreach id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37817801-d336-4d9f-8736-cc7252f8053b",
+              "name": "Ecommerce Product Activity Instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id",
+                    "ecommerce-product-activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"title\": \"string\",\n      \"sku\": \"string\",\n      \"image_url\": \"string\",\n      \"total_revenue\": 6717.908752056332,\n      \"total_purchased\": 9730.90987719082,\n      \"currency_code\": \"string\",\n      \"recommendation_total\": 9504,\n      \"recommendation_purchased\": 3184\n    },\n    {\n      \"title\": \"string\",\n      \"sku\": \"string\",\n      \"image_url\": \"string\",\n      \"total_revenue\": 5550.852551712923,\n      \"total_purchased\": 7607.442672718511,\n      \"currency_code\": \"string\",\n      \"recommendation_total\": 1096,\n      \"recommendation_purchased\": 5910\n    }\n  ],\n  \"total_items\": 7498,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"HEAD\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47b5c5e1-24fe-47a3-bcd6-eafb5c648331",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "facebook-ads",
+                    ":outreach_id",
+                    "ecommerce-product-activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort_field",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "outreach_id",
+                      "description": "(Required) The outreach id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e324b893-90f3-42cd-8088-acd14e7eaf3a",
+    "name": "Mailchimp Marketing Abuse Outreach_id API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

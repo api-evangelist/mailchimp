@@ -1,0 +1,352 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Categories API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp List Interest Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              },
+              {
+                "name": "type",
+                "value": "example_value",
+                "type": "query",
+                "description": "Restrict results a type of interest group"
+              }
+            ]
+          },
+          "docs": "Get information about a list's interest categories."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Interest Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              }
+            ]
+          },
+          "docs": "Create a new interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Interest Category Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get information about a specific interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Interest Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              }
+            ]
+          },
+          "docs": "Update a specific interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Interest Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              }
+            ]
+          },
+          "docs": "Delete a specific interest category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp List Interests in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "count",
+                "value": "example_value",
+                "type": "query",
+                "description": "The number of records to return. Default value is 10. Maximum value is 1000"
+              },
+              {
+                "name": "offset",
+                "value": "example_value",
+                "type": "query",
+                "description": "Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this it the number of records from a collection to skip. Default value is 0."
+              }
+            ]
+          },
+          "docs": "Get a list of this category's interests."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Add Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              }
+            ]
+          },
+          "docs": "Create a new interest or 'group name' for a specific category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Get Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests/:interest_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "interest_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The specific interest or 'group name'."
+              },
+              {
+                "name": "fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+              },
+              {
+                "name": "exclude_fields",
+                "value": "example_value",
+                "type": "query",
+                "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+              }
+            ]
+          },
+          "docs": "Get interests or 'group names' for a specific category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Update Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests/:interest_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "interest_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The specific interest or 'group name'."
+              }
+            ]
+          },
+          "docs": "Update interests or 'group names' for a specific category."
+        },
+        {
+          "info": {
+            "name": "Mailchimp Delete Interest in Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/lists/:list_id/interest-categories/:interest_category_id/interests/:interest_id",
+            "params": [
+              {
+                "name": "list_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the list."
+              },
+              {
+                "name": "interest_category_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The unique ID for the interest category."
+              },
+              {
+                "name": "interest_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The specific interest or 'group name'."
+              }
+            ]
+          },
+          "docs": "Delete interests or group names in a specific category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

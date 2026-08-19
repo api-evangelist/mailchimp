@@ -1,0 +1,1219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Transactional API",
+    "version": "1.4.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "allowlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add email to allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/allowlists/add"
+          },
+          "docs": "Adds an email to your email rejection allowlist. If the address is currently on your denylist, that denylist entry will be removed automatically."
+        },
+        {
+          "info": {
+            "name": "List allowlisted emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/allowlists/list"
+          },
+          "docs": "Retrieves your email rejection allowlist. You can provide an email address or search prefix to limit the results. Returns up to 1000 results."
+        },
+        {
+          "info": {
+            "name": "Remove email from allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/allowlists/delete"
+          },
+          "docs": "Removes an email address from the allowlist."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "View export info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/exports/info"
+          },
+          "docs": "Returns information about an export job. If the export job's state is 'complete', the returned data will include a URL you can use to fetch the results. Every export job produces a zip archive, but the format of the archive is distinct for each job type. The api calls that initiate exports include more details about the output format for that job type."
+        },
+        {
+          "info": {
+            "name": "List exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/exports/list"
+          },
+          "docs": "Returns a list of your exports."
+        },
+        {
+          "info": {
+            "name": "Export denylist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/exports/rejects"
+          },
+          "docs": "Begins an export of your rejection denylist. The denylist will be exported to a zip archive containing a single file named rejects.csv that includes the following fields: email, reason, detail, created_at, expires_at, last_event_at, expires_at."
+        },
+        {
+          "info": {
+            "name": "Export Allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/exports/whitelist"
+          },
+          "docs": "Begins an export of your rejection allowlist. The allowlist will be exported to a zip archive containing a single file named allowlist.csv that includes the following fields: email, detail, created_at."
+        },
+        {
+          "info": {
+            "name": "Export Allowlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/exports/allowlist"
+          },
+          "docs": "Begins an export of your rejection allowlist. The allowlist will be exported to a zip archive containing a single file named allowlist.csv that includes the following fields: email, detail, created_at."
+        },
+        {
+          "info": {
+            "name": "Export activity history",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/exports/activity"
+          },
+          "docs": "Begins an export of your activity history. The activity will be exported to a zip archive containing a single file named activity.csv in the same format as you would be able to export from your account's activity view. It includes the following fields: Date, Email Address, Sender, Subject, Status, Tags, Opens, Clicks, Bounce Detail. If you have configured any custom metadata fields, they will be included in the exported data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "inbound",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List inbound domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/domains"
+          },
+          "docs": "List the domains that have been configured for inbound delivery."
+        },
+        {
+          "info": {
+            "name": "Add inbound domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/add-domain"
+          },
+          "docs": "Add an inbound domain to your account."
+        },
+        {
+          "info": {
+            "name": "Check domain settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/check-domain"
+          },
+          "docs": "Check the MX settings for an inbound domain. The domain must have already been added with the add-domain call."
+        },
+        {
+          "info": {
+            "name": "Delete inbound domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/delete-domain"
+          },
+          "docs": "Delete an inbound domain from the account. All mail will stop routing for this domain immediately."
+        },
+        {
+          "info": {
+            "name": "List routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/routes"
+          },
+          "docs": "List the routes defined for an inbound domain or SMS program. Provide either domain or phone (not both)."
+        },
+        {
+          "info": {
+            "name": "Add route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/add-route"
+          },
+          "docs": "Add a new route to an inbound domain or SMS program. Provide either domain or phone (not both)."
+        },
+        {
+          "info": {
+            "name": "Update mailbox route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/update-route"
+          },
+          "docs": "Update the pattern or webhook of an existing inbound mailbox route. If null is provided for any fields, the values will remain unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete mailbox route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/delete-route"
+          },
+          "docs": "Delete an existing inbound mailbox route."
+        },
+        {
+          "info": {
+            "name": "Send mime document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/inbound/send-raw"
+          },
+          "docs": "Take a raw MIME document destined for a domain with inbound domains set up, and send it to the inbound hook exactly as if it had been sent over SMTP."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List ip addresses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/list"
+          },
+          "docs": "Lists your dedicated IPs."
+        },
+        {
+          "info": {
+            "name": "Get ip info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/info"
+          },
+          "docs": "Retrieves information about a single dedicated IP."
+        },
+        {
+          "info": {
+            "name": "Request additional ip",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/provision"
+          },
+          "docs": "Requests an additional dedicated IP for your account. Accounts may have one outstanding request at any time, and provisioning requests are processed within 24 hours."
+        },
+        {
+          "info": {
+            "name": "Start ip warmup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/start-warmup"
+          },
+          "docs": "Begins the warmup process for a dedicated IP. During the warmup process, the Transactional API will gradually increase the percentage of your mail that is sent over the warming-up IP, over a period of roughly 30 days. The rest of your mail will be sent over shared IPs or other dedicated IPs in the same pool."
+        },
+        {
+          "info": {
+            "name": "Cancel ip warmup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/cancel-warmup"
+          },
+          "docs": "Cancels the warmup process for a dedicated IP."
+        },
+        {
+          "info": {
+            "name": "Move ip to different pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/set-pool"
+          },
+          "docs": "Moves a dedicated IP to a different pool."
+        },
+        {
+          "info": {
+            "name": "Delete ip address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/delete"
+          },
+          "docs": "Deletes a dedicated IP. This is permanent and cannot be undone."
+        },
+        {
+          "info": {
+            "name": "List ip pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/list-pools"
+          },
+          "docs": "Lists your dedicated IP pools."
+        },
+        {
+          "info": {
+            "name": "Get ip pool info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/pool-info"
+          },
+          "docs": "Describes a single dedicated IP pool."
+        },
+        {
+          "info": {
+            "name": "Add ip pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/create-pool"
+          },
+          "docs": "Creates a pool and returns it. If a pool already exists with this name, no action will be performed."
+        },
+        {
+          "info": {
+            "name": "Delete ip pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/delete-pool"
+          },
+          "docs": "Deletes a pool. A pool must be empty before you can delete it, and you cannot delete your default pool."
+        },
+        {
+          "info": {
+            "name": "Test custom dns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/check-custom-dns"
+          },
+          "docs": "Tests whether a domain name is valid for use as the custom reverse DNS for a dedicated IP."
+        },
+        {
+          "info": {
+            "name": "Set custom dns",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ips/set-custom-dns"
+          },
+          "docs": "Configures the custom DNS name for a dedicated IP."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "mctemplates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Mailchimp Template info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/mctemplates/info"
+          },
+          "docs": "Get information about a Mailchimp Transactional template in your account."
+        },
+        {
+          "info": {
+            "name": "List Mailchimp Transactional Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/mctemplates/list"
+          },
+          "docs": "Return a list of all Mailchimp Transactional templates available to this user."
+        },
+        {
+          "info": {
+            "name": "Render Mailchimp Transactional Template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/mctemplates/render"
+          },
+          "docs": "Render a Mailchimp Transactional template with optional merge variables."
+        },
+        {
+          "info": {
+            "name": "Get Mailchimp Transactional Template Time Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/mctemplates/time-series"
+          },
+          "docs": "Return the recent history (hourly stats for the last 30 days) for a Mailchimp Transactional template. Returns an empty array if the template exists but has never been used to send messages."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send SMS message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send-sms"
+          },
+          "docs": "Send a new SMS message through Mandrill"
+        },
+        {
+          "info": {
+            "name": "Send new message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send"
+          },
+          "docs": "Send a new transactional message through the Transactional API."
+        },
+        {
+          "info": {
+            "name": "Send using message template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send-template"
+          },
+          "docs": "Send a new transactional message through the Transactional API using a template."
+        },
+        {
+          "info": {
+            "name": "Send using Mailchimp template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send-mc-template"
+          },
+          "docs": "Send a new transactional message through Mandrill using a Mailchimp Transactional template."
+        },
+        {
+          "info": {
+            "name": "Search messages by date",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/search"
+          },
+          "docs": "Search recently sent messages and optionally narrow by date range, tags, senders, and API keys. If no date range is specified, results within the last 7 days are returned. This method may be called up to 20 times per minute. If you need the data more often, you can use /messages/info.json to get the information for a single message, or webhooks to push activity to your own application for querying."
+        },
+        {
+          "info": {
+            "name": "Search messages by hour",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/search-time-series"
+          },
+          "docs": "Search the content of recently sent messages and return the aggregated hourly stats for matching messages."
+        },
+        {
+          "info": {
+            "name": "Get message info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/info"
+          },
+          "docs": "Get the information for a single recently sent message."
+        },
+        {
+          "info": {
+            "name": "Get message content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/content"
+          },
+          "docs": "Get the full content of a recently sent message."
+        },
+        {
+          "info": {
+            "name": "Parse mime document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/parse"
+          },
+          "docs": "Parse the full MIME document for an email message, returning the content of the message broken into its constituent pieces."
+        },
+        {
+          "info": {
+            "name": "Send mime document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/send-raw"
+          },
+          "docs": "Take a raw MIME document for a message, and send it exactly as if it were sent through the Transactional API's SMTP servers."
+        },
+        {
+          "info": {
+            "name": "List scheduled emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/list-scheduled"
+          },
+          "docs": "Queries your scheduled emails."
+        },
+        {
+          "info": {
+            "name": "Cancel scheduled email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/cancel-scheduled"
+          },
+          "docs": "Cancels a scheduled email."
+        },
+        {
+          "info": {
+            "name": "Reschedule email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/messages/reschedule"
+          },
+          "docs": "Reschedules a scheduled email."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List metadata fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/list"
+          },
+          "docs": "Get the list of custom metadata fields indexed for the account."
+        },
+        {
+          "info": {
+            "name": "Add metadata field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/add"
+          },
+          "docs": "Add a new custom metadata field to be indexed for the account."
+        },
+        {
+          "info": {
+            "name": "Update metadata field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/update"
+          },
+          "docs": "Update an existing custom metadata field."
+        },
+        {
+          "info": {
+            "name": "Delete metadata field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/metadata/delete"
+          },
+          "docs": "Delete an existing custom metadata field. Deletion isn't instataneous, and /metadata/list will continue to return the field until the asynchronous deletion process is complete."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "rejects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add email to denylist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/add"
+          },
+          "docs": "Adds an email to your email rejection denylist. Addresses that you add manually will never expire and there is no reputation penalty for removing them from your denylist. Attempting to denylist an address that has been added to the allowlist will have no effect."
+        },
+        {
+          "info": {
+            "name": "List denylisted emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/list"
+          },
+          "docs": "Retrieves your email rejection denylist. You can provide an email address to limit the results. Returns up to 1000 results. By default, entries that have expired are excluded from the results; set include_expired to true to include them."
+        },
+        {
+          "info": {
+            "name": "Delete email from denylist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/delete"
+          },
+          "docs": "Deletes an email rejection. There is no limit to how many rejections you can remove from your denylist, but keep in mind that each deletion has an affect on your reputation."
+        },
+        {
+          "info": {
+            "name": "Add phone number to SMS denylist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/add-sms"
+          },
+          "docs": "Adds a phone number to your SMS rejection denylist. Phone numbers that you add manually will never expire and there is no reputation penalty for removing them from your denylist."
+        },
+        {
+          "info": {
+            "name": "List SMS denylist entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/list-sms"
+          },
+          "docs": "Retrieves your SMS rejection denylist. You can provide a phone number to limit the results. Returns up to 1000 results. By default, entries that have expired are excluded from the results; set include_expired to true to include them."
+        },
+        {
+          "info": {
+            "name": "Delete phone number from SMS denylist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rejects/delete-sms"
+          },
+          "docs": "Deletes an SMS rejection. There is no limit to how many rejections you can remove from your denylist, but keep in mind that each deletion has an affect on your reputation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "senders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List account senders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/list"
+          },
+          "docs": "Return the senders that have tried to use this account."
+        },
+        {
+          "info": {
+            "name": "List sender domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/domains"
+          },
+          "docs": "Returns the sender domains that have been added to this account."
+        },
+        {
+          "info": {
+            "name": "Add sender domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/add-domain"
+          },
+          "docs": "Adds a sender domain to your account. Sender domains are added automatically as you send, but you can use this call to add them ahead of time."
+        },
+        {
+          "info": {
+            "name": "Delete sender domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/delete-domain"
+          },
+          "docs": "Deletes an unverified sender domain from your account. Verified domains cannot be deleted via API and require login confirmation."
+        },
+        {
+          "info": {
+            "name": "Check domain settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/check-domain"
+          },
+          "docs": "Checks the SPF and DKIM settings for a domain, as well the domain verification. If you haven't already added this domain to your account, it will be added automatically."
+        },
+        {
+          "info": {
+            "name": "Verify domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/verify-domain"
+          },
+          "docs": "Sends a verification email in order to verify ownership of a domain. Domain verification is a required step to confirm ownership of a domain. Once a domain has been verified in a Transactional API account, other accounts may not have their messages signed by that domain unless they also verify the domain. This prevents other Transactional API accounts from sending mail signed by your domain."
+        },
+        {
+          "info": {
+            "name": "Get sender info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/info"
+          },
+          "docs": "Return more detailed information about a single sender, including aggregates of recent stats."
+        },
+        {
+          "info": {
+            "name": "View sender history",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/senders/time-series"
+          },
+          "docs": "Return the recent history (hourly stats for the last 30 days) for a sender."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "subaccounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subaccounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/list"
+          },
+          "docs": "Get the list of subaccounts defined for the account, optionally filtered by a prefix."
+        },
+        {
+          "info": {
+            "name": "Add subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/add"
+          },
+          "docs": "Add a new subaccount."
+        },
+        {
+          "info": {
+            "name": "Get subaccount info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/info"
+          },
+          "docs": "Given the ID of an existing subaccount, return the data about it."
+        },
+        {
+          "info": {
+            "name": "Update subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/update"
+          },
+          "docs": "Update an existing subaccount."
+        },
+        {
+          "info": {
+            "name": "Delete subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/delete"
+          },
+          "docs": "Delete an existing subaccount. Any email related to the subaccount will be saved, but stats will be removed and any future sending calls to this subaccount will fail."
+        },
+        {
+          "info": {
+            "name": "Pause subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/pause"
+          },
+          "docs": "Pause a subaccount's sending. Any future emails delivered to this subaccount will be queued for a maximum of 3 days until the subaccount is resumed."
+        },
+        {
+          "info": {
+            "name": "Resume subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subaccounts/resume"
+          },
+          "docs": "Resume a paused subaccount's sending."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/list"
+          },
+          "docs": "Return all of the user-defined tag information."
+        },
+        {
+          "info": {
+            "name": "Delete tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/delete"
+          },
+          "docs": "Deletes a tag permanently. Deleting a tag removes the tag from any messages that have been sent, and also deletes the tag's stats. There is no way to undo this operation, so use it carefully."
+        },
+        {
+          "info": {
+            "name": "Get tag info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/info"
+          },
+          "docs": "Return more detailed information about a single tag, including aggregates of recent stats."
+        },
+        {
+          "info": {
+            "name": "View tag history",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/time-series"
+          },
+          "docs": "Return the recent history (hourly stats for the last 30 days) for a tag."
+        },
+        {
+          "info": {
+            "name": "View all tags history",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tags/all-time-series"
+          },
+          "docs": "Return the recent history (hourly stats for the last 30 days) for all tags."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/add"
+          },
+          "docs": "Add a new template."
+        },
+        {
+          "info": {
+            "name": "Get template info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/info"
+          },
+          "docs": "Get the information for an existing template."
+        },
+        {
+          "info": {
+            "name": "Update template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/update"
+          },
+          "docs": "Update the code for an existing template. If null is provided for any fields, the values will remain unchanged."
+        },
+        {
+          "info": {
+            "name": "Publish template content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/publish"
+          },
+          "docs": "Publish the content for the template. Any new messages sent using this template will start using the content that was previously in draft."
+        },
+        {
+          "info": {
+            "name": "Delete template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/delete"
+          },
+          "docs": "Delete a template."
+        },
+        {
+          "info": {
+            "name": "List templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/list"
+          },
+          "docs": "Return a list of all the templates available to this user."
+        },
+        {
+          "info": {
+            "name": "Get template history",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/time-series"
+          },
+          "docs": "Return the recent history (hourly stats for the last 30 days) for a template."
+        },
+        {
+          "info": {
+            "name": "Render html template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/templates/render"
+          },
+          "docs": "Inject content and optionally merge fields into a template, returning the HTML that results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "urls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tracking domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/urls/tracking-domains"
+          },
+          "docs": "Get the list of tracking domains set up for this account."
+        },
+        {
+          "info": {
+            "name": "Add tracking domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/urls/add-tracking-domain"
+          },
+          "docs": "Add a tracking domain to your account."
+        },
+        {
+          "info": {
+            "name": "Delete tracking domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/urls/delete-tracking-domain"
+          },
+          "docs": "Deletes an unverified tracking domain from your account. Valid tracking domains cannot be deleted via API and require login confirmation."
+        },
+        {
+          "info": {
+            "name": "Check cname settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/urls/check-tracking-domain"
+          },
+          "docs": "Checks the CNAME settings for a tracking domain. The domain must have been added already with the add-tracking-domain call."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/info"
+          },
+          "docs": "Return the information about the API-connected user."
+        },
+        {
+          "info": {
+            "name": "Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/ping"
+          },
+          "docs": "Validate an API key and respond to a ping."
+        },
+        {
+          "info": {
+            "name": "Ping 2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/ping2"
+          },
+          "docs": "Validate an API key and respond to a ping (JSON parser version)."
+        },
+        {
+          "info": {
+            "name": "List account senders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/users/senders"
+          },
+          "docs": "Return the senders that have tried to use this account, both verified and unverified."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/list"
+          },
+          "docs": "Get the list of all webhooks defined on the account."
+        },
+        {
+          "info": {
+            "name": "Add webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/add"
+          },
+          "docs": "Add a new webhook."
+        },
+        {
+          "info": {
+            "name": "Get webhook info",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/info"
+          },
+          "docs": "Given the ID of an existing webhook, return the data about it."
+        },
+        {
+          "info": {
+            "name": "Update webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/update"
+          },
+          "docs": "Update an existing webhook."
+        },
+        {
+          "info": {
+            "name": "Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/webhooks/delete"
+          },
+          "docs": "Delete an existing webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -60,13 +60,33 @@ channels:
         bindingVersion: '0.3.0'
         type: request
         method: POST
+    x-signature:
+      # Added 2026-08-13 from
+      # https://mailchimp.com/developer/marketing/guides/sync-audience-data-webhooks/
+      # (HTTP 200). Optional HMAC signing, enabled per webhook.
+      header: X-Mailchimp-Signature
+      format: 't={unix_seconds},v1={hex_sha256}'
+      algorithm: HMAC-SHA256
+      signed_string: '{timestamp}.{raw_body}'
+      key: >-
+        The webhook signing_secret, returned exactly once in the create response
+        (POST /lists/{list_id}/webhooks) and not retrievable afterwards.
+      tolerance_seconds: 300
+      comparison: constant-time
+      required: false
+      note: >-
+        Verify against the raw, unmodified request bytes — URL-decoding or JSON
+        parsing before verification changes the bytes and breaks the digest.
     publish:
+      operationId: receiveAudienceWebhookEvent
       summary: Receive Mailchimp audience webhook events.
       description: >-
         Mailchimp POSTs an `application/x-www-form-urlencoded` body to the
         registered URL. If the URL is unavailable or takes more than 10
         seconds to respond, the request is canceled and retried over a
-        roughly 75 minute window.
+        roughly 75 minute window. When HMAC signing is enabled on the webhook,
+        each delivery also carries an `X-Mailchimp-Signature` header — see
+        `x-signature` on this channel.
       message:
         oneOf:
           - $ref: '#/components/messages/Subscribe'

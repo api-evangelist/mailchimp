@@ -1,0 +1,271 @@
+{
+  "item": [
+    {
+      "id": "31be292a-f812-472c-b80c-62e2717236fa",
+      "name": "Answers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffeb7c27-2fb9-4b2e-8bea-f75d59f881f5",
+          "name": "Mailchimp List Answers for Question",
+          "request": {
+            "name": "Mailchimp List Answers for Question",
+            "description": {
+              "content": "Get answers for a survey question.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "surveys",
+                ":survey_id",
+                "questions",
+                ":question_id",
+                "answers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude_fields",
+                  "value": "<string>,<string>",
+                  "description": "A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation."
+                },
+                {
+                  "disabled": false,
+                  "key": "respondent_familiarity_is",
+                  "value": "<string>",
+                  "description": "Filter survey responses by familiarity of the respondents."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "survey_id",
+                  "description": "(Required) The ID of the survey."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "question_id",
+                  "description": "(Required) The ID of the survey question."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9669923d-a31f-4186-9657-f1bd8d35f57c",
+              "name": "List of Survey Question Answers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions",
+                    ":question_id",
+                    "answers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "respondent_familiarity_is",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "question_id",
+                      "description": "(Required) The ID of the survey question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"answers\": [\n    {\n      \"id\": \"string\",\n      \"value\": \"string\",\n      \"response_id\": \"string\",\n      \"submitted_at\": \"1985-09-26T06:09:53.109Z\",\n      \"contact\": {\n        \"email_id\": \"string\",\n        \"contact_id\": \"string\",\n        \"status\": \"Subscribed\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"full_name\": \"string\",\n        \"consents_to_one_to_one_messaging\": true,\n        \"avatar_url\": \"string\"\n      },\n      \"is_new_contact\": false\n    },\n    {\n      \"id\": \"string\",\n      \"value\": \"string\",\n      \"response_id\": \"string\",\n      \"submitted_at\": \"2008-09-17T22:15:03.906Z\",\n      \"contact\": {\n        \"email_id\": \"string\",\n        \"contact_id\": \"string\",\n        \"status\": \"Archived\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"full_name\": \"string\",\n        \"consents_to_one_to_one_messaging\": false,\n        \"avatar_url\": \"string\"\n      },\n      \"is_new_contact\": false\n    }\n  ],\n  \"total_items\": 4379,\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"DELETE\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"method\": \"POST\",\n      \"targetSchema\": \"string\",\n      \"schema\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58171f4f-090b-47c2-ac72-e396b73fed10",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "surveys",
+                    ":survey_id",
+                    "questions",
+                    ":question_id",
+                    "answers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "exclude_fields",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "respondent_familiarity_is",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "survey_id",
+                      "description": "(Required) The ID of the survey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "question_id",
+                      "description": "(Required) The ID of the survey question."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9885d924-b0bc-455a-8c17-c198d355ad45",
+    "name": "Mailchimp Marketing Abuse Answers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

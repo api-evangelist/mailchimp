@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Steps API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Steps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Customer Journeys Api Trigger for a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/customer-journeys/journeys/:journey_id/steps/:step_id/actions/trigger",
+            "params": [
+              {
+                "name": "journey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the Journey."
+              },
+              {
+                "name": "step_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The id for the Step."
+              }
+            ]
+          },
+          "docs": "A step trigger in a Customer Journey. To use it, create a starting point or step from the Customer Journey builder in the app using the Customer Journeys API condition. Well provide a url during the process that includes the {journey_id} and {step_id}. Youll then be able to use this endpoint to trigger the condition for the posted contact."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

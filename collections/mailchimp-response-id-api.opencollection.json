@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mailchimp Marketing Abuse Response_id API",
+    "version": "3.0.55"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Response_id",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mailchimp Get Survey Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/surveys/:survey_id/responses/:response_id",
+            "params": [
+              {
+                "name": "survey_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey."
+              },
+              {
+                "name": "response_id",
+                "value": "500123",
+                "type": "path",
+                "description": "The ID of the survey response."
+              }
+            ]
+          },
+          "docs": "Get a single survey response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -4,6 +4,9 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Mailchimp
 providerId: mailchimp
 created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
 modified: '2026-05-04'
 reconciled: true
 tags:
@@ -13,6 +16,24 @@ tags:
 description: Mailchimp Marketing pricing tiers. Pricing scales with contact tier.
 sources:
   - https://mailchimp.com/pricing/marketing/
+verification:
+  checked: '2026-08-13'
+  url: https://mailchimp.com/pricing/marketing/
+  http_status: 200
+  confirmed:
+    - The four tiers recorded below (Free, Essentials, Standard, Premium) are the tiers the live page still offers.
+    - Pricing scales by contact tier, selected from a picker running 0-500 up to 1,000,000+ contacts.
+    - A 14-day Standard trial and a 15% first-12-months discount for 10,000+ contacts were being promoted.
+    - The page offers 18 currencies and separate Email Marketing / Email & SMS / Transactional pricing modes.
+  not_confirmed:
+    - >-
+      Per-tier prices. The amounts are rendered client-side from the contact-tier
+      and currency pickers and are not present in the served HTML, so the dollar
+      figures in plans[] below could not be re-verified today. They remain as
+      captured by the 2026-05-04 sweep; treat them as indicative, not quoted.
+  method_note: >-
+    method stays "generated" because the per-tier numbers still come from that
+    sweep rather than from a quotable published value.
 plans:
   - id: mailchimp-free
     name: Free

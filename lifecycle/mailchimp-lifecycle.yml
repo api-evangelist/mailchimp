@@ -1,39 +1,77 @@
-generated: '2026-06-20'
+generated: '2026-08-13'
 method: searched
 source: >-
   https://mailchimp.com/developer/release-notes/,
   https://mailchimp.com/developer/marketing/docs/fundamentals/,
-  https://status.mailchimp.com/, and version prefixes in the OpenAPI servers[].
+  https://mailchimp.com/developer/transactional/docs/fundamentals/,
+  https://status.mailchimp.com/, plus the version and basePath declared in the two
+  first-party specifications harvested 2026-08-13
+  (openapi/mailchimp-marketing-api-openapi-original.json,
+  openapi/mailchimp-transactional-api-openapi-original.json).
 description: >-
   Versioning, deprecation, and operational-lifecycle posture for the Mailchimp
-  Marketing API (v3, URI-path versioned) and the Transactional/Mandrill API
-  (v1.0). Mailchimp versions by major URI path and announces changes via dated
-  release notes; it does not publish RFC 8594 Sunset/Deprecation headers.
+  Marketing API (v3, URI-path versioned) and the Transactional/Mandrill API.
+  Mailchimp versions by major URI path, revises the contract continuously under
+  that path (the Marketing spec self-reports a three-part version), and announces
+  changes via dated release notes. It publishes a deprecation POSTURE — old major
+  versions stay reachable, are declared unsupported, and shut-off dates are
+  promised in advance — but it does not implement RFC 8594 Sunset/Deprecation
+  headers, so nothing about deprecation is machine-readable.
 versioning:
   - api: mailchimp:mailchimp-marketing-api
     scheme: uri-path
     current: '3.0'
+    contract_version: 3.0.91
+    contract_version_checked: '2026-08-13'
+    contract_url: https://api.mailchimp.com/schema/3.0/Swagger.json?expand
     host: https://<dc>.api.mailchimp.com/3.0
     docs: https://mailchimp.com/developer/marketing/docs/fundamentals/
     notes: >-
       The <dc> segment is the datacenter suffix derived from the API key (part
-      after the dash) or the OAuth metadata endpoint.
+      after the dash) or the OAuth metadata endpoint. The URI path stays 3.0 while
+      the published contract moves (3.0.55 when this repo was first harvested in
+      May 2026; 3.0.91 on 2026-08-13) — an integrator cannot pin a minor version
+      from the path.
   - api: mailchimp:mailchimp-transactional-api
     scheme: uri-path
     current: '1.0'
+    contract_version: 1.4.1
+    contract_basePath: /api/1.3
+    contract_version_checked: '2026-08-13'
+    contract_url: https://raw.githubusercontent.com/mailchimp/mailchimp-client-lib-codegen/main/spec/transactional.json
     host: https://mandrillapp.com/api/1.0
     docs: https://mailchimp.com/developer/transactional/docs/fundamentals/
+    discrepancy: >-
+      The documentation states "All API URLs listed in this documentation are
+      relative to https://mandrillapp.com/api/1.0/" while the first-party spec
+      declares basePath /api/1.3 and info.version 1.4.1. Both paths are live.
+      Recorded 2026-08-13 as a documentation/contract divergence, not resolved —
+      an integrator should pin whichever their client library uses.
 deprecation:
-  policy_url: https://mailchimp.com/developer/release-notes/
+  policy_url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  policy_anchor: '#api-versions'
   changelog: https://mailchimp.com/developer/release-notes/
   sunset_header: false
   deprecation_header: false
+  statement: >-
+    "The first versions of the Marketing API, versions 1.1, 1.2, and 1.3, are no
+    longer available. The previous version 2.0 has not been shut off, but is
+    deprecated and unsupported. We'll announce shut off dates in advance, but we
+    recommend migrating to version 3.0 since version 2.0 is not regularly tested
+    or maintained."
+  statement_source: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  statement_checked: '2026-08-13'
+  grade: prose-only
   notes: >-
-    Changes (new endpoints, behavior changes, retirements) are announced in the
-    dated release notes rather than via RFC 8594 headers. Notable historical
-    changes: TLS 1.0/1.1 retired (2023-07-18, TLS 1.2+ required); invalid
-    template name now returns 404 instead of 500 (2023-06-17); new sending
-    domain authentication (DKIM/DMARC) enforced 2024-03-15.
+    This is the whole of Mailchimp's published deprecation policy: a paragraph in
+    the fundamentals page plus dated release notes. There is no notice-period
+    commitment in days, no sunset schedule, no RFC 8594 Sunset/Deprecation
+    response headers, and no `deprecated: true` flag on any operation in either
+    specification. An agent cannot detect a deprecation at runtime. Notable
+    historical changes announced in the release notes: TLS 1.0/1.1 retired
+    (2023-07-18, TLS 1.2+ required); invalid template name returns 404 instead of
+    500 (2023-06-17); sending-domain authentication (DKIM/DMARC) enforced
+    2024-03-15; webhook retries increased to 20 attempts (2024-06-17).
 sla:
   url: https://mailchimp.com/legal/api_use/
   public_uptime_target: null
@@ -43,6 +81,15 @@ status_notes: >-
   Transactional (Mandrill) status was added to the Mailchimp status page on
   2025-08-19.
 deprecated_operations: []
+deprecated_operations_note: >-
+  Neither first-party specification marks any operation `deprecated: true`
+  (checked 2026-08-13 across 298 Marketing and 99 Transactional operations).
+sdk_decay:
+  finding: >-
+    The four official MARKETING client libraries have not been republished since
+    2022-11-02 (3.0.80) while the API contract has moved to 3.0.91. The
+    Transactional libraries are current at 1.4.1 (2026-03-24). See
+    packages/mailchimp-packages.yml.
 deprecated_products:
   - name: Mailchimp Open Commerce (Reaction Commerce)
     status: discontinued

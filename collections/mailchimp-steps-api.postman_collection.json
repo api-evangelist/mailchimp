@@ -1,0 +1,258 @@
+{
+  "item": [
+    {
+      "id": "ef1838f1-dfd5-429b-96b5-c8770d0db89f",
+      "name": "Steps",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b4e6ea6-c05e-4718-806c-5106c7e8d5a9",
+          "name": "Mailchimp Customer Journeys Api Trigger for a Contact",
+          "request": {
+            "name": "Mailchimp Customer Journeys Api Trigger for a Contact",
+            "description": {
+              "content": "A step trigger in a Customer Journey. To use it, create a starting point or step from the Customer Journey builder in the app using the Customer Journeys API condition. Well provide a url during the process that includes the {journey_id} and {step_id}. Youll then be able to use this endpoint to trigger the condition for the posted contact.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customer-journeys",
+                "journeys",
+                ":journey_id",
+                "steps",
+                ":step_id",
+                "actions",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "journey_id",
+                  "description": "(Required) The id for the Journey."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "step_id",
+                  "description": "(Required) The id for the Step."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ce1d88c-106b-414a-bf66-d1a29b545456",
+              "name": "An empty response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer-journeys",
+                    "journeys",
+                    ":journey_id",
+                    "steps",
+                    ":step_id",
+                    "actions",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "journey_id",
+                      "description": "(Required) The id for the Journey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) The id for the Step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8edfe54-9383-40b5-adbe-dfff9edc7591",
+              "name": "An error generated by the Mailchimp API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer-journeys",
+                    "journeys",
+                    ":journey_id",
+                    "steps",
+                    ":step_id",
+                    "actions",
+                    "trigger"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "journey_id",
+                      "description": "(Required) The id for the Journey."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "step_id",
+                      "description": "(Required) The id for the Step."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email_address\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"https://mailchimp.com/developer/marketing/docs/errors/\",\n  \"title\": \"Resource Not Found\",\n  \"status\": 404,\n  \"detail\": \"The requested resource could not be found.\",\n  \"instance\": \"995c5cb0-3280-4a6e-808b-3b096d0bb219\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://server.api.mailchimp.com/3.0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bd1ec26d-a2c9-4ba7-9a06-22e6a947fdee",
+    "name": "Mailchimp Marketing Abuse Steps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe Mailchimp Marketing API provides programmatic access to Mailchimp data\nand functionality, allowing developers to build custom features to do\nthings like sync email activity and campaign analytics with their\ndatabase, manage audiences and campaigns, and more.\n\nContact Support:\n Name: Mailchimp API Support\n Email: apihelp@mailchimp.com",
+      "type": "text/plain"
+    }
+  }
+}

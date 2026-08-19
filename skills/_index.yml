@@ -1,0 +1,62 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Packaged Agent Skills authored by API Evangelist from the provider's own
+  contracts and documentation. Every operationId referenced was verified against
+  openapi/mailchimp-marketing-api-openapi-original.json (Mailchimp Marketing API
+  3.0.91) and openapi/mailchimp-transactional-api-openapi-original.json (Mailchimp
+  Transactional API 1.4.1), both harvested 2026-08-13. Runtime rules come from
+  conventions/mailchimp-conventions.yml, rate-limits/mailchimp-rate-limits.yml,
+  errors/mailchimp-problem-types.yml and sandbox/mailchimp-sandbox.yml. Mailchimp
+  does not publish its own agent skills or AGENTS.md.
+description: >-
+  Five operating instructions for driving the Mailchimp Marketing and
+  Transactional APIs safely from an agent. Each mirrors a marquee flow already
+  modelled in arazzo/ and carries the two rules that matter most on this provider:
+  there is no idempotency key anywhere in either API, and the Marketing API allows
+  only 10 simultaneous connections with no rate-limit response headers.
+skills:
+  - file: mailchimp-upsert-audience-member.md
+    name: Upsert a Mailchimp audience member and tag them
+    api: openapi/mailchimp-lists-api-openapi.yml
+    operations: [getRoot, getLists, putListsIdMembersId, getListsIdMembersId, postListMemberTags]
+  - file: mailchimp-create-and-send-campaign.md
+    name: Create, populate, check, and send a Mailchimp campaign
+    api: openapi/mailchimp-campaigns-api-openapi.yml
+    operations:
+      - getLists
+      - postCampaigns
+      - putCampaignsIdContent
+      - getCampaignsIdSendChecklist
+      - postCampaignsIdActionsTest
+      - postCampaignsIdActionsSend
+      - postCampaignsIdActionsSchedule
+      - getCampaignsId
+  - file: mailchimp-bulk-sync-with-batches.md
+    name: Bulk-sync contacts with the Mailchimp Batch endpoint
+    api: openapi/mailchimp-batches-api-openapi.yml
+    operations: [postBatches, getBatchesId, getBatches, deleteBatchesId]
+  - file: mailchimp-sync-audience-with-webhooks.md
+    name: Receive and verify Mailchimp audience webhooks
+    api: openapi/mailchimp-webhooks-api-openapi.yml
+    operations: [postListsIdWebhooks, getListsIdWebhooks, getListsIdWebhooksId, deleteListsIdWebhooksId]
+  - file: mailchimp-send-transactional-message.md
+    name: Send a Mailchimp Transactional (Mandrill) message
+    api: openapi/mailchimp-messages-api-openapi.yml
+    operations:
+      - postUsersPing
+      - postMessagesSend
+      - postMessagesSendTemplate
+      - postMessagesInfo
+      - postMessagesSearch
+      - postMessagesCancelScheduled
+  - file: mailchimp-pull-campaign-report.md
+    name: Pull a Mailchimp campaign report
+    api: openapi/mailchimp-reports-api-openapi.yml
+    operations:
+      - getCampaigns
+      - getReportsId
+      - getReportsIdEmailActivity
+      - getReportsIdClickDetails
+      - getReportsIdOpenDetails
+      - getReportsIdSentTo
