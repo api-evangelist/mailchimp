@@ -10,6 +10,17 @@ info:
     goes out end to end. The send step is irreversible. Authentication uses HTTP
     Basic auth with any username and your Mailchimp API key as the password.
   version: 1.0.0
+  x-realizes-capability-ids:
+  - BC-400.60
+  x-capability-derivation:
+    method: 'deterministic join: sourceDescriptions -> per-tag OpenAPI -> tag/capability edge. No classification at this step.'
+    min_confidence: 0.7
+    sources:
+    - capability_id: BC-400.60
+      capability_name: Digital Marketing Management
+      spec: mailchimp-campaigns-api-openapi.yml
+      confidence: 0.85
+    model: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities, CC BY 4.0
 sourceDescriptions:
 - name: campaignsApi
   url: ../openapi/mailchimp-campaigns-api-openapi.yml
