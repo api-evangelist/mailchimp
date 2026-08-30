@@ -1,0 +1,783 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional URLS API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: urls
+paths:
+  /urls/tracking-domains:
+    post:
+      x-custom-config:
+        methodNameCamel: trackingDomains
+        methodNameSnake: tracking_domains
+      summary: List tracking domains
+      description: Get the list of tracking domains set up for this account.
+      operationId: postUrlsTrackingDomains
+      tags:
+      - urls
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the tracking domains and their status
+                items:
+                  type: object
+                  description: the individual tracking domain
+                  properties:
+                    domain:
+                      type: string
+                      description: the tracking domain name
+                      example: example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 12:00:00'
+                    last_tested_at:
+                      type: string
+                      format: date-time
+                      description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    cname:
+                      type: object
+                      description: details about the domain's CNAME record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's CNAME record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-29 14:00:00'
+                        error:
+                          type: string
+                          description: an error describing the CNAME record, or null if the record is correct
+                          example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                    valid_tracking:
+                      type: boolean
+                      description: whether this domain can be used as a tracking domain for email.
+                      example: true
+            application/x-php:
+              schema:
+                type: array
+                description: the tracking domains and their status
+                items:
+                  type: object
+                  description: the individual tracking domain
+                  properties:
+                    domain:
+                      type: string
+                      description: the tracking domain name
+                      example: example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 12:00:00'
+                    last_tested_at:
+                      type: string
+                      format: date-time
+                      description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    cname:
+                      type: object
+                      description: details about the domain's CNAME record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's CNAME record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-29 14:00:00'
+                        error:
+                          type: string
+                          description: an error describing the CNAME record, or null if the record is correct
+                          example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                    valid_tracking:
+                      type: boolean
+                      description: whether this domain can be used as a tracking domain for email.
+                      example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the tracking domains and their status
+                items:
+                  type: object
+                  description: the individual tracking domain
+                  properties:
+                    domain:
+                      type: string
+                      description: the tracking domain name
+                      example: example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 12:00:00'
+                    last_tested_at:
+                      type: string
+                      format: date-time
+                      description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    cname:
+                      type: object
+                      description: details about the domain's CNAME record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's CNAME record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-29 14:00:00'
+                        error:
+                          type: string
+                          description: an error describing the CNAME record, or null if the record is correct
+                          example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                    valid_tracking:
+                      type: boolean
+                      description: whether this domain can be used as a tracking domain for email.
+                      example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /urls/add-tracking-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: addTrackingDomain
+        methodNameSnake: add_tracking_domain
+      summary: Add tracking domains
+      description: Add a tracking domain to your account.
+      operationId: postUrlsAddTrackingDomain
+      tags:
+      - urls
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the tracking domain
+                properties:
+                  domain:
+                    type: string
+                    description: the tracking domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  cname:
+                    type: object
+                    description: details about the domain's CNAME record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's CNAME record is valid for use with Mandrill
+                        example: false
+                      valid_after:
+                        type: string
+                        description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-29 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                  valid_tracking:
+                    type: boolean
+                    description: whether this domain can be used as a tracking domain for email.
+                    example: false
+            application/x-php:
+              schema:
+                type: object
+                description: information about the tracking domain
+                properties:
+                  domain:
+                    type: string
+                    description: the tracking domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  cname:
+                    type: object
+                    description: details about the domain's CNAME record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's CNAME record is valid for use with Mandrill
+                        example: false
+                      valid_after:
+                        type: string
+                        description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-29 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                  valid_tracking:
+                    type: boolean
+                    description: whether this domain can be used as a tracking domain for email.
+                    example: false
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the tracking domain
+                properties:
+                  domain:
+                    type: string
+                    description: the tracking domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  cname:
+                    type: object
+                    description: details about the domain's CNAME record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's CNAME record is valid for use with Mandrill
+                        example: false
+                      valid_after:
+                        type: string
+                        description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-29 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                  valid_tracking:
+                    type: boolean
+                    description: whether this domain can be used as a tracking domain for email.
+                    example: false
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: a domain name
+        required: true
+  /urls/delete-tracking-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: deleteTrackingDomain
+        methodNameSnake: delete_tracking_domain
+      summary: Delete tracking domain
+      description: Deletes an unverified tracking domain from your account. Valid tracking domains cannot be deleted via API and require login confirmation.
+      operationId: postUrlsDeleteTrackingDomain
+      tags:
+      - urls
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the deleted tracking domain
+                properties:
+                  domain:
+                    description: The tracking domain name
+                    type: string
+                    format: hostname
+                    example: track.example.com
+                  created_at:
+                    description: When the domain was added to the account (UTC YYYY-MM-DD HH:MM:SS.microseconds)
+                    type: string
+                    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+$
+                    example: '2025-08-15 17:01:12.34214'
+                  last_tested_at:
+                    description: When the domain was last tested for CNAME configuration (UTC YYYY-MM-DD HH:MM:SS.microseconds)
+                    type: string
+                    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+$
+                    example: '2025-08-15 17:01:12.39638'
+                  cname:
+                    description: CNAME record verification status and details
+                    required:
+                    - valid
+                    - valid_after
+                    - error
+                    properties:
+                      valid:
+                        description: Whether the CNAME record is properly configured
+                        type: boolean
+                        example: false
+                      valid_after:
+                        description: When the CNAME will be valid (if applicable)
+                        type: string
+                        example: null
+                      error:
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                    type: object
+                  valid_tracking:
+                    description: Whether this domain is ready to be used for tracking
+                    type: boolean
+                    example: false
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the deleted tracking domain
+                properties:
+                  domain:
+                    description: The tracking domain name
+                    type: string
+                    format: hostname
+                    example: track.example.com
+                  created_at:
+                    description: When the domain was added to the account (UTC YYYY-MM-DD HH:MM:SS.microseconds)
+                    type: string
+                    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+$
+                    example: '2025-08-15 17:01:12.34214'
+                  last_tested_at:
+                    description: When the domain was last tested for CNAME configuration (UTC YYYY-MM-DD HH:MM:SS.microseconds)
+                    type: string
+                    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+$
+                    example: '2025-08-15 17:01:12.39638'
+                  cname:
+                    description: CNAME record verification status and details
+                    required:
+                    - valid
+                    - valid_after
+                    - error
+                    properties:
+                      valid:
+                        description: Whether the CNAME record is properly configured
+                        type: boolean
+                        example: false
+                      valid_after:
+                        description: When the CNAME will be valid (if applicable)
+                        type: string
+                        example: null
+                      error:
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                    type: object
+                  valid_tracking:
+                    description: Whether this domain is ready to be used for tracking
+                    type: boolean
+                    example: false
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the deleted tracking domain
+                properties:
+                  domain:
+                    description: The tracking domain name
+                    type: string
+                    format: hostname
+                    example: track.example.com
+                  created_at:
+                    description: When the domain was added to the account (UTC YYYY-MM-DD HH:MM:SS.microseconds)
+                    type: string
+                    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+$
+                    example: '2025-08-15 17:01:12.34214'
+                  last_tested_at:
+                    description: When the domain was last tested for CNAME configuration (UTC YYYY-MM-DD HH:MM:SS.microseconds)
+                    type: string
+                    pattern: ^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+$
+                    example: '2025-08-15 17:01:12.39638'
+                  cname:
+                    description: CNAME record verification status and details
+                    required:
+                    - valid
+                    - valid_after
+                    - error
+                    properties:
+                      valid:
+                        description: Whether the CNAME record is properly configured
+                        type: boolean
+                        example: false
+                      valid_after:
+                        description: When the CNAME will be valid (if applicable)
+                        type: string
+                        example: null
+                      error:
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                    type: object
+                  valid_tracking:
+                    description: Whether this domain is ready to be used for tracking
+                    type: boolean
+                    example: false
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: the tracking domain name to delete
+        required: true
+  /urls/check-tracking-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: checkTrackingDomain
+        methodNameSnake: check_tracking_domain
+      summary: Check cname settings
+      description: Checks the CNAME settings for a tracking domain. The domain must have been added already with the add-tracking-domain call.
+      operationId: postUrlsCheckTrackingDomain
+      tags:
+      - urls
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the tracking domain
+                properties:
+                  domain:
+                    type: string
+                    description: the tracking domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  cname:
+                    type: object
+                    description: details about the domain's CNAME record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's CNAME record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-29 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                  valid_tracking:
+                    type: boolean
+                    description: whether this domain can be used as a tracking domain for email.
+                    example: false
+            application/x-php:
+              schema:
+                type: object
+                description: information about the tracking domain
+                properties:
+                  domain:
+                    type: string
+                    description: the tracking domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  cname:
+                    type: object
+                    description: details about the domain's CNAME record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's CNAME record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-29 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                  valid_tracking:
+                    type: boolean
+                    description: whether this domain can be used as a tracking domain for email.
+                    example: false
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the tracking domain
+                properties:
+                  domain:
+                    type: string
+                    description: the tracking domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the tracking domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  cname:
+                    type: object
+                    description: details about the domain's CNAME record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's CNAME record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        description: when the domain's CNAME record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-29 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the CNAME record, or null if the record is correct
+                        example: ' does not match the required CNAME target of mandrillapp.com. Please verify that the target was entered exactly as requested and try again.'
+                  valid_tracking:
+                    type: boolean
+                    description: whether this domain can be used as a tracking domain for email.
+                    example: false
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: an existing tracking domain name
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

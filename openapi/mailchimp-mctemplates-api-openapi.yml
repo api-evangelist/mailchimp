@@ -1,0 +1,938 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Mctemplates API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: mctemplates
+paths:
+  /mctemplates/info:
+    post:
+      x-custom-config:
+        methodNameCamel: mcTemplatesInfo
+        methodNameSnake: mc_templates_info
+      summary: Get Mailchimp Template info
+      description: Get information about a Mailchimp Transactional template in your account.
+      operationId: postMcTemplatesInfo
+      tags:
+      - mctemplates
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the Mailchimp Transactional template
+                properties:
+                  mc_template_id:
+                    description: Mailchimp template ID
+                    type: integer
+                    example: 12345
+                  mc_template_name:
+                    description: Template name
+                    type: string
+                    example: Welcome Email
+                  labels:
+                    description: Array of labels (always empty for transactional templates)
+                    type: array
+                    items:
+                      type: string
+                    example: []
+                  code:
+                    description: Template HTML (draft version)
+                    type: string
+                    example: <div>Welcome!</div>
+                  subject:
+                    description: Default subject line
+                    type: string
+                    example: Welcome to our service
+                  from_email:
+                    description: Default sending address
+                    type: string
+                    example: support@example.com
+                  from_name:
+                    description: Default from name
+                    type: string
+                    example: Support Team
+                  text:
+                    description: Template text (draft version)
+                    type: string
+                    example: Welcome to our service!
+                  publish_code:
+                    description: Template HTML (published version)
+                    type: string
+                    example: <div>Welcome!</div>
+                  publish_text:
+                    description: Template text (published version)
+                    type: string
+                    example: Welcome to our service!
+                  published_at:
+                    description: Date and time when template was published in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40'
+                  created_at:
+                    description: Date and time when template was created in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40.26276'
+                  updated_at:
+                    description: Date and time when template was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40.26277'
+                  draft_updated_at:
+                    description: Date and time when template draft was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40'
+                  is_broken_template:
+                    description: Whether template has rendering errors
+                    type: boolean
+                    example: false
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the Mailchimp Transactional template
+                properties:
+                  mc_template_id:
+                    description: Mailchimp template ID
+                    type: integer
+                    example: 12345
+                  mc_template_name:
+                    description: Template name
+                    type: string
+                    example: Welcome Email
+                  labels:
+                    description: Array of labels (always empty for transactional templates)
+                    type: array
+                    items:
+                      type: string
+                    example: []
+                  code:
+                    description: Template HTML (draft version)
+                    type: string
+                    example: <div>Welcome!</div>
+                  subject:
+                    description: Default subject line
+                    type: string
+                    example: Welcome to our service
+                  from_email:
+                    description: Default sending address
+                    type: string
+                    example: support@example.com
+                  from_name:
+                    description: Default from name
+                    type: string
+                    example: Support Team
+                  text:
+                    description: Template text (draft version)
+                    type: string
+                    example: Welcome to our service!
+                  publish_code:
+                    description: Template HTML (published version)
+                    type: string
+                    example: <div>Welcome!</div>
+                  publish_text:
+                    description: Template text (published version)
+                    type: string
+                    example: Welcome to our service!
+                  published_at:
+                    description: Date and time when template was published in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40'
+                  created_at:
+                    description: Date and time when template was created in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40.26276'
+                  updated_at:
+                    description: Date and time when template was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40.26277'
+                  draft_updated_at:
+                    description: Date and time when template draft was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40'
+                  is_broken_template:
+                    description: Whether template has rendering errors
+                    type: boolean
+                    example: false
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the Mailchimp Transactional template
+                properties:
+                  mc_template_id:
+                    description: Mailchimp template ID
+                    type: integer
+                    example: 12345
+                  mc_template_name:
+                    description: Template name
+                    type: string
+                    example: Welcome Email
+                  labels:
+                    description: Array of labels (always empty for transactional templates)
+                    type: array
+                    items:
+                      type: string
+                    example: []
+                  code:
+                    description: Template HTML (draft version)
+                    type: string
+                    example: <div>Welcome!</div>
+                  subject:
+                    description: Default subject line
+                    type: string
+                    example: Welcome to our service
+                  from_email:
+                    description: Default sending address
+                    type: string
+                    example: support@example.com
+                  from_name:
+                    description: Default from name
+                    type: string
+                    example: Support Team
+                  text:
+                    description: Template text (draft version)
+                    type: string
+                    example: Welcome to our service!
+                  publish_code:
+                    description: Template HTML (published version)
+                    type: string
+                    example: <div>Welcome!</div>
+                  publish_text:
+                    description: Template text (published version)
+                    type: string
+                    example: Welcome to our service!
+                  published_at:
+                    description: Date and time when template was published in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40'
+                  created_at:
+                    description: Date and time when template was created in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40.26276'
+                  updated_at:
+                    description: Date and time when template was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40.26277'
+                  draft_updated_at:
+                    description: Date and time when template draft was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                    type: string
+                    format: date-time
+                    example: '2025-08-29 18:47:40'
+                  is_broken_template:
+                    description: Whether template has rendering errors
+                    type: boolean
+                    example: false
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - mc_template_id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                mc_template_id:
+                  type: integer
+                  description: the id of the Mailchimp template
+        required: true
+  /mctemplates/list:
+    post:
+      x-custom-config:
+        methodNameCamel: mcTemplatesList
+        methodNameSnake: mc_templates_list
+      summary: List Mailchimp Transactional Templates
+      description: Return a list of all Mailchimp Transactional templates available to this user.
+      operationId: postMcTemplatesList
+      tags:
+      - mctemplates
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Array of Mailchimp Transactional templates
+                items:
+                  type: object
+                  description: Information about the Mailchimp Transactional template
+                  properties:
+                    mc_template_id:
+                      description: Mailchimp template ID
+                      type: integer
+                      example: 12345
+                    mc_template_name:
+                      description: Template name
+                      type: string
+                      example: Welcome Email
+                    labels:
+                      description: Array of labels (always empty for transactional templates)
+                      type: array
+                      items:
+                        type: string
+                      example: []
+                    code:
+                      description: Template HTML (draft version)
+                      type: string
+                      example: <div>Welcome!</div>
+                    subject:
+                      description: Default subject line
+                      type: string
+                      example: Welcome to our service
+                    from_email:
+                      description: Default sending address
+                      type: string
+                      example: support@example.com
+                    from_name:
+                      description: Default from name
+                      type: string
+                      example: Support Team
+                    text:
+                      description: Template text (draft version)
+                      type: string
+                      example: Welcome to our service!
+                    publish_code:
+                      description: Template HTML (published version)
+                      type: string
+                      example: <div>Welcome!</div>
+                    publish_text:
+                      description: Template text (published version)
+                      type: string
+                      example: Welcome to our service!
+                    published_at:
+                      description: Date and time when template was published in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40'
+                    created_at:
+                      description: Date and time when template was created in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40.26276'
+                    updated_at:
+                      description: Date and time when template was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40.26277'
+                    draft_updated_at:
+                      description: Date and time when template draft was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40'
+                    is_broken_template:
+                      description: Whether template has rendering errors
+                      type: boolean
+                      example: false
+            application/x-php:
+              schema:
+                type: array
+                description: Array of Mailchimp Transactional templates
+                items:
+                  type: object
+                  description: Information about the Mailchimp Transactional template
+                  properties:
+                    mc_template_id:
+                      description: Mailchimp template ID
+                      type: integer
+                      example: 12345
+                    mc_template_name:
+                      description: Template name
+                      type: string
+                      example: Welcome Email
+                    labels:
+                      description: Array of labels (always empty for transactional templates)
+                      type: array
+                      items:
+                        type: string
+                      example: []
+                    code:
+                      description: Template HTML (draft version)
+                      type: string
+                      example: <div>Welcome!</div>
+                    subject:
+                      description: Default subject line
+                      type: string
+                      example: Welcome to our service
+                    from_email:
+                      description: Default sending address
+                      type: string
+                      example: support@example.com
+                    from_name:
+                      description: Default from name
+                      type: string
+                      example: Support Team
+                    text:
+                      description: Template text (draft version)
+                      type: string
+                      example: Welcome to our service!
+                    publish_code:
+                      description: Template HTML (published version)
+                      type: string
+                      example: <div>Welcome!</div>
+                    publish_text:
+                      description: Template text (published version)
+                      type: string
+                      example: Welcome to our service!
+                    published_at:
+                      description: Date and time when template was published in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40'
+                    created_at:
+                      description: Date and time when template was created in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40.26276'
+                    updated_at:
+                      description: Date and time when template was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40.26277'
+                    draft_updated_at:
+                      description: Date and time when template draft was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40'
+                    is_broken_template:
+                      description: Whether template has rendering errors
+                      type: boolean
+                      example: false
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: Array of Mailchimp Transactional templates
+                items:
+                  type: object
+                  description: Information about the Mailchimp Transactional template
+                  properties:
+                    mc_template_id:
+                      description: Mailchimp template ID
+                      type: integer
+                      example: 12345
+                    mc_template_name:
+                      description: Template name
+                      type: string
+                      example: Welcome Email
+                    labels:
+                      description: Array of labels (always empty for transactional templates)
+                      type: array
+                      items:
+                        type: string
+                      example: []
+                    code:
+                      description: Template HTML (draft version)
+                      type: string
+                      example: <div>Welcome!</div>
+                    subject:
+                      description: Default subject line
+                      type: string
+                      example: Welcome to our service
+                    from_email:
+                      description: Default sending address
+                      type: string
+                      example: support@example.com
+                    from_name:
+                      description: Default from name
+                      type: string
+                      example: Support Team
+                    text:
+                      description: Template text (draft version)
+                      type: string
+                      example: Welcome to our service!
+                    publish_code:
+                      description: Template HTML (published version)
+                      type: string
+                      example: <div>Welcome!</div>
+                    publish_text:
+                      description: Template text (published version)
+                      type: string
+                      example: Welcome to our service!
+                    published_at:
+                      description: Date and time when template was published in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40'
+                    created_at:
+                      description: Date and time when template was created in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40.26276'
+                    updated_at:
+                      description: Date and time when template was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40.26277'
+                    draft_updated_at:
+                      description: Date and time when template draft was last updated in UTC YYYY-MM-DD HH:MM:SS format
+                      type: string
+                      format: date-time
+                      example: '2025-08-29 18:47:40'
+                    is_broken_template:
+                      description: Whether template has rendering errors
+                      type: boolean
+                      example: false
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                search_query:
+                  description: Optional search query to filter templates
+                  type:
+                  - string
+                  - 'null'
+                  example: '""'
+        required: true
+  /mctemplates/render:
+    post:
+      x-custom-config:
+        methodNameCamel: mcTemplatesRender
+        methodNameSnake: mc_templates_render
+      summary: Render Mailchimp Transactional Template
+      description: Render a Mailchimp Transactional template with optional merge variables.
+      operationId: postMcTemplatesRender
+      tags:
+      - mctemplates
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: The rendered HTML template
+                properties:
+                  html:
+                    description: The rendered HTML content with merge variables applied
+                    type: string
+                    example: <html><body>Welcome John!</body></html>
+            application/x-php:
+              schema:
+                type: object
+                description: The rendered HTML template
+                properties:
+                  html:
+                    description: The rendered HTML content with merge variables applied
+                    type: string
+                    example: <html><body>Welcome John!</body></html>
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: The rendered HTML template
+                properties:
+                  html:
+                    description: The rendered HTML content with merge variables applied
+                    type: string
+                    example: <html><body>Welcome John!</body></html>
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - mc_template_id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                mc_template_id:
+                  type: integer
+                  description: the id of the Mailchimp template to render
+                mc_template_version:
+                  description: 'Template version - "published" or "draft". Note: requesting "published" when the template has not been published will return a 404 error.'
+                  type: string
+                  default: published
+                  enum:
+                  - published
+                  - draft
+                  example: published
+                merge_vars:
+                  type: array
+                  description: an array of merge variables to inject into the template
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        description: the merge variable name
+                      content:
+                        type: string
+                        description: the merge variable value
+        required: true
+  /mctemplates/time-series:
+    post:
+      x-custom-config:
+        methodNameCamel: mcTemplatesTimeSeries
+        methodNameSnake: mc_templates_time_series
+      summary: Get Mailchimp Transactional Template Time Series
+      description: Return the recent history (hourly stats for the last 30 days) for a Mailchimp Transactional template. Returns an empty array if the template exists but has never been used to send messages.
+      operationId: postMcTemplatesTimeSeries
+      tags:
+      - mctemplates
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Array of hourly stats for the template
+                items:
+                  type: object
+                  properties:
+                    time:
+                      description: The hour as a UTC date string in YYYY-MM-DD HH:00:00 format
+                      type: string
+                      format: date-time
+                      example: '2013-01-01 15:00:00'
+                    sent:
+                      description: The number of emails sent during the time period
+                      type: integer
+                      example: 42
+                    hard_bounces:
+                      description: The number of emails hard bounced during the time period
+                      type: integer
+                      example: 42
+                    soft_bounces:
+                      description: The number of emails soft bounced during the time period
+                      type: integer
+                      example: 42
+                    rejects:
+                      description: The number of emails rejected during the time period
+                      type: integer
+                      example: 42
+                    complaints:
+                      description: The number of spam complaints received during the time period
+                      type: integer
+                      example: 42
+                    unsubs:
+                      description: The number of unsubscribes during the time period
+                      type: integer
+                      example: 42
+                    opens:
+                      description: The number of emails opened during the time period
+                      type: integer
+                      example: 42
+                    unique_opens:
+                      description: The number of unique opens during the time period
+                      type: integer
+                      example: 42
+                    clicks:
+                      description: The number of URLs clicked during the time period
+                      type: integer
+                      example: 42
+                    unique_clicks:
+                      description: The number of unique clicks during the time period
+                      type: integer
+                      example: 42
+            application/x-php:
+              schema:
+                type: array
+                description: Array of hourly stats for the template
+                items:
+                  type: object
+                  properties:
+                    time:
+                      description: The hour as a UTC date string in YYYY-MM-DD HH:00:00 format
+                      type: string
+                      format: date-time
+                      example: '2013-01-01 15:00:00'
+                    sent:
+                      description: The number of emails sent during the time period
+                      type: integer
+                      example: 42
+                    hard_bounces:
+                      description: The number of emails hard bounced during the time period
+                      type: integer
+                      example: 42
+                    soft_bounces:
+                      description: The number of emails soft bounced during the time period
+                      type: integer
+                      example: 42
+                    rejects:
+                      description: The number of emails rejected during the time period
+                      type: integer
+                      example: 42
+                    complaints:
+                      description: The number of spam complaints received during the time period
+                      type: integer
+                      example: 42
+                    unsubs:
+                      description: The number of unsubscribes during the time period
+                      type: integer
+                      example: 42
+                    opens:
+                      description: The number of emails opened during the time period
+                      type: integer
+                      example: 42
+                    unique_opens:
+                      description: The number of unique opens during the time period
+                      type: integer
+                      example: 42
+                    clicks:
+                      description: The number of URLs clicked during the time period
+                      type: integer
+                      example: 42
+                    unique_clicks:
+                      description: The number of unique clicks during the time period
+                      type: integer
+                      example: 42
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: Array of hourly stats for the template
+                items:
+                  type: object
+                  properties:
+                    time:
+                      description: The hour as a UTC date string in YYYY-MM-DD HH:00:00 format
+                      type: string
+                      format: date-time
+                      example: '2013-01-01 15:00:00'
+                    sent:
+                      description: The number of emails sent during the time period
+                      type: integer
+                      example: 42
+                    hard_bounces:
+                      description: The number of emails hard bounced during the time period
+                      type: integer
+                      example: 42
+                    soft_bounces:
+                      description: The number of emails soft bounced during the time period
+                      type: integer
+                      example: 42
+                    rejects:
+                      description: The number of emails rejected during the time period
+                      type: integer
+                      example: 42
+                    complaints:
+                      description: The number of spam complaints received during the time period
+                      type: integer
+                      example: 42
+                    unsubs:
+                      description: The number of unsubscribes during the time period
+                      type: integer
+                      example: 42
+                    opens:
+                      description: The number of emails opened during the time period
+                      type: integer
+                      example: 42
+                    unique_opens:
+                      description: The number of unique opens during the time period
+                      type: integer
+                      example: 42
+                    clicks:
+                      description: The number of URLs clicked during the time period
+                      type: integer
+                      example: 42
+                    unique_clicks:
+                      description: The number of unique clicks during the time period
+                      type: integer
+                      example: 42
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - mc_template_id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                mc_template_id:
+                  type: integer
+                  description: the id of the Mailchimp template to get time series data for
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

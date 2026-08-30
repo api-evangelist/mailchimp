@@ -1,0 +1,981 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Inbound API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: inbound
+paths:
+  /inbound/domains:
+    post:
+      x-custom-config:
+        methodNameCamel: domains
+        methodNameSnake: domains
+      summary: List inbound domains
+      description: List the domains that have been configured for inbound delivery.
+      operationId: postInboundDomains
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the inbound domains associated with the account
+                items:
+                  type: object
+                  description: the individual domain info
+                  properties:
+                    domain:
+                      type: string
+                      description: the domain name that is accepting mail
+                      example: https://intuit.com
+                    created_at:
+                      type: string
+                      description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      format: date-time
+                      example: '2025-04-29 18:47:35'
+                    valid_mx:
+                      type: boolean
+                      description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                      example: true
+            application/x-php:
+              schema:
+                type: array
+                description: the inbound domains associated with the account
+                items:
+                  type: object
+                  description: the individual domain info
+                  properties:
+                    domain:
+                      type: string
+                      description: the domain name that is accepting mail
+                      example: https://intuit.com
+                    created_at:
+                      type: string
+                      description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      format: date-time
+                      example: '2025-04-29 18:47:35'
+                    valid_mx:
+                      type: boolean
+                      description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                      example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the inbound domains associated with the account
+                items:
+                  type: object
+                  description: the individual domain info
+                  properties:
+                    domain:
+                      type: string
+                      description: the domain name that is accepting mail
+                      example: https://intuit.com
+                    created_at:
+                      type: string
+                      description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      format: date-time
+                      example: '2025-04-29 18:47:35'
+                    valid_mx:
+                      type: boolean
+                      description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                      example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /inbound/add-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: addDomain
+        methodNameSnake: add_domain
+      summary: Add inbound domain
+      description: Add an inbound domain to your account.
+      operationId: postInboundAddDomain
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: information about the domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: 'a domain name; Validation: strip_tags, required'
+        required: true
+  /inbound/check-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: checkDomain
+        methodNameSnake: check_domain
+      summary: Check domain settings
+      description: Check the MX settings for an inbound domain. The domain must have already been added with the add-domain call.
+      operationId: postInboundCheckDomain
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the inbound domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: information about the inbound domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the inbound domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: an existing inbound domain
+        required: true
+  /inbound/delete-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: deleteDomain
+        methodNameSnake: delete_domain
+      summary: Delete inbound domain
+      description: Delete an inbound domain from the account. All mail will stop routing for this domain immediately.
+      operationId: postInboundDeleteDomain
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the deleted domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: information about the deleted domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the deleted domain
+                properties:
+                  domain:
+                    type: string
+                    description: the domain name that is accepting mail
+                    example: https://intuit.com
+                  created_at:
+                    type: string
+                    description: the date and time that the inbound domain was added as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  valid_mx:
+                    type: boolean
+                    description: true if this inbound domain has successfully set up an MX record to deliver mail to the Mandrill servers
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: an existing inbound domain
+        required: true
+  /inbound/routes:
+    post:
+      x-custom-config:
+        methodNameCamel: routes
+        methodNameSnake: routes
+      summary: List routes
+      description: List the routes defined for an inbound domain or SMS program. Provide either domain or phone (not both).
+      operationId: postInboundRoutes
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the routes associated with the domain
+                items:
+                  type: object
+                  description: the individual mailbox route
+                  properties:
+                    id:
+                      type: string
+                      description: the unique identifier of the route
+                      example: '12.123456'
+                    pattern:
+                      type: string
+                      description: the search pattern that the mailbox name should match
+                      example: .*
+                    url:
+                      type: string
+                      description: the webhook URL where inbound messages will be published
+                      example: https://mydomain.com/webhook
+            application/x-php:
+              schema:
+                type: array
+                description: the routes associated with the domain
+                items:
+                  type: object
+                  description: the individual mailbox route
+                  properties:
+                    id:
+                      type: string
+                      description: the unique identifier of the route
+                      example: '12.123456'
+                    pattern:
+                      type: string
+                      description: the search pattern that the mailbox name should match
+                      example: .*
+                    url:
+                      type: string
+                      description: the webhook URL where inbound messages will be published
+                      example: https://mydomain.com/webhook
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the routes associated with the domain
+                items:
+                  type: object
+                  description: the individual mailbox route
+                  properties:
+                    id:
+                      type: string
+                      description: the unique identifier of the route
+                      example: '12.123456'
+                    pattern:
+                      type: string
+                      description: the search pattern that the mailbox name should match
+                      example: .*
+                    url:
+                      type: string
+                      description: the webhook URL where inbound messages will be published
+                      example: https://mydomain.com/webhook
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: The domain to check (required if phone is not provided)
+                phone:
+                  type: string
+                  description: The SMS program phone number (required if domain is not provided)
+        required: true
+  /inbound/add-route:
+    post:
+      x-custom-config:
+        methodNameCamel: addRoute
+        methodNameSnake: add_route
+      summary: Add route
+      description: Add a new route to an inbound domain or SMS program. Provide either domain or phone (not both).
+      operationId: postInboundAddRoute
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the added mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+            application/x-php:
+              schema:
+                type: object
+                description: the added mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the added mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - url
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: An existing inbound domain (required if phone is not provided)
+                phone:
+                  description: The SMS program phone number - the TO number that receives inbound SMS (required if domain is not provided)
+                  type: string
+                pattern:
+                  type: string
+                  description: 'For email: the mailbox pattern (e.g., "mailbox-*"). For SMS: not used, the phone number is the pattern.'
+                url:
+                  type: string
+                  description: the webhook URL where the inbound messages will be published
+        required: true
+  /inbound/update-route:
+    post:
+      x-custom-config:
+        methodNameCamel: updateRoute
+        methodNameSnake: update_route
+      summary: Update mailbox route
+      description: Update the pattern or webhook of an existing inbound mailbox route. If null is provided for any fields, the values will remain unchanged.
+      operationId: postInboundUpdateRoute
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the updated mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+            application/x-php:
+              schema:
+                type: object
+                description: the updated mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the updated mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique identifier of an existing mailbox route
+                pattern:
+                  type: string
+                  description: 'For email: The search pattern that the mailbox name should match. For SMS: the sender''s phone number (FROM number).  Null to leave unchanged'
+                url:
+                  type: string
+                  description: 'the webhook URL where the inbound messages will be published; Validation: webhookexists'
+        required: true
+  /inbound/delete-route:
+    post:
+      x-custom-config:
+        methodNameCamel: deleteRoute
+        methodNameSnake: delete_route
+      summary: Delete mailbox route
+      description: Delete an existing inbound mailbox route.
+      operationId: postInboundDeleteRoute
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the deleted mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+            application/x-php:
+              schema:
+                type: object
+                description: the deleted mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the deleted mailbox route information
+                properties:
+                  id:
+                    type: string
+                    description: the unique identifier of the route
+                    example: '12.123456'
+                  pattern:
+                    type: string
+                    description: the search pattern that the mailbox name should match
+                    example: .*
+                  url:
+                    type: string
+                    description: the webhook URL where inbound messages will be published
+                    example: https://mydomain.com/webhook
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique identifier of an existing route
+        required: true
+  /inbound/send-raw:
+    post:
+      x-custom-config:
+        methodNameCamel: sendRaw
+        methodNameSnake: send_raw
+      summary: Send mime document
+      description: Take a raw MIME document destined for a domain with inbound domains set up, and send it to the inbound hook exactly as if it had been sent over SMTP.
+      operationId: postInboundSendRaw
+      tags:
+      - inbound
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of the information for each recipient in the message (usually one) that matched an inbound route
+                items:
+                  type: object
+                  description: the individual recipient information
+                  properties:
+                    email:
+                      type: string
+                      description: the email address of the matching recipient
+                      example: user@example.com
+                    pattern:
+                      type: string
+                      description: the mailbox route pattern that the recipient matched
+                      example: .*
+                    url:
+                      type: string
+                      description: the webhook URL that the message was posted to
+                      example: https://mydomain.com/webhook
+            application/x-php:
+              schema:
+                type: array
+                description: an array of the information for each recipient in the message (usually one) that matched an inbound route
+                items:
+                  type: object
+                  description: the individual recipient information
+                  properties:
+                    email:
+                      type: string
+                      description: the email address of the matching recipient
+                      example: user@example.com
+                    pattern:
+                      type: string
+                      description: the mailbox route pattern that the recipient matched
+                      example: .*
+                    url:
+                      type: string
+                      description: the webhook URL that the message was posted to
+                      example: https://mydomain.com/webhook
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of the information for each recipient in the message (usually one) that matched an inbound route
+                items:
+                  type: object
+                  description: the individual recipient information
+                  properties:
+                    email:
+                      type: string
+                      description: the email address of the matching recipient
+                      example: user@example.com
+                    pattern:
+                      type: string
+                      description: the mailbox route pattern that the recipient matched
+                      example: .*
+                    url:
+                      type: string
+                      description: the webhook URL that the message was posted to
+                      example: https://mydomain.com/webhook
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - raw_message
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                raw_message:
+                  type: string
+                  description: the full MIME document of an email message
+                to:
+                  type: array
+                  description: optionally define the recipients to receive the message - otherwise we'll use the To, Cc, and Bcc headers provided in the document
+                  items:
+                    type: string
+                    description: the email address of the recipient
+                    format: email
+                mail_from:
+                  type: string
+                  description: the address specified in the MAIL FROM stage of the SMTP conversation. Required for the SPF check.
+                  format: email
+                helo:
+                  type: string
+                  description: the identification provided by the client mta in the MTA state of the SMTP conversation. Required for the SPF check.
+                client_address:
+                  type: string
+                  description: the remote MTA's ip address. Optional; required for the SPF check.
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete
