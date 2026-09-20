@@ -1,163 +1,60 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Mailchimp
-providerId: mailchimp
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-reconciled: true
-tags:
-  - Email Marketing
-  - CRM
-  - Automation
-description: Mailchimp Marketing pricing tiers. Pricing scales with contact tier.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://mailchimp.com/pricing/marketing/
 sources:
-  - https://mailchimp.com/pricing/marketing/
-verification:
-  checked: '2026-08-13'
-  url: https://mailchimp.com/pricing/marketing/
-  http_status: 200
-  confirmed:
-    - The four tiers recorded below (Free, Essentials, Standard, Premium) are the tiers the live page still offers.
-    - Pricing scales by contact tier, selected from a picker running 0-500 up to 1,000,000+ contacts.
-    - A 14-day Standard trial and a 15% first-12-months discount for 10,000+ contacts were being promoted.
-    - The page offers 18 currencies and separate Email Marketing / Email & SMS / Transactional pricing modes.
-  not_confirmed:
-    - >-
-      Per-tier prices. The amounts are rendered client-side from the contact-tier
-      and currency pickers and are not present in the served HTML, so the dollar
-      figures in plans[] below could not be re-verified today. They remain as
-      captured by the 2026-05-04 sweep; treat them as indicative, not quoted.
-  method_note: >-
-    method stays "generated" because the per-tier numbers still come from that
-    sweep rather than from a quotable published value.
+- https://mailchimp.com/pricing/marketing/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T124425
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Pricing varies by contact tier selector; displayed prices are promotional 15%-off first-12-months
+  rates for the lowest contact tier. High-volume (200,000+ contacts) and custom Premium pricing require
+  contacting sales. Prices selectable in multiple currencies; USD shown.
+plan_count: 4
+currency: USD
 plans:
-  - id: mailchimp-free
-    name: Free
-    type: freemium
-    description: Up to 250 contacts; ~500 sends/mo.
-    entries:
-      - label: Per user
-        name: seat
-        type: subscription
-        metric: user
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: true
-      - label: Contacts
-        name: contacts
-        type: quota
-        metric: contact
-        limit: 250
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Email campaigns
-      - name: Basic templates
-      - name: 1 audience
-      - name: 1 seat
-      - name: Popup forms
-  - id: mailchimp-essentials
-    name: Essentials
-    type: paid
-    description: $13/month at 500 contacts; up to 5,000 contacts.
-    entries:
-      - label: Monthly base (500 contacts)
-        name: base
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '13.00'
-        userMultiplied: false
-      - label: Contacts max
-        name: contacts
-        type: quota
-        metric: contact
-        limit: 5000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Email scheduling
-      - name: A/B testing
-      - name: Up to 4 automation steps
-      - name: 3 audiences
-      - name: 3 seats
-  - id: mailchimp-standard
-    name: Standard
-    type: paid
-    description: $20/month at 500 contacts; up to 10,000 contacts.
-    entries:
-      - label: Monthly base (500 contacts)
-        name: base
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '20.00'
-        userMultiplied: false
-      - label: Contacts max
-        name: contacts
-        type: quota
-        metric: contact
-        limit: 10000
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Up to 200 automation flows
-      - name: Dynamic content
-      - name: Custom reports
-      - name: 5 audiences
-      - name: 5 seats
-      - name: Generative AI
-  - id: mailchimp-premium
-    name: Premium
-    type: paid
-    description: $350/month starting; unlimited contacts.
-    entries:
-      - label: Monthly base
-        name: base
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '350.00'
-        userMultiplied: false
-      - label: Contacts max
-        name: contacts
-        type: quota
-        metric: contact
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Predictive segmentation
-      - name: Enhanced automation flows
-      - name: Multivariate testing
-      - name: Phone support
-      - name: Dedicated onboarding
-      - name: Unlimited users
+- name: Premium
+  price_text: $ 350 00 /mo for 12 months
+  price: 350
+  currency: USD
+  period: month
+  unit: per month for 12 months
+  included_quota: Send up to 150,000 emails each month. Unlimited contacts, unlimited users, unlimited
+    audiences, 15X contacts monthly email sends
+  overage: Overages apply if contact or email send limit is exceeded.
+- name: Standard
+  price_text: $ 20 00 /mo for 12 months
+  price: 20
+  currency: USD
+  period: month
+  unit: per month for 12 months
+  included_quota: Send up to 6,000 emails each month; 5 Seats; 5 Audiences; 12X contacts monthly email
+    sends
+  overage: Overages apply if contact or email send limit is exceeded.
+- name: Essentials
+  price_text: $ 13 00 /mo for 12 months
+  price: 13
+  currency: USD
+  period: month
+  unit: per month for 12 months
+  included_quota: 3 Seats; 3 Audiences; 10X contacts monthly email sends
+  overage: Overages apply if contact or email send limit is exceeded.
+- name: Free
+  price_text: $ 0 /month†
+  price: 0
+  currency: USD
+  period: month
+  unit: per month
+  included_quota: Limit of 250 contacts; 1 Seat; 1 Audience; Max of 500/mo or 250/day email sends
+  overage: Sending will be paused if contact or email send limit is exceeded.
+rate_limit_statements:
+- Max of 500/mo or 250/day
+- Send up to 6,000 emails each month.
+- Send up to 150,000 emails each month.
+- Send up to 100 emails risk-free—no credit card required.
+- Up to 200 flows
+- Up to 4 flow steps
