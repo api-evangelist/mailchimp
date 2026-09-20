@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 10
+edge_count: 11
 edges:
 - tag: campaigns
   spec_file: mailchimp-campaigns-api-openapi.yml
@@ -76,6 +76,19 @@ edges:
     Update Contact
   reason: CRUD over contact records held within a marketing audience — creation, retrieval and update
     of customer contact master data, i.e. Customer Data Management.
+- tag: webhooks
+  spec_file: mailchimp-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.75
+  evidence: POST /webhooks/add  postWebhooksAdd  Add webhook; POST /webhooks/list  postWebhooksList  List
+    webhooks
+  reason: CRUD over outbound webhook subscriptions exposed to integrators, which is precisely the Webhook
+    & Event Subscription Management sub-capability of the developer platform. Confidence held at 0.75
+    because webhook plumbing is often better left unmapped, but the frame provides an explicit matching
+    capability.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: sms-campaigns
   spec_file: mailchimp-sms-campaigns-api-openapi.yml
   capability_id: BC-400.60
