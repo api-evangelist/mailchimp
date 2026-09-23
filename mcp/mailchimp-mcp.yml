@@ -69,40 +69,7 @@ servers:
 deployment:
   mode: remote
   endpoint: https://mandrillapp.com/mcp
-  install: null
-  package: null
-  auth: api-key
   verified: probed
   probe: live
-  checked: '2026-08-13'
-  source: >-
-    https://mailchimp.com/developer/transactional/guides/how-to-use-mailchimps-transactional-messaging-mcp/
-    plus a direct JSON-RPC probe of the endpoint.
-  note: >-
-    Remote only. Mailchimp ships a hosted HTTP endpoint an MCP client can POST to
-    today; there is no first-party stdio package to install. The endpoint covers
-    the TRANSACTIONAL API only — the Marketing API has no Mailchimp-operated MCP
-    server, and the marketing tool list in this file is an API Evangelist derived
-    candidate, not a provider claim.
-  evidence:
-    fetched: '2026-08-13'
-    url: https://mandrillapp.com/mcp
-    request: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
-    http_status: 200
-    content_type: application/json
-    response: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authorization: Bearer <api_key> required"},"id":null}'
-    interpretation: >-
-      Live and reachable; tools/list is auth-gated behind a Transactional API key
-      passed as a bearer token, so the tool inputSchemas could not be read
-      anonymously. Tool names/descriptions in this file come from Mailchimp's
-      published guide. See mcp/mailchimp-tool-crosswalk.yml.
-  well_known:
-    - path: /.well-known/oauth-protected-resource
-      host: https://mandrillapp.com
-      status: 404
-    - path: /.well-known/oauth-authorization-server
-      host: https://mandrillapp.com
-      status: 404
-  note_oauth: >-
-    No RFC 8414 / RFC 9728 discovery documents are served for the MCP endpoint —
-    authorization is a static API key, not an OAuth flow.
+  checked: '2026-08-12'
+  source: catalog MCP census

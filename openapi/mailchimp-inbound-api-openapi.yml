@@ -9,7 +9,7 @@ info:
 servers:
 - url: https://mandrillapp.com/api/1.3
 tags:
-- name: inbound
+- name: Inbound
 paths:
   /inbound/domains:
     post:
@@ -20,7 +20,7 @@ paths:
       description: List the domains that have been configured for inbound delivery.
       operationId: postInboundDomains
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -110,7 +110,7 @@ paths:
       description: Add an inbound domain to your account.
       operationId: postInboundAddDomain
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -195,7 +195,7 @@ paths:
       description: Check the MX settings for an inbound domain. The domain must have already been added with the add-domain call.
       operationId: postInboundCheckDomain
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -280,7 +280,7 @@ paths:
       description: Delete an inbound domain from the account. All mail will stop routing for this domain immediately.
       operationId: postInboundDeleteDomain
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -365,7 +365,7 @@ paths:
       description: List the routes defined for an inbound domain or SMS program. Provide either domain or phone (not both).
       operationId: postInboundRoutes
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -458,7 +458,7 @@ paths:
       description: Add a new route to an inbound domain or SMS program. Provide either domain or phone (not both).
       operationId: postInboundAddRoute
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -549,7 +549,7 @@ paths:
       description: Update the pattern or webhook of an existing inbound mailbox route. If null is provided for any fields, the values will remain unchanged.
       operationId: postInboundUpdateRoute
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -637,7 +637,7 @@ paths:
       description: Delete an existing inbound mailbox route.
       operationId: postInboundDeleteRoute
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''
@@ -719,7 +719,7 @@ paths:
       description: Take a raw MIME document destined for a domain with inbound domains set up, and send it to the inbound hook exactly as if it had been sent over SMTP.
       operationId: postInboundSendRaw
       tags:
-      - inbound
+      - Inbound
       responses:
         '200':
           description: ''

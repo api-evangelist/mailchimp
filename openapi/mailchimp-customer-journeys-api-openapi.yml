@@ -1,216 +1,151 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  version: 3.0.55
-  title: Mailchimp Marketing Abuse Goals API
+  version: 3.0.91
+  title: Mailchimp Marketing Customer Journeys API
   contact:
     name: Mailchimp API Support
     email: apihelp@mailchimp.com
   x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/marketing.json
-  description: '
-
-    The Mailchimp Marketing API provides programmatic access to Mailchimp data
-
-    and functionality, allowing developers to build custom features to do
-
-    things like sync email activity and campaign analytics with their
-
-    database, manage audiences and campaigns, and more.'
-host: server.api.mailchimp.com
-basePath: /3.0
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
-- application/problem+json
+servers:
+- url: https://server.api.mailchimp.com/3.0
 security:
 - basicAuth: []
 tags:
-- name: Goals
+- name: customer Journeys
 paths:
-  /lists/{list_id}/members/{subscriber_hash}/goals:
-    get:
-      summary: Mailchimp List Member Goal Events
-      description: Get the last 50 Goal events for a member on a specific list.
-      operationId: getListsIdMembersIdGoals
+  /customer-journeys/journeys/{journey_id}/steps/{step_id}/actions/trigger:
+    post:
+      summary: Customer Journeys API trigger for a contact
+      description: A step trigger in an Automation flow. To use it, create a starting point or step from the Automation flow builder in the app using the Customer Journey API condition. We’ll provide a url during the process that includes the {journey_id} and {step_id}. You’ll then be able to use this endpoint to trigger the condition for the posted contact.
+      operationId: postCustomerJourneysJourneysIdStepsIdActionsTrigger
       parameters:
-      - name: list_id
-        x-title: List ID
-        in: path
-        description: The unique ID for the list.
-        required: true
-        type: string
-        example: '500123'
       - in: path
-        name: subscriber_hash
-        x-title: Subscriber Hash
-        type: string
+        name: journey_id
+        x-title: Flow ID
         required: true
-        description: The MD5 hash of the lowercase version of the list member's email address. This endpoint also accepts a list member's email address or contact_id.
-        example: example_value
-      - name: fields
-        x-title: Fields
-        in: query
-        description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
-        required: false
-        type: array
-        collectionFormat: csv
-        items:
-          type: string
-        example: example_value
-      - name: exclude_fields
-        x-title: Exclude Fields
-        in: query
-        description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
-        required: false
-        type: array
-        collectionFormat: csv
-        items:
-          type: string
-        example: example_value
+        description: The id for the flow.
+        schema:
+          type: integer
+      - in: path
+        name: step_id
+        x-title: Step ID
+        required: true
+        description: The id for the Step.
+        schema:
+          type: integer
       responses:
-        '200':
-          description: ''
-          schema:
-            type: object
-            title: Collection of Member Activity Events
-            description: The last 50 Goal events for a member on a specific list.
-            properties:
-              goals:
-                type: array
-                title: Goal Activity
-                description: The last 50 Goal events triggered by a member.
-                items:
-                  type: object
-                  title: Goal
-                  description: A single instance of a goal activity.
-                  properties:
-                    goal_id:
-                      type: integer
-                      title: Goal ID
-                      description: The id for a Goal event.
-                    event:
-                      type: string
-                      title: Event Name
-                      description: The name/type of Goal event triggered.
-                    last_visited_at:
-                      type: string
-                      title: Last Visit Date
-                      description: The date and time the user last triggered the Goal event in ISO 8601 format.
-                      format: date-time
-                    data:
-                      type: string
-                      title: Additional Data
-                      description: Any extra data passed with the Goal event.
-              list_id:
-                type: string
-                title: List ID
-                description: The list id.
-                readOnly: true
-              email_id:
-                type: string
-                title: Email Hash
-                description: The MD5 hash of the lowercase version of the list member's email address.
-                readOnly: true
-              total_items:
-                type: integer
-                title: Item Count
-                description: The total number of items matching the query regardless of pagination.
-                readOnly: true
-              _links:
-                title: Links
-                description: A list of link types and descriptions for the API schema documents.
-                type: array
-                items:
-                  type: object
-                  title: Resource Link
-                  description: This object represents a link from the resource where it is found to another resource or action that may be performed.
-                  properties:
-                    rel:
-                      type: string
-                      title: Rel
-                      description: As with an HTML 'rel' attribute, this describes the type of link.
-                      readOnly: true
-                    href:
-                      type: string
-                      title: Href
-                      description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
-                      readOnly: true
-                    method:
-                      type: string
-                      title: Method
-                      description: The HTTP method that should be used when accessing the URL defined in 'href'.
-                      enum:
-                      - GET
-                      - POST
-                      - PUT
-                      - PATCH
-                      - DELETE
-                      - OPTIONS
-                      - HEAD
-                      readOnly: true
-                    targetSchema:
-                      type: string
-                      title: Target Schema
-                      description: For GETs, this is a URL representing the schema that the response should conform to.
-                      readOnly: true
-                    schema:
-                      type: string
-                      title: Schema
-                      description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
-                      readOnly: true
-                readOnly: true
+        '204':
+          description: An empty response
+          content:
+            application/json:
+              schema:
+                description: Empty Response
+            application/problem+json:
+              schema:
+                description: Empty Response
         default:
           description: An error generated by the Mailchimp API.
-          schema:
-            type: object
-            title: Problem Detail Document
-            description: An error generated by the Mailchimp API. Conforms to IETF draft 'draft-nottingham-http-problem-06'.
-            required:
-            - type
-            - title
-            - status
-            - detail
-            - instance
-            properties:
-              type:
-                type: string
-                title: Problem Type
-                description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
-                example: https://mailchimp.com/developer/marketing/docs/errors/
-              title:
-                type: string
-                title: Error Title
-                description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
-                example: Resource Not Found
-              status:
-                type: integer
-                title: HTTP Status Code
-                description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
-                example: 404
-              detail:
-                type: string
-                title: Error Message
-                description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
-                example: The requested resource could not be found.
-              instance:
-                type: string
-                title: Instance ID
-                description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
-                example: 995c5cb0-3280-4a6e-808b-3b096d0bb219
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Problem Detail Document
+                description: An error generated by the Mailchimp API. Conforms to IETF draft 'draft-nottingham-http-problem-06'.
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - instance
+                properties:
+                  type:
+                    type: string
+                    title: Problem Type
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    example: https://mailchimp.com/developer/marketing/docs/errors/
+                  title:
+                    type: string
+                    title: Error Title
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    example: Resource Not Found
+                  status:
+                    type: integer
+                    title: HTTP Status Code
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    example: 404
+                  detail:
+                    type: string
+                    title: Error Message
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    example: The requested resource could not be found.
+                  instance:
+                    type: string
+                    title: Instance ID
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    example: 995c5cb0-3280-4a6e-808b-3b096d0bb219
+            application/problem+json:
+              schema:
+                type: object
+                title: Problem Detail Document
+                description: An error generated by the Mailchimp API. Conforms to IETF draft 'draft-nottingham-http-problem-06'.
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - instance
+                properties:
+                  type:
+                    type: string
+                    title: Problem Type
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    example: https://mailchimp.com/developer/marketing/docs/errors/
+                  title:
+                    type: string
+                    title: Error Title
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    example: Resource Not Found
+                  status:
+                    type: integer
+                    title: HTTP Status Code
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    example: 404
+                  detail:
+                    type: string
+                    title: Error Message
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    example: The requested resource could not be found.
+                  instance:
+                    type: string
+                    title: Instance ID
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    example: 995c5cb0-3280-4a6e-808b-3b096d0bb219
       deprecated: false
       tags:
-      - Goals
+      - customer Journeys
       x-custom-config:
-        methodNameSnake: getListMemberGoals
-        methodNameCamel: getListMemberGoals
-      x-microcks-operation:
-        delay: 0
-        dispatcher: FALLBACK
-securityDefinitions:
-  basicAuth:
-    type: basic
+        methodNameSnake: trigger
+        methodNameCamel: trigger
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Subscriber in Automation flow's audience
+              description: Information about subscribers in a Automation flows's audience.
+              required:
+              - email_address
+              properties:
+                email_address:
+                  type: string
+                  title: Email Address
+                  description: The list member's email address.
+        required: true
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
 externalDocs:
   description: Learn more with the full Mailchimp API documentation.
   url: https://mailchimp.com/developer/marketing/
@@ -227,6 +162,26 @@ x-doc-structure:
       description: Get the latest Chimp Chatter activity from your account.
       paths:
       - /activity-feed/chimp-chatter
+    audiences:
+      title: Audiences (BETA)
+      description: Your Mailchimp audience is where you store and manage all of your omni-channel contacts. The Audiences Endpoints (BETA) is available for evaluation or testing purposes only, may contain bugs or errors, and may not be as reliable as other Mailchimp features. Intuit may modify or discontinue this feature at any time without notice. By accessing the endpoints you agree to the [Audiences Endpoints (BETA) Terms of Use](https://mailchimp.com/developer/marketing/docs/audiences-introduction). Consent must be accurately mapped to the supported marketing consent values. Unsupported values - including opt-outs - must be updated manually. See [Audiences Endpoints (BETA) Documentation](https://mailchimp.com/developer/marketing/docs/audiences-introduction) for terms and additional details.
+      paths:
+      - /audiences
+      - /audiences/{audience_id}
+      subResources:
+      - audiences-contacts
+      - audiences-contact-privacy-remove
+    audiences-contacts:
+      title: Contacts
+      description: Manage contacts within a Mailchimp audience. The Audiences Endpoints (BETA) is available for evaluation or testing purposes only, may contain bugs or errors, and may not be as reliable as other Mailchimp features. Intuit may modify or discontinue this feature at any time without notice. By accessing the endpoints you agree to the [Audiences Endpoints (BETA) Terms of Use](https://mailchimp.com/developer/marketing/docs/audiences-introduction). Consent must be accurately mapped to the supported marketing consent values. Unsupported values - including opt-outs - must be updated manually. See [Audiences Endpoints (BETA) Documentation](https://mailchimp.com/developer/marketing/docs/audiences-introduction) for terms and additional details.
+      paths:
+      - /audiences/{audience_id}/contacts
+      - /audiences/{audience_id}/contacts/{contact_id}
+      - /audiences/{audience_id}/contacts/{contact_id}/actions/archive
+      - /audiences/{audience_id}/contacts/{contact_id}/actions/forget
+      subResources:
+      - audiences-contacts-tags
+      - audiences-contact-events
     authorized-apps:
       title: Authorized Apps
       description: Manage registered, connected apps for your Mailchimp account with the Authorized Apps endpoints.
@@ -234,8 +189,8 @@ x-doc-structure:
       - /authorized-apps
       - /authorized-apps/{app_id}
     automation:
-      title: Automations
-      description: Mailchimp's classic automations feature lets you build a series of emails that send to subscribers when triggered by a specific date, activity, or event. Use the API to manage Automation workflows, emails, and queues. Does not include Customer Journeys.
+      title: Classic Automations
+      description: Mailchimp's classic automations feature lets you build a series of emails that send to subscribers when triggered by a specific date, activity, or event. Use the API to manage workflows, emails, and queues for Classic Automations. Does not include Automation flows.
       paths:
       - /automations
       - /automations/{workflow_id}
@@ -277,13 +232,13 @@ x-doc-structure:
       - /batches/{batch_id}
     batch-webhooks:
       title: Batch Webhooks
-      description: 'Manage webhooks for batch operations. '
+      description: Manage webhooks for batch operations.
       paths:
       - /batch-webhooks
       - /batch-webhooks/{batch_webhook_id}
     account-exports:
       title: Account Exports
-      description: Generate a new export or download a finished export.
+      description: Generate a new account export or download a finished account export.
       paths:
       - /account-exports
       - /account-exports/{export_id}
@@ -306,6 +261,23 @@ x-doc-structure:
       - campaign-feedback
       - campaign-checklist
       - campaign-content
+    sms-campaigns:
+      title: SMS Campaigns
+      description: SMS Campaigns allow you to send text message marketing campaigns to your Mailchimp audience.
+      paths:
+      - /sms-campaigns
+      - /sms-campaigns/{sms_campaign_id}
+      - /sms-campaigns/{sms_campaign_id}/actions/cancel-send
+      - /sms-campaigns/{sms_campaign_id}/actions/send
+      - /sms-campaigns/{sms_campaign_id}/actions/schedule
+      subResources:
+      - sms-campaign-content
+    sms-campaign-content:
+      title: SMS Campaign Content
+      description: Manage the content of an SMS campaign.
+      paths:
+      - /sms-campaigns/{sms_campaign_id}/content
+      subResources: []
     campaign-feedback:
       title: Feedback
       description: Post comments, reply to team feedback, and send test emails while you're working together on a Mailchimp campaign.
@@ -329,6 +301,8 @@ x-doc-structure:
       - /connected-sites
       - /connected-sites/{connected_site_id}
       - /connected-sites/{connected_site_id}/actions/verify-script-installation
+      - /connected-sites/{connected_site_id}/actions/enable-pixel
+      - /connected-sites/{connected_site_id}/actions/disable-pixel
     conversations:
       title: Conversations
       description: Conversation tracking lets you view subscribers' replies to your campaigns in your Mailchimp account.
@@ -344,8 +318,8 @@ x-doc-structure:
       - /conversations/{conversation_id}/messages
       - /conversations/{conversation_id}/messages/{message_id}
     customer-journeys-journeys-steps-actions:
-      title: Customer Journeys
-      description: Manage Customer Journey automated workflows
+      title: Automation flows (Previously Customer Journeys)
+      description: Manage Automation flows
       paths:
       - /customer-journeys/journeys/{journey_id}/steps/{step_id}/actions/trigger
       subResources: []
@@ -384,8 +358,8 @@ x-doc-structure:
       - /landing-pages/{page_id}/actions/publish
       - /landing-pages/{page_id}/actions/unpublish
       subResources:
-      - landing-pages_content
-    landing-pages_content:
+      - landing-pages-content
+    landing-pages-content:
       title: Content
       description: The HTML content for your Mailchimp landing pages.
       paths:
@@ -472,6 +446,7 @@ x-doc-structure:
       - /lists/{list_id}/surveys/{survey_id}/actions/publish
       - /lists/{list_id}/surveys/{survey_id}/actions/unpublish
       - /lists/{list_id}/surveys/{survey_id}/actions/create-email
+      - /lists/{list_id}/surveys/{survey_id}/actions/replicate
     interest-categories:
       title: Interest Categories
       description: Manage interest categories for a specific list. Interest categories organize interests, which are used to group subscribers based on their preferences. These correspond to 'group titles' in the Mailchimp application.
@@ -676,6 +651,7 @@ x-doc-structure:
       - ecommerce-products
       - ecommerce-carts
       - ecommerce-promo-rules
+      - ecommerce-collections
     ecommerce-customers:
       title: Customers
       description: Add Customers to your Store to track their orders and to view E-Commerce Data for your Mailchimp lists and campaigns. Each Customer is connected to a Mailchimp list member, so adding a Customer can also add or update a list member.
@@ -734,7 +710,7 @@ x-doc-structure:
       - /ecommerce/stores/{store_id}/products/{product_id}/images/{image_id}
     ecommerce-carts:
       title: Carts
-      description: Use Carts to represent unfinished e-commerce transactions. This can be used to create an Abandoned Cart workflow, or to save a consumers shopping cart pending a successful Order.
+      description: Use Carts to represent unfinished e-commerce transactions. This can be used to create an Abandoned Cart workflow, or to save a consumer’s shopping cart pending a successful Order.
       paths:
       - /ecommerce/stores/{store_id}/carts
       - /ecommerce/stores/{store_id}/carts/{cart_id}
