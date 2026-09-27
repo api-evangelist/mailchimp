@@ -1470,8 +1470,6 @@ apis:
   humanURL: https://mailchimp.com/developer/open-commerce/
   baseURL: https://{open-commerce-host}/graphql
   tags:
-  - Allowlists
-  tags_raw:
   - Allow Lists
   properties:
   - type: OpenAPI
@@ -1526,8 +1524,6 @@ apis:
   humanURL: https://mailchimp.com/developer/open-commerce/
   baseURL: https://{open-commerce-host}/graphql
   tags:
-  - Customer Journey
-  tags_raw:
   - customer Journeys
   properties:
   - type: OpenAPI
@@ -1582,8 +1578,6 @@ apis:
   humanURL: https://mailchimp.com/developer/open-commerce/
   baseURL: https://{open-commerce-host}/graphql
   tags:
-  - Facebook Ads
-  tags_raw:
   - facebook Ads
   properties:
   - type: OpenAPI
@@ -1806,6 +1800,7 @@ tags:
 - E-Commerce
 - Webhook
 - Marketing Analytics
+- Email
 tags_raw:
 - Campaigns
 - Email Marketing
@@ -1817,18 +1812,22 @@ tags_raw:
 - E-Commerce
 - Webhooks
 - Marketing Analytics
+- Email
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - mailchimp/mailchimp-client-lib-codegen
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -2171,3 +2170,4 @@ x-enrichment:
   status: enriched
   artifacts_added: 11
   pass: local-v1
+x-parent: intuit
