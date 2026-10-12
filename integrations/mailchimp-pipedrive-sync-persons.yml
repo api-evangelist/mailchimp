@@ -1,0 +1,83 @@
+arazzo: 1.0.1
+info:
+  title: Add Pipedrive persons to Mailchimp
+  summary: Add Pipedrive persons to Mailchimp
+  description: Read a Pipedrive person and upsert them as a Mailchimp subscriber. Built from the Zapier Pipedrive listing edge.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipedrivePersons
+  url: https://raw.githubusercontent.com/api-evangelist/pipedrive/refs/heads/main/openapi/pipedrive-persons-api-openapi.yml
+  type: openapi
+- name: mailchimpLists
+  url: https://raw.githubusercontent.com/api-evangelist/mailchimp/refs/heads/main/openapi/mailchimp-lists-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sync-persons
+  summary: Add Pipedrive persons to Mailchimp
+  description: Read a Pipedrive person and upsert them as a Mailchimp subscriber. Built from the Zapier Pipedrive listing edge.
+  inputs:
+    type: object
+    required:
+    - personId
+    - listId
+    - subscriberHash
+    properties:
+      personId:
+        type: string
+        description: Pipedrive person id
+      listId:
+        type: string
+        description: Mailchimp audience id
+      subscriberHash:
+        type: string
+        description: MD5 of the lowercased email
+  steps:
+  - stepId: get-pipedrive-person
+    description: Read the person.
+    operationId: $sourceDescriptions.pipedrivePersons.getPerson
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.personId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/data/email/0/value
+      firstName: $response.body#/data/first_name
+      lastName: $response.body#/data/last_name
+  - stepId: upsert-mailchimp-member
+    description: Add or update the subscriber in the Mailchimp audience (PUT is an upsert keyed by the MD5 subscriber hash of the lowercased email).
+    operationId: $sourceDescriptions.mailchimpLists.putListsIdMembersId
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $inputs.subscriberHash
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $steps.get-pipedrive-person.outputs.email
+        status_if_new: subscribed
+        merge_fields:
+          FNAME: $steps.get-pipedrive-person.outputs.firstName
+          LNAME: $steps.get-pipedrive-person.outputs.lastName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    memberId: $steps.upsert-mailchimp-member.outputs.memberId
+x-integration:
+  partner: pipedrive
+  edge_evidence: https://zapier.com/apps/mailchimp/integrations
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 enrichment local-v5
+  guessed_steps:
+  - step: upsert-mailchimp-member
+    cause: provider-contract
+    why: Mailchimp keys members by the MD5 hash of the lowercased email; Arazzo cannot compute it, so subscriberHash is a caller-supplied input.

@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Add new HubSpot contacts to Mailchimp lists
+  summary: Add new HubSpot contacts to Mailchimp lists
+  description: When a contact is created in HubSpot, read it and upsert it as a subscriber in a Mailchimp audience. Recreates Zapier template 1785.
+  version: 1.0.0
+sourceDescriptions:
+- name: hubspotCrm
+  url: https://raw.githubusercontent.com/api-evangelist/hubspot/refs/heads/main/openapi/hubspot-basic-api-openapi.yml
+  type: openapi
+- name: mailchimpLists
+  url: https://raw.githubusercontent.com/api-evangelist/mailchimp/refs/heads/main/openapi/mailchimp-lists-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: add-contacts-to-list
+  summary: Add new HubSpot contacts to Mailchimp lists
+  description: When a contact is created in HubSpot, read it and upsert it as a subscriber in a Mailchimp audience. Recreates Zapier template 1785.
+  inputs:
+    type: object
+    required:
+    - contactId
+    - listId
+    - subscriberHash
+    properties:
+      contactId:
+        type: string
+        description: HubSpot contact id from the new-contact trigger
+      listId:
+        type: string
+        description: Mailchimp audience (list) id
+      subscriberHash:
+        type: string
+        description: MD5 hash of the lowercased email address
+  steps:
+  - stepId: get-hubspot-contact
+    description: Read the new HubSpot contact with its email and name properties.
+    operationId: $sourceDescriptions.hubspotCrm.get-/crm/objects/2026-03/contacts/{contactId}_getById
+    parameters:
+    - name: contactId
+      in: path
+      value: $inputs.contactId
+    - name: properties
+      in: query
+      value: email,firstname,lastname
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/properties/email
+      firstname: $response.body#/properties/firstname
+      lastname: $response.body#/properties/lastname
+  - stepId: upsert-mailchimp-member
+    description: Add or update the subscriber in the Mailchimp audience (PUT is an upsert keyed by the MD5 subscriber hash of the lowercased email).
+    operationId: $sourceDescriptions.mailchimpLists.putListsIdMembersId
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $inputs.subscriberHash
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $steps.get-hubspot-contact.outputs.email
+        status_if_new: subscribed
+        merge_fields:
+          FNAME: $steps.get-hubspot-contact.outputs.firstname
+          LNAME: $steps.get-hubspot-contact.outputs.lastname
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+      status: $response.body#/status
+  outputs:
+    memberId: $steps.upsert-mailchimp-member.outputs.memberId
+x-integration:
+  partner: hubspot
+  edge_evidence: https://zapier.com/apps/mailchimp/integrations
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 enrichment local-v5
+  template: https://zapier.com/apps/hubspot/integrations/mailchimp/1785/add-new-hubspot-contacts-to-mailchimp-lists
+  guessed_steps:
+  - step: upsert-mailchimp-member
+    cause: provider-contract
+    why: Mailchimp keys members by the MD5 hash of the lowercased email; Arazzo cannot compute it, so subscriberHash is a caller-supplied input.

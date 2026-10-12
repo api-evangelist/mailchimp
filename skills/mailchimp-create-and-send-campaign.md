@@ -1,5 +1,5 @@
 ---
-name: Create, populate, check, and send a Mailchimp campaign
+name: mailchimp-create-and-send-campaign
 description: Build a regular email campaign against an audience, set its HTML content, run the pre-send checklist, send a test, then send or schedule it.
 api: openapi/mailchimp-campaigns-api-openapi.yml
 generated: '2026-08-13'

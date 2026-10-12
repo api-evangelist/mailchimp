@@ -1,5 +1,5 @@
 ---
-name: Upsert a Mailchimp audience member and tag them
+name: mailchimp-upsert-audience-member
 description: Add or update a contact in a Mailchimp audience (list) idempotently by email hash, then apply tags — the safest write path for an agent syncing contacts.
 api: openapi/mailchimp-lists-api-openapi.yml
 generated: '2026-08-13'

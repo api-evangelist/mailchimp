@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: Add new HubSpot contacts to Mailchimp
+  summary: Add new HubSpot contacts to Mailchimp
+  description: When a contact is created in HubSpot, add it to a Mailchimp audience as a new member (POST, fails on an existing address rather than updating). Recreates Zapier template 1459.
+  version: 1.0.0
+sourceDescriptions:
+- name: hubspotCrm
+  url: https://raw.githubusercontent.com/api-evangelist/hubspot/refs/heads/main/openapi/hubspot-basic-api-openapi.yml
+  type: openapi
+- name: mailchimpLists
+  url: https://raw.githubusercontent.com/api-evangelist/mailchimp/refs/heads/main/openapi/mailchimp-lists-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: subscribe-new-contacts
+  summary: Add new HubSpot contacts to Mailchimp
+  description: When a contact is created in HubSpot, add it to a Mailchimp audience as a new member (POST, fails on an existing address rather than updating). Recreates Zapier template 1459.
+  inputs:
+    type: object
+    required:
+    - contactId
+    - listId
+    properties:
+      contactId:
+        type: string
+        description: HubSpot contact id
+      listId:
+        type: string
+        description: Mailchimp audience (list) id
+  steps:
+  - stepId: get-hubspot-contact
+    description: Read the new HubSpot contact with its email and name properties.
+    operationId: $sourceDescriptions.hubspotCrm.get-/crm/objects/2026-03/contacts/{contactId}_getById
+    parameters:
+    - name: contactId
+      in: path
+      value: $inputs.contactId
+    - name: properties
+      in: query
+      value: email,firstname,lastname
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/properties/email
+      firstname: $response.body#/properties/firstname
+      lastname: $response.body#/properties/lastname
+  - stepId: add-mailchimp-member
+    description: Add the contact as a new subscriber.
+    operationId: $sourceDescriptions.mailchimpLists.postListsIdMembers
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $steps.get-hubspot-contact.outputs.email
+        status: subscribed
+        merge_fields:
+          FNAME: $steps.get-hubspot-contact.outputs.firstname
+          LNAME: $steps.get-hubspot-contact.outputs.lastname
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      memberId: $response.body#/id
+  outputs:
+    memberId: $steps.add-mailchimp-member.outputs.memberId
+x-integration:
+  partner: hubspot
+  edge_evidence: https://zapier.com/apps/mailchimp/integrations
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 enrichment local-v5
+  template: https://zapier.com/apps/hubspot/integrations/mailchimp/1459/add-new-hubspot-contacts-to-mailchimp

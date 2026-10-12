@@ -1,5 +1,5 @@
 ---
-name: Bulk-sync contacts with the Mailchimp Batch endpoint
+name: mailchimp-bulk-sync-with-batches
 description: Run up to 1,000 Marketing API operations asynchronously in one request instead of looping, then poll the batch to completion and read the result file.
 api: openapi/mailchimp-batches-api-openapi.yml
 generated: '2026-08-13'

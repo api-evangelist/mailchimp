@@ -12,6 +12,10 @@ description: >-
   POST) APIs behave across operations: authentication, pagination, partial
   responses, batch operations, error envelope, rate-limit signaling, and
   versioning.
+idempotency:
+  coverage: none
+  detail: >-
+    No Idempotency-Key header on either API (per-API idempotency notes below). Marketing API PUT upserts are idempotent by resource id (subscriber hash); Transactional /messages/send has no replay protection.
 apis:
   - api: mailchimp:mailchimp-marketing-api
     base_url: https://<dc>.api.mailchimp.com/3.0

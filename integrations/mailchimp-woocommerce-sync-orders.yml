@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: Sync WooCommerce orders to Mailchimp e-commerce
+  summary: Sync WooCommerce orders to Mailchimp e-commerce
+  description: Read a WooCommerce order and record it as an order in a connected Mailchimp e-commerce store, so purchase data drives segmentation and product recommendations. Built from the Zapier WooCommerce listing edge.
+  version: 1.0.0
+sourceDescriptions:
+- name: woocommerceOrders
+  url: https://raw.githubusercontent.com/api-evangelist/woocommerce/refs/heads/main/openapi/woocommerce-orders-api-openapi.yml
+  type: openapi
+- name: mailchimpEcommerce
+  url: https://raw.githubusercontent.com/api-evangelist/mailchimp/refs/heads/main/openapi/mailchimp-ecommerce-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: sync-orders
+  summary: Sync WooCommerce orders to Mailchimp e-commerce
+  description: Read a WooCommerce order and record it as an order in a connected Mailchimp e-commerce store, so purchase data drives segmentation and product recommendations. Built from the Zapier WooCommerce listing edge.
+  inputs:
+    type: object
+    required:
+    - orderId
+    - storeId
+    properties:
+      orderId:
+        type: string
+        description: WooCommerce order id
+      storeId:
+        type: string
+        description: Mailchimp e-commerce store id
+  steps:
+  - stepId: get-woo-order
+    description: Read the order.
+    operationId: $sourceDescriptions.woocommerceOrders.getOrder
+    parameters:
+    - name: id
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      id: $response.body#/id
+      currency: $response.body#/currency
+      total: $response.body#/total
+      email: $response.body#/billing/email
+      customerId: $response.body#/customer_id
+      lineItems: $response.body#/line_items
+  - stepId: create-mailchimp-order
+    description: Add the order to the Mailchimp store.
+    operationId: $sourceDescriptions.mailchimpEcommerce.postEcommerceStoresIdOrders
+    parameters:
+    - name: store_id
+      in: path
+      value: $inputs.storeId
+    requestBody:
+      contentType: application/json
+      payload:
+        id: $steps.get-woo-order.outputs.id
+        customer:
+          id: $steps.get-woo-order.outputs.customerId
+          email_address: $steps.get-woo-order.outputs.email
+          opt_in_status: false
+        currency_code: $steps.get-woo-order.outputs.currency
+        order_total: $steps.get-woo-order.outputs.total
+        lines: $steps.get-woo-order.outputs.lineItems
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderId: $response.body#/id
+  outputs:
+    orderId: $steps.create-mailchimp-order.outputs.orderId
+x-integration:
+  partner: woocommerce
+  edge_evidence: https://zapier.com/apps/mailchimp/integrations
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 enrichment local-v5
+  guessed_steps:
+  - step: create-mailchimp-order
+    cause: provider-contract
+    why: Mailchimp order lines require product_id/product_variant_id of products already in the store; WooCommerce line_items are passed through and must be mapped (and products synced) first.

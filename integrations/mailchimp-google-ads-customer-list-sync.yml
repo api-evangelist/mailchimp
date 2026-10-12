@@ -1,0 +1,119 @@
+arazzo: 1.0.1
+info:
+  title: Add new Mailchimp subscribers to Google Ads customer lists
+  summary: Add new Mailchimp subscribers to Google Ads customer lists
+  description: Read a new Mailchimp subscriber, then create a Google Ads offline user data job for a Customer Match user list, add the hashed email as a create operation and run the job. Recreates Zapier template 78011.
+  version: 1.0.0
+sourceDescriptions:
+- name: mailchimpLists
+  url: https://raw.githubusercontent.com/api-evangelist/mailchimp/refs/heads/main/openapi/mailchimp-lists-api-openapi.yml
+  type: openapi
+- name: googleAdsOfflineUserDataJobs
+  url: https://raw.githubusercontent.com/api-evangelist/google-ads/refs/heads/main/openapi/google-ads-customers-offlineuserdatajobs-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: customer-list-sync
+  summary: Add new Mailchimp subscribers to Google Ads customer lists
+  description: Read a new Mailchimp subscriber, then create a Google Ads offline user data job for a Customer Match user list, add the hashed email as a create operation and run the job. Recreates Zapier template 78011.
+  inputs:
+    type: object
+    required:
+    - listId
+    - subscriberHash
+    - customerId
+    - userList
+    - hashedEmail
+    properties:
+      listId:
+        type: string
+        description: Mailchimp audience id
+      subscriberHash:
+        type: string
+        description: subscriber hash from the new-subscriber trigger
+      customerId:
+        type: string
+        description: Google Ads customer id
+      userList:
+        type: string
+        description: Customer Match user list resource name
+      hashedEmail:
+        type: string
+        description: SHA-256 of the normalised email, as Google Ads requires
+  steps:
+  - stepId: get-mailchimp-member
+    description: Read the new subscriber.
+    operationId: $sourceDescriptions.mailchimpLists.getListsIdMembersId
+    parameters:
+    - name: list_id
+      in: path
+      value: $inputs.listId
+    - name: subscriber_hash
+      in: path
+      value: $inputs.subscriberHash
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/email_address
+  - stepId: create-job
+    description: Create a Customer Match offline user data job.
+    operationId: $sourceDescriptions.googleAdsOfflineUserDataJobs.googleads_customers_offlineUserDataJobs_create
+    parameters:
+    - name: customerId
+      in: path
+      value: $inputs.customerId
+    requestBody:
+      contentType: application/json
+      payload:
+        job:
+          type: CUSTOMER_MATCH_USER_LIST
+          customerMatchUserListMetadata:
+            userList: $inputs.userList
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobResourceName: $response.body#/resourceName
+  - stepId: add-operations
+    description: Add the subscriber as a create operation.
+    operationId: $sourceDescriptions.googleAdsOfflineUserDataJobs.googleads_customers_offlineUserDataJobs_addOperations
+    parameters:
+    - name: resourceName
+      in: path
+      value: $steps.create-job.outputs.jobResourceName
+    requestBody:
+      contentType: application/json
+      payload:
+        operations:
+        - create:
+            userIdentifiers:
+            - hashedEmail: $inputs.hashedEmail
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: run-job
+    description: Run the job.
+    operationId: $sourceDescriptions.googleAdsOfflineUserDataJobs.googleads_customers_offlineUserDataJobs_run
+    parameters:
+    - name: resourceName
+      in: path
+      value: $steps.create-job.outputs.jobResourceName
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    job: $steps.create-job.outputs.jobResourceName
+x-integration:
+  partner: google-ads
+  edge_evidence: https://zapier.com/apps/mailchimp/integrations
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 enrichment local-v5
+  template: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
+  guessed_steps:
+  - step: create-job
+    cause: partner-contract
+    why: The catalog Google Ads path template names {customersId} while the declared parameter is customerId; the binding is by declared name.
+  - step: add-operations
+    cause: partner-contract
+    why: Path template has {customersId}/{offlineUserDataJobsId} but the spec declares a single resourceName parameter; the job resource name is passed there.
+  - step: get-mailchimp-member
+    cause: provider-contract
+    why: Hashing (SHA-256) of the email is not expressible in Arazzo, so hashedEmail is an input.

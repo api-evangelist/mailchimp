@@ -1,5 +1,5 @@
 ---
-name: Receive and verify Mailchimp audience webhooks
+name: mailchimp-sync-audience-with-webhooks
 description: Register an audience webhook, handle the form-urlencoded event envelope, and verify the X-Mailchimp-Signature HMAC before trusting a delivery.
 api: openapi/mailchimp-webhooks-api-openapi.yml
 generated: '2026-08-13'

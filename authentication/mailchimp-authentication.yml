@@ -1,13 +1,7 @@
 generated: '2026-06-20'
 method: searched
-source: >-
-  openapi/mailchimp-marketing-api-openapi.yml,
-  openapi/mailchimp-transactional-api-openapi.yml, enriched from
-  https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/ and
-  https://mailchimp.com/developer/transactional/docs/authentication-delivery/
-docs:
-  - https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
-  - https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+source: openapi/mailchimp-marketing-api-openapi.yml, openapi/mailchimp-transactional-api-openapi.yml, enriched from https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/ and https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+docs: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
 summary:
   types:
   - apiKey
@@ -23,10 +17,7 @@ schemes:
   type: http
   scheme: basic
   api: mailchimp:mailchimp-marketing-api
-  description: >-
-    Marketing API HTTP Basic auth. Use any string as the username and the API
-    key as the password. The API key carries a datacenter suffix (e.g. -us19)
-    which also determines the request host <dc>.api.mailchimp.com.
+  description: Marketing API HTTP Basic auth. Use any string as the username and the API key as the password. The API key carries a datacenter suffix (e.g. -us19) which also determines the request host <dc>.api.mailchimp.com.
   sources:
   - openapi/mailchimp-marketing-api-openapi.yml
 - name: oauth2
@@ -37,12 +28,7 @@ schemes:
   tokenUrl: https://login.mailchimp.com/oauth2/token
   metadataUrl: https://login.mailchimp.com/oauth2/metadata
   scopes: []
-  description: >-
-    OAuth 2.0 authorization-code flow for accessing a user's Mailchimp data
-    (used by apps/integrations). Mailchimp OAuth grants full account access and
-    does NOT use granular scopes. After the token exchange, call the metadata
-    endpoint to discover the account's datacenter (dc) for API requests. Not
-    declared in the OpenAPI securityDefinitions; documented only.
+  description: OAuth 2.0 authorization-code flow for accessing a user's Mailchimp data (used by apps/integrations). Mailchimp OAuth grants full account access and does NOT use granular scopes. After the token exchange, call the metadata endpoint to discover the account's datacenter (dc) for API requests. Not declared in the OpenAPI securityDefinitions; documented only.
   sources:
   - https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
 - name: apiKey
@@ -50,10 +36,8 @@ schemes:
   in: header
   parameter: X-MC-ApiKey
   api: mailchimp:mailchimp-transactional-api
-  description: >-
-    Transactional (Mandrill) API key authentication. The key is passed in the
-    JSON request body as the "key" parameter for every POST call, or
-    alternatively via the X-MC-ApiKey header. A "test" API key exercises the
-    API in test mode without delivering mail (see sandbox/mailchimp-sandbox.yml).
+  description: Transactional (Mandrill) API key authentication. The key is passed in the JSON request body as the "key" parameter for every POST call, or alternatively via the X-MC-ApiKey header. A "test" API key exercises the API in test mode without delivering mail (see sandbox/mailchimp-sandbox.yml).
   sources:
   - openapi/mailchimp-transactional-api-openapi.yml
+docs_additional:
+- https://mailchimp.com/developer/transactional/docs/authentication-delivery/

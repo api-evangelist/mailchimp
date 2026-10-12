@@ -1,5 +1,5 @@
 ---
-name: Pull a Mailchimp campaign report
+name: mailchimp-pull-campaign-report
 description: Find a sent campaign and read its report — aggregate performance, per-recipient email activity, opens and clicks — without exhausting the 10-connection limit.
 api: openapi/mailchimp-reports-api-openapi.yml
 generated: '2026-08-13'

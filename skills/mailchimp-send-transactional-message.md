@@ -1,5 +1,5 @@
 ---
-name: Send a Mailchimp Transactional (Mandrill) message
+name: mailchimp-send-transactional-message
 description: Send a one-to-one transactional email or template send through the Mandrill RPC API, then look the message up by id to confirm delivery state.
 api: openapi/mailchimp-messages-api-openapi.yml
 generated: '2026-08-13'
