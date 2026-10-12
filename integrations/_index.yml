@@ -408,3 +408,75 @@
   source: edge
   status: pending-partner-spec
   arazzo: null
+- slug: mailchimp-bonjoro
+  label: bonjoro
+  partner: bonjoro
+  partner_name: bonjoro
+  type: contract
+  channel: partner-built
+  evidence: https://github.com/api-evangelist/bonjoro/blob/main/openapi/bonjoro-integrations-api-openapi.yml
+  source: edge
+  relationship: processor-connection
+  contract_reference:
+    repo: bonjoro
+    spec_file: bonjoro-integrations-api-openapi.yml
+    value: mailchimp
+    property: schemas.integration.provider
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
+- slug: mailchimp-highlevel
+  label: highlevel
+  partner: highlevel
+  partner_name: highlevel
+  type: contract
+  channel: partner-built
+  evidence: https://github.com/api-evangelist/highlevel/blob/main/openapi/highlevel-templates-api-openapi.yml
+  source: edge
+  relationship: processor-connection
+  contract_reference:
+    repo: highlevel
+    spec_file: highlevel-templates-api-openapi.yml
+    value: mailchimp
+    property: schemas.CreateBuilderDto.importProvider
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+  arazzo: mailchimp-highlevel-preconfig.yml
+  status: arazzo
+- slug: mailchimp-zoho
+  label: zoho
+  partner: zoho
+  partner_name: zoho
+  type: contract
+  channel: partner-built
+  evidence: https://github.com/api-evangelist/zoho/blob/main/openapi/zoho-timeline-api-openapi.yml
+  source: edge
+  relationship: processor-connection
+  contract_reference:
+    repo: zoho
+    spec_file: zoho-timeline-api-openapi.yml
+    value: mailchimp
+    property: __timeline.source
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
+- slug: mailchimp-zoho-crm
+  label: zoho-crm
+  partner: zoho-crm
+  partner_name: zoho-crm
+  type: contract
+  channel: partner-built
+  evidence: https://github.com/api-evangelist/zoho-crm/blob/main/openapi/zoho-crm-timeline-api-openapi.yml
+  source: edge
+  relationship: processor-connection
+  contract_reference:
+    repo: zoho-crm
+    spec_file: zoho-crm-timeline-api-openapi.yml
+    value: mailchimp
+    property: __timeline.source
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
