@@ -1,0 +1,279 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: mailchimp
+workflows:
+- file: mailchimp-google-ads-customer-list-sync.yml
+  title: Add new Mailchimp subscribers to Google Ads customer lists
+  partner: google-ads
+  template: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
+  repos:
+  - mailchimp
+  - google-ads
+  steps:
+  - step: get-mailchimp-member
+    repo: mailchimp
+    spec_file: mailchimp-lists-api-openapi.yml
+    operationId: getListsIdMembersId
+    tag: Lists
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Get one subscriber's profile
+    effect: read
+    unmapped: no capability edge for this spec file
+  - step: create-job
+    repo: google-ads
+    spec_file: google-ads-customers-offlineuserdatajobs-api-openapi.yml
+    operationId: googleads_customers_offlineUserDataJobs_create
+    tag: customers.offlineUserDataJobs
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Create an offline user data job
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: add-operations
+    repo: google-ads
+    spec_file: google-ads-customers-offlineuserdatajobs-api-openapi.yml
+    operationId: googleads_customers_offlineUserDataJobs_addOperations
+    tag: customers.offlineUserDataJobs
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Add user data to an offline job
+    effect: write
+    unmapped: no capability edge for this spec file
+  - step: run-job
+    repo: google-ads
+    spec_file: google-ads-customers-offlineuserdatajobs-api-openapi.yml
+    operationId: googleads_customers_offlineUserDataJobs_run
+    tag: customers.offlineUserDataJobs
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Run an offline user data job
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    mailchimp:
+      capabilities: []
+      tags:
+      - Lists
+    google-ads:
+      capabilities: []
+      tags:
+      - customers.offlineUserDataJobs
+  intents:
+  - Get one subscriber's profile
+  - Create an offline user data job
+  - Add user data to an offline job
+  - Run an offline user data job
+- file: mailchimp-hubspot-add-contacts-to-list.yml
+  title: Add new HubSpot contacts to Mailchimp lists
+  partner: hubspot
+  template: https://zapier.com/apps/hubspot/integrations/mailchimp/1785/add-new-hubspot-contacts-to-mailchimp-lists
+  repos:
+  - hubspot
+  - mailchimp
+  steps:
+  - step: get-hubspot-contact
+    repo: hubspot
+    spec_file: hubspot-basic-api-openapi.yml
+    operationId: get-/crm/objects/2026-03/contacts/{contactId}_getById
+    tag: Basic
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Get a contact
+    effect: read
+    unmapped: no capability edge for this spec file
+  - step: upsert-mailchimp-member
+    repo: mailchimp
+    spec_file: mailchimp-lists-api-openapi.yml
+    operationId: putListsIdMembersId
+    tag: Lists
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Add or update a subscriber (upsert)
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    hubspot:
+      capabilities: []
+      tags:
+      - Basic
+    mailchimp:
+      capabilities: []
+      tags:
+      - Lists
+  intents:
+  - Get a contact
+  - Add or update a subscriber (upsert)
+- file: mailchimp-hubspot-subscribe-new-contacts.yml
+  title: Add new HubSpot contacts to Mailchimp
+  partner: hubspot
+  template: https://zapier.com/apps/hubspot/integrations/mailchimp/1459/add-new-hubspot-contacts-to-mailchimp
+  repos:
+  - hubspot
+  - mailchimp
+  steps:
+  - step: get-hubspot-contact
+    repo: hubspot
+    spec_file: hubspot-basic-api-openapi.yml
+    operationId: get-/crm/objects/2026-03/contacts/{contactId}_getById
+    tag: Basic
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Get a contact
+    effect: read
+    unmapped: no capability edge for this spec file
+  - step: add-mailchimp-member
+    repo: mailchimp
+    spec_file: mailchimp-lists-api-openapi.yml
+    operationId: postListsIdMembers
+    tag: Lists
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Add a new subscriber to an audience
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    hubspot:
+      capabilities: []
+      tags:
+      - Basic
+    mailchimp:
+      capabilities: []
+      tags:
+      - Lists
+  intents:
+  - Get a contact
+  - Add a new subscriber to an audience
+- file: mailchimp-pipedrive-sync-persons.yml
+  title: Add Pipedrive persons to Mailchimp
+  partner: pipedrive
+  template: null
+  repos:
+  - pipedrive
+  - mailchimp
+  steps:
+  - step: get-pipedrive-person
+    repo: pipedrive
+    spec_file: pipedrive-persons-api-openapi.yml
+    operationId: getPerson
+    tag: Persons
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: null
+    effect: null
+    unmapped: null
+  - step: upsert-mailchimp-member
+    repo: mailchimp
+    spec_file: mailchimp-lists-api-openapi.yml
+    operationId: putListsIdMembersId
+    tag: Lists
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Add or update a subscriber (upsert)
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    pipedrive:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Persons
+    mailchimp:
+      capabilities: []
+      tags:
+      - Lists
+  intents:
+  - Add or update a subscriber (upsert)
+- file: mailchimp-tally-update-subscribers-from-responses.yml
+  title: Update Mailchimp subscribers from new Tally responses
+  partner: tally
+  template: https://zapier.com/apps/mailchimp/integrations/tally/386739/update-mailchimp-subscribers-from-new-tally-responses
+  repos:
+  - tally
+  - mailchimp
+  steps:
+  - step: get-tally-submission
+    repo: tally
+    spec_file: tally-submissions-api-openapi.yml
+    operationId: getSubmission
+    tag: Submissions
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: upsert-mailchimp-member
+    repo: mailchimp
+    spec_file: mailchimp-lists-api-openapi.yml
+    operationId: putListsIdMembersId
+    tag: Lists
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Add or update a subscriber (upsert)
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    tally:
+      capabilities: []
+      tags:
+      - Submissions
+    mailchimp:
+      capabilities: []
+      tags:
+      - Lists
+  intents:
+  - Add or update a subscriber (upsert)
+- file: mailchimp-woocommerce-sync-orders.yml
+  title: Sync WooCommerce orders to Mailchimp e-commerce
+  partner: woocommerce
+  template: null
+  repos:
+  - woocommerce
+  - mailchimp
+  steps:
+  - step: get-woo-order
+    repo: woocommerce
+    spec_file: woocommerce-orders-api-openapi.yml
+    operationId: getOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: create-mailchimp-order
+    repo: mailchimp
+    spec_file: mailchimp-ecommerce-api-openapi.yml
+    operationId: postEcommerceStoresIdOrders
+    tag: Ecommerce
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Add a new order to a store
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    woocommerce:
+      capabilities: []
+      tags:
+      - Orders
+    mailchimp:
+      capabilities: []
+      tags:
+      - Ecommerce
+  intents:
+  - Add a new order to a store
