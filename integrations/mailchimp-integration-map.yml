@@ -69,6 +69,30 @@ workflows:
   - Create an offline user data job
   - Add user data to an offline job
   - Run an offline user data job
+- file: mailchimp-highlevel-preconfig.yml
+  title: 'mailchimp through highlevel: create-template preconfigured with mailchimp'
+  partner: highlevel
+  template: null
+  repos:
+  - highlevel
+  steps:
+  - step: call-with-preset
+    repo: highlevel
+    spec_file: highlevel-templates-api-openapi.yml
+    operationId: create-template
+    tag: Templates
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    highlevel:
+      capabilities: []
+      tags:
+      - Templates
+  intents: []
 - file: mailchimp-hubspot-add-contacts-to-list.yml
   title: Add new HubSpot contacts to Mailchimp lists
   partner: hubspot
