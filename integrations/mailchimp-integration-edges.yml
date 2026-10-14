@@ -15,6 +15,7 @@ checked:
 - https://n8n.io/integrations/mailchimp/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/mailchimp
 - https://zapier.com/apps/mailchimp/integrations
+- mews-com/integrations/mews-com-integration-edges.yml
 - olo/integrations/olo-integration-edges.yml
 summary: null
 marketplace_apps:
@@ -1283,6 +1284,22 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Nurture Customers
+- partner_name: Mews (own)
+  partner: mews-com
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.mews.com/en/products/marketplace/mailchimp
+  mirror_of: mews-com/integrations/mews-com-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
 - partner_name: Olo (own)
   partner: olo
   partner_match: mirror
