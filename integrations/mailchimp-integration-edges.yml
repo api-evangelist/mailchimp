@@ -15,6 +15,7 @@ checked:
 - https://n8n.io/integrations/mailchimp/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/mailchimp
 - https://zapier.com/apps/mailchimp/integrations
+- olo/integrations/olo-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1282,6 +1283,23 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Nurture Customers
+- partner_name: Olo (own)
+  partner: olo
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.olo.com/partners/mailchimp
+  mirror_of: olo/integrations/olo-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Marketing
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
   url: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
