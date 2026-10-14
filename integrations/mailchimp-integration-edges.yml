@@ -5,6 +5,7 @@ source:
 - https://n8n.io/integrations/mailchimp/
 - https://composio.dev/toolkits/mailchimp
 checked:
+- blackbaud/integrations/blackbaud-integration-edges.yml
 - freshbooks/integrations/freshbooks-integration-edges.yml
 - https://composio.dev/toolkits/mailchimp
 - https://docs.mparticle.com/integrations/mailchimp/audience/
@@ -1242,31 +1243,24 @@ edges:
       - update or create
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
-- partner_name: Blackbaud (Blackbaud Marketplace)
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  partner_note: Blackbaud has no all/* repo (catalog gap); publisher side only
+- partner_name: Blackbaud (blackbaud-marketplace)
+  partner: blackbaud
+  partner_match: mirror
+  mirror_match: domain+verified
   type: marketplace
   relationship: platform-app
   direction: third-party
   channel: partner-built
   marketplace: blackbaud-marketplace
   evidence: https://app.blackbaud.com/marketplace/applications/822a30f4-7726-48cb-8344-e35b01f0bcf5
-  store: https://app.blackbaud.com/marketplace
-  store_api: https://mpl-pusa01.app.blackbaud.net/mktpl/v1/public/marketplace/applications
-  publisher: Intuit, Inc.
-  publisher_match: domain+verified
-  publisher_domain: mailchimp.com
+  mirror_of: blackbaud/integrations/blackbaud-integration-edges.yml
   apps:
   - Mailchimp for Blackbaud Raiser's Edge NXT
   listing_count: 1
-  compatible_solutions:
-  - renxt
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
   badges:
   - Reviewed by Blackbaud
-  detected_by: sweep-nonprofit.py
-  detected: '2026-10-14'
 - partner_name: FreshBooks (own)
   partner: freshbooks
   partner_match: mirror
