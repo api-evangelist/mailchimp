@@ -5,6 +5,7 @@ source:
 - https://n8n.io/integrations/mailchimp/
 - https://composio.dev/toolkits/mailchimp
 checked:
+- freshbooks/integrations/freshbooks-integration-edges.yml
 - https://composio.dev/toolkits/mailchimp
 - https://docs.mparticle.com/integrations/mailchimp/audience/
 - https://fivetran.com/docs/activations/destinations/available-destinations/mailchimp
@@ -1238,6 +1239,23 @@ edges:
       - update or create
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: FreshBooks (own)
+  partner: freshbooks
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appstore.freshbooks.com/apps/mailchimp
+  mirror_of: freshbooks/integrations/freshbooks-integration-edges.yml
+  apps:
+  - MailChimp
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Nurture Customers
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
   url: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
