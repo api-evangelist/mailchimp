@@ -6,8 +6,12 @@ source:
 - https://composio.dev/toolkits/mailchimp
 checked:
 - https://composio.dev/toolkits/mailchimp
+- https://docs.mparticle.com/integrations/mailchimp/audience/
+- https://fivetran.com/docs/activations/destinations/available-destinations/mailchimp
+- https://hightouch.com/docs/destinations/mailchimp
 - https://monid.ai/tools/mailchimp
 - https://n8n.io/integrations/mailchimp/
+- https://www.twilio.com/docs/segment/connections/destinations/catalog/mailchimp
 - https://zapier.com/apps/mailchimp/integrations
 summary: null
 marketplace_apps:
@@ -1134,6 +1138,106 @@ edges:
     property: __timeline.source
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: Twilio Segment
+  partner: segment
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/mailchimp
+  coverage_role:
+  - destination
+  - source
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - mailchimp
+      status: PUBLIC
+      partner_owned: false
+      connection_modes:
+      - cloud:mobile
+      - cloud:server
+      - cloud:web
+      accepted_methods:
+      - Identify
+    source:
+      catalog_entries:
+      - mailchimp
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: mParticle
+  partner: mparticle
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://docs.mparticle.com/integrations/mailchimp/audience/
+  coverage_role:
+  - destination
+  - source
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - mailchimp
+      integration_types:
+      - audience
+      - event
+    source:
+      catalog_entries:
+      - mailchimp
+      integration_types:
+      - feed
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Hightouch
+  partner: hightouch
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://hightouch.com/docs/destinations/mailchimp
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - mailchimp
+      status: released
+      sync_types:
+      - Object
+      - Tag
+      sync_modes:
+      - add
+      - remove
+      - upsert
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
+- partner_name: Census
+  partner: getcensus
+  partner_match: aggregator
+  marketplace: coverage
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: connector-coverage
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/mailchimp
+  coverage_role:
+  - destination
+  cdp_signals:
+    destination:
+      catalog_entries:
+      - mailchimp
+      sync_behaviours:
+      - update only
+      - update or create
+  detected_by: sweep-cdp.py
+  first_seen: '2026-10-14'
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
   url: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists

@@ -46,9 +46,7 @@
   related_arazzo:
   - mailchimp-hubspot-subscribe-new-contacts.yml
   arazzo: mailchimp-hubspot-add-contacts-to-list.yml
-  status: arazzo-broken
-  broken_reason: 'step get-hubspot-contact: opId ''get-/crm/objects/2026-03/contacts/{contactId}_getById'' NOT in
-    hubspot-basic-api-openapi.yml'
+  status: arazzo
 - slug: mailchimp-create-mailchimp-subscribers-from-new-typeform-responses
   label: Create Mailchimp subscribers from new Typeform responses
   partner: typeform
@@ -78,9 +76,7 @@
   related_arazzo:
   - mailchimp-hubspot-add-contacts-to-list.yml
   arazzo: mailchimp-hubspot-subscribe-new-contacts.yml
-  status: arazzo-broken
-  broken_reason: 'step get-hubspot-contact: opId ''get-/crm/objects/2026-03/contacts/{contactId}_getById'' NOT in
-    hubspot-basic-api-openapi.yml'
+  status: arazzo
 - slug: mailchimp-add-new-mailchimp-subscribers-to-google-ads-customer-lists
   label: Add new Mailchimp subscribers to Google Ads Customer Lists
   partner: google-ads
@@ -477,5 +473,53 @@
     property: __timeline.source
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
+- slug: mailchimp-twilio-segment
+  label: Twilio Segment
+  partner: segment
+  partner_name: Twilio Segment
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://www.twilio.com/docs/segment/connections/destinations/catalog/mailchimp
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: mailchimp-mparticle
+  label: mParticle
+  partner: mparticle
+  partner_name: mParticle
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://docs.mparticle.com/integrations/mailchimp/audience/
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: mailchimp-hightouch
+  label: Hightouch
+  partner: hightouch
+  partner_name: Hightouch
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://hightouch.com/docs/destinations/mailchimp
+  source: edge
+  relationship: connector-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: mailchimp-census
+  label: Census
+  partner: getcensus
+  partner_name: Census
+  type: coverage
+  marketplace: coverage
+  channel: partner-built
+  evidence: https://fivetran.com/docs/activations/destinations/available-destinations/mailchimp
+  source: edge
+  relationship: connector-coverage
   status: not-a-workflow
   arazzo: null
