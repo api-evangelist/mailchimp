@@ -18,6 +18,7 @@ checked:
 - https://zapier.com/apps/mailchimp/integrations
 - mews-com/integrations/mews-com-integration-edges.yml
 - olo/integrations/olo-integration-edges.yml
+- woocommerce/integrations/woocommerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1311,6 +1312,23 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Marketing
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/mailchimp-for-woocommerce/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
   url: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
