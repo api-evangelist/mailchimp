@@ -1,0 +1,604 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: apihelp@mailchimp.com
+    name: Mailchimp API Support
+  description: 'Whether you’re managing your own campaigns, providing Mailchimp services to your customers or clients, or writing a mobile app, the Mailchimp API has features to manage and sync your contact data.
+
+
+    Audiences are at the core of sending campaigns with Mailchimp. You can use the API to set up an audience and add contacts to that audience; you can then organize those contacts with tags or segment them by activity with events.
+
+
+    The API can also be a source of data for your application. Webhooks collect and transmit information about your audience to you in near real time. And if you’re selling products on an external store, you can integrate your audience behavior using Mailchimp’s E-commerce features.
+
+
+    You can also use the API to handle data in different ways for different purposes. If you are syncing a large amount of data with Mailchimp, you can use batches to avoid hitting the API request limits. For building integrations that let other users access data from their own Mailchimp accounts, you should authenticate with OAuth 2. And if you’re developing an app for iOS or Android, the Mobile SDK provides an easy way to work with a mobile-focused subset of the API’s functionality.'
+  summary: Manage audiences, integrate your data, and send timely, relevant email campaigns.
+  termsOfService: https://mailchimp.com/legal/api_use/
+  title: Mailchimp Verified Domains API
+  version: 0.1.0-dev
+servers:
+- description: Mailchimp API
+  url: https://api.mailchimp.com
+security:
+- bearerToken: []
+- oauth2: []
+tags:
+- name: verified-domains
+paths:
+  /3.0/verified-domains:
+    get:
+      description: Get all of the sending domains on the account.
+      operationId: getVerifiedDomains
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The verified domains currently on the account.
+                properties:
+                  domains:
+                    description: The domains on the account
+                    items:
+                      description: The verified domains currently on the account.
+                      properties:
+                        authenticated:
+                          description: Whether domain authentication is enabled for this domain.
+                          readOnly: true
+                          title: Authenticated
+                          type: boolean
+                        domain:
+                          description: The name of this domain.
+                          readOnly: true
+                          title: Domain Name
+                          type: string
+                        is_free_email_provider:
+                          description: Returns whether the domain used is a public / free email provider. See [Limitations of Free Email Addresses](https://mailchimp.com/help/limitations-of-free-email-addresses/) for more details.
+                          readOnly: true
+                          title: Is Public Domain
+                          type: boolean
+                        status:
+                          description: The Domain's current status.
+                          enum:
+                          - VERIFICATION_IN_PROGRESS
+                          - VERIFIED
+                          - EXPIRED
+                          - ERROR
+                          - AUTHENTICATION_IN_PROGRESS
+                          - AUTHENTICATION_ERROR
+                          - AUTHENTICATED
+                          readOnly: true
+                          title: Domain Status
+                          type: string
+                        verification_email:
+                          description: The e-mail address receiving the two-factor challenge for this domain.
+                          readOnly: true
+                          title: Verification Email
+                          type: string
+                        verification_sent:
+                          description: The date/time that the two-factor challenge was sent to the verification email.
+                          format: date-time
+                          readOnly: true
+                          title: Verification Challenge Sent
+                          type: string
+                        verified:
+                          description: Whether the domain has been verified for sending.
+                          readOnly: true
+                          title: Verified
+                          type: boolean
+                      title: Verified Domains
+                      type: object
+                    readOnly: true
+                    title: Domains
+                    type: array
+                  total_items:
+                    description: The total number of items matching the query regardless of pagination.
+                    readOnly: true
+                    title: Item Count
+                    type: integer
+                title: Verified Domains
+                type: object
+          description: The domains on the account.
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: List sending domains
+      tags:
+      - verified-domains
+      x-custom-config:
+        methodNameCamel: getVerifiedDomainsAll
+        methodNameSnake: get_verified_domains_all
+    post:
+      description: Add a domain to the account.
+      operationId: createVerifiedDomain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: The verified domains currently on the account.
+              properties:
+                verification_email:
+                  description: The e-mail address at the domain you want to verify. This will receive a two-factor challenge to be used in the verify action.
+                  title: Verification Email
+                  type: string
+              required:
+              - verification_email
+              title: Verified Domains
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The verified domains currently on the account.
+                properties:
+                  authenticated:
+                    description: Whether domain authentication is enabled for this domain.
+                    readOnly: true
+                    title: Authenticated
+                    type: boolean
+                  domain:
+                    description: The name of this domain.
+                    readOnly: true
+                    title: Domain Name
+                    type: string
+                  is_free_email_provider:
+                    description: Returns whether the domain used is a public / free email provider. See [Limitations of Free Email Addresses](https://mailchimp.com/help/limitations-of-free-email-addresses/) for more details.
+                    readOnly: true
+                    title: Is Public Domain
+                    type: boolean
+                  status:
+                    description: The Domain's current status.
+                    enum:
+                    - VERIFICATION_IN_PROGRESS
+                    - VERIFIED
+                    - EXPIRED
+                    - ERROR
+                    - AUTHENTICATION_IN_PROGRESS
+                    - AUTHENTICATION_ERROR
+                    - AUTHENTICATED
+                    readOnly: true
+                    title: Domain Status
+                    type: string
+                  verification_email:
+                    description: The e-mail address receiving the two-factor challenge for this domain.
+                    readOnly: true
+                    title: Verification Email
+                    type: string
+                  verification_sent:
+                    description: The date/time that the two-factor challenge was sent to the verification email.
+                    format: date-time
+                    readOnly: true
+                    title: Verification Challenge Sent
+                    type: string
+                  verified:
+                    description: Whether the domain has been verified for sending.
+                    readOnly: true
+                    title: Verified
+                    type: boolean
+                title: Verified Domains
+                type: object
+          description: The newly-created domain.
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Add domain to account
+      tags:
+      - verified-domains
+      x-custom-config:
+        methodNameCamel: createVerifiedDomain
+        methodNameSnake: create_verified_domain
+  /3.0/verified-domains/{domain_name}:
+    delete:
+      description: Delete a verified domain from the account.
+      operationId: deleteVerifiedDomain
+      parameters:
+      - description: The domain name.
+        in: path
+        name: domain_name
+        required: true
+        schema:
+          type: string
+        x-title: Domain Name
+      responses:
+        '204':
+          content: {}
+          description: Empty Response
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Delete domain
+      tags:
+      - verified-domains
+      x-custom-config:
+        methodNameCamel: deleteDomain
+        methodNameSnake: delete_domain
+    get:
+      description: Get the details for a single domain on the account.
+      operationId: getVerifiedDomain
+      parameters:
+      - description: The domain name.
+        in: path
+        name: domain_name
+        required: true
+        schema:
+          type: string
+        x-title: Domain Name
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The verified domains currently on the account.
+                properties:
+                  authenticated:
+                    description: Whether domain authentication is enabled for this domain.
+                    readOnly: true
+                    title: Authenticated
+                    type: boolean
+                  domain:
+                    description: The name of this domain.
+                    readOnly: true
+                    title: Domain Name
+                    type: string
+                  is_free_email_provider:
+                    description: Returns whether the domain used is a public / free email provider. See [Limitations of Free Email Addresses](https://mailchimp.com/help/limitations-of-free-email-addresses/) for more details.
+                    readOnly: true
+                    title: Is Public Domain
+                    type: boolean
+                  status:
+                    description: The Domain's current status.
+                    enum:
+                    - VERIFICATION_IN_PROGRESS
+                    - VERIFIED
+                    - EXPIRED
+                    - ERROR
+                    - AUTHENTICATION_IN_PROGRESS
+                    - AUTHENTICATION_ERROR
+                    - AUTHENTICATED
+                    readOnly: true
+                    title: Domain Status
+                    type: string
+                  verification_email:
+                    description: The e-mail address receiving the two-factor challenge for this domain.
+                    readOnly: true
+                    title: Verification Email
+                    type: string
+                  verification_sent:
+                    description: The date/time that the two-factor challenge was sent to the verification email.
+                    format: date-time
+                    readOnly: true
+                    title: Verification Challenge Sent
+                    type: string
+                  verified:
+                    description: Whether the domain has been verified for sending.
+                    readOnly: true
+                    title: Verified
+                    type: boolean
+                title: Verified Domains
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Get domain info
+      tags:
+      - verified-domains
+      x-custom-config:
+        methodNameCamel: getDomain
+        methodNameSnake: get_domain
+  /3.0/verified-domains/{domain_name}/actions/verify:
+    post:
+      description: Verify a domain for sending.
+      operationId: verifyDomain
+      parameters:
+      - description: The domain name.
+        in: path
+        name: domain_name
+        required: true
+        schema:
+          type: string
+        x-title: Domain Name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Submit a response to the verification challenge and verify a domain for sending.
+              properties:
+                code:
+                  description: The code that was sent to the email address provided when adding a new domain to verify.
+                  title: Verification Code
+                  type: string
+              required:
+              - code
+              title: Verify a domain for sending.
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The verified domains currently on the account.
+                properties:
+                  authenticated:
+                    description: Whether domain authentication is enabled for this domain.
+                    readOnly: true
+                    title: Authenticated
+                    type: boolean
+                  domain:
+                    description: The name of this domain.
+                    readOnly: true
+                    title: Domain Name
+                    type: string
+                  is_free_email_provider:
+                    description: Returns whether the domain used is a public / free email provider. See [Limitations of Free Email Addresses](https://mailchimp.com/help/limitations-of-free-email-addresses/) for more details.
+                    readOnly: true
+                    title: Is Public Domain
+                    type: boolean
+                  status:
+                    description: The Domain's current status.
+                    enum:
+                    - VERIFICATION_IN_PROGRESS
+                    - VERIFIED
+                    - EXPIRED
+                    - ERROR
+                    - AUTHENTICATION_IN_PROGRESS
+                    - AUTHENTICATION_ERROR
+                    - AUTHENTICATED
+                    readOnly: true
+                    title: Domain Status
+                    type: string
+                  verification_email:
+                    description: The e-mail address receiving the two-factor challenge for this domain.
+                    readOnly: true
+                    title: Verification Email
+                    type: string
+                  verification_sent:
+                    description: The date/time that the two-factor challenge was sent to the verification email.
+                    format: date-time
+                    readOnly: true
+                    title: Verification Challenge Sent
+                    type: string
+                  verified:
+                    description: Whether the domain has been verified for sending.
+                    readOnly: true
+                    title: Verified
+                    type: boolean
+                title: Verified Domains
+                type: object
+          description: The domain being verified for sending.
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Verify domain
+      tags:
+      - verified-domains
+      x-custom-config:
+        methodNameCamel: submitDomainVerification
+        methodNameSnake: submit_domain_verification
+components:
+  securitySchemes:
+    bearerToken:
+      description: Authorization using a Mailchimp API key (a.k.a. Bearer token)
+      scheme: Bearer
+      type: http
+    oauth2:
+      description: Authorization using OAuth
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.mailchimp.com/oauth2/authorize
+          scopes: {}
+          tokenUrl: https://login.mailchimp.com/oauth2/token
+      type: oauth2

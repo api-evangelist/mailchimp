@@ -1,15 +1,17 @@
 openapi: 3.2.0
 info:
-  version: 3.0.91
-  title: Mailchimp Marketing Root API
+  title: Mailchimp Root API
   contact:
     name: Mailchimp API Support
     email: apihelp@mailchimp.com
-  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/marketing.json
+  x-refined-note:
+  - x-permalink differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged root across 2 of this provider''s published API definitions: mailchimp-marketing-api-openapi-original.json, mailchimp-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://server.api.mailchimp.com/3.0
-security:
-- basicAuth: []
+- description: Mailchimp API
+  url: https://api.mailchimp.com
 tags:
 - name: Root
 paths:
@@ -540,14 +542,335 @@ paths:
       x-custom-config:
         methodNameSnake: get_root
         methodNameCamel: getRoot
+      security:
+      - basicAuth: []
+    servers:
+    - url: https://server.api.mailchimp.com/3.0
+  /3.0/:
+    get:
+      description: Get links to all other resources available in the API.
+      operationId: get30
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: The API root resource links to all other resources available in the API.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  account_id:
+                    description: The Mailchimp account ID.
+                    readOnly: true
+                    title: Account ID
+                    type: string
+                  account_industry:
+                    description: The user-specified industry associated with the account.
+                    readOnly: true
+                    title: Account Industry
+                    type: string
+                  account_name:
+                    description: The name of the account.
+                    readOnly: true
+                    title: Account Name
+                    type: string
+                  account_timezone:
+                    description: The timezone currently set for the account.
+                    readOnly: true
+                    title: Account Timezone
+                    type: string
+                  avatar_url:
+                    description: URL of the avatar for the user.
+                    readOnly: true
+                    title: Avatar URL
+                    type: string
+                  contact:
+                    description: Information about the account contact.
+                    properties:
+                      addr1:
+                        description: The street address for the account contact.
+                        readOnly: true
+                        title: Address Line 1
+                        type: string
+                      addr2:
+                        description: The street address for the account contact.
+                        readOnly: true
+                        title: Address Line 2
+                        type: string
+                      city:
+                        description: The city for the account contact.
+                        readOnly: true
+                        title: City
+                        type: string
+                      company:
+                        description: The company name for the account.
+                        readOnly: true
+                        title: Company
+                        type: string
+                      country:
+                        description: The country for the account contact.
+                        readOnly: true
+                        title: Country
+                        type: string
+                      state:
+                        description: The state for the account contact.
+                        readOnly: true
+                        title: State
+                        type: string
+                      zip:
+                        description: The zip code for the account contact.
+                        readOnly: true
+                        title: Zip Code
+                        type: string
+                    readOnly: true
+                    title: Account Contact
+                    type: object
+                  email:
+                    description: The account email address.
+                    readOnly: true
+                    title: Account Email
+                    type: string
+                  first_name:
+                    description: The first name tied to the account.
+                    readOnly: true
+                    title: First Name
+                    type: string
+                  first_payment:
+                    description: Date of first payment for monthly plans.
+                    examples:
+                    - '2010-01-01T23:59:59Z'
+                    oneOf:
+                    - format: date-time
+                      type: string
+                    - const: ''
+                      type: string
+                    readOnly: true
+                    title: First Payment
+                  industry_stats:
+                    description: The [average campaign statistics](https://mailchimp.com/resources/research/email-marketing-benchmarks/?utm_source=mc-api&utm_medium=docs&utm_campaign=apidocs) for all campaigns in the account's specified industry.
+                    properties:
+                      bounce_rate:
+                        description: The average bounce rate for all campaigns in the account's specified industry.
+                        readOnly: true
+                        title: Bounce Rate
+                        type: number
+                      click_rate:
+                        description: The average unique click rate for all campaigns in the account's specified industry.
+                        readOnly: true
+                        title: Click Rate
+                        type: number
+                      open_rate:
+                        description: The average unique open rate for all campaigns in the account's specified industry.
+                        readOnly: true
+                        title: Open Rate
+                        type: number
+                    readOnly: true
+                    title: Industry Stats
+                    type: object
+                  last_login:
+                    description: The date and time of the last login for this account in ISO 8601 format.
+                    format: date-time
+                    readOnly: true
+                    title: Last Login Date
+                    type: string
+                  last_name:
+                    description: The last name tied to the account.
+                    readOnly: true
+                    title: Last Name
+                    type: string
+                  login_id:
+                    description: The ID associated with the user who owns this API key. If you can login to multiple accounts, this ID will be the same for each account.
+                    readOnly: true
+                    title: Login ID
+                    type: string
+                  member_since:
+                    description: The date and time that the account was created in ISO 8601 format.
+                    examples:
+                    - '2010-01-01T23:59:59Z'
+                    format: date-time
+                    readOnly: true
+                    title: Account Creation Date
+                    type: string
+                  pricing_plan_type:
+                    description: The type of pricing plan the account is on.
+                    enum:
+                    - monthly
+                    - pay_as_you_go
+                    - forever_free
+                    readOnly: true
+                    title: Account Pricing Plan
+                    type: string
+                  pro_enabled:
+                    description: Legacy - whether the account includes [Mailchimp Pro](https://mailchimp.com/help/about-legacy-pricing-plan/).
+                    readOnly: true
+                    title: Mailchimp Pro
+                    type: boolean
+                  role:
+                    description: The [user role](https://mailchimp.com/help/manage-user-levels-in-your-account/) for the account.
+                    readOnly: true
+                    title: Role
+                    type: string
+                  total_subscribers:
+                    description: The total number of subscribers across all lists in the account.
+                    readOnly: true
+                    title: Total Subscribers
+                    type: integer
+                  username:
+                    description: The username tied to the account.
+                    examples:
+                    - freddie2000
+                    readOnly: true
+                    title: User Name
+                    type: string
+                title: API Root
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: List API root resources
+      tags:
+      - Root
+      x-custom-config:
+        methodNameCamel: getRoot
+        methodNameSnake: get_root
+      security:
+      - bearerToken: []
+      - oauth2: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getRoot
+    servers:
+    - description: Mailchimp API
+      url: https://api.mailchimp.com
 components:
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
+    bearerToken:
+      description: Authorization using a Mailchimp API key (a.k.a. Bearer token)
+      scheme: Bearer
+      type: http
+    oauth2:
+      description: Authorization using OAuth
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.mailchimp.com/oauth2/authorize
+          scopes: {}
+          tokenUrl: https://login.mailchimp.com/oauth2/token
+      type: oauth2
 externalDocs:
   description: Learn more with the full Mailchimp API documentation.
   url: https://mailchimp.com/developer/marketing/
+x-refined-from:
+- mailchimp-marketing-api-openapi-original.json
+- mailchimp-openapi.json
 x-doc-structure:
   resources:
     root:

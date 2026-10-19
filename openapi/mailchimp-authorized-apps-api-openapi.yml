@@ -1,0 +1,419 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: apihelp@mailchimp.com
+    name: Mailchimp API Support
+  description: 'Whether you’re managing your own campaigns, providing Mailchimp services to your customers or clients, or writing a mobile app, the Mailchimp API has features to manage and sync your contact data.
+
+
+    Audiences are at the core of sending campaigns with Mailchimp. You can use the API to set up an audience and add contacts to that audience; you can then organize those contacts with tags or segment them by activity with events.
+
+
+    The API can also be a source of data for your application. Webhooks collect and transmit information about your audience to you in near real time. And if you’re selling products on an external store, you can integrate your audience behavior using Mailchimp’s E-commerce features.
+
+
+    You can also use the API to handle data in different ways for different purposes. If you are syncing a large amount of data with Mailchimp, you can use batches to avoid hitting the API request limits. For building integrations that let other users access data from their own Mailchimp accounts, you should authenticate with OAuth 2. And if you’re developing an app for iOS or Android, the Mobile SDK provides an easy way to work with a mobile-focused subset of the API’s functionality.'
+  summary: Manage audiences, integrate your data, and send timely, relevant email campaigns.
+  termsOfService: https://mailchimp.com/legal/api_use/
+  title: Mailchimp Authorized Apps API
+  version: 0.1.0-dev
+servers:
+- description: Mailchimp API
+  url: https://api.mailchimp.com
+security:
+- bearerToken: []
+- oauth2: []
+tags:
+- name: authorized-apps
+paths:
+  /3.0/authorized-apps:
+    get:
+      description: Get a list of an account's registered, connected applications.
+      operationId: getAuthorizedApps
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The number of records to return. Default value is 10. Maximum value is 1000
+        in: query
+        name: count
+        schema:
+          default: 10
+          maximum: 1000
+          type: integer
+          x-title: Count
+        x-title: Count
+      - description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this is the number of records from a collection to skip. Default value is 0.
+        in: query
+        name: offset
+        schema:
+          default: 0
+          type: integer
+          x-title: Offset
+        x-title: Offset
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: An array of objects, each representing an authorized application.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  apps:
+                    description: An array of objects, each representing an authorized application.
+                    items:
+                      description: An authorized app.
+                      properties:
+                        _links:
+                          description: A list of link types and descriptions for the API schema documents.
+                          items:
+                            description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                            properties:
+                              href:
+                                description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                                readOnly: true
+                                title: Href
+                                type: string
+                              method:
+                                description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                                enum:
+                                - GET
+                                - POST
+                                - PUT
+                                - PATCH
+                                - DELETE
+                                - OPTIONS
+                                - HEAD
+                                readOnly: true
+                                title: Method
+                                type: string
+                              rel:
+                                description: As with an HTML 'rel' attribute, this describes the type of link.
+                                readOnly: true
+                                title: Rel
+                                type: string
+                              schema:
+                                description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                                readOnly: true
+                                title: Schema
+                                type: string
+                              targetSchema:
+                                description: For GETs, this is a URL representing the schema that the response should conform to.
+                                readOnly: true
+                                title: Target Schema
+                                type: string
+                            title: Resource Link
+                            type: object
+                          readOnly: true
+                          title: Links
+                          type: array
+                        description:
+                          description: A short description of the application.
+                          title: Application Description
+                          type: string
+                        id:
+                          description: The ID for the application.
+                          title: Client ID
+                          type: integer
+                        name:
+                          description: The name of the application.
+                          title: Application Name
+                          type: string
+                        users:
+                          description: An array of usernames for users who have linked the app.
+                          items:
+                            type: string
+                          title: Application Users
+                          type: array
+                      type: object
+                    title: Authorized Applications
+                    type: array
+                  total_items:
+                    description: The total number of items matching the query regardless of pagination.
+                    readOnly: true
+                    title: Item Count
+                    type: integer
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: List authorized apps
+      tags:
+      - authorized-apps
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+  /3.0/authorized-apps/{app_id}:
+    get:
+      description: Get information about a specific authorized application.
+      operationId: getAuthorizedAppsId
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The unique id for the connected authorized application.
+        in: path
+        name: app_id
+        required: true
+        schema:
+          type: string
+          x-title: App ID
+        x-title: App ID
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: An authorized app.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  description:
+                    description: A short description of the application.
+                    title: Application Description
+                    type: string
+                  id:
+                    description: The ID for the application.
+                    title: Client ID
+                    type: integer
+                  name:
+                    description: The name of the application.
+                    title: Application Name
+                    type: string
+                  users:
+                    description: An array of usernames for users who have linked the app.
+                    items:
+                      type: string
+                    title: Application Users
+                    type: array
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Get authorized app info
+      tags:
+      - authorized-apps
+      x-custom-config:
+        methodNameCamel: get
+        methodNameSnake: get
+components:
+  securitySchemes:
+    bearerToken:
+      description: Authorization using a Mailchimp API key (a.k.a. Bearer token)
+      scheme: Bearer
+      type: http
+    oauth2:
+      description: Authorization using OAuth
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.mailchimp.com/oauth2/authorize
+          scopes: {}
+          tokenUrl: https://login.mailchimp.com/oauth2/token
+      type: oauth2

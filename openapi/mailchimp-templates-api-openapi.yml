@@ -4,9 +4,11 @@ info:
   x-refined-note:
   - x-permalink differs across the merged source definitions and was not carried
   version: '1.0'
-  description: 'Operations tagged templates across 2 of this provider''s published API definitions: mailchimp-marketing-api-openapi-original.json, mailchimp-transactional-api-openapi-original.json. Each path carries the servers of the definition it was published in.'
+  description: 'Operations tagged templates across 3 of this provider''s published API definitions: mailchimp-marketing-api-openapi-original.json, mailchimp-openapi.json, mailchimp-transactional-api-openapi-original.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://server.api.mailchimp.com/3.0
+- description: Mailchimp API
+  url: https://api.mailchimp.com
 - url: https://mandrillapp.com/api/1.3
 tags:
 - name: Templates
@@ -2067,6 +2069,1264 @@ paths:
       - basicAuth: []
     servers:
     - url: https://server.api.mailchimp.com/3.0
+  /3.0/templates:
+    get:
+      description: Get a list of an account's available templates.
+      operationId: get30Templates
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The number of records to return. Default value is 10. Maximum value is 1000
+        in: query
+        name: count
+        schema:
+          default: 10
+          maximum: 1000
+          type: integer
+          x-title: Count
+        x-title: Count
+      - description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this is the number of records from a collection to skip. Default value is 0.
+        in: query
+        name: offset
+        schema:
+          default: 0
+          type: integer
+          x-title: Offset
+        x-title: Offset
+      - description: The Mailchimp account user who created the template.
+        in: query
+        name: created_by
+        schema:
+          type: string
+          x-title: Created By
+        x-title: Created By
+      - description: 'Restrict the response to templates created after the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        in: query
+        name: since_date_created
+        schema:
+          type: string
+          x-title: Since Date Created
+        x-title: Since Date Created
+      - description: 'Restrict the response to templates created before the set date. Uses ISO 8601 time format: 2015-10-21T15:41:36+00:00.'
+        in: query
+        name: before_date_created
+        schema:
+          type: string
+          x-title: Before Date Created
+        x-title: Before Date Created
+      - description: Limit results based on template type.
+        in: query
+        name: type
+        schema:
+          type: string
+          x-title: Template Type
+        x-title: Template Type
+      - description: Limit results based on category.
+        in: query
+        name: category
+        schema:
+          type: string
+          x-title: Category
+        x-title: Category
+      - description: The unique folder id.
+        in: query
+        name: folder_id
+        schema:
+          type: string
+          x-title: Folder ID
+        x-title: Folder ID
+      - description: Returns user templates sorted by the specified field.
+        in: query
+        name: sort_field
+        schema:
+          enum:
+          - date_created
+          - date_edited
+          - name
+          type: string
+          x-title: Sort By Field
+        x-title: Sort By Field
+      - description: Limit results based on how the template's content is put together. Only templates of type `user` can be filtered by `content_type`. If you want to retrieve saved templates created with the legacy email editor, then filter `content_type` to `template`. If you'd rather pull your saved templates for the new editor, filter to `multichannel`. For code your own templates, filter to `html`.
+        in: query
+        name: content_type
+        schema:
+          enum:
+          - html
+          - template
+          - multichannel
+          type: string
+          x-title: Content Type
+        x-title: Content Type
+      - description: Determines the order direction for sorted results.
+        in: query
+        name: sort_dir
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+          x-title: Sort Direction
+        x-title: Sort Direction
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: A list an account's available templates.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  templates:
+                    description: All of an account's saved or custom templates.
+                    items:
+                      description: Information about a specific template.
+                      properties:
+                        _links:
+                          description: A list of link types and descriptions for the API schema documents.
+                          items:
+                            description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                            properties:
+                              href:
+                                description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                                readOnly: true
+                                title: Href
+                                type: string
+                              method:
+                                description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                                enum:
+                                - GET
+                                - POST
+                                - PUT
+                                - PATCH
+                                - DELETE
+                                - OPTIONS
+                                - HEAD
+                                readOnly: true
+                                title: Method
+                                type: string
+                              rel:
+                                description: As with an HTML 'rel' attribute, this describes the type of link.
+                                readOnly: true
+                                title: Rel
+                                type: string
+                              schema:
+                                description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                                readOnly: true
+                                title: Schema
+                                type: string
+                              targetSchema:
+                                description: For GETs, this is a URL representing the schema that the response should conform to.
+                                readOnly: true
+                                title: Target Schema
+                                type: string
+                            title: Resource Link
+                            type: object
+                          readOnly: true
+                          title: Links
+                          type: array
+                        active:
+                          description: User templates are not 'deleted,' but rather marked as 'inactive.' Returns whether the template is still active.
+                          readOnly: true
+                          title: Active
+                          type: boolean
+                        category:
+                          description: If available, the category the template is listed in.
+                          readOnly: true
+                          title: Template Category
+                          type: string
+                        content_type:
+                          description: How the template's content is put together.
+                          enum:
+                          - template
+                          - multichannel
+                          - html
+                          readOnly: true
+                          title: Content Type
+                          type: string
+                        created_by:
+                          description: The login name for template's creator.
+                          readOnly: true
+                          title: Created By
+                          type: string
+                        date_created:
+                          description: The date and time the template was created in ISO 8601 format.
+                          format: date-time
+                          readOnly: true
+                          title: Date Created
+                          type: string
+                        date_edited:
+                          description: The date and time the template was edited in ISO 8601 format.
+                          format: date-time
+                          readOnly: true
+                          title: Date Edited
+                          type: string
+                        drag_and_drop:
+                          description: Whether the template uses the drag and drop editor.
+                          readOnly: true
+                          title: Drag and Drop
+                          type: boolean
+                        edited_by:
+                          description: The login name who last edited the template.
+                          readOnly: true
+                          title: Edited By
+                          type: string
+                        folder_id:
+                          description: The id of the folder the template is currently in.
+                          title: Folder ID
+                          type: string
+                        id:
+                          description: The individual id for the template.
+                          readOnly: true
+                          title: Template ID
+                          type: integer
+                        name:
+                          description: The name of the template.
+                          title: Template Name
+                          type: string
+                        responsive:
+                          description: Whether the template contains media queries to make it responsive.
+                          readOnly: true
+                          title: Responsive
+                          type: boolean
+                        share_url:
+                          description: The URL used for [template sharing](https://mailchimp.com/help/share-a-template/).
+                          readOnly: true
+                          title: Share URL
+                          type: string
+                        thumbnail:
+                          description: If available, the URL for a thumbnail of the template.
+                          readOnly: true
+                          title: Template Thumbnail
+                          type: string
+                        type:
+                          description: The type of template (user, base, or gallery).
+                          readOnly: true
+                          title: Template Type
+                          type: string
+                      title: Template Instance
+                      type: object
+                    title: User Templates
+                    type: array
+                  total_items:
+                    description: The total number of items matching the query regardless of pagination.
+                    readOnly: true
+                    title: Item Count
+                    type: integer
+                title: Templates
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: List templates
+      tags:
+      - Templates
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+      security:
+      - bearerToken: []
+      - oauth2: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getTemplates
+    post:
+      description: Create a new template for the account. Only Classic templates are supported.
+      operationId: post30Templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Information about a specific template.
+              properties:
+                folder_id:
+                  description: The id of the folder the template is currently in.
+                  example: a4b830b
+                  title: Folder ID
+                  type: string
+                html:
+                  description: The raw HTML for the template. We  support the Mailchimp [Template Language](https://mailchimp.com/help/getting-started-with-mailchimps-template-language/) in any HTML code passed via the API.
+                  title: Template HTML
+                  oneOf:
+                  - type: string
+                name:
+                  description: The name of the template.
+                  example: Freddie's Jokes
+                  title: Template Name
+                  type: string
+              required:
+              - name
+              - html
+              title: Template Instance
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Information about a specific template.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  active:
+                    description: User templates are not 'deleted,' but rather marked as 'inactive.' Returns whether the template is still active.
+                    readOnly: true
+                    title: Active
+                    type: boolean
+                  category:
+                    description: If available, the category the template is listed in.
+                    readOnly: true
+                    title: Template Category
+                    type: string
+                  content_type:
+                    description: How the template's content is put together.
+                    enum:
+                    - template
+                    - multichannel
+                    - html
+                    readOnly: true
+                    title: Content Type
+                    type: string
+                  created_by:
+                    description: The login name for template's creator.
+                    readOnly: true
+                    title: Created By
+                    type: string
+                  date_created:
+                    description: The date and time the template was created in ISO 8601 format.
+                    format: date-time
+                    readOnly: true
+                    title: Date Created
+                    type: string
+                  date_edited:
+                    description: The date and time the template was edited in ISO 8601 format.
+                    format: date-time
+                    readOnly: true
+                    title: Date Edited
+                    type: string
+                  drag_and_drop:
+                    description: Whether the template uses the drag and drop editor.
+                    readOnly: true
+                    title: Drag and Drop
+                    type: boolean
+                  edited_by:
+                    description: The login name who last edited the template.
+                    readOnly: true
+                    title: Edited By
+                    type: string
+                  folder_id:
+                    description: The id of the folder the template is currently in.
+                    title: Folder ID
+                    type: string
+                  id:
+                    description: The individual id for the template.
+                    readOnly: true
+                    title: Template ID
+                    type: integer
+                  name:
+                    description: The name of the template.
+                    title: Template Name
+                    type: string
+                  responsive:
+                    description: Whether the template contains media queries to make it responsive.
+                    readOnly: true
+                    title: Responsive
+                    type: boolean
+                  share_url:
+                    description: The URL used for [template sharing](https://mailchimp.com/help/share-a-template/).
+                    readOnly: true
+                    title: Share URL
+                    type: string
+                  thumbnail:
+                    description: If available, the URL for a thumbnail of the template.
+                    readOnly: true
+                    title: Template Thumbnail
+                    type: string
+                  type:
+                    description: The type of template (user, base, or gallery).
+                    readOnly: true
+                    title: Template Type
+                    type: string
+                title: Template Instance
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Add template
+      tags:
+      - Templates
+      x-custom-config:
+        methodNameCamel: create
+        methodNameSnake: create
+      security:
+      - bearerToken: []
+      - oauth2: []
+      x-operation-id-source: normalized
+      x-operation-id-original: postTemplates
+    servers:
+    - description: Mailchimp API
+      url: https://api.mailchimp.com
+  /3.0/templates/{template_id}:
+    delete:
+      description: Delete a specific template.
+      operationId: delete30TemplatesByTemplateId
+      parameters:
+      - description: The unique id for the template.
+        in: path
+        name: template_id
+        required: true
+        schema:
+          type: string
+          x-title: Template ID
+        x-title: Template ID
+      responses:
+        '204':
+          content: {}
+          description: Empty Response
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Delete template
+      tags:
+      - Templates
+      x-custom-config:
+        methodNameCamel: deleteTemplate
+        methodNameSnake: delete_template
+      security:
+      - bearerToken: []
+      - oauth2: []
+      x-operation-id-source: normalized
+      x-operation-id-original: deleteTemplatesId
+    get:
+      description: Get information about a specific template.
+      operationId: get30TemplatesByTemplateId
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The unique id for the template.
+        in: path
+        name: template_id
+        required: true
+        schema:
+          type: string
+          x-title: Template ID
+        x-title: Template ID
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Information about a specific template.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  active:
+                    description: User templates are not 'deleted,' but rather marked as 'inactive.' Returns whether the template is still active.
+                    readOnly: true
+                    title: Active
+                    type: boolean
+                  category:
+                    description: If available, the category the template is listed in.
+                    readOnly: true
+                    title: Template Category
+                    type: string
+                  content_type:
+                    description: How the template's content is put together.
+                    enum:
+                    - template
+                    - multichannel
+                    - html
+                    readOnly: true
+                    title: Content Type
+                    type: string
+                  created_by:
+                    description: The login name for template's creator.
+                    readOnly: true
+                    title: Created By
+                    type: string
+                  date_created:
+                    description: The date and time the template was created in ISO 8601 format.
+                    format: date-time
+                    readOnly: true
+                    title: Date Created
+                    type: string
+                  date_edited:
+                    description: The date and time the template was edited in ISO 8601 format.
+                    format: date-time
+                    readOnly: true
+                    title: Date Edited
+                    type: string
+                  drag_and_drop:
+                    description: Whether the template uses the drag and drop editor.
+                    readOnly: true
+                    title: Drag and Drop
+                    type: boolean
+                  edited_by:
+                    description: The login name who last edited the template.
+                    readOnly: true
+                    title: Edited By
+                    type: string
+                  folder_id:
+                    description: The id of the folder the template is currently in.
+                    title: Folder ID
+                    type: string
+                  id:
+                    description: The individual id for the template.
+                    readOnly: true
+                    title: Template ID
+                    type: integer
+                  name:
+                    description: The name of the template.
+                    title: Template Name
+                    type: string
+                  responsive:
+                    description: Whether the template contains media queries to make it responsive.
+                    readOnly: true
+                    title: Responsive
+                    type: boolean
+                  share_url:
+                    description: The URL used for [template sharing](https://mailchimp.com/help/share-a-template/).
+                    readOnly: true
+                    title: Share URL
+                    type: string
+                  thumbnail:
+                    description: If available, the URL for a thumbnail of the template.
+                    readOnly: true
+                    title: Template Thumbnail
+                    type: string
+                  type:
+                    description: The type of template (user, base, or gallery).
+                    readOnly: true
+                    title: Template Type
+                    type: string
+                title: Template Instance
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Get template info
+      tags:
+      - Templates
+      x-custom-config:
+        methodNameCamel: getTemplate
+        methodNameSnake: get_template
+      security:
+      - bearerToken: []
+      - oauth2: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getTemplatesId
+    patch:
+      description: Update the name, HTML, or `folder_id` of an existing template.
+      operationId: patch30TemplatesByTemplateId
+      parameters:
+      - description: The unique id for the template.
+        in: path
+        name: template_id
+        required: true
+        schema:
+          type: string
+          x-title: Template ID
+        x-title: Template ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Information about a specific template.
+              properties:
+                folder_id:
+                  description: The id of the folder the template is currently in.
+                  example: a4b830b
+                  title: Folder ID
+                  type: string
+                html:
+                  description: The raw HTML for the template. We  support the Mailchimp [Template Language](https://mailchimp.com/help/getting-started-with-mailchimps-template-language/) in any HTML code passed via the API.
+                  title: Template HTML
+                  type: string
+                name:
+                  description: The name of the template.
+                  example: Freddie's Jokes
+                  title: Template Name
+                  type: string
+              title: Template Instance
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Information about a specific template.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  active:
+                    description: User templates are not 'deleted,' but rather marked as 'inactive.' Returns whether the template is still active.
+                    readOnly: true
+                    title: Active
+                    type: boolean
+                  category:
+                    description: If available, the category the template is listed in.
+                    readOnly: true
+                    title: Template Category
+                    type: string
+                  content_type:
+                    description: How the template's content is put together.
+                    enum:
+                    - template
+                    - multichannel
+                    - html
+                    readOnly: true
+                    title: Content Type
+                    type: string
+                  created_by:
+                    description: The login name for template's creator.
+                    readOnly: true
+                    title: Created By
+                    type: string
+                  date_created:
+                    description: The date and time the template was created in ISO 8601 format.
+                    format: date-time
+                    readOnly: true
+                    title: Date Created
+                    type: string
+                  date_edited:
+                    description: The date and time the template was edited in ISO 8601 format.
+                    format: date-time
+                    readOnly: true
+                    title: Date Edited
+                    type: string
+                  drag_and_drop:
+                    description: Whether the template uses the drag and drop editor.
+                    readOnly: true
+                    title: Drag and Drop
+                    type: boolean
+                  edited_by:
+                    description: The login name who last edited the template.
+                    readOnly: true
+                    title: Edited By
+                    type: string
+                  folder_id:
+                    description: The id of the folder the template is currently in.
+                    title: Folder ID
+                    type: string
+                  id:
+                    description: The individual id for the template.
+                    readOnly: true
+                    title: Template ID
+                    type: integer
+                  name:
+                    description: The name of the template.
+                    title: Template Name
+                    type: string
+                  responsive:
+                    description: Whether the template contains media queries to make it responsive.
+                    readOnly: true
+                    title: Responsive
+                    type: boolean
+                  share_url:
+                    description: The URL used for [template sharing](https://mailchimp.com/help/share-a-template/).
+                    readOnly: true
+                    title: Share URL
+                    type: string
+                  thumbnail:
+                    description: If available, the URL for a thumbnail of the template.
+                    readOnly: true
+                    title: Template Thumbnail
+                    type: string
+                  type:
+                    description: The type of template (user, base, or gallery).
+                    readOnly: true
+                    title: Template Type
+                    type: string
+                title: Template Instance
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Update template
+      tags:
+      - Templates
+      x-custom-config:
+        methodNameCamel: updateTemplate
+        methodNameSnake: update_template
+      security:
+      - bearerToken: []
+      - oauth2: []
+      x-operation-id-source: normalized
+      x-operation-id-original: patchTemplatesId
+    servers:
+    - description: Mailchimp API
+      url: https://api.mailchimp.com
+  /3.0/templates/{template_id}/default-content:
+    get:
+      description: Get the sections that you can edit in a template, including each section's default content.
+      operationId: get30TemplatesByTemplateIdDefaultContent
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The unique id for the template.
+        in: path
+        name: template_id
+        required: true
+        schema:
+          type: string
+          x-title: Template ID
+        x-title: Template ID
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Default content for a template.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  sections:
+                    additionalProperties:
+                      description: The default content for the sections that you can edit in the template.
+                    description: The sections that you can edit in the template, including each section's default content.
+                    title: Sections
+                    type: object
+                title: Template Default Content
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: View default content
+      tags:
+      - Templates
+      x-custom-config:
+        methodNameCamel: getDefaultContentForTemplate
+        methodNameSnake: get_default_content_for_template
+      security:
+      - bearerToken: []
+      - oauth2: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getTemplatesIdDefaultContent
+    servers:
+    - description: Mailchimp API
+      url: https://api.mailchimp.com
   /templates/add:
     post:
       x-custom-config:
@@ -4114,11 +5374,24 @@ components:
     basicAuth:
       type: http
       scheme: basic
+    bearerToken:
+      description: Authorization using a Mailchimp API key (a.k.a. Bearer token)
+      scheme: Bearer
+      type: http
+    oauth2:
+      description: Authorization using OAuth
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.mailchimp.com/oauth2/authorize
+          scopes: {}
+          tokenUrl: https://login.mailchimp.com/oauth2/token
+      type: oauth2
 externalDocs:
   description: Learn more with the full Mailchimp API documentation.
   url: https://mailchimp.com/developer/marketing/
 x-refined-from:
 - mailchimp-marketing-api-openapi-original.json
+- mailchimp-openapi.json
 - mailchimp-transactional-api-openapi-original.json
 x-doc-structure:
   resources:
