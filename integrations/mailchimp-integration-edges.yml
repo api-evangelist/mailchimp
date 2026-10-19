@@ -7,9 +7,11 @@ source:
 checked:
 - blackbaud/integrations/blackbaud-integration-edges.yml
 - freshbooks/integrations/freshbooks-integration-edges.yml
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/mailchimp
 - https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
+- https://crates.io/api/v1
 - https://docs.mparticle.com/integrations/mailchimp/audience/
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/activations/destinations/available-destinations/mailchimp
@@ -21,6 +23,11 @@ checked:
 - https://monid.ai/tools/mailchimp
 - https://mpl-pusa01.app.blackbaud.net/mktpl/v1/public/marketplace/applications
 - https://n8n.io/integrations/mailchimp/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/mailchimp
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/mailchimp/integrations
@@ -1528,6 +1535,84 @@ edges:
     - unknown
     builder: 'community (Meltano Hub variant maintainers: acarter24, airbyte, lovepopcards, singer-io)'
   detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@mailchimp/mailchimp_marketing
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@mailchimp/mailchimp_marketing'
+      version: 3.0.80
+      released: '2022-11-02'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@mailchimp/mailchimp_marketing
+      repo_leg: github-org:mailchimp
+      publisher_leg: email:mailchimp.com
+      matched_by: domain+name-among-holders
+    - name: '@mailchimp/mailchimp_transactional'
+      version: 1.4.1
+      released: '2026-03-24'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@mailchimp/mailchimp_transactional
+      repo_leg: github-org:mailchimp
+      publisher_leg: email:mailchimp.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: RubyGems
+  partner: rubygems
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Ruby)
+  evidence: https://rubygems.org/gems/MailchimpMarketing
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: MailchimpMarketing
+      version: 3.0.80
+      released: '2022-11-02'
+      released_field: version_created_at
+      lapsed: true
+      page: https://rubygems.org/gems/MailchimpMarketing
+      repo_leg: github-org:mailchimp
+      publisher_leg: org:mailchimp
+      matched_by: github-org
+    - name: MailchimpTransactional
+      version: 1.4.1
+      released: '2026-03-24'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/MailchimpTransactional
+      repo_leg: github-org:mailchimp
+      publisher_leg: org:mailchimp
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
