@@ -37,6 +37,7 @@ checked:
 - olo/integrations/olo-integration-edges.yml
 - woocommerce/integrations/woocommerce-integration-edges.yml
 - wordpress/integrations/wordpress-integration-edges.yml
+- yotpo/integrations/yotpo-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1286,6 +1287,23 @@ edges:
   direction: third-party
   category: Google
   partner_url: http://sheets.google.com/
+- partner_name: Yotpo (own)
+  partner: yotpo
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.yotpo.com/integrations/mailchimp-loyalty/
+  mirror_of: yotpo/integrations/yotpo-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Loyalty & Referrals
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
   url: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
