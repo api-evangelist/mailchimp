@@ -38,6 +38,7 @@ checked:
 - woocommerce/integrations/woocommerce-integration-edges.yml
 - wordpress/integrations/wordpress-integration-edges.yml
 - yotpo/integrations/yotpo-integration-edges.yml
+- adobe-commerce/integrations/adobe-commerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -473,108 +474,6 @@ edges:
     property: __timeline.source
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
-- partner_name: Blackbaud (blackbaud-marketplace)
-  partner: blackbaud
-  partner_match: mirror
-  mirror_match: domain+verified
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: blackbaud-marketplace
-  evidence: https://app.blackbaud.com/marketplace/applications/822a30f4-7726-48cb-8344-e35b01f0bcf5
-  mirror_of: blackbaud/integrations/blackbaud-integration-edges.yml
-  apps:
-  - Mailchimp for Blackbaud Raiser's Edge NXT
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  badges:
-  - Reviewed by Blackbaud
-- partner_name: FreshBooks (own)
-  partner: freshbooks
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://appstore.freshbooks.com/apps/mailchimp
-  mirror_of: freshbooks/integrations/freshbooks-integration-edges.yml
-  apps:
-  - MailChimp
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Nurture Customers
-- partner_name: Mews (own)
-  partner: mews-com
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.mews.com/en/products/marketplace/mailchimp
-  mirror_of: mews-com/integrations/mews-com-integration-edges.yml
-  apps:
-  - Mailchimp
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-- partner_name: Olo (own)
-  partner: olo
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.olo.com/partners/mailchimp
-  mirror_of: olo/integrations/olo-integration-edges.yml
-  apps:
-  - Mailchimp
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Marketing
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/mailchimp-for-woocommerce/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - Mailchimp
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
-- partner_name: WordPress (own)
-  partner: wordpress
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://wordpress.org/plugins/mailchimp-for-woocommerce/
-  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
-  apps:
-  - Mailchimp for WooCommerce
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: WordPress plugin
 - partner_name: npm registry
   partner: npm
   partner_match: register
@@ -1287,6 +1186,108 @@ edges:
   direction: third-party
   category: Google
   partner_url: http://sheets.google.com/
+- partner_name: Blackbaud (blackbaud-marketplace)
+  partner: blackbaud
+  partner_match: mirror
+  mirror_match: domain+verified
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: blackbaud-marketplace
+  evidence: https://app.blackbaud.com/marketplace/applications/822a30f4-7726-48cb-8344-e35b01f0bcf5
+  mirror_of: blackbaud/integrations/blackbaud-integration-edges.yml
+  apps:
+  - Mailchimp for Blackbaud Raiser's Edge NXT
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  badges:
+  - Reviewed by Blackbaud
+- partner_name: FreshBooks (own)
+  partner: freshbooks
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appstore.freshbooks.com/apps/mailchimp
+  mirror_of: freshbooks/integrations/freshbooks-integration-edges.yml
+  apps:
+  - MailChimp
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Nurture Customers
+- partner_name: Mews (own)
+  partner: mews-com
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.mews.com/en/products/marketplace/mailchimp
+  mirror_of: mews-com/integrations/mews-com-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Olo (own)
+  partner: olo
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.olo.com/partners/mailchimp
+  mirror_of: olo/integrations/olo-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Marketing
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/mailchimp-for-woocommerce/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/mailchimp-for-woocommerce/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Mailchimp for WooCommerce
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 - partner_name: Yotpo (own)
   partner: yotpo
   partner_match: mirror
@@ -1304,6 +1305,23 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: Loyalty & Referrals
+- partner_name: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://commercemarketplace.adobe.com/mailchimp-mc-magento2.html
+  mirror_of: adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Commerce Marketplace extension
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
   url: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
