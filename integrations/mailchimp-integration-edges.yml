@@ -42,6 +42,7 @@ checked:
 - https://hex.pm/api
 - https://packagist.org/packages
 - https://pub.dev/api
+- drupal/integrations/drupal-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1189,6 +1190,46 @@ edges:
   direction: third-party
   category: Google
   partner_url: http://sheets.google.com/
+- partner_name: Packagist
+  partner: packagist
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (PHP)
+  evidence: https://packagist.org/packages/mailchimp/mailchimp
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: mailchimp/mailchimp
+      version: 2.0.6
+      released: '2014-10-30'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/mailchimp/mailchimp
+      repo_leg: domain:mailchimp.com
+      publisher_leg: email:mailchimp.com
+      matched_by: domain+name-among-holders
+      abandoned: true
+    - name: mailchimp/marketing-sdk
+      version: 1.0.3
+      released: '2026-10-05'
+      released_field: time
+      lapsed: false
+      page: https://packagist.org/packages/mailchimp/marketing-sdk
+      repo_leg: github-org:mailchimp
+      publisher_leg: org:mailchimp
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 - partner_name: Blackbaud (blackbaud-marketplace)
   partner: blackbaud
   partner_match: mirror
@@ -1325,46 +1366,23 @@ edges:
   detected: '2026-10-22'
   detected_by: mirror-platform-listings.py
   category: Adobe Commerce Marketplace extension
-- partner_name: Packagist
-  partner: packagist
-  partner_match: register
-  type: register
-  direction: provider-built
-  category: official SDK (PHP)
-  evidence: https://packagist.org/packages/mailchimp/mailchimp
-  channel: package-registry
-  relationship: distribution-channel
-  contract_reference:
-    register: Packagist (public registry JSON)
-    spec_file: null
-    language: PHP
-    packages:
-    - name: mailchimp/mailchimp
-      version: 2.0.6
-      released: '2014-10-30'
-      released_field: time
-      lapsed: true
-      page: https://packagist.org/packages/mailchimp/mailchimp
-      repo_leg: domain:mailchimp.com
-      publisher_leg: email:mailchimp.com
-      matched_by: domain+name-among-holders
-      abandoned: true
-    - name: mailchimp/marketing-sdk
-      version: 1.0.3
-      released: '2026-10-05'
-      released_field: time
-      lapsed: false
-      page: https://packagist.org/packages/mailchimp/marketing-sdk
-      repo_leg: github-org:mailchimp
-      publisher_leg: org:mailchimp
-      matched_by: github-org
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-php-dart-elixir-package-registries.py
-    detected: '2026-10-22'
-  detected_by: sweep-php-dart-elixir-package-registries.py
-  first_seen: '2026-10-22'
+- partner_name: Drupal (own)
+  partner: drupal
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.drupal.org/project/mailchimp
+  mirror_of: drupal/integrations/drupal-integration-edges.yml
+  apps:
+  - Mailchimp
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Drupal contributed module
 templates:
 - title: Add new Mailchimp subscribers to Google Ads customer lists
   url: https://zapier.com/apps/google-ads/integrations/mailchimp/78011/add-new-mailchimp-subscribers-to-google-ads-customer-lists
