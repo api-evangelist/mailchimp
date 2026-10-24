@@ -77,7 +77,7 @@ workflows:
         type: jsonpath
   - stepId: updateMember
     description: Patch the matched member with the supplied merge fields and status.
-    operationId: patchListsIdMembersId
+    operationId: patch30ListsByListIdMembersBySubscriberHash
     parameters:
     - name: list_id
       in: path
@@ -100,7 +100,7 @@ workflows:
       type: end
   - stepId: addMember
     description: Add a new member to the audience when no existing match was found.
-    operationId: postListsIdMembers
+    operationId: post30ListsByListIdMembers
     parameters:
     - name: list_id
       in: path

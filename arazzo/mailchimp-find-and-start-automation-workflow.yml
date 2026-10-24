@@ -42,7 +42,7 @@ workflows:
   steps:
   - stepId: listAutomations
     description: List the classic automation workflows on the account.
-    operationId: getAutomations
+    operationId: get30Automations
     parameters:
     - name: count
       in: query
@@ -69,7 +69,7 @@ workflows:
     description: >-
       Start all emails in the first automation found. Returns a 204 empty
       response on success.
-    operationId: postAutomationsIdActionsStartAllEmails
+    operationId: post30AutomationsByWorkflowIdActionsStartAllEmails
     parameters:
     - name: workflow_id
       in: path

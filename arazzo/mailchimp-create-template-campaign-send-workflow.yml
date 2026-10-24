@@ -66,7 +66,7 @@ workflows:
   steps:
   - stepId: createTemplate
     description: Save a reusable HTML template to the account.
-    operationId: postTemplates
+    operationId: post30Templates
     requestBody:
       contentType: application/json
       payload:
@@ -78,7 +78,7 @@ workflows:
       templateId: $response.body#/id
   - stepId: createCampaign
     description: Create a regular campaign bound to the audience.
-    operationId: postCampaigns
+    operationId: post30Campaigns
     requestBody:
       contentType: application/json
       payload:
@@ -95,7 +95,7 @@ workflows:
       campaignId: $response.body#/id
   - stepId: setContentFromTemplate
     description: Set the campaign content from the newly created template.
-    operationId: putCampaignsIdContent
+    operationId: put30CampaignsByCampaignIdContent
     parameters:
     - name: campaign_id
       in: path
@@ -110,7 +110,7 @@ workflows:
   - stepId: sendCampaign
     description: >-
       Send the campaign immediately. Returns a 204 empty response on success.
-    operationId: postCampaignsIdActionsSend
+    operationId: post30CampaignsByCampaignIdActionsSend
     parameters:
     - name: campaign_id
       in: path

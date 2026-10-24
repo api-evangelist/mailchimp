@@ -43,7 +43,7 @@ workflows:
   steps:
   - stepId: addMember
     description: Subscribe the member to the audience.
-    operationId: postListsIdMembers
+    operationId: post30ListsByListIdMembers
     parameters:
     - name: list_id
       in: path
@@ -59,7 +59,7 @@ workflows:
       memberId: $response.body#/id
   - stepId: addNote
     description: Attach an internal note to the member record.
-    operationId: postListsIdMembersIdNotes
+    operationId: post30ListsByListIdMembersBySubscriberHashNotes
     parameters:
     - name: list_id
       in: path

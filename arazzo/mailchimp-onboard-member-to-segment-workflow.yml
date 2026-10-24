@@ -43,7 +43,7 @@ workflows:
   steps:
   - stepId: addMember
     description: Subscribe the member to the audience.
-    operationId: postListsIdMembers
+    operationId: post30ListsByListIdMembers
     parameters:
     - name: list_id
       in: path
@@ -59,7 +59,7 @@ workflows:
       memberId: $response.body#/id
   - stepId: createSegment
     description: Create a static segment in the audience.
-    operationId: postListsIdSegments
+    operationId: post30ListsByListIdSegments
     parameters:
     - name: list_id
       in: path
@@ -75,7 +75,7 @@ workflows:
       segmentId: $response.body#/id
   - stepId: addToSegment
     description: Add the onboarded member to the static segment by email.
-    operationId: postListsIdSegmentsIdMembers
+    operationId: post30ListsByListIdSegmentsBySegmentIdMembers
     parameters:
     - name: list_id
       in: path

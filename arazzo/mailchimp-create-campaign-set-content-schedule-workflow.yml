@@ -62,7 +62,7 @@ workflows:
   steps:
   - stepId: createCampaign
     description: Create a regular campaign bound to the audience with sender settings.
-    operationId: postCampaigns
+    operationId: post30Campaigns
     requestBody:
       contentType: application/json
       payload:
@@ -79,7 +79,7 @@ workflows:
       campaignId: $response.body#/id
   - stepId: setContent
     description: Set the HTML content for the newly created campaign.
-    operationId: putCampaignsIdContent
+    operationId: put30CampaignsByCampaignIdContent
     parameters:
     - name: campaign_id
       in: path
@@ -94,7 +94,7 @@ workflows:
     description: >-
       Schedule the campaign for delivery at the supplied UTC time. Returns a 204
       empty response on success.
-    operationId: postCampaignsIdActionsSchedule
+    operationId: post30CampaignsByCampaignIdActionsSchedule
     parameters:
     - name: campaign_id
       in: path

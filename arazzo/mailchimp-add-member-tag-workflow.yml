@@ -46,7 +46,7 @@ workflows:
   steps:
   - stepId: addMember
     description: Subscribe the member to the audience.
-    operationId: postListsIdMembers
+    operationId: post30ListsByListIdMembers
     parameters:
     - name: list_id
       in: path
@@ -66,7 +66,7 @@ workflows:
     description: >-
       Apply the supplied tag to the member by declaring it active. Returns a
       204 empty response on success.
-    operationId: postListMemberTags
+    operationId: post30ListsByListIdMembersBySubscriberHashTags
     parameters:
     - name: list_id
       in: path

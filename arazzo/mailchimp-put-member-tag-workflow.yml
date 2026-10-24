@@ -48,7 +48,7 @@ workflows:
     description: >-
       Add or update the member idempotently. status_if_new is only applied when
       the member is newly created.
-    operationId: putListsIdMembersId
+    operationId: put30ListsByListIdMembersBySubscriberHash
     parameters:
     - name: list_id
       in: path
@@ -69,7 +69,7 @@ workflows:
       memberStatus: $response.body#/status
   - stepId: applyTag
     description: Apply the supplied tag to the upserted member (204 on success).
-    operationId: postListMemberTags
+    operationId: post30ListsByListIdMembersBySubscriberHashTags
     parameters:
     - name: list_id
       in: path

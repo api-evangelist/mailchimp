@@ -70,7 +70,7 @@ workflows:
         type: jsonpath
   - stepId: markVip
     description: Patch the matched member to set VIP status.
-    operationId: patchListsIdMembersId
+    operationId: patch30ListsByListIdMembersBySubscriberHash
     parameters:
     - name: list_id
       in: path
@@ -89,7 +89,7 @@ workflows:
       isVip: $response.body#/vip
   - stepId: applyVipTag
     description: Apply the VIP tag to the member (204 on success).
-    operationId: postListMemberTags
+    operationId: post30ListsByListIdMembersBySubscriberHashTags
     parameters:
     - name: list_id
       in: path

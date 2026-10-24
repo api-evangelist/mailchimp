@@ -52,7 +52,7 @@ workflows:
   steps:
   - stepId: replicateCampaign
     description: Replicate the existing campaign into a new draft copy.
-    operationId: postCampaignsIdActionsReplicate
+    operationId: post30CampaignsByCampaignIdActionsReplicate
     parameters:
     - name: campaign_id
       in: path
@@ -66,7 +66,7 @@ workflows:
     description: >-
       Send a test email of the replicated copy to the reviewer addresses.
       Returns a 204 empty response on success.
-    operationId: postCampaignsIdActionsTest
+    operationId: post30CampaignsByCampaignIdActionsTest
     parameters:
     - name: campaign_id
       in: path

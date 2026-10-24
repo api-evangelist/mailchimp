@@ -46,7 +46,7 @@ workflows:
     description: >-
       Create a static segment in the audience, optionally seeded with an initial
       set of subscriber emails.
-    operationId: postListsIdSegments
+    operationId: post30ListsByListIdSegments
     parameters:
     - name: list_id
       in: path
@@ -63,7 +63,7 @@ workflows:
       memberCount: $response.body#/member_count
   - stepId: addSegmentMember
     description: Add a subscriber to the newly created static segment by email.
-    operationId: postListsIdSegmentsIdMembers
+    operationId: post30ListsByListIdSegmentsBySegmentIdMembers
     parameters:
     - name: list_id
       in: path
