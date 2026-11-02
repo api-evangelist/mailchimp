@@ -1,0 +1,2697 @@
+aid: mailchimp
+
+url: https://raw.githubusercontent.com/api-evangelist/mailchimp/refs/heads/main/apis.yml
+
+name: Mailchimp
+
+tags:
+- Campaigns
+- Email Marketing
+- Marketing Automation
+- Newsletters
+- Transactional Email
+- Audience Management
+- SMS
+- E-Commerce
+- Webhook
+- Marketing Analytics
+- Email
+
+deliveryModel:
+  model: saas
+  license_evidence:
+    not_product:
+    - mailchimp/mailchimp-client-lib-codegen
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-not-product
+  generated: '2026-09-25'
+  method: derived
+
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+
+image: https://mailchimp.com/release/plums/cxp/images/apple-touch-icon.png
+
+created: '2023-11-23'
+
+modified: '2026-08-13'
+
+description: >-
+  Mailchimp is an Intuit company providing a marketing automation platform and email marketing service for managing
+  mailing lists, creating email marketing campaigns, and automating marketing workflows. It exposes two distinct
+  developer surfaces: the Marketing API (v3, REST, 298 operations at https://<dc>.api.mailchimp.com/3.0) covering
+  audiences, members, tags, segments, campaigns, content, automations, customer journeys, reports, e-commerce
+  stores and orders, file manager, templates, landing pages, batch operations and webhooks; and Mailchimp
+  Transactional, formerly Mandrill (99 RPC-style POST methods at https://mandrillapp.com/api/1.0), for one-to-one
+  transactional email and SMS, inbound processing, dedicated IP management and subaccounts. Authentication is an
+  API key or OAuth 2 for the Marketing API and a body-parameter API key for Transactional. Mailchimp runs a hosted
+  MCP server for the Transactional API, publishes eight official client libraries and two mobile SDKs, and delivers
+  audience events as HMAC-signed webhooks.
+
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+
+specificationVersion: '0.23'
+
+common:
+- type: Spectral
+  url: rules/mailchimp-spectral-rules.yml
+- type: Spectral
+  url: rules/mailchimp-rules.yml
+- type: Spectral
+  url: rules/mailchimp-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/mailchimp-transactional-context.jsonld
+- type: Webhooks
+  url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+- type: MCPServer
+  url: mcp/mailchimp-mcp.yml
+- type: Hosts
+  url: hosts/mailchimp-hosts.yml
+- type: IntegrationEdges
+  url: integrations/mailchimp-integration-edges.yml
+- type: Vendors
+  url: vendors/mailchimp-vendors.yml
+- type: Newsroom
+  url: https://mailchimp.com/newsroom/
+- type: FinOps
+  url: finops/mailchimp-finops.yml
+- type: Pricing
+  url: https://mailchimp.com/pricing/marketing/
+- type: Website
+  url: https://www.mailchimp.com/
+- type: CapabilityMap
+  url: capabilities/mailchimp-capability-edges.yml
+  name: Mailchimp Business Capability Map
+- type: Overlay
+  url: overlays/mailchimp-marketing-api-overlay.yaml
+- type: AgenticAccess
+  url: agentic-access/mailchimp-agentic-access.yml
+- type: Packages
+  url: packages/mailchimp-packages.yml
+- type: SDKs
+  url: packages/mailchimp-packages.yml
+  name: Eight official client libraries (4 Marketing, 4 Transactional) plus 2 mobile SDKs
+- type: WellKnown
+  url: well-known/mailchimp-well-known.yml
+- type: SecurityTxt
+  url: well-known/mailchimp-security.txt
+- type: X-MCPServerCandidate
+  url: mcp/mailchimp-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+- type: LLMsTxt
+  url: llms/mailchimp-llms.txt
+- type: Conformance
+  url: conformance/mailchimp-conformance.yml
+- type: ErrorCatalog
+  url: errors/mailchimp-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/mailchimp-lifecycle.yml
+- type: Conventions
+  url: conventions/mailchimp-conventions.yml
+- type: ChangeLog
+  url: changelog/mailchimp-changelog.yml
+- type: DataModel
+  url: data-model/mailchimp-data-model.yml
+- type: Sandbox
+  url: sandbox/mailchimp-sandbox.yml
+- type: VulnerabilityDisclosure
+  url: security/mailchimp-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/mailchimp-domain-security.yml
+- type: Authentication
+  url: authentication/mailchimp-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/mailchimp/overview
+- type: Arazzo
+  url: arazzo/mailchimp-add-member-note-workflow.yml
+  name: Mailchimp Add Member and Attach a Note
+- type: Arazzo
+  url: arazzo/mailchimp-add-member-tag-workflow.yml
+  name: Mailchimp Add Member and Tag
+- type: Arazzo
+  url: arazzo/mailchimp-checklist-then-send-campaign-workflow.yml
+  name: Mailchimp Pre-Send Checklist then Send Campaign
+- type: Arazzo
+  url: arazzo/mailchimp-create-audience-add-member-workflow.yml
+  name: Mailchimp Create Audience and Add First Member
+- type: Arazzo
+  url: arazzo/mailchimp-create-campaign-content-test-workflow.yml
+  name: Mailchimp Create Campaign, Set Content, and Send Test
+- type: Arazzo
+  url: arazzo/mailchimp-create-campaign-set-content-schedule-workflow.yml
+  name: Mailchimp Create Campaign, Set Content, and Schedule
+- type: Arazzo
+  url: arazzo/mailchimp-create-campaign-set-content-send-workflow.yml
+  name: Mailchimp Create Campaign, Set Content, and Send
+- type: Arazzo
+  url: arazzo/mailchimp-create-merge-field-add-member-workflow.yml
+  name: Mailchimp Create Merge Field and Add Member
+- type: Arazzo
+  url: arazzo/mailchimp-create-static-segment-add-members-workflow.yml
+  name: Mailchimp Create Static Segment and Add Members
+- type: Arazzo
+  url: arazzo/mailchimp-create-template-campaign-send-workflow.yml
+  name: Mailchimp Create Template, Build Campaign, and Send
+- type: Arazzo
+  url: arazzo/mailchimp-find-and-pause-automation-workflow.yml
+  name: Mailchimp Find and Pause an Automation
+- type: Arazzo
+  url: arazzo/mailchimp-find-and-start-automation-workflow.yml
+  name: Mailchimp Find and Start an Automation
+- type: Arazzo
+  url: arazzo/mailchimp-find-campaign-pull-report-workflow.yml
+  name: Mailchimp Find Campaign and Pull Its Report
+- type: Arazzo
+  url: arazzo/mailchimp-find-member-mark-vip-tag-workflow.yml
+  name: Mailchimp Find Member, Mark VIP, and Tag
+- type: Arazzo
+  url: arazzo/mailchimp-onboard-member-to-segment-workflow.yml
+  name: Mailchimp Onboard Member into a Static Segment
+- type: Arazzo
+  url: arazzo/mailchimp-put-member-tag-workflow.yml
+  name: Mailchimp Add-or-Update Member and Tag
+- type: Arazzo
+  url: arazzo/mailchimp-replicate-campaign-test-workflow.yml
+  name: Mailchimp Replicate Campaign and Send Test
+- type: Arazzo
+  url: arazzo/mailchimp-sync-static-segment-members-workflow.yml
+  name: Mailchimp Sync Static Segment Members
+- type: Arazzo
+  url: arazzo/mailchimp-upsert-member-workflow.yml
+  name: Mailchimp Upsert Audience Member
+- type: LinkedIn
+  url: https://www.linkedin.com/company/intuitmailchimp
+- url: https://mailchimp.com/features/
+  type: Features
+  data:
+  - 'Free: 250 contacts, ~500 sends/mo, 1 audience'
+  - 'Essentials at $13/mo (500 contacts): A/B testing, 4-step automations'
+  - 'Standard at $20/mo: 200 automation flows, Generative AI'
+  - 'Premium at $350/mo: predictive segmentation, multivariate testing'
+  - Marketing API v3 with REST + Batch operations
+  - 'Concurrency limit: 10 simultaneous connections per user'
+  - 'Batch operations: 1,000 ops/request, 500 open batches'
+  - Transactional Email (Mandrill) priced separately
+  - OAuth 2.0 and API keys
+  - Webhooks for subscribe/unsubscribe/profile/cleaned/upemail/campaign
+  - Audiences with tags, segments, custom fields
+  - Automations with conditional logic
+  - Customer Journey Builder
+  - Landing pages, popup forms, signup forms
+  - 'Reports: opens, clicks, bounces, conversions'
+  - Pricing scales with active contact count
+  sources:
+  - https://mailchimp.com/pricing/marketing/
+  updated: '2026-05-04'
+- url: https://mailchimp.com/solutions/
+  type: UseCases
+- url: https://mailchimp.com/integrations/
+  type: Integrations
+- url: https://mailchimp.com/developer/tools/
+  type: Resources
+- url: https://mailchimp.com/developer/
+  type: Portal
+- url: https://mailchimp.com/developer/release-notes/
+  type: ChangeLog
+- url: https://mailchimp.com/developer/blog/
+  type: Blog
+- url: https://mailchimp.com/pricing/marketing/
+  data:
+  - id: free
+    name: Free
+    entries:
+    - geo: US
+      unit: 1
+      label: User
+      limit: 1
+      price: Free
+      metric: user
+      timeFrame: month
+      description: Up to 500 contacts, max 1,000 emails/month or 500/day
+    elements:
+    - name: Easily create email campaigns and learn more about your customers
+    - name: Up to 500 contacts
+    - name: Max of 1,000/mo or 500/day email sends
+    - name: 1 Seat
+    - name: 1 Audience
+    - name: Email support for first 30 days
+    - name: Basic segmentation
+    - name: Limited reporting tools
+    description: Easily create email campaigns and learn more about your customers
+  - id: essentials
+    name: Essentials
+    entries:
+    - geo: US
+      unit: 1
+      label: User
+      limit: 1
+      price: 13
+      metric: user
+      timeFrame: month
+      description: Free for 14 days, then starts at $13/month
+    elements:
+    - name: Send the right content at the right time with testing and scheduling features
+    - name: Up to 50,000 contacts with $385/mo tier
+    - name: 10X contacts monthly email sends
+    - name: 3 Seats
+    - name: 3 Audiences
+    - name: 24/7 Email & Chat Support
+    - name: Up to 4 flow steps for marketing automation
+    - name: Basic segmentation
+    - name: A/B Testing
+    - name: Email scheduling
+    - name: SMS add-on available
+    description: Send the right content at the right time with testing and scheduling features
+  - id: standard
+    name: Standard
+    entries:
+    - geo: US
+      unit: 1
+      label: User
+      limit: 1
+      price: 20
+      metric: user
+      timeFrame: month
+      description: Free for 14 days, then starts at $20/month
+    elements:
+    - name: Sell even more with personalization, optimization tools, and enhanced automations
+    - name: Up to 100,000 contacts with $800/mo tier
+    - name: 12X contacts monthly email sends
+    - name: 5 Seats
+    - name: 5 Audiences
+    - name: 24/7 Email & Chat Support
+    - name: Up to 200 flow steps for marketing automation
+    - name: Advanced segmentation
+    - name: Custom reports
+    - name: Send time optimization
+    - name: Dynamic content
+    - name: SMS and MMS add-on available
+    - name: Generative AI features (no additional cost add-on)
+    description: Sell even more with personalization, optimization tools, and enhanced automations
+  - id: premium
+    name: Premium
+    entries:
+    - geo: US
+      unit: 1
+      label: User
+      limit: 1
+      price: 297.5
+      metric: user
+      timeFrame: month
+      description: $297.50 per month for 12 months, then starts at $350/month
+    elements:
+    - name: Scale fast with dedicated onboarding, unlimited contacts, and priority support; built for teams
+    - name: Unlimited contacts (contact for custom plan)
+    - name: 15X contacts monthly email sends
+    - name: Unlimited users
+    - name: Unlimited audiences
+    - name: Phone & Priority Support
+    - name: Up to 200 flow steps for marketing automation
+    - name: Advanced segmentation
+    - name: Multivariate testing
+    - name: Comparative reporting
+    - name: Predictive segmentation
+    - name: Customer lifetime value analytics
+    - name: SMS and MMS add-on available
+    - name: Generative AI features (no additional cost add-on)
+    - name: Premium migration services
+    - name: 4 personalized onboarding sessions
+    description: Scale fast with dedicated onboarding, unlimited contacts, and priority support; built for teams
+  type: Pricing
+- url: https://mailchimp.com/developer/marketing/guides/client-libraries-and-sdks/
+  type: SDKs
+- url: https://status.mailchimp.com/
+  type: StatusPage
+- url: https://mailchimp.com/contact/
+  type: Support
+- url: https://mailchimp.com/legal/terms/
+  type: TermsOfService
+- url: https://mailchimp.com/legal/privacy/
+  type: PrivacyPolicy
+- url: https://mailchimp.com/legal/api_use/
+  type: API Use Policy
+- url: https://login.mailchimp.com/signup/
+  type: Signup
+- url: https://github.com/mailchimp
+  type: GitHubOrganization
+- url: https://login.mailchimp.com/
+  type: Login
+- url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  type: Authentication
+- url: https://stackoverflow.com/questions/tagged/mailchimp
+  type: StackOverflow
+- url: https://mailchimp.com/developer/marketing/docs/mobile-sdk/
+  type: SDKs
+- url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  type: Documentation
+- url: https://mailchimp.com/developer/marketing/api/
+  type: APIReference
+- url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  type: GettingStarted
+- url: https://github.com/mailchimp/mailchimp-client-lib-codegen
+  type: SourceCode
+  name: Mailchimp client library codegen (canonical home of both API specifications)
+- url: vocabulary/mailchimp-vocabulary.yml
+  type: Vocabulary
+- url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  type: AsyncAPI
+  name: Mailchimp Marketing audience webhooks (AsyncAPI 2.6.0)
+- url: https://mailchimp.com/developer/marketing/guides/sync-audience-data-webhooks/
+  type: Webhooks
+  name: Audience webhooks — six event types, HMAC-signed deliveries
+- url: https://mailchimp.com/about/security/#Responsible_Disclosure
+  type: Security
+  name: Responsible disclosure program
+- url: https://mailchimp.com/about/security/
+  type: Compliance
+  name: SOC 2, ISO 27001, EU-U.S. Data Privacy Framework, GDPR, VPAT
+- url: security/mailchimp-trust-center.yml
+  type: TrustCenter
+- url: https://mailchimp.com/developer/marketing/docs/fundamentals/#api-versions
+  type: Deprecation
+  name: API versions and shut-off notice statement
+- url: skills/_index.yml
+  type: AgentSkill
+  name: Six packaged Mailchimp agent skills
+- url: mcp/mailchimp-tool-crosswalk.yml
+  type: ToolCrosswalk
+- url: rate-limits/mailchimp-rate-limits.yml
+  type: RateLimits
+- url: plans/mailchimp-plans-pricing.yml
+  type: Plans
+
+apis:
+- aid: mailchimp:mailchimp-open-commerce
+  name: Mailchimp Open Commerce
+  tags:
+  - E-Commerce
+  - GraphQL
+  - Headless Commerce
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  baseURL: https://{open-commerce-host}/graphql
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  overlays: []
+  properties:
+  - url: https://mailchimp.com/developer/open-commerce/docs/fundamentals/
+    type: Documentation
+  - url: https://mailchimp.com/developer/open-commerce/guides/quick-start/
+    type: GettingStarted
+  - url: https://mailchimp.com/developer/open-commerce/playground/
+    type: GraphQL Playground
+  - url: https://mailchimp.com/developer/open-commerce/guides/build-api-plugin/
+    type: Plugin Development
+  - url: https://mailchimp.com/developer/open-commerce/docs/sharing-code-between-plugins/
+    type: Sharing Code Between Plugins
+  - url: https://github.com/reactioncommerce
+    type: GitHubOrganization
+  - url: https://mailchimp.com/developer/open-commerce/docs/contribute-open-commerce/
+    type: Contributing
+  - url: graphql/mailchimp-graphql.md
+    type: GraphQL
+  description: >-
+    An open source, API-first, modular commerce stack built using Node.js, React, and GraphQL. Formerly
+    known as Reaction Commerce, the project has been discontinued but documentation remains available.
+- aid: mailchimp:mailchimp-automations-api
+  name: Mailchimp Automations API
+  description: The Automations API from Mailchimp — 13 operation(s) for automations.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Automation
+  tags_raw:
+  - Automations
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-automations-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-batches-api
+  name: Mailchimp Batches API
+  description: The Batches API from Mailchimp — 2 operation(s) for batches.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-batches-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-campaigns-api
+  name: Mailchimp Campaigns API
+  description: The Campaigns API from Mailchimp — 18 operation(s) for campaigns.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-conversations-api
+  name: Mailchimp Conversations API
+  description: The Conversations API from Mailchimp — 4 operation(s) for conversations.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-ecommerce-api
+  name: Mailchimp Ecommerce API
+  description: The Ecommerce API from Mailchimp — 10 operation(s) for ecommerce.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - E-Commerce
+  tags_raw:
+  - Ecommerce
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-ecommerce-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-exports-api
+  name: Mailchimp Exports API
+  description: The Exports API from Mailchimp — 7 operation(s) for exports.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Export
+  tags_raw:
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-exports-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-lists-api
+  name: Mailchimp Lists API
+  description: The Lists API from Mailchimp — 11 operation(s) for lists.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - List
+  tags_raw:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-lists-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-messages-api
+  name: Mailchimp Messages API
+  description: The Messages API from Mailchimp — 13 operation(s) for messages.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Message
+  tags_raw:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-messages-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-metadata-api
+  name: Mailchimp Metadata API
+  description: >-
+    Manage custom metadata fields that can be attached to messages for tracking and filtering.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-rejects-api
+  name: Mailchimp Rejects API
+  description: >-
+    Manage the rejection blacklist, which prevents delivery to addresses that have previously bounced
+    or been reported as spam.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Rejects
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-rejects-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-reporting-api
+  name: Mailchimp Reporting API
+  description: The Reporting API from Mailchimp — 12 operation(s) for reporting.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-reporting-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-reports-api
+  name: Mailchimp Reports API
+  description: The Reports API from Mailchimp — 24 operation(s) for reports.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-reports-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-root-api
+  name: Mailchimp Root API
+  description: The Root API from Mailchimp — 1 operation(s) for root.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Root
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-root-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-senders-api
+  name: Mailchimp Senders API
+  description: >-
+    Retrieve sender information and statistics for verified sending domains and email addresses.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Senders
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-senders-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-subaccounts-api
+  name: Mailchimp Subaccounts API
+  description: >-
+    Manage subaccounts for organizing sending and reporting within a single Mandrill account.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Subaccounts
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-subaccounts-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-surveys-api
+  name: Mailchimp Surveys API
+  description: The Surveys API from Mailchimp — 12 operation(s) for surveys.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Surveys
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-surveys-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-tags-api
+  name: Mailchimp Tags API
+  description: The Tags API from Mailchimp — 5 operation(s) for tags.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-tags-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-templates-api
+  name: Mailchimp Templates API
+  description: The Templates API from Mailchimp — 11 operation(s) for templates.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-templates-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-users-api
+  name: Mailchimp Users API
+  description: Retrieve information about the authenticated Mandrill account.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - User
+  tags_raw:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-users-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-webhooks-api
+  name: Mailchimp Webhooks API
+  description: The Webhooks API from Mailchimp — 9 operation(s) for webhooks.
+  humanURL: https://mailchimp.com/developer/marketing/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Webhook
+  tags_raw:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-accountexport-api
+  name: Mailchimp Account Export API
+  description: The accountExport API from Mailchimp — 1 operation(s) for accountexport.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - accountExport
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-accountexport-api-openapi.yml
+- aid: mailchimp:mailchimp-audiences-api
+  name: Mailchimp Audiences API
+  description: The audiences API from Mailchimp — 2 operation(s) for audiences.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Audiences
+  tags_raw:
+  - audiences
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-audiences-api-openapi.yml
+- aid: mailchimp:mailchimp-authorizedapps-api
+  name: Mailchimp Authorized Apps API
+  description: The authorizedApps API from Mailchimp — 2 operation(s) for authorizedapps.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - authorizedApps
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-authorizedapps-api-openapi.yml
+- aid: mailchimp:mailchimp-batchwebhooks-api
+  name: Mailchimp Batch Webhooks API
+  description: The batchWebhooks API from Mailchimp — 2 operation(s) for batchwebhooks.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - batchWebhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-batchwebhooks-api-openapi.yml
+- aid: mailchimp:mailchimp-campaignfolders-api
+  name: Mailchimp Campaign Folders API
+  description: The campaignFolders API from Mailchimp — 2 operation(s) for campaignfolders.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - campaignFolders
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-campaignfolders-api-openapi.yml
+- aid: mailchimp:mailchimp-connectedsites-api
+  name: Mailchimp Connected Sites API
+  description: The connectedSites API from Mailchimp — 5 operation(s) for connectedsites.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - connectedSites
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-connectedsites-api-openapi.yml
+- aid: mailchimp:mailchimp-contacts-api
+  name: Mailchimp Contacts API
+  description: The contacts API from Mailchimp — 6 operation(s) for contacts.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Contacts
+  tags_raw:
+  - contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-contacts-api-openapi.yml
+- aid: mailchimp:mailchimp-inbound-api
+  name: Mailchimp Inbound API
+  description: The inbound API from Mailchimp — 9 operation(s) for inbound.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Inbound
+  tags_raw:
+  - inbound
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-inbound-api-openapi.yml
+- aid: mailchimp:mailchimp-mctemplates-api
+  name: Mailchimp Mctemplates API
+  description: The mctemplates API from Mailchimp — 4 operation(s) for mctemplates.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - mctemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-mctemplates-api-openapi.yml
+- aid: mailchimp:mailchimp-ping-api
+  name: Mailchimp Ping API
+  description: The ping API from Mailchimp — 1 operation(s) for ping.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Ping
+  tags_raw:
+  - ping
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-ping-api-openapi.yml
+- aid: mailchimp:mailchimp-searchcampaigns-api
+  name: Mailchimp Search Campaigns API
+  description: The searchCampaigns API from Mailchimp — 1 operation(s) for searchcampaigns.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - searchCampaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-searchcampaigns-api-openapi.yml
+- aid: mailchimp:mailchimp-searchmembers-api
+  name: Mailchimp Search Members API
+  description: The searchMembers API from Mailchimp — 1 operation(s) for searchmembers.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - searchMembers
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-searchmembers-api-openapi.yml
+- aid: mailchimp:mailchimp-sms-campaigns-api
+  name: Mailchimp Sms Campaigns API
+  description: The sms-campaigns API from Mailchimp — 6 operation(s) for sms-campaigns.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - SMS Campaigns
+  tags_raw:
+  - sms-campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-sms-campaigns-api-openapi.yml
+- aid: mailchimp:mailchimp-urls-api
+  name: Mailchimp URLS API
+  description: The urls API from Mailchimp — 4 operation(s) for urls.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - URLs
+  tags_raw:
+  - urls
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-urls-api-openapi.yml
+- aid: mailchimp:mailchimp-verifieddomains-api
+  name: Mailchimp Verified Domains API
+  description: The verifiedDomains API from Mailchimp — 3 operation(s) for verifieddomains.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags: []
+  tags_raw:
+  - verifiedDomains
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-verifieddomains-api-openapi.yml
+- aid: mailchimp:mailchimp-ips-api
+  name: Mailchimp Ips API
+  description: The ips API from Mailchimp — 13 operation(s) for ips.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - IP
+  tags_raw:
+  - ips
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-ips-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-account-exports-api
+  name: Mailchimp Account Exports API
+  description: The Account Exports API from Mailchimp — 1 operation(s) for account exports.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Account Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-account-exports-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-activity-feed-api
+  name: Mailchimp Activity Feed API
+  description: The Activity Feed API from Mailchimp — 1 operation(s) for activity feed.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Activity Feed
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-activity-feed-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-customer-journeys-api
+  name: Mailchimp customer Journeys API
+  description: The customer Journeys API from Mailchimp — 1 operation(s) for customer journeys.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Customer Journey
+  tags_raw:
+  - customer Journeys
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-customer-journeys-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-facebook-ads-api
+  name: Mailchimp facebook Ads API
+  description: The facebook Ads API from Mailchimp — 2 operation(s) for facebook ads.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Facebook Ads
+  tags_raw:
+  - facebook Ads
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-facebook-ads-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-file-manager-api
+  name: Mailchimp File Manager API
+  description: The File Manager API from Mailchimp — 5 operation(s) for file manager.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - File Manager
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-file-manager-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-landing-pages-api
+  name: Mailchimp Landing Pages API
+  description: The Landing Pages API from Mailchimp — 5 operation(s) for landing pages.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Landing Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-landing-pages-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-template-folders-api
+  name: Mailchimp Template Folders API
+  description: The Template Folders API from Mailchimp — 2 operation(s) for template folders.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://server.api.mailchimp.com/3.0
+  tags:
+  - Template Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-template-folders-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-authorized-apps-api
+  name: Mailchimp Authorized Apps API
+  description: The authorized-apps API from Mailchimp — 2 operation(s) for authorized-apps.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - authorized-apps
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-authorized-apps-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-batch-webhooks-api
+  name: Mailchimp Batch Webhooks API
+  description: The batch-webhooks API from Mailchimp — 2 operation(s) for batch-webhooks.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - batch-webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-batch-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-campaign-folders-api
+  name: Mailchimp Campaign Folders API
+  description: The campaign-folders API from Mailchimp — 2 operation(s) for campaign-folders.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - campaign-folders
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-campaign-folders-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-connected-sites-api
+  name: Mailchimp Connected Sites API
+  description: The connected-sites API from Mailchimp — 3 operation(s) for connected-sites.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - connected-sites
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-connected-sites-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-search-campaigns-api
+  name: Mailchimp Search Campaigns API
+  description: The search-campaigns API from Mailchimp — 1 operation(s) for search-campaigns.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - search-campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-search-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-search-members-api
+  name: Mailchimp Search Members API
+  description: The search-members API from Mailchimp — 1 operation(s) for search-members.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - search-members
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-search-members-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-segments-api
+  name: Mailchimp Segments API
+  description: The segments API from Mailchimp — 6 operation(s) for segments.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - segments
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-segments-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-snapshots-api
+  name: Mailchimp Snapshots API
+  description: The snapshots API from Mailchimp — 3 operation(s) for snapshots.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-verified-domains-api
+  name: Mailchimp Verified Domains API
+  description: The verified-domains API from Mailchimp — 3 operation(s) for verified-domains.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://api.mailchimp.com
+  tags:
+  - verified-domains
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-verified-domains-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+- aid: mailchimp:mailchimp-allow-lists-api
+  name: Mailchimp Allow Lists API
+  description: The Allow Lists API from Mailchimp — 3 operation(s) for allow lists.
+  humanURL: https://mailchimp.com/developer/open-commerce/
+  baseURL: https://mandrillapp.com/api/1.3
+  tags:
+  - Allow Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/mailchimp-allow-lists-api-openapi.yml
+  - type: Documentation
+    url: https://mailchimp.com/developer/marketing/docs/fundamentals/
+  - type: AsyncAPI
+    url: asyncapi/mailchimp-marketing-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/campaign.json
+  - type: JSONSchema
+    url: json-schema/audience.json
+  - type: JSONSchema
+    url: json-schema/member.json
+  - type: JSONSchema
+    url: json-schema/template.json
+  - type: JSONLD
+    url: json-ld/context.jsonld
+  - type: Integrations
+    url: https://mailchimp.com/developer/marketing/docs/integrations/
+  - type: ErrorCodes
+    url: https://mailchimp.com/developer/marketing/docs/errors/
+  - type: APIReference
+    url: https://mailchimp.com/developer/marketing/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/marketing/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/
+  - type: E-Commerce
+    url: https://mailchimp.com/developer/marketing/docs/e-commerce/
+  - type: Methods and Parameters
+    url: https://mailchimp.com/developer/marketing/docs/methods-parameters/
+  - type: Documentation
+    url: https://mailchimp.com/developer/transactional/docs/fundamentals/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/quick-start/
+  - type: Authentication
+    url: https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+  - type: Webhooks
+    url: https://mailchimp.com/developer/transactional/docs/webhooks/
+  - type: APIReference
+    url: https://mailchimp.com/developer/transactional/api/
+  - type: GettingStarted
+    url: https://mailchimp.com/developer/transactional/guides/send-first-email/
+  - type: Outbound Email
+    url: https://mailchimp.com/developer/transactional/docs/outbound-email/
+  - type: Tags and Metadata
+    url: https://mailchimp.com/developer/transactional/docs/tags-metadata/
+tags_raw:
+- Campaigns
+- Email Marketing
+- Marketing Automation
+- Newsletters
+- Transactional Email
+- Audience Management
+- SMS
+- E-Commerce
+- Webhooks
+- Marketing Analytics
+- Email
+x-enrichment:
+  date: '2026-10-12'
+  status: enriched
+  artifacts_added: 7
+  pass: local-v5

@@ -1,0 +1,107 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://mailchimp.com/pricing/marketing/
+name: Mailchimp API Plans
+sources:
+- https://mailchimp.com/pricing/marketing/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T124425
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-09-20'
+  managed_tier: Essentials
+published: true
+note: Pricing varies by contact tier selector; displayed prices are promotional 15%-off first-12-months
+  rates for the lowest contact tier. High-volume (200,000+ contacts) and custom Premium pricing require
+  contacting sales. Prices selectable in multiple currencies; USD shown.
+plan_count: 4
+currency: USD
+plans:
+- name: Premium
+  price_text: $ 350 00 /mo for 12 months
+  price: 350
+  currency: USD
+  period: month
+  unit: per month for 12 months
+  included_quota: Send up to 150,000 emails each month. Unlimited contacts, unlimited users, unlimited
+    audiences, 15X contacts monthly email sends
+  overage: Overages apply if contact or email send limit is exceeded.
+- name: Standard
+  price_text: $ 20 00 /mo for 12 months
+  price: 20
+  currency: USD
+  period: month
+  unit: per month for 12 months
+  included_quota: Send up to 6,000 emails each month; 5 Seats; 5 Audiences; 12X contacts monthly email
+    sends
+  overage: Overages apply if contact or email send limit is exceeded.
+- name: Essentials
+  price_text: $ 13 00 /mo for 12 months
+  price: 13
+  currency: USD
+  period: month
+  unit: per month for 12 months
+  included_quota: 3 Seats; 3 Audiences; 10X contacts monthly email sends
+  overage: Overages apply if contact or email send limit is exceeded.
+- name: Free
+  price_text: $ 0 /month†
+  price: 0
+  currency: USD
+  period: month
+  unit: per month
+  included_quota: Limit of 250 contacts; 1 Seat; 1 Audience; Max of 500/mo or 250/day email sends
+  overage: Sending will be paused if contact or email send limit is exceeded.
+rate_limit_statements:
+- Max of 500/mo or 250/day
+- Send up to 6,000 emails each month.
+- Send up to 150,000 emails each month.
+- Send up to 100 emails risk-free—no credit card required.
+- Up to 200 flows
+- Up to 4 flow steps
+geo_note: 'Re-check 2026-10-12 from this host: https://mailchimp.com/pricing/marketing/ served a geo-localised (SEK, kr) page, so the USD price_text quotes could not be re-matched verbatim; they were grounded against the USD render on the original fetch.'
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Premium
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Standard
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Essentials
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Free
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month

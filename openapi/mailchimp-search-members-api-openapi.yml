@@ -1,0 +1,922 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: apihelp@mailchimp.com
+    name: Mailchimp API Support
+  description: 'Whether you’re managing your own campaigns, providing Mailchimp services to your customers or clients, or writing a mobile app, the Mailchimp API has features to manage and sync your contact data.
+
+
+    Audiences are at the core of sending campaigns with Mailchimp. You can use the API to set up an audience and add contacts to that audience; you can then organize those contacts with tags or segment them by activity with events.
+
+
+    The API can also be a source of data for your application. Webhooks collect and transmit information about your audience to you in near real time. And if you’re selling products on an external store, you can integrate your audience behavior using Mailchimp’s E-commerce features.
+
+
+    You can also use the API to handle data in different ways for different purposes. If you are syncing a large amount of data with Mailchimp, you can use batches to avoid hitting the API request limits. For building integrations that let other users access data from their own Mailchimp accounts, you should authenticate with OAuth 2. And if you’re developing an app for iOS or Android, the Mobile SDK provides an easy way to work with a mobile-focused subset of the API’s functionality.'
+  summary: Manage audiences, integrate your data, and send timely, relevant email campaigns.
+  termsOfService: https://mailchimp.com/legal/api_use/
+  title: Mailchimp Search Members API
+  version: 0.1.0-dev
+servers:
+- description: Mailchimp API
+  url: https://api.mailchimp.com
+security:
+- bearerToken: []
+- oauth2: []
+tags:
+- name: search-members
+paths:
+  /3.0/search-members:
+    get:
+      description: Search for list members. This search can be restricted to a specific list, or can be used to search across all lists in an account.
+      operationId: getSearchMembers
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The search query used to filter results. Query should be a valid email, or a string representing a contact's first or last name.
+        in: query
+        name: query
+        required: true
+        schema:
+          type: string
+          x-title: Query
+        x-title: Query
+      - description: The unique id for the list.
+        in: query
+        name: list_id
+        schema:
+          type: string
+          x-title: List ID
+        x-title: List ID
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Members found for given search term
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  exact_matches:
+                    description: Exact matches of the provided search query.
+                    properties:
+                      members:
+                        description: An array of objects, each representing a specific list member.
+                        items:
+                          description: Individuals who are currently or have been previously subscribed to this list, including members who have bounced or unsubscribed.
+                          properties:
+                            _links:
+                              description: A list of link types and descriptions for the API schema documents.
+                              items:
+                                description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                                properties:
+                                  href:
+                                    description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                                    readOnly: true
+                                    title: Href
+                                    type: string
+                                  method:
+                                    description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                                    enum:
+                                    - GET
+                                    - POST
+                                    - PUT
+                                    - PATCH
+                                    - DELETE
+                                    - OPTIONS
+                                    - HEAD
+                                    readOnly: true
+                                    title: Method
+                                    type: string
+                                  rel:
+                                    description: As with an HTML 'rel' attribute, this describes the type of link.
+                                    readOnly: true
+                                    title: Rel
+                                    type: string
+                                  schema:
+                                    description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                                    readOnly: true
+                                    title: Schema
+                                    type: string
+                                  targetSchema:
+                                    description: For GETs, this is a URL representing the schema that the response should conform to.
+                                    readOnly: true
+                                    title: Target Schema
+                                    type: string
+                                title: Resource Link
+                                type: object
+                              readOnly: true
+                              title: Links
+                              type: array
+                            consents_to_one_to_one_messaging:
+                              description: Indicates whether a contact consents to 1:1 messaging.
+                              readOnly: true
+                              title: Messaging Consent
+                              type: boolean
+                            contact_id:
+                              description: As Mailchimp evolves beyond email, you may eventually have contacts without email addresses. While the `id` is the MD5 hash of their email address, this `contact_id` is agnostic of contact’s inclusion of an email address.
+                              readOnly: true
+                              title: Contact ID
+                              type: string
+                            email_address:
+                              description: Email address for a subscriber.
+                              title: Email Address
+                              type: string
+                            email_client:
+                              description: The list member's email client.
+                              readOnly: true
+                              title: Email Client
+                              type: string
+                            email_type:
+                              description: Type of email this member asked to get ('html' or 'text').
+                              title: Email Type
+                            id:
+                              description: The MD5 hash of the lowercase version of the list member's email address.
+                              readOnly: true
+                              title: Email ID
+                              type: string
+                            interests:
+                              additionalProperties:
+                                description: Keys are interest IDs, values are booleans that describe whether the list member is in that group or not.
+                                title: Interest Value
+                                type: boolean
+                              description: The key of this object's properties is the ID of the interest in question.
+                              title: Subscriber Interests
+                              type: object
+                            ip_opt:
+                              description: The IP address the subscriber used to confirm their opt-in status.
+                              readOnly: true
+                              title: Opt-in IP
+                              type: string
+                            ip_signup:
+                              description: IP address the subscriber signed up from.
+                              readOnly: true
+                              title: Signup IP
+                              type: string
+                            language:
+                              description: If set/detected, the [subscriber's language](https://mailchimp.com/help/view-and-edit-contact-languages/).
+                              title: Language
+                              type: string
+                            last_changed:
+                              description: The date and time the member's info was last changed in ISO 8601 format.
+                              format: date-time
+                              readOnly: true
+                              title: Last Changed Date
+                              type: string
+                            last_note:
+                              description: The most recent Note added about this member.
+                              properties:
+                                created_at:
+                                  description: The date and time the note was created in ISO 8601 format.
+                                  format: date-time
+                                  readOnly: true
+                                  title: Created Time
+                                  type: string
+                                created_by:
+                                  description: The author of the note.
+                                  readOnly: true
+                                  title: Author
+                                  type: string
+                                note:
+                                  description: The content of the note.
+                                  readOnly: true
+                                  title: Note
+                                  type: string
+                                note_id:
+                                  description: The note id.
+                                  readOnly: true
+                                  title: Note ID
+                                  type: integer
+                              readOnly: true
+                              title: Notes
+                              type: object
+                            list_id:
+                              description: The list id.
+                              readOnly: true
+                              title: List ID
+                              type: string
+                            location:
+                              description: Subscriber location information.
+                              properties:
+                                country_code:
+                                  description: The unique code for the location country.
+                                  readOnly: true
+                                  title: Country Code
+                                  type: string
+                                dstoff:
+                                  description: The offset for timezones where daylight saving time is observed.
+                                  readOnly: true
+                                  title: DST Offset
+                                  type: integer
+                                gmtoff:
+                                  description: The time difference in hours from GMT.
+                                  readOnly: true
+                                  title: GMT Offset
+                                  type: integer
+                                latitude:
+                                  description: The location latitude.
+                                  title: Latitude
+                                  type: number
+                                longitude:
+                                  description: The location longitude.
+                                  title: Longitude
+                                  type: number
+                                region:
+                                  description: The region for the location.
+                                  readOnly: true
+                                  title: Region
+                                  type: string
+                                timezone:
+                                  description: The timezone for the location.
+                                  readOnly: true
+                                  title: Timezone
+                                  type: string
+                              title: Location
+                              type: object
+                            marketing_permissions:
+                              description: The marketing permissions for the subscriber.
+                              items:
+                                description: A single marketing permission a subscriber has either opted-in to or opted-out of.
+                                properties:
+                                  enabled:
+                                    description: If the subscriber has opted-in to the marketing permission.
+                                    title: Enabled
+                                    type: boolean
+                                  marketing_permission_id:
+                                    description: The id for the marketing permission on the list
+                                    title: Marketing Permission ID
+                                    type: string
+                                  text:
+                                    description: The text of the marketing permission.
+                                    title: Marketing Permission Text
+                                    type: string
+                                title: Marketing Permission
+                                type: object
+                              title: Marketing Permissions
+                              type: array
+                            member_rating:
+                              description: Star rating for this member, between 1 and 5.
+                              readOnly: true
+                              title: Member Rating
+                              type: integer
+                            merge_fields:
+                              additionalProperties:
+                                description: This object's keys are merge tags (like FNAME). It's values are the values to be added to the merge field.
+                                oneOf:
+                                - type: object
+                                  required:
+                                  - addr1
+                                  - city
+                                  - state
+                                  - zip
+                                  properties:
+                                    addr1:
+                                      type: string
+                                    addr2:
+                                      type: string
+                                    city:
+                                      type: string
+                                    state:
+                                      type: string
+                                    zip:
+                                      type: string
+                                    country:
+                                      type: string
+                                - type: string
+                                - type: number
+                              description: A dictionary of merge fields where the keys are the merge tags. See the [Merge Fields documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/#structure) for more about the structure.
+                              title: Merge Fields
+                              oneOf:
+                              - type: object
+                              - type: 'null'
+                            sms_phone_number:
+                              description: A US phone number for SMS contact.
+                              title: SMS Phone Number
+                              type: string
+                            sms_subscription_last_updated:
+                              description: The datetime when the SMS subscription was last updated
+                              title: SMS Subscription Last Update
+                              type: string
+                            sms_subscription_status:
+                              description: The status of an SMS subscription.
+                              enum:
+                              - subscribed
+                              - unsubscribed
+                              - nonsubscribed
+                              - pending
+                              title: SMS Subscription Status
+                              type: string
+                            source:
+                              description: The source from which the subscriber was added to this list.
+                              readOnly: true
+                              title: Subscriber Source
+                              type: string
+                            stats:
+                              description: Open and click rates for this subscriber.
+                              properties:
+                                avg_click_rate:
+                                  description: A subscriber's average clickthrough rate.
+                                  readOnly: true
+                                  title: Average Click Rate
+                                  type: number
+                                avg_open_rate:
+                                  description: A subscriber's average open rate.
+                                  readOnly: true
+                                  title: Average Open Rate
+                                  type: number
+                                ecommerce_data:
+                                  description: Ecommerce stats for the list member if the list is attached to a store.
+                                  properties:
+                                    currency_code:
+                                      description: The three-letter ISO 4217 code for the currency that the store accepts.
+                                      example: USD
+                                      readOnly: true
+                                      title: Currency
+                                      type: string
+                                    number_of_orders:
+                                      description: The total number of orders placed by the list member.
+                                      readOnly: true
+                                      title: Total Number of Orders
+                                      type: number
+                                    total_revenue:
+                                      description: The total revenue the list member has brought in.
+                                      readOnly: true
+                                      title: Total Revenue
+                                      type: number
+                                  readOnly: true
+                                  title: Ecommerce Stats
+                                  type: object
+                              readOnly: true
+                              title: Subscriber Stats
+                              type: object
+                            status:
+                              description: Subscriber's current status.
+                              enum:
+                              - subscribed
+                              - unsubscribed
+                              - cleaned
+                              - pending
+                              - transactional
+                              - archived
+                              title: Status
+                              type: string
+                            tags:
+                              description: Returns up to 50 tags applied to this member. To retrieve all tags see [Member Tags](https://mailchimp.com/developer/marketing/api/list-member-tags/).
+                              items:
+                                properties:
+                                  id:
+                                    description: The tag id.
+                                    readOnly: true
+                                    title: Tag ID
+                                    type: integer
+                                  name:
+                                    description: The name of the tag
+                                    readOnly: true
+                                    title: Tag Name
+                                    type: string
+                                type: object
+                              readOnly: false
+                              title: Tags
+                              type: array
+                            tags_count:
+                              description: The number of tags applied to this member.
+                              readOnly: true
+                              title: Tags Count
+                              type: integer
+                            timestamp_opt:
+                              description: The date and time the subscriber confirmed their opt-in status in ISO 8601 format.
+                              format: date-time
+                              readOnly: true
+                              title: Opt-in Timestamp
+                              type: string
+                            timestamp_signup:
+                              description: The date and time the subscriber signed up for the list in ISO 8601 format.
+                              format: date-time
+                              readOnly: true
+                              title: Signup Timestamp
+                              type: string
+                            unique_email_id:
+                              description: An identifier for the address across all of Mailchimp.
+                              readOnly: true
+                              title: Unique Email ID
+                              type: string
+                            unsubscribe_reason:
+                              description: A subscriber's reason for unsubscribing.
+                              title: Unsubscribe Reason
+                              type: string
+                            vip:
+                              description: '[VIP status](https://mailchimp.com/help/designate-and-send-to-vip-contacts/) for subscriber.'
+                              title: VIP
+                              type: boolean
+                            web_id:
+                              description: The ID used in the Mailchimp web application. View this member in your Mailchimp account at `https://{dc}.admin.mailchimp.com/lists/members/view?id={web_id}`.
+                              readOnly: true
+                              title: Member Web ID
+                              type: integer
+                          title: List Members
+                          type: object
+                        title: Members
+                        type: array
+                      total_items:
+                        description: The total number of items matching the query regardless of pagination.
+                        readOnly: true
+                        title: Item Count
+                        type: integer
+                    title: Exact Matches
+                    type: object
+                  full_search:
+                    description: Partial matches of the provided search query.
+                    properties:
+                      members:
+                        description: An array of objects, each representing a specific list member.
+                        items:
+                          description: Individuals who are currently or have been previously subscribed to this list, including members who have bounced or unsubscribed.
+                          properties:
+                            _links:
+                              description: A list of link types and descriptions for the API schema documents.
+                              items:
+                                description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                                properties:
+                                  href:
+                                    description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                                    readOnly: true
+                                    title: Href
+                                    type: string
+                                  method:
+                                    description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                                    enum:
+                                    - GET
+                                    - POST
+                                    - PUT
+                                    - PATCH
+                                    - DELETE
+                                    - OPTIONS
+                                    - HEAD
+                                    readOnly: true
+                                    title: Method
+                                    type: string
+                                  rel:
+                                    description: As with an HTML 'rel' attribute, this describes the type of link.
+                                    readOnly: true
+                                    title: Rel
+                                    type: string
+                                  schema:
+                                    description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                                    readOnly: true
+                                    title: Schema
+                                    type: string
+                                  targetSchema:
+                                    description: For GETs, this is a URL representing the schema that the response should conform to.
+                                    readOnly: true
+                                    title: Target Schema
+                                    type: string
+                                title: Resource Link
+                                type: object
+                              readOnly: true
+                              title: Links
+                              type: array
+                            consents_to_one_to_one_messaging:
+                              description: Indicates whether a contact consents to 1:1 messaging.
+                              readOnly: true
+                              title: Messaging Consent
+                              type: boolean
+                            contact_id:
+                              description: As Mailchimp evolves beyond email, you may eventually have contacts without email addresses. While the `id` is the MD5 hash of their email address, this `contact_id` is agnostic of contact’s inclusion of an email address.
+                              readOnly: true
+                              title: Contact ID
+                              type: string
+                            email_address:
+                              description: Email address for a subscriber.
+                              title: Email Address
+                              type: string
+                            email_client:
+                              description: The list member's email client.
+                              readOnly: true
+                              title: Email Client
+                              type: string
+                            email_type:
+                              description: Type of email this member asked to get ('html' or 'text').
+                              title: Email Type
+                            id:
+                              description: The MD5 hash of the lowercase version of the list member's email address.
+                              readOnly: true
+                              title: Email ID
+                              type: string
+                            interests:
+                              additionalProperties:
+                                description: Keys are interest IDs, values are booleans that describe whether the list member is in that group or not.
+                                title: Interest Value
+                                type: boolean
+                              description: The key of this object's properties is the ID of the interest in question.
+                              title: Subscriber Interests
+                              type: object
+                            ip_opt:
+                              description: The IP address the subscriber used to confirm their opt-in status.
+                              readOnly: true
+                              title: Opt-in IP
+                              type: string
+                            ip_signup:
+                              description: IP address the subscriber signed up from.
+                              readOnly: true
+                              title: Signup IP
+                              type: string
+                            language:
+                              description: If set/detected, the [subscriber's language](https://mailchimp.com/help/view-and-edit-contact-languages/).
+                              title: Language
+                              type: string
+                            last_changed:
+                              description: The date and time the member's info was last changed in ISO 8601 format.
+                              format: date-time
+                              readOnly: true
+                              title: Last Changed Date
+                              type: string
+                            last_note:
+                              description: The most recent Note added about this member.
+                              properties:
+                                created_at:
+                                  description: The date and time the note was created in ISO 8601 format.
+                                  format: date-time
+                                  readOnly: true
+                                  title: Created Time
+                                  type: string
+                                created_by:
+                                  description: The author of the note.
+                                  readOnly: true
+                                  title: Author
+                                  type: string
+                                note:
+                                  description: The content of the note.
+                                  readOnly: true
+                                  title: Note
+                                  type: string
+                                note_id:
+                                  description: The note id.
+                                  readOnly: true
+                                  title: Note ID
+                                  type: integer
+                              readOnly: true
+                              title: Notes
+                              type: object
+                            list_id:
+                              description: The list id.
+                              readOnly: true
+                              title: List ID
+                              type: string
+                            location:
+                              description: Subscriber location information.
+                              properties:
+                                country_code:
+                                  description: The unique code for the location country.
+                                  readOnly: true
+                                  title: Country Code
+                                  type: string
+                                dstoff:
+                                  description: The offset for timezones where daylight saving time is observed.
+                                  readOnly: true
+                                  title: DST Offset
+                                  type: integer
+                                gmtoff:
+                                  description: The time difference in hours from GMT.
+                                  readOnly: true
+                                  title: GMT Offset
+                                  type: integer
+                                latitude:
+                                  description: The location latitude.
+                                  title: Latitude
+                                  type: number
+                                longitude:
+                                  description: The location longitude.
+                                  title: Longitude
+                                  type: number
+                                region:
+                                  description: The region for the location.
+                                  readOnly: true
+                                  title: Region
+                                  type: string
+                                timezone:
+                                  description: The timezone for the location.
+                                  readOnly: true
+                                  title: Timezone
+                                  type: string
+                              title: Location
+                              type: object
+                            marketing_permissions:
+                              description: The marketing permissions for the subscriber.
+                              items:
+                                description: A single marketing permission a subscriber has either opted-in to or opted-out of.
+                                properties:
+                                  enabled:
+                                    description: If the subscriber has opted-in to the marketing permission.
+                                    title: Enabled
+                                    type: boolean
+                                  marketing_permission_id:
+                                    description: The id for the marketing permission on the list
+                                    title: Marketing Permission ID
+                                    type: string
+                                  text:
+                                    description: The text of the marketing permission.
+                                    title: Marketing Permission Text
+                                    type: string
+                                title: Marketing Permission
+                                type: object
+                              title: Marketing Permissions
+                              type: array
+                            member_rating:
+                              description: Star rating for this member, between 1 and 5.
+                              readOnly: true
+                              title: Member Rating
+                              type: integer
+                            merge_fields:
+                              additionalProperties:
+                                description: This object's keys are merge tags (like FNAME). It's values are the values to be added to the merge field.
+                                oneOf:
+                                - type: object
+                                  required:
+                                  - addr1
+                                  - city
+                                  - state
+                                  - zip
+                                  properties:
+                                    addr1:
+                                      type: string
+                                    addr2:
+                                      type: string
+                                    city:
+                                      type: string
+                                    state:
+                                      type: string
+                                    zip:
+                                      type: string
+                                    country:
+                                      type: string
+                                - type: string
+                                - type: number
+                              description: A dictionary of merge fields where the keys are the merge tags. See the [Merge Fields documentation](https://mailchimp.com/developer/marketing/docs/merge-fields/#structure) for more about the structure.
+                              title: Merge Fields
+                              oneOf:
+                              - type: object
+                              - type: 'null'
+                            sms_phone_number:
+                              description: A US phone number for SMS contact.
+                              title: SMS Phone Number
+                              type: string
+                            sms_subscription_last_updated:
+                              description: The datetime when the SMS subscription was last updated
+                              title: SMS Subscription Last Update
+                              type: string
+                            sms_subscription_status:
+                              description: The status of an SMS subscription.
+                              enum:
+                              - subscribed
+                              - unsubscribed
+                              - nonsubscribed
+                              - pending
+                              title: SMS Subscription Status
+                              type: string
+                            source:
+                              description: The source from which the subscriber was added to this list.
+                              readOnly: true
+                              title: Subscriber Source
+                              type: string
+                            stats:
+                              description: Open and click rates for this subscriber.
+                              properties:
+                                avg_click_rate:
+                                  description: A subscriber's average clickthrough rate.
+                                  readOnly: true
+                                  title: Average Click Rate
+                                  type: number
+                                avg_open_rate:
+                                  description: A subscriber's average open rate.
+                                  readOnly: true
+                                  title: Average Open Rate
+                                  type: number
+                                ecommerce_data:
+                                  description: Ecommerce stats for the list member if the list is attached to a store.
+                                  properties:
+                                    currency_code:
+                                      description: The three-letter ISO 4217 code for the currency that the store accepts.
+                                      example: USD
+                                      readOnly: true
+                                      title: Currency
+                                      type: string
+                                    number_of_orders:
+                                      description: The total number of orders placed by the list member.
+                                      readOnly: true
+                                      title: Total Number of Orders
+                                      type: number
+                                    total_revenue:
+                                      description: The total revenue the list member has brought in.
+                                      readOnly: true
+                                      title: Total Revenue
+                                      type: number
+                                  readOnly: true
+                                  title: Ecommerce Stats
+                                  type: object
+                              readOnly: true
+                              title: Subscriber Stats
+                              type: object
+                            status:
+                              description: Subscriber's current status.
+                              enum:
+                              - subscribed
+                              - unsubscribed
+                              - cleaned
+                              - pending
+                              - transactional
+                              - archived
+                              title: Status
+                              type: string
+                            tags:
+                              description: Returns up to 50 tags applied to this member. To retrieve all tags see [Member Tags](https://mailchimp.com/developer/marketing/api/list-member-tags/).
+                              items:
+                                properties:
+                                  id:
+                                    description: The tag id.
+                                    readOnly: true
+                                    title: Tag ID
+                                    type: integer
+                                  name:
+                                    description: The name of the tag
+                                    readOnly: true
+                                    title: Tag Name
+                                    type: string
+                                type: object
+                              readOnly: false
+                              title: Tags
+                              type: array
+                            tags_count:
+                              description: The number of tags applied to this member.
+                              readOnly: true
+                              title: Tags Count
+                              type: integer
+                            timestamp_opt:
+                              description: The date and time the subscriber confirmed their opt-in status in ISO 8601 format.
+                              format: date-time
+                              readOnly: true
+                              title: Opt-in Timestamp
+                              type: string
+                            timestamp_signup:
+                              description: The date and time the subscriber signed up for the list in ISO 8601 format.
+                              format: date-time
+                              readOnly: true
+                              title: Signup Timestamp
+                              type: string
+                            unique_email_id:
+                              description: An identifier for the address across all of Mailchimp.
+                              readOnly: true
+                              title: Unique Email ID
+                              type: string
+                            unsubscribe_reason:
+                              description: A subscriber's reason for unsubscribing.
+                              title: Unsubscribe Reason
+                              type: string
+                            vip:
+                              description: '[VIP status](https://mailchimp.com/help/designate-and-send-to-vip-contacts/) for subscriber.'
+                              title: VIP
+                              type: boolean
+                            web_id:
+                              description: The ID used in the Mailchimp web application. View this member in your Mailchimp account at `https://{dc}.admin.mailchimp.com/lists/members/view?id={web_id}`.
+                              readOnly: true
+                              title: Member Web ID
+                              type: integer
+                          title: List Members
+                          type: object
+                        title: Members
+                        type: array
+                      total_items:
+                        description: The total number of items matching the query regardless of pagination.
+                        readOnly: true
+                        title: Item Count
+                        type: integer
+                    title: Partial Matches
+                    type: object
+                title: Members
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Search members
+      tags:
+      - search-members
+      x-custom-config:
+        methodNameCamel: search
+        methodNameSnake: search
+components:
+  securitySchemes:
+    bearerToken:
+      description: Authorization using a Mailchimp API key (a.k.a. Bearer token)
+      scheme: Bearer
+      type: http
+    oauth2:
+      description: Authorization using OAuth
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.mailchimp.com/oauth2/authorize
+          scopes: {}
+          tokenUrl: https://login.mailchimp.com/oauth2/token
+      type: oauth2
