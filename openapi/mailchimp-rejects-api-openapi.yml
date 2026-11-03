@@ -1,0 +1,972 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Rejects API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: rejects
+paths:
+  /rejects/add:
+    post:
+      x-custom-config:
+        methodNameCamel: add
+        methodNameSnake: add
+      summary: Add email to denylist
+      description: Adds an email to your email rejection denylist. Addresses that you add manually will never expire and there is no reputation penalty for removing them from your denylist. Attempting to denylist an address that has been added to the allowlist will have no effect.
+      operationId: postRejectsAdd
+      tags:
+      - rejects
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a status object containing the address and the result of the operation
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    description: the email address you provided
+                    example: user@example.com
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: a status object containing the address and the result of the operation
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    description: the email address you provided
+                    example: user@example.com
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a status object containing the address and the result of the operation
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    description: the email address you provided
+                    example: user@example.com
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - email
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                email:
+                  type: string
+                  description: an email address to block
+                  format: email
+                comment:
+                  type: string
+                  description: an optional comment describing the rejection
+                subaccount:
+                  type: string
+                  description: an optional unique identifier for the subaccount to limit the denylist entry
+                  maxLength: 255
+        required: true
+  /rejects/list:
+    post:
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+      summary: List denylisted emails
+      description: Retrieves your email rejection denylist. You can provide an email address to limit the results. Returns up to 1000 results. By default, entries that have expired are excluded from the results; set include_expired to true to include them.
+      operationId: postRejectsList
+      tags:
+      - rejects
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: Up to 1000 rejection entries
+                items:
+                  type: object
+                  description: the information for each rejection  entry
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email that is blocked
+                      example: user@example.com
+                    reason:
+                      type: string
+                      description: the type of event (hard-bounce, soft-bounce, spam, unsub, custom) that caused this rejection
+                      example: hard-bounce
+                    detail:
+                      type: string
+                      description: extended details about the event, such as the SMTP diagnostic for bounces or the comment for manually-created rejections
+                      example: 550 5.1.1 The email account that you tried to reach does not exist.
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: when the email was added to the denylist
+                      example: '2025-04-29 13:00:00'
+                    last_event_at:
+                      type: string
+                      format: date-time
+                      description: the timestamp of the most recent event that either created or renewed this rejection
+                      example: '2025-04-29 13:00:00'
+                    expires_at:
+                      type: string
+                      format: date-time
+                      description: when the denylist entry will expire (this may be in the past)
+                      example: '2025-05-29 13:00:00'
+                    expired:
+                      type: boolean
+                      description: whether the denylist entry has expired
+                      example: true
+                    sender:
+                      type: object
+                      description: the sender that this denylist entry applies to, or null if none.
+                      properties:
+                        address:
+                          type: string
+                          format: email
+                          description: the sender's email address
+                          example: sender@example.com
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-15 13:00:00'
+                        sent:
+                          type: integer
+                          description: the total number of messages sent by this sender
+                          example: 20
+                        hard_bounces:
+                          type: integer
+                          description: the total number of hard bounces by messages by this sender
+                          example: 5
+                        soft_bounces:
+                          type: integer
+                          description: the total number of soft bounces by messages by this sender
+                          example: 3
+                        rejects:
+                          type: integer
+                          description: the total number of rejected messages by this sender
+                          example: 2
+                        complaints:
+                          type: integer
+                          description: the total number of spam complaints received for messages by this sender
+                          example: 1
+                        unsubs:
+                          type: integer
+                          description: the total number of unsubscribe requests received for messages by this sender
+                          example: 0
+                        opens:
+                          type: integer
+                          description: the total number of times messages by this sender have been opened
+                          example: 10
+                        clicks:
+                          type: integer
+                          description: the total number of times tracked URLs in messages by this sender have been clicked
+                          example: 5
+                        unique_opens:
+                          type: integer
+                          description: the number of unique opens for emails sent for this sender
+                          example: 8
+                        unique_clicks:
+                          type: integer
+                          description: the number of unique clicks for emails sent for this sender
+                          example: 4
+                    subaccount:
+                      type: string
+                      description: the subaccount that this denylist entry applies to, or null if none.
+                      example: my_subaccount
+            application/x-php:
+              schema:
+                type: array
+                description: Up to 1000 rejection entries
+                items:
+                  type: object
+                  description: the information for each rejection  entry
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email that is blocked
+                      example: user@example.com
+                    reason:
+                      type: string
+                      description: the type of event (hard-bounce, soft-bounce, spam, unsub, custom) that caused this rejection
+                      example: hard-bounce
+                    detail:
+                      type: string
+                      description: extended details about the event, such as the SMTP diagnostic for bounces or the comment for manually-created rejections
+                      example: 550 5.1.1 The email account that you tried to reach does not exist.
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: when the email was added to the denylist
+                      example: '2025-04-29 13:00:00'
+                    last_event_at:
+                      type: string
+                      format: date-time
+                      description: the timestamp of the most recent event that either created or renewed this rejection
+                      example: '2025-04-29 13:00:00'
+                    expires_at:
+                      type: string
+                      format: date-time
+                      description: when the denylist entry will expire (this may be in the past)
+                      example: '2025-05-29 13:00:00'
+                    expired:
+                      type: boolean
+                      description: whether the denylist entry has expired
+                      example: true
+                    sender:
+                      type: object
+                      description: the sender that this denylist entry applies to, or null if none.
+                      properties:
+                        address:
+                          type: string
+                          format: email
+                          description: the sender's email address
+                          example: sender@example.com
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-15 13:00:00'
+                        sent:
+                          type: integer
+                          description: the total number of messages sent by this sender
+                          example: 20
+                        hard_bounces:
+                          type: integer
+                          description: the total number of hard bounces by messages by this sender
+                          example: 5
+                        soft_bounces:
+                          type: integer
+                          description: the total number of soft bounces by messages by this sender
+                          example: 3
+                        rejects:
+                          type: integer
+                          description: the total number of rejected messages by this sender
+                          example: 2
+                        complaints:
+                          type: integer
+                          description: the total number of spam complaints received for messages by this sender
+                          example: 1
+                        unsubs:
+                          type: integer
+                          description: the total number of unsubscribe requests received for messages by this sender
+                          example: 0
+                        opens:
+                          type: integer
+                          description: the total number of times messages by this sender have been opened
+                          example: 10
+                        clicks:
+                          type: integer
+                          description: the total number of times tracked URLs in messages by this sender have been clicked
+                          example: 5
+                        unique_opens:
+                          type: integer
+                          description: the number of unique opens for emails sent for this sender
+                          example: 8
+                        unique_clicks:
+                          type: integer
+                          description: the number of unique clicks for emails sent for this sender
+                          example: 4
+                    subaccount:
+                      type: string
+                      description: the subaccount that this denylist entry applies to, or null if none.
+                      example: my_subaccount
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: Up to 1000 rejection entries
+                items:
+                  type: object
+                  description: the information for each rejection  entry
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email that is blocked
+                      example: user@example.com
+                    reason:
+                      type: string
+                      description: the type of event (hard-bounce, soft-bounce, spam, unsub, custom) that caused this rejection
+                      example: hard-bounce
+                    detail:
+                      type: string
+                      description: extended details about the event, such as the SMTP diagnostic for bounces or the comment for manually-created rejections
+                      example: 550 5.1.1 The email account that you tried to reach does not exist.
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: when the email was added to the denylist
+                      example: '2025-04-29 13:00:00'
+                    last_event_at:
+                      type: string
+                      format: date-time
+                      description: the timestamp of the most recent event that either created or renewed this rejection
+                      example: '2025-04-29 13:00:00'
+                    expires_at:
+                      type: string
+                      format: date-time
+                      description: when the denylist entry will expire (this may be in the past)
+                      example: '2025-05-29 13:00:00'
+                    expired:
+                      type: boolean
+                      description: whether the denylist entry has expired
+                      example: true
+                    sender:
+                      type: object
+                      description: the sender that this denylist entry applies to, or null if none.
+                      properties:
+                        address:
+                          type: string
+                          format: email
+                          description: the sender's email address
+                          example: sender@example.com
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-15 13:00:00'
+                        sent:
+                          type: integer
+                          description: the total number of messages sent by this sender
+                          example: 20
+                        hard_bounces:
+                          type: integer
+                          description: the total number of hard bounces by messages by this sender
+                          example: 5
+                        soft_bounces:
+                          type: integer
+                          description: the total number of soft bounces by messages by this sender
+                          example: 3
+                        rejects:
+                          type: integer
+                          description: the total number of rejected messages by this sender
+                          example: 2
+                        complaints:
+                          type: integer
+                          description: the total number of spam complaints received for messages by this sender
+                          example: 1
+                        unsubs:
+                          type: integer
+                          description: the total number of unsubscribe requests received for messages by this sender
+                          example: 0
+                        opens:
+                          type: integer
+                          description: the total number of times messages by this sender have been opened
+                          example: 10
+                        clicks:
+                          type: integer
+                          description: the total number of times tracked URLs in messages by this sender have been clicked
+                          example: 5
+                        unique_opens:
+                          type: integer
+                          description: the number of unique opens for emails sent for this sender
+                          example: 8
+                        unique_clicks:
+                          type: integer
+                          description: the number of unique clicks for emails sent for this sender
+                          example: 4
+                    subaccount:
+                      type: string
+                      description: the subaccount that this denylist entry applies to, or null if none.
+                      example: my_subaccount
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                email:
+                  type: string
+                  description: an optional email address to search by
+                  format: email
+                include_expired:
+                  type: boolean
+                  description: whether to include rejections that have already expired.
+                subaccount:
+                  type: string
+                  description: an optional unique identifier for the subaccount to limit the denylist
+                  maxLength: 255
+        required: true
+  /rejects/delete:
+    post:
+      x-custom-config:
+        methodNameCamel: delete
+        methodNameSnake: delete
+      summary: Delete email from denylist
+      description: Deletes an email rejection. There is no limit to how many rejections you can remove from your denylist, but keep in mind that each deletion has an affect on your reputation.
+      operationId: postRejectsDelete
+      tags:
+      - rejects
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a status object containing the address and whether the deletion succeeded.
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    description: the email address that was removed from the denylist
+                    example: user@example.com
+                  deleted:
+                    type: boolean
+                    description: whether the address was deleted successfully.
+                    example: true
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist that the address was removed from, if any
+                    example: my_subaccount
+            application/x-php:
+              schema:
+                type: object
+                description: a status object containing the address and whether the deletion succeeded.
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    description: the email address that was removed from the denylist
+                    example: user@example.com
+                  deleted:
+                    type: boolean
+                    description: whether the address was deleted successfully.
+                    example: true
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist that the address was removed from, if any
+                    example: my_subaccount
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a status object containing the address and whether the deletion succeeded.
+                properties:
+                  email:
+                    type: string
+                    format: email
+                    description: the email address that was removed from the denylist
+                    example: user@example.com
+                  deleted:
+                    type: boolean
+                    description: whether the address was deleted successfully.
+                    example: true
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist that the address was removed from, if any
+                    example: my_subaccount
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - email
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                email:
+                  type: string
+                  description: an email address
+                  format: email
+                subaccount:
+                  type: string
+                  description: an optional unique identifier for the subaccount to limit the denylist deletion
+                  maxLength: 255
+        required: true
+  /rejects/add-sms:
+    post:
+      x-custom-config:
+        methodNameCamel: addSms
+        methodNameSnake: add_sms
+      summary: Add phone number to SMS denylist
+      description: Adds a phone number to your SMS rejection denylist. Phone numbers that you add manually will never expire and there is no reputation penalty for removing them from your denylist.
+      operationId: postRejectsAddSms
+      tags:
+      - rejects
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a status object containing the phone number and the result of the operation
+                properties:
+                  phone:
+                    type: string
+                    description: the phone number you provided
+                    example: '+12025551234'
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist the phone number was added to, if any
+                    example: cust-123
+            application/x-php:
+              schema:
+                type: object
+                description: a status object containing the phone number and the result of the operation
+                properties:
+                  phone:
+                    type: string
+                    description: the phone number you provided
+                    example: '+12025551234'
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist the phone number was added to, if any
+                    example: cust-123
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a status object containing the phone number and the result of the operation
+                properties:
+                  phone:
+                    type: string
+                    description: the phone number you provided
+                    example: '+12025551234'
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist the phone number was added to, if any
+                    example: cust-123
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - phone
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                phone:
+                  type: string
+                  description: a phone number to block in E.164 format
+                  example: '+12025551234'
+                comment:
+                  type: string
+                  description: an optional comment describing the rejection
+                  example: Manually blocked due to spam
+                subaccount:
+                  type: string
+                  description: an optional unique identifier for the subaccount to limit the denylist entry
+                  maxLength: 255
+                  example: cust-123
+        required: true
+  /rejects/list-sms:
+    post:
+      x-custom-config:
+        methodNameCamel: listSms
+        methodNameSnake: list_sms
+      summary: List SMS denylist entries
+      description: Retrieves your SMS rejection denylist. You can provide a phone number to limit the results. Returns up to 1000 results. By default, entries that have expired are excluded from the results; set include_expired to true to include them.
+      operationId: postRejectsListSms
+      tags:
+      - rejects
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: up to 1000 SMS denylist entries
+                items:
+                  type: object
+                  properties:
+                    phone:
+                      type: string
+                      description: the phone number on the denylist
+                      example: '+12025551234'
+                    created_at:
+                      type: string
+                      description: the date and time that the entry was created
+                      example: '2023-01-15 10:30:00'
+                    expires_at:
+                      type: string
+                      description: the date and time that the entry expires
+                      example: '2023-02-15 10:30:00'
+                    expired:
+                      type: boolean
+                      description: whether the entry has expired
+                      example: false
+                    subaccount:
+                      type: string
+                      description: the subaccount that the entry belongs to
+                      example: cust-123
+            application/x-php:
+              schema:
+                type: array
+                description: up to 1000 SMS denylist entries
+                items:
+                  type: object
+                  properties:
+                    phone:
+                      type: string
+                      description: the phone number on the denylist
+                      example: '+12025551234'
+                    created_at:
+                      type: string
+                      description: the date and time that the entry was created
+                      example: '2023-01-15 10:30:00'
+                    expires_at:
+                      type: string
+                      description: the date and time that the entry expires
+                      example: '2023-02-15 10:30:00'
+                    expired:
+                      type: boolean
+                      description: whether the entry has expired
+                      example: false
+                    subaccount:
+                      type: string
+                      description: the subaccount that the entry belongs to
+                      example: cust-123
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: up to 1000 SMS denylist entries
+                items:
+                  type: object
+                  properties:
+                    phone:
+                      type: string
+                      description: the phone number on the denylist
+                      example: '+12025551234'
+                    created_at:
+                      type: string
+                      description: the date and time that the entry was created
+                      example: '2023-01-15 10:30:00'
+                    expires_at:
+                      type: string
+                      description: the date and time that the entry expires
+                      example: '2023-02-15 10:30:00'
+                    expired:
+                      type: boolean
+                      description: whether the entry has expired
+                      example: false
+                    subaccount:
+                      type: string
+                      description: the subaccount that the entry belongs to
+                      example: cust-123
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                phone:
+                  type: string
+                  description: an optional phone number to search by in E.164 format
+                  example: '+12025551234'
+                include_expired:
+                  type: boolean
+                  description: whether to include rejections that have already expired
+                  example: false
+                subaccount:
+                  type: string
+                  description: an optional unique identifier for the subaccount to limit the denylist
+                  maxLength: 255
+                  example: cust-123
+        required: true
+  /rejects/delete-sms:
+    post:
+      x-custom-config:
+        methodNameCamel: deleteSms
+        methodNameSnake: delete_sms
+      summary: Delete phone number from SMS denylist
+      description: Deletes an SMS rejection. There is no limit to how many rejections you can remove from your denylist, but keep in mind that each deletion has an affect on your reputation.
+      operationId: postRejectsDeleteSms
+      tags:
+      - rejects
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a status object containing the phone number and whether the deletion succeeded
+                properties:
+                  phone:
+                    type: string
+                    description: the phone number you provided
+                    example: '+12025551234'
+                  deleted:
+                    type: boolean
+                    description: whether the operation succeeded
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist the phone number was deleted from, if any
+                    example: cust-123
+            application/x-php:
+              schema:
+                type: object
+                description: a status object containing the phone number and whether the deletion succeeded
+                properties:
+                  phone:
+                    type: string
+                    description: the phone number you provided
+                    example: '+12025551234'
+                  deleted:
+                    type: boolean
+                    description: whether the operation succeeded
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist the phone number was deleted from, if any
+                    example: cust-123
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a status object containing the phone number and whether the deletion succeeded
+                properties:
+                  phone:
+                    type: string
+                    description: the phone number you provided
+                    example: '+12025551234'
+                  deleted:
+                    type: boolean
+                    description: whether the operation succeeded
+                  subaccount:
+                    type: string
+                    description: the subaccount denylist the phone number was deleted from, if any
+                    example: cust-123
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - phone
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                phone:
+                  type: string
+                  description: a phone number in E.164 format
+                  example: '+12025551234'
+                subaccount:
+                  type: string
+                  description: an optional unique identifier for the subaccount to limit the denylist deletion
+                  maxLength: 255
+                  example: cust-123
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

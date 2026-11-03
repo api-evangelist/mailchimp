@@ -1,0 +1,565 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Metadata API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: Metadata
+paths:
+  /metadata/list:
+    post:
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+      summary: List metadata fields
+      description: Get the list of custom metadata fields indexed for the account.
+      operationId: postMetadataList
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the custom metadata fields for the account
+                items:
+                  type: object
+                  description: the individual custom metadata field info
+                  properties:
+                    name:
+                      type: string
+                      description: the unique identifier of the metadata field to update
+                      example: product_id
+                    state:
+                      type: string
+                      description: the current state of the metadata field
+                      enum:
+                      - active
+                      - delete
+                      - index
+                      example: active
+                    view_template:
+                      type: string
+                      description: Mustache template to control how the metadata is rendered in your activity log
+                      example: 'Product: *|product_id|*'
+            application/x-php:
+              schema:
+                type: array
+                description: the custom metadata fields for the account
+                items:
+                  type: object
+                  description: the individual custom metadata field info
+                  properties:
+                    name:
+                      type: string
+                      description: the unique identifier of the metadata field to update
+                      example: product_id
+                    state:
+                      type: string
+                      description: the current state of the metadata field
+                      enum:
+                      - active
+                      - delete
+                      - index
+                      example: active
+                    view_template:
+                      type: string
+                      description: Mustache template to control how the metadata is rendered in your activity log
+                      example: 'Product: *|product_id|*'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the custom metadata fields for the account
+                items:
+                  type: object
+                  description: the individual custom metadata field info
+                  properties:
+                    name:
+                      type: string
+                      description: the unique identifier of the metadata field to update
+                      example: product_id
+                    state:
+                      type: string
+                      description: the current state of the metadata field
+                      enum:
+                      - active
+                      - delete
+                      - index
+                      example: active
+                    view_template:
+                      type: string
+                      description: Mustache template to control how the metadata is rendered in your activity log
+                      example: 'Product: *|product_id|*'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /metadata/add:
+    post:
+      x-custom-config:
+        methodNameCamel: add
+        methodNameSnake: add
+      summary: Add metadata field
+      description: Add a new custom metadata field to be indexed for the account.
+      operationId: postMetadataAdd
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information saved about the new metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+            application/x-php:
+              schema:
+                type: object
+                description: the information saved about the new metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information saved about the new metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - name
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                name:
+                  type: string
+                  description: a unique identifier for the metadata field
+                  maxLength: 64
+                view_template:
+                  type: string
+                  description: Mustache template to control how the metadata is rendered in your activity log
+                  maxLength: 1024
+        required: true
+  /metadata/update:
+    post:
+      x-custom-config:
+        methodNameCamel: update
+        methodNameSnake: update
+      summary: Update metadata field
+      description: Update an existing custom metadata field.
+      operationId: postMetadataUpdate
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information for the updated metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+            application/x-php:
+              schema:
+                type: object
+                description: the information for the updated metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information for the updated metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - name
+              - view_template
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                name:
+                  type: string
+                  description: the unique identifier of the metadata field to update
+                view_template:
+                  type: string
+                  description: Mustache template to control how the metadata is rendered in your activity log
+                  maxLength: 1024
+        required: true
+  /metadata/delete:
+    post:
+      x-custom-config:
+        methodNameCamel: delete
+        methodNameSnake: delete
+      summary: Delete metadata field
+      description: Delete an existing custom metadata field. Deletion isn't instataneous, and /metadata/list will continue to return the field until the asynchronous deletion process is complete.
+      operationId: postMetadataDelete
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information for the deleted metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+            application/x-php:
+              schema:
+                type: object
+                description: the information for the deleted metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information for the deleted metadata field
+                properties:
+                  name:
+                    type: string
+                    description: the unique identifier of the metadata field to update
+                    example: product_id
+                  state:
+                    type: string
+                    description: the current state of the metadata field
+                    enum:
+                    - active
+                    - delete
+                    - index
+                    example: active
+                  view_template:
+                    type: string
+                    description: Mustache template to control how the metadata is rendered in your activity log
+                    example: 'Product: *|product_id|*'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - name
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                name:
+                  type: string
+                  description: the unique identifier of the metadata field to update
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

@@ -1,0 +1,1682 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Subaccounts API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: Subaccounts
+paths:
+  /subaccounts/list:
+    post:
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+      summary: List subaccounts
+      description: Get the list of subaccounts defined for the account, optionally filtered by a prefix.
+      operationId: postSubaccountsList
+      tags:
+      - Subaccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the subaccounts for the account, up to a maximum of 1,000
+                items:
+                  type: object
+                  description: the individual subaccount info
+                  properties:
+                    id:
+                      type: string
+                      description: a unique indentifier for the subaccount
+                      example: my_subaccount_id
+                    name:
+                      type: string
+                      description: an optional display name for the subaccount
+                      example: My Subaccount
+                    custom_quota:
+                      type: integer
+                      description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                      example: 500
+                    status:
+                      type: string
+                      description: the current sending status of the subaccount
+                      enum:
+                      - active
+                      - paused
+                      example: active
+                    reputation:
+                      type: integer
+                      description: the subaccount's current reputation on a scale from 0 to 100
+                      minimum: 0
+                      maximum: 100
+                      example: 95
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 12:00:00'
+                    first_sent_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-20 15:31:00'
+                    sent_weekly:
+                      type: integer
+                      description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                      example: 1500
+                    sent_monthly:
+                      type: integer
+                      description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                      example: 6000
+                    sent_total:
+                      type: integer
+                      description: the number of emails the subaccount has sent since it was created
+                      example: 10000
+            application/x-php:
+              schema:
+                type: array
+                description: the subaccounts for the account, up to a maximum of 1,000
+                items:
+                  type: object
+                  description: the individual subaccount info
+                  properties:
+                    id:
+                      type: string
+                      description: a unique indentifier for the subaccount
+                      example: my_subaccount_id
+                    name:
+                      type: string
+                      description: an optional display name for the subaccount
+                      example: My Subaccount
+                    custom_quota:
+                      type: integer
+                      description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                      example: 500
+                    status:
+                      type: string
+                      description: the current sending status of the subaccount
+                      enum:
+                      - active
+                      - paused
+                      example: active
+                    reputation:
+                      type: integer
+                      description: the subaccount's current reputation on a scale from 0 to 100
+                      minimum: 0
+                      maximum: 100
+                      example: 95
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 12:00:00'
+                    first_sent_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-20 15:31:00'
+                    sent_weekly:
+                      type: integer
+                      description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                      example: 1500
+                    sent_monthly:
+                      type: integer
+                      description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                      example: 6000
+                    sent_total:
+                      type: integer
+                      description: the number of emails the subaccount has sent since it was created
+                      example: 10000
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the subaccounts for the account, up to a maximum of 1,000
+                items:
+                  type: object
+                  description: the individual subaccount info
+                  properties:
+                    id:
+                      type: string
+                      description: a unique indentifier for the subaccount
+                      example: my_subaccount_id
+                    name:
+                      type: string
+                      description: an optional display name for the subaccount
+                      example: My Subaccount
+                    custom_quota:
+                      type: integer
+                      description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                      example: 500
+                    status:
+                      type: string
+                      description: the current sending status of the subaccount
+                      enum:
+                      - active
+                      - paused
+                      example: active
+                    reputation:
+                      type: integer
+                      description: the subaccount's current reputation on a scale from 0 to 100
+                      minimum: 0
+                      maximum: 100
+                      example: 95
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 12:00:00'
+                    first_sent_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-20 15:31:00'
+                    sent_weekly:
+                      type: integer
+                      description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                      example: 1500
+                    sent_monthly:
+                      type: integer
+                      description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                      example: 6000
+                    sent_total:
+                      type: integer
+                      description: the number of emails the subaccount has sent since it was created
+                      example: 10000
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                q:
+                  type: string
+                  description: an optional prefix to filter the subaccounts' ids and names
+        required: true
+  /subaccounts/add:
+    post:
+      x-custom-config:
+        methodNameCamel: add
+        methodNameSnake: add
+      summary: Add subaccount
+      description: Add a new subaccount.
+      operationId: postSubaccountsAdd
+      tags:
+      - Subaccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information saved about the new subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 50
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 0
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 0
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 0
+            application/x-php:
+              schema:
+                type: object
+                description: the information saved about the new subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 50
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 0
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 0
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 0
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information saved about the new subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 50
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 0
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 0
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 0
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: a unique identifier for the subaccount to be used in sending calls
+                  maxLength: 255
+                name:
+                  type: string
+                  description: an optional display name to further identify the subaccount
+                  maxLength: 1024
+                notes:
+                  type: string
+                  description: optional extra text to associate with the subaccount
+                custom_quota:
+                  type: integer
+                  description: an optional manual hourly quota for the subaccount. If not specified, Mandrill will manage this based on reputation
+                  minimum: 0
+        required: true
+  /subaccounts/info:
+    post:
+      x-custom-config:
+        methodNameCamel: info
+        methodNameSnake: info
+      summary: Get subaccount info
+      description: Given the ID of an existing subaccount, return the data about it.
+      operationId: postSubaccountsInfo
+      tags:
+      - Subaccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information about the subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  notes:
+                    type: string
+                    description: optional extra text to associate with the subaccount
+                    example: This is my subaccount for order receipts
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+                  sent_hourly:
+                    type: integer
+                    description: the number of emails the subaccount has sent in the last hour
+                    example: 200
+                  hourly_quota:
+                    type: integer
+                    description: the current hourly quota for the subaccount, either manual or reputation-based
+                    example: 500
+                  last_30_days:
+                    type: object
+                    description: stats for this subaccount in the last 30 days
+                    properties:
+                      sent:
+                        type: integer
+                        description: the number of emails sent for this subaccount in the last 30 days
+                        example: 300
+                      hard_bounces:
+                        type: integer
+                        description: the number of emails hard bounced for this subaccount in the last 30 days
+                        example: 5
+                      soft_bounces:
+                        type: integer
+                        description: the number of emails soft bounced for this subaccount in the last 30 days
+                        example: 10
+                      rejects:
+                        type: integer
+                        description: the number of emails rejected for sending this subaccount in the last 30 days
+                        example: 2
+                      complaints:
+                        type: integer
+                        description: the number of spam complaints for this subaccount in the last 30 days
+                        example: 1
+                      unsubs:
+                        type: integer
+                        description: the number of unsbuscribes for this subaccount in the last 30 days
+                        example: 0
+                      opens:
+                        type: integer
+                        description: the number of times emails have been opened for this subaccount in the last 30 days
+                        example: 1000
+                      unique_opens:
+                        type: integer
+                        description: the number of unique opens for emails sent for this subaccount in the last 30 days
+                        example: 800
+                      clicks:
+                        type: integer
+                        description: the number of URLs that have been clicked for this subaccount in the last 30 days
+                        example: 500
+                      unique_clicks:
+                        type: integer
+                        description: the number of unique clicks for emails sent for this subaccount in the last 30 days
+                        example: 300
+            application/x-php:
+              schema:
+                type: object
+                description: the information about the subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  notes:
+                    type: string
+                    description: optional extra text to associate with the subaccount
+                    example: This is my subaccount for order receipts
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+                  sent_hourly:
+                    type: integer
+                    description: the number of emails the subaccount has sent in the last hour
+                    example: 200
+                  hourly_quota:
+                    type: integer
+                    description: the current hourly quota for the subaccount, either manual or reputation-based
+                    example: 500
+                  last_30_days:
+                    type: object
+                    description: stats for this subaccount in the last 30 days
+                    properties:
+                      sent:
+                        type: integer
+                        description: the number of emails sent for this subaccount in the last 30 days
+                        example: 300
+                      hard_bounces:
+                        type: integer
+                        description: the number of emails hard bounced for this subaccount in the last 30 days
+                        example: 5
+                      soft_bounces:
+                        type: integer
+                        description: the number of emails soft bounced for this subaccount in the last 30 days
+                        example: 10
+                      rejects:
+                        type: integer
+                        description: the number of emails rejected for sending this subaccount in the last 30 days
+                        example: 2
+                      complaints:
+                        type: integer
+                        description: the number of spam complaints for this subaccount in the last 30 days
+                        example: 1
+                      unsubs:
+                        type: integer
+                        description: the number of unsbuscribes for this subaccount in the last 30 days
+                        example: 0
+                      opens:
+                        type: integer
+                        description: the number of times emails have been opened for this subaccount in the last 30 days
+                        example: 1000
+                      unique_opens:
+                        type: integer
+                        description: the number of unique opens for emails sent for this subaccount in the last 30 days
+                        example: 800
+                      clicks:
+                        type: integer
+                        description: the number of URLs that have been clicked for this subaccount in the last 30 days
+                        example: 500
+                      unique_clicks:
+                        type: integer
+                        description: the number of unique clicks for emails sent for this subaccount in the last 30 days
+                        example: 300
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information about the subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  notes:
+                    type: string
+                    description: optional extra text to associate with the subaccount
+                    example: This is my subaccount for order receipts
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+                  sent_hourly:
+                    type: integer
+                    description: the number of emails the subaccount has sent in the last hour
+                    example: 200
+                  hourly_quota:
+                    type: integer
+                    description: the current hourly quota for the subaccount, either manual or reputation-based
+                    example: 500
+                  last_30_days:
+                    type: object
+                    description: stats for this subaccount in the last 30 days
+                    properties:
+                      sent:
+                        type: integer
+                        description: the number of emails sent for this subaccount in the last 30 days
+                        example: 300
+                      hard_bounces:
+                        type: integer
+                        description: the number of emails hard bounced for this subaccount in the last 30 days
+                        example: 5
+                      soft_bounces:
+                        type: integer
+                        description: the number of emails soft bounced for this subaccount in the last 30 days
+                        example: 10
+                      rejects:
+                        type: integer
+                        description: the number of emails rejected for sending this subaccount in the last 30 days
+                        example: 2
+                      complaints:
+                        type: integer
+                        description: the number of spam complaints for this subaccount in the last 30 days
+                        example: 1
+                      unsubs:
+                        type: integer
+                        description: the number of unsbuscribes for this subaccount in the last 30 days
+                        example: 0
+                      opens:
+                        type: integer
+                        description: the number of times emails have been opened for this subaccount in the last 30 days
+                        example: 1000
+                      unique_opens:
+                        type: integer
+                        description: the number of unique opens for emails sent for this subaccount in the last 30 days
+                        example: 800
+                      clicks:
+                        type: integer
+                        description: the number of URLs that have been clicked for this subaccount in the last 30 days
+                        example: 500
+                      unique_clicks:
+                        type: integer
+                        description: the number of unique clicks for emails sent for this subaccount in the last 30 days
+                        example: 300
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique identifier of the subaccount to query
+        required: true
+  /subaccounts/update:
+    post:
+      x-custom-config:
+        methodNameCamel: update
+        methodNameSnake: update
+      summary: Update subaccount
+      description: Update an existing subaccount.
+      operationId: postSubaccountsUpdate
+      tags:
+      - Subaccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information for the updated subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+            application/x-php:
+              schema:
+                type: object
+                description: the information for the updated subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information for the updated subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique identifier of the subaccount to update
+                name:
+                  type: string
+                  description: an optional display name to further identify the subaccount
+                  maxLength: 1024
+                notes:
+                  type: string
+                  description: optional extra text to associate with the subaccount
+                custom_quota:
+                  type: integer
+                  description: an optional manual hourly quota for the subaccount. If not specified, Mandrill will manage this based on reputation
+                  minimum: 0
+        required: true
+  /subaccounts/delete:
+    post:
+      x-custom-config:
+        methodNameCamel: delete
+        methodNameSnake: delete
+      summary: Delete subaccount
+      description: Delete an existing subaccount. Any email related to the subaccount will be saved, but stats will be removed and any future sending calls to this subaccount will fail.
+      operationId: postSubaccountsDelete
+      tags:
+      - Subaccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information for the deleted subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 30000
+            application/x-php:
+              schema:
+                type: object
+                description: the information for the deleted subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 30000
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information for the deleted subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 30000
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique identifier of the subaccount to delete
+        required: true
+  /subaccounts/pause:
+    post:
+      x-custom-config:
+        methodNameCamel: pause
+        methodNameSnake: pause
+      summary: Pause subaccount
+      description: Pause a subaccount's sending. Any future emails delivered to this subaccount will be queued for a maximum of 3 days until the subaccount is resumed.
+      operationId: postSubaccountsPause
+      tags:
+      - Subaccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information for the paused subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: paused
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+            application/x-php:
+              schema:
+                type: object
+                description: the information for the paused subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: paused
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information for the paused subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: paused
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique identifier of the subaccount to pause
+        required: true
+  /subaccounts/resume:
+    post:
+      x-custom-config:
+        methodNameCamel: resume
+        methodNameSnake: resume
+      summary: Resume subaccount
+      description: Resume a paused subaccount's sending.
+      operationId: postSubaccountsResume
+      tags:
+      - Subaccounts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information for the resumed subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+            application/x-php:
+              schema:
+                type: object
+                description: the information for the resumed subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information for the resumed subaccount
+                properties:
+                  id:
+                    type: string
+                    description: a unique indentifier for the subaccount
+                    example: my_subaccount_id
+                  name:
+                    type: string
+                    description: an optional display name for the subaccount
+                    example: My Subaccount
+                  custom_quota:
+                    type: integer
+                    description: an optional manual hourly quota for the subaccount. If not specified, the hourly quota will be managed based on reputation
+                    example: 500
+                  status:
+                    type: string
+                    description: the current sending status of the subaccount
+                    enum:
+                    - active
+                    - paused
+                    example: active
+                  reputation:
+                    type: integer
+                    description: the subaccount's current reputation on a scale from 0 to 100
+                    minimum: 0
+                    maximum: 100
+                    example: 95
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 12:00:00'
+                  first_sent_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the subaccount first sent as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 15:31:00'
+                  sent_weekly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this week (weeks start on midnight Monday, UTC)
+                    example: 1500
+                  sent_monthly:
+                    type: integer
+                    description: the number of emails the subaccount has sent so far this month (months start on midnight of the 1st, UTC)
+                    example: 6000
+                  sent_total:
+                    type: integer
+                    description: the number of emails the subaccount has sent since it was created
+                    example: 10000
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique identifier of the subaccount to resume
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

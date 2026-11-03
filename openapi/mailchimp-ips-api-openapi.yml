@@ -1,0 +1,2406 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Ips API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: IPs
+paths:
+  /ips/list:
+    post:
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+      summary: List ip addresses
+      description: Lists your dedicated IPs.
+      operationId: postIpsList
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of objects for each dedicated IP
+                items:
+                  type: object
+                  description: information about a single dedicated IP
+                  properties:
+                    ip:
+                      type: string
+                      description: the ip address
+                      example: 123.123.123.123
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 18:47:35'
+                    pool:
+                      type: string
+                      description: the name of the pool that this dedicated IP belongs to
+                      example: Main Pool
+                    domain:
+                      type: string
+                      description: the domain name (reverse dns) of this dedicated IP
+                      example: example.com
+                    custom_dns:
+                      type: object
+                      description: information about the ip's custom dns, if it has been configured
+                      properties:
+                        enabled:
+                          type: boolean
+                          description: a boolean indicating whether custom dns has been configured for this ip
+                          example: true
+                        valid:
+                          type: boolean
+                          description: whether the ip's custom dns is currently valid
+                          example: true
+                        error:
+                          type: string
+                          description: if the ip's custom dns is invalid, this will include details about the error
+                          example: Invalid reverse DNS
+                    warmup:
+                      type: object
+                      description: information about the ip's warmup status
+                      properties:
+                        warming_up:
+                          type: boolean
+                          description: whether the ip is currently in warmup mode
+                          example: false
+                        start_at:
+                          type: string
+                          format: date-time
+                          description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-25 12:00:00'
+                        end_at:
+                          type: string
+                          format: date-time
+                          description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-29 12:00:00'
+            application/x-php:
+              schema:
+                type: array
+                description: an array of objects for each dedicated IP
+                items:
+                  type: object
+                  description: information about a single dedicated IP
+                  properties:
+                    ip:
+                      type: string
+                      description: the ip address
+                      example: 123.123.123.123
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 18:47:35'
+                    pool:
+                      type: string
+                      description: the name of the pool that this dedicated IP belongs to
+                      example: Main Pool
+                    domain:
+                      type: string
+                      description: the domain name (reverse dns) of this dedicated IP
+                      example: example.com
+                    custom_dns:
+                      type: object
+                      description: information about the ip's custom dns, if it has been configured
+                      properties:
+                        enabled:
+                          type: boolean
+                          description: a boolean indicating whether custom dns has been configured for this ip
+                          example: true
+                        valid:
+                          type: boolean
+                          description: whether the ip's custom dns is currently valid
+                          example: true
+                        error:
+                          type: string
+                          description: if the ip's custom dns is invalid, this will include details about the error
+                          example: Invalid reverse DNS
+                    warmup:
+                      type: object
+                      description: information about the ip's warmup status
+                      properties:
+                        warming_up:
+                          type: boolean
+                          description: whether the ip is currently in warmup mode
+                          example: false
+                        start_at:
+                          type: string
+                          format: date-time
+                          description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-25 12:00:00'
+                        end_at:
+                          type: string
+                          format: date-time
+                          description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-29 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of objects for each dedicated IP
+                items:
+                  type: object
+                  description: information about a single dedicated IP
+                  properties:
+                    ip:
+                      type: string
+                      description: the ip address
+                      example: 123.123.123.123
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 18:47:35'
+                    pool:
+                      type: string
+                      description: the name of the pool that this dedicated IP belongs to
+                      example: Main Pool
+                    domain:
+                      type: string
+                      description: the domain name (reverse dns) of this dedicated IP
+                      example: example.com
+                    custom_dns:
+                      type: object
+                      description: information about the ip's custom dns, if it has been configured
+                      properties:
+                        enabled:
+                          type: boolean
+                          description: a boolean indicating whether custom dns has been configured for this ip
+                          example: true
+                        valid:
+                          type: boolean
+                          description: whether the ip's custom dns is currently valid
+                          example: true
+                        error:
+                          type: string
+                          description: if the ip's custom dns is invalid, this will include details about the error
+                          example: Invalid reverse DNS
+                    warmup:
+                      type: object
+                      description: information about the ip's warmup status
+                      properties:
+                        warming_up:
+                          type: boolean
+                          description: whether the ip is currently in warmup mode
+                          example: false
+                        start_at:
+                          type: string
+                          format: date-time
+                          description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-25 12:00:00'
+                        end_at:
+                          type: string
+                          format: date-time
+                          description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-29 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /ips/info:
+    post:
+      x-custom-config:
+        methodNameCamel: info
+        methodNameSnake: info
+      summary: Get ip info
+      description: Retrieves information about a single dedicated IP.
+      operationId: postIpsInfo
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the dedicated ip
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the dedicated ip
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the dedicated ip
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                ip:
+                  type: string
+                  description: a dedicated IP address
+        required: true
+  /ips/provision:
+    post:
+      x-custom-config:
+        methodNameCamel: provision
+        methodNameSnake: provision
+      summary: Request additional ip
+      description: Requests an additional dedicated IP for your account. Accounts may have one outstanding request at any time, and provisioning requests are processed within 24 hours.
+      operationId: postIpsProvision
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a description of the provisioning request that was created
+                properties:
+                  requested_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the request was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+            application/x-php:
+              schema:
+                type: object
+                description: a description of the provisioning request that was created
+                properties:
+                  requested_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the request was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a description of the provisioning request that was created
+                properties:
+                  requested_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the request was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                warmup:
+                  type: boolean
+                  description: whether to enable warmup mode for the ip
+                pool:
+                  type: string
+                  description: the id of the pool to add the dedicated ip to, or null to use your account's default pool
+        required: true
+  /ips/start-warmup:
+    post:
+      x-custom-config:
+        methodNameCamel: startWarmup
+        methodNameSnake: start_warmup
+      summary: Start ip warmup
+      description: Begins the warmup process for a dedicated IP. During the warmup process, the Transactional API will gradually increase the percentage of your mail that is sent over the warming-up IP, over a period of roughly 30 days. The rest of your mail will be sent over shared IPs or other dedicated IPs in the same pool.
+      operationId: postIpsStartWarmup
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: true
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: true
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: true
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - ip
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                ip:
+                  type: string
+                  description: a dedicated ip address
+        required: true
+  /ips/cancel-warmup:
+    post:
+      x-custom-config:
+        methodNameCamel: cancelWarmup
+        methodNameSnake: cancel_warmup
+      summary: Cancel ip warmup
+      description: Cancels the warmup process for a dedicated IP.
+      operationId: postIpsCancelWarmup
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - ip
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                ip:
+                  type: string
+                  description: a dedicated ip address
+        required: true
+  /ips/set-pool:
+    post:
+      x-custom-config:
+        methodNameCamel: setPool
+        methodNameSnake: set_pool
+      summary: Move ip to different pool
+      description: Moves a dedicated IP to a different pool.
+      operationId: postIpsSetPool
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the updated state of the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the updated state of the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the updated state of the dedicated IP
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: true
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: Invalid reverse DNS
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-05-25 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - ip
+              - pool
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                ip:
+                  type: string
+                  description: a dedicated ip address
+                pool:
+                  type: string
+                  description: the name of the new pool to add the dedicated ip to
+                create_pool:
+                  type: boolean
+                  description: whether to create the pool if it does not exist; if false and the pool does not exist, an Unknown_Pool will be thrown.
+        required: true
+  /ips/delete:
+    post:
+      x-custom-config:
+        methodNameCamel: delete
+        methodNameSnake: delete
+      summary: Delete ip address
+      description: Deletes a dedicated IP. This is permanent and cannot be undone.
+      operationId: postIpsDelete
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a description of the ip that was removed from your account.
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  deleted:
+                    type: string
+                    description: a boolean indicating whether the ip was successfully deleted
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: a description of the ip that was removed from your account.
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  deleted:
+                    type: string
+                    description: a boolean indicating whether the ip was successfully deleted
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a description of the ip that was removed from your account.
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  deleted:
+                    type: string
+                    description: a boolean indicating whether the ip was successfully deleted
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - ip
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                ip:
+                  type: string
+                  description: the dedicated ip to remove from your account
+        required: true
+  /ips/list-pools:
+    post:
+      x-custom-config:
+        methodNameCamel: listPools
+        methodNameSnake: list_pools
+      summary: List ip pools
+      description: Lists your dedicated IP pools.
+      operationId: postIpsListPools
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the dedicated IP pools for your account, up to a maximum of 1,000
+                items:
+                  type: object
+                  description: information about each dedicated IP pool
+                  properties:
+                    name:
+                      type: string
+                      description: this pool's name
+                      example: Main Pool
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 18:47:35'
+                    ips:
+                      type: array
+                      description: the dedicated IPs in this pool
+                      items:
+                        type: object
+                        description: information about each dedicated IP
+                        properties:
+                          ip:
+                            type: string
+                            description: the ip address
+                            example: 123.123.123.123
+                          created_at:
+                            type: string
+                            format: date-time
+                            description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                            example: '2025-04-30 12:00:00'
+                          pool:
+                            type: string
+                            description: the name of the pool that this dedicated IP belongs to
+                            example: Main Pool
+                          domain:
+                            type: string
+                            description: the domain name (reverse dns) of this dedicated IP
+                            example: example.com
+                          custom_dns:
+                            type: object
+                            description: information about the ip's custom dns, if it has been configured
+                            properties:
+                              enabled:
+                                type: boolean
+                                description: a boolean indicating whether custom dns has been configured for this ip
+                                example: true
+                              valid:
+                                type: boolean
+                                description: whether the ip's custom dns is currently valid
+                                example: true
+                              error:
+                                type: string
+                                description: if the ip's custom dns is invalid, this will include details about the error
+                                example: Invalid reverse DNS
+                          warmup:
+                            type: object
+                            description: information about the ip's warmup status
+                            properties:
+                              warming_up:
+                                type: boolean
+                                description: whether the ip is currently in warmup mode
+                                example: false
+                              start_at:
+                                type: string
+                                format: date-time
+                                description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                                example: '2025-04-25 12:00:00'
+                              end_at:
+                                type: string
+                                format: date-time
+                                description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                                example: '2025-04-30 12:00:00'
+            application/x-php:
+              schema:
+                type: array
+                description: the dedicated IP pools for your account, up to a maximum of 1,000
+                items:
+                  type: object
+                  description: information about each dedicated IP pool
+                  properties:
+                    name:
+                      type: string
+                      description: this pool's name
+                      example: Main Pool
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 18:47:35'
+                    ips:
+                      type: array
+                      description: the dedicated IPs in this pool
+                      items:
+                        type: object
+                        description: information about each dedicated IP
+                        properties:
+                          ip:
+                            type: string
+                            description: the ip address
+                            example: 123.123.123.123
+                          created_at:
+                            type: string
+                            format: date-time
+                            description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                            example: '2025-04-30 12:00:00'
+                          pool:
+                            type: string
+                            description: the name of the pool that this dedicated IP belongs to
+                            example: Main Pool
+                          domain:
+                            type: string
+                            description: the domain name (reverse dns) of this dedicated IP
+                            example: example.com
+                          custom_dns:
+                            type: object
+                            description: information about the ip's custom dns, if it has been configured
+                            properties:
+                              enabled:
+                                type: boolean
+                                description: a boolean indicating whether custom dns has been configured for this ip
+                                example: true
+                              valid:
+                                type: boolean
+                                description: whether the ip's custom dns is currently valid
+                                example: true
+                              error:
+                                type: string
+                                description: if the ip's custom dns is invalid, this will include details about the error
+                                example: Invalid reverse DNS
+                          warmup:
+                            type: object
+                            description: information about the ip's warmup status
+                            properties:
+                              warming_up:
+                                type: boolean
+                                description: whether the ip is currently in warmup mode
+                                example: false
+                              start_at:
+                                type: string
+                                format: date-time
+                                description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                                example: '2025-04-25 12:00:00'
+                              end_at:
+                                type: string
+                                format: date-time
+                                description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                                example: '2025-04-30 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the dedicated IP pools for your account, up to a maximum of 1,000
+                items:
+                  type: object
+                  description: information about each dedicated IP pool
+                  properties:
+                    name:
+                      type: string
+                      description: this pool's name
+                      example: Main Pool
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 18:47:35'
+                    ips:
+                      type: array
+                      description: the dedicated IPs in this pool
+                      items:
+                        type: object
+                        description: information about each dedicated IP
+                        properties:
+                          ip:
+                            type: string
+                            description: the ip address
+                            example: 123.123.123.123
+                          created_at:
+                            type: string
+                            format: date-time
+                            description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                            example: '2025-04-30 12:00:00'
+                          pool:
+                            type: string
+                            description: the name of the pool that this dedicated IP belongs to
+                            example: Main Pool
+                          domain:
+                            type: string
+                            description: the domain name (reverse dns) of this dedicated IP
+                            example: example.com
+                          custom_dns:
+                            type: object
+                            description: information about the ip's custom dns, if it has been configured
+                            properties:
+                              enabled:
+                                type: boolean
+                                description: a boolean indicating whether custom dns has been configured for this ip
+                                example: true
+                              valid:
+                                type: boolean
+                                description: whether the ip's custom dns is currently valid
+                                example: true
+                              error:
+                                type: string
+                                description: if the ip's custom dns is invalid, this will include details about the error
+                                example: Invalid reverse DNS
+                          warmup:
+                            type: object
+                            description: information about the ip's warmup status
+                            properties:
+                              warming_up:
+                                type: boolean
+                                description: whether the ip is currently in warmup mode
+                                example: false
+                              start_at:
+                                type: string
+                                format: date-time
+                                description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                                example: '2025-04-25 12:00:00'
+                              end_at:
+                                type: string
+                                format: date-time
+                                description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                                example: '2025-04-30 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /ips/pool-info:
+    post:
+      x-custom-config:
+        methodNameCamel: poolInfo
+        methodNameSnake: pool_info
+      summary: Get ip pool info
+      description: Describes a single dedicated IP pool.
+      operationId: postIpsPoolInfo
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the dedicated ip pool
+                properties:
+                  name:
+                    type: string
+                    description: this pool's name
+                    example: Main Pool
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  ips:
+                    type: array
+                    description: the dedicated IPs in this pool
+                    items:
+                      type: object
+                      description: information about each dedicated IP
+                      properties:
+                        ip:
+                          type: string
+                          description: the ip address
+                          example: 123.123.123.123
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-30 12:00:00'
+                        pool:
+                          type: string
+                          description: the name of the pool that this dedicated IP belongs to
+                          example: Main Pool
+                        domain:
+                          type: string
+                          description: the domain name (reverse dns) of this dedicated IP
+                          example: example.com
+                        custom_dns:
+                          type: object
+                          description: information about the ip's custom dns, if it has been configured
+                          properties:
+                            enabled:
+                              type: boolean
+                              description: a boolean indicating whether custom dns has been configured for this ip
+                              example: true
+                            valid:
+                              type: boolean
+                              description: whether the ip's custom dns is currently valid
+                              example: true
+                            error:
+                              type: string
+                              description: if the ip's custom dns is invalid, this will include details about the error
+                              example: Invalid reverse DNS
+                        warmup:
+                          type: object
+                          description: information about the ip's warmup status
+                          properties:
+                            warming_up:
+                              type: boolean
+                              description: whether the ip is currently in warmup mode
+                              example: false
+                            start_at:
+                              type: string
+                              format: date-time
+                              description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-25 12:00:00'
+                            end_at:
+                              type: string
+                              format: date-time
+                              description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-30 12:00:00'
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the dedicated ip pool
+                properties:
+                  name:
+                    type: string
+                    description: this pool's name
+                    example: Main Pool
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  ips:
+                    type: array
+                    description: the dedicated IPs in this pool
+                    items:
+                      type: object
+                      description: information about each dedicated IP
+                      properties:
+                        ip:
+                          type: string
+                          description: the ip address
+                          example: 123.123.123.123
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-30 12:00:00'
+                        pool:
+                          type: string
+                          description: the name of the pool that this dedicated IP belongs to
+                          example: Main Pool
+                        domain:
+                          type: string
+                          description: the domain name (reverse dns) of this dedicated IP
+                          example: example.com
+                        custom_dns:
+                          type: object
+                          description: information about the ip's custom dns, if it has been configured
+                          properties:
+                            enabled:
+                              type: boolean
+                              description: a boolean indicating whether custom dns has been configured for this ip
+                              example: true
+                            valid:
+                              type: boolean
+                              description: whether the ip's custom dns is currently valid
+                              example: true
+                            error:
+                              type: string
+                              description: if the ip's custom dns is invalid, this will include details about the error
+                              example: Invalid reverse DNS
+                        warmup:
+                          type: object
+                          description: information about the ip's warmup status
+                          properties:
+                            warming_up:
+                              type: boolean
+                              description: whether the ip is currently in warmup mode
+                              example: false
+                            start_at:
+                              type: string
+                              format: date-time
+                              description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-25 12:00:00'
+                            end_at:
+                              type: string
+                              format: date-time
+                              description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-30 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the dedicated ip pool
+                properties:
+                  name:
+                    type: string
+                    description: this pool's name
+                    example: Main Pool
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  ips:
+                    type: array
+                    description: the dedicated IPs in this pool
+                    items:
+                      type: object
+                      description: information about each dedicated IP
+                      properties:
+                        ip:
+                          type: string
+                          description: the ip address
+                          example: 123.123.123.123
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-30 12:00:00'
+                        pool:
+                          type: string
+                          description: the name of the pool that this dedicated IP belongs to
+                          example: Main Pool
+                        domain:
+                          type: string
+                          description: the domain name (reverse dns) of this dedicated IP
+                          example: example.com
+                        custom_dns:
+                          type: object
+                          description: information about the ip's custom dns, if it has been configured
+                          properties:
+                            enabled:
+                              type: boolean
+                              description: a boolean indicating whether custom dns has been configured for this ip
+                              example: true
+                            valid:
+                              type: boolean
+                              description: whether the ip's custom dns is currently valid
+                              example: true
+                            error:
+                              type: string
+                              description: if the ip's custom dns is invalid, this will include details about the error
+                              example: Invalid reverse DNS
+                        warmup:
+                          type: object
+                          description: information about the ip's warmup status
+                          properties:
+                            warming_up:
+                              type: boolean
+                              description: whether the ip is currently in warmup mode
+                              example: false
+                            start_at:
+                              type: string
+                              format: date-time
+                              description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-25 12:00:00'
+                            end_at:
+                              type: string
+                              format: date-time
+                              description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-30 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - pool
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                pool:
+                  type: string
+                  description: a pool name
+        required: true
+  /ips/create-pool:
+    post:
+      x-custom-config:
+        methodNameCamel: createPool
+        methodNameSnake: create_pool
+      summary: Add ip pool
+      description: Creates a pool and returns it. If a pool already exists with this name, no action will be performed.
+      operationId: postIpsCreatePool
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the dedicated ip pool
+                properties:
+                  name:
+                    type: string
+                    description: this pool's name
+                    example: Main Pool
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  ips:
+                    type: array
+                    description: the dedicated IPs in this pool
+                    items:
+                      type: object
+                      description: information about each dedicated IP
+                      properties:
+                        ip:
+                          type: string
+                          description: the ip address
+                          example: 123.123.123.123
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-30 12:00:00'
+                        pool:
+                          type: string
+                          description: the name of the pool that this dedicated IP belongs to
+                          example: Main Pool
+                        domain:
+                          type: string
+                          description: the domain name (reverse dns) of this dedicated IP
+                          example: example.com
+                        custom_dns:
+                          type: object
+                          description: information about the ip's custom dns, if it has been configured
+                          properties:
+                            enabled:
+                              type: boolean
+                              description: a boolean indicating whether custom dns has been configured for this ip
+                              example: true
+                            valid:
+                              type: boolean
+                              description: whether the ip's custom dns is currently valid
+                              example: true
+                            error:
+                              type: string
+                              description: if the ip's custom dns is invalid, this will include details about the error
+                              example: Invalid reverse DNS
+                        warmup:
+                          type: object
+                          description: information about the ip's warmup status
+                          properties:
+                            warming_up:
+                              type: boolean
+                              description: whether the ip is currently in warmup mode
+                              example: false
+                            start_at:
+                              type: string
+                              format: date-time
+                              description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-25 12:00:00'
+                            end_at:
+                              type: string
+                              format: date-time
+                              description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-30 12:00:00'
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the dedicated ip pool
+                properties:
+                  name:
+                    type: string
+                    description: this pool's name
+                    example: Main Pool
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  ips:
+                    type: array
+                    description: the dedicated IPs in this pool
+                    items:
+                      type: object
+                      description: information about each dedicated IP
+                      properties:
+                        ip:
+                          type: string
+                          description: the ip address
+                          example: 123.123.123.123
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-30 12:00:00'
+                        pool:
+                          type: string
+                          description: the name of the pool that this dedicated IP belongs to
+                          example: Main Pool
+                        domain:
+                          type: string
+                          description: the domain name (reverse dns) of this dedicated IP
+                          example: example.com
+                        custom_dns:
+                          type: object
+                          description: information about the ip's custom dns, if it has been configured
+                          properties:
+                            enabled:
+                              type: boolean
+                              description: a boolean indicating whether custom dns has been configured for this ip
+                              example: true
+                            valid:
+                              type: boolean
+                              description: whether the ip's custom dns is currently valid
+                              example: true
+                            error:
+                              type: string
+                              description: if the ip's custom dns is invalid, this will include details about the error
+                              example: Invalid reverse DNS
+                        warmup:
+                          type: object
+                          description: information about the ip's warmup status
+                          properties:
+                            warming_up:
+                              type: boolean
+                              description: whether the ip is currently in warmup mode
+                              example: false
+                            start_at:
+                              type: string
+                              format: date-time
+                              description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-25 12:00:00'
+                            end_at:
+                              type: string
+                              format: date-time
+                              description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-30 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the dedicated ip pool
+                properties:
+                  name:
+                    type: string
+                    description: this pool's name
+                    example: Main Pool
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that this pool was created as a UTC timestamp in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 18:47:35'
+                  ips:
+                    type: array
+                    description: the dedicated IPs in this pool
+                    items:
+                      type: object
+                      description: information about each dedicated IP
+                      properties:
+                        ip:
+                          type: string
+                          description: the ip address
+                          example: 123.123.123.123
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                          example: '2025-04-30 12:00:00'
+                        pool:
+                          type: string
+                          description: the name of the pool that this dedicated IP belongs to
+                          example: Main Pool
+                        domain:
+                          type: string
+                          description: the domain name (reverse dns) of this dedicated IP
+                          example: example.com
+                        custom_dns:
+                          type: object
+                          description: information about the ip's custom dns, if it has been configured
+                          properties:
+                            enabled:
+                              type: boolean
+                              description: a boolean indicating whether custom dns has been configured for this ip
+                              example: true
+                            valid:
+                              type: boolean
+                              description: whether the ip's custom dns is currently valid
+                              example: true
+                            error:
+                              type: string
+                              description: if the ip's custom dns is invalid, this will include details about the error
+                              example: Invalid reverse DNS
+                        warmup:
+                          type: object
+                          description: information about the ip's warmup status
+                          properties:
+                            warming_up:
+                              type: boolean
+                              description: whether the ip is currently in warmup mode
+                              example: false
+                            start_at:
+                              type: string
+                              format: date-time
+                              description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-25 12:00:00'
+                            end_at:
+                              type: string
+                              format: date-time
+                              description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                              example: '2025-04-30 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - pool
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                pool:
+                  type: string
+                  description: the name of a pool to create
+        required: true
+  /ips/delete-pool:
+    post:
+      x-custom-config:
+        methodNameCamel: deletePool
+        methodNameSnake: delete_pool
+      summary: Delete ip pool
+      description: Deletes a pool. A pool must be empty before you can delete it, and you cannot delete your default pool.
+      operationId: postIpsDeletePool
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the status of the pool that was deleted
+                properties:
+                  pool:
+                    type: string
+                    description: the name of the pool
+                    example: Main Pool
+                  deleted:
+                    type: boolean
+                    description: whether the pool was deleted
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: information about the status of the pool that was deleted
+                properties:
+                  pool:
+                    type: string
+                    description: the name of the pool
+                    example: Main Pool
+                  deleted:
+                    type: boolean
+                    description: whether the pool was deleted
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the status of the pool that was deleted
+                properties:
+                  pool:
+                    type: string
+                    description: the name of the pool
+                    example: Main Pool
+                  deleted:
+                    type: boolean
+                    description: whether the pool was deleted
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - pool
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                pool:
+                  type: string
+                  description: the name of the pool to delete
+        required: true
+  /ips/check-custom-dns:
+    post:
+      x-custom-config:
+        methodNameCamel: checkCustomDns
+        methodNameSnake: check_custom_dns
+      summary: Test custom dns
+      description: Tests whether a domain name is valid for use as the custom reverse DNS for a dedicated IP.
+      operationId: postIpsCheckCustomDns
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the dedicated IP's new configuration
+                properties:
+                  valid:
+                    type: string
+                    description: whether the domain name has a correctly-configured A record pointing to the ip address
+                    example: false
+                  error:
+                    type: string
+                    description: if valid is false, this will contain details about why the domain's A record is incorrect
+                    example: No A record found
+            application/x-php:
+              schema:
+                type: object
+                description: information about the dedicated IP's new configuration
+                properties:
+                  valid:
+                    type: string
+                    description: whether the domain name has a correctly-configured A record pointing to the ip address
+                    example: false
+                  error:
+                    type: string
+                    description: if valid is false, this will contain details about why the domain's A record is incorrect
+                    example: No A record found
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the dedicated IP's new configuration
+                properties:
+                  valid:
+                    type: string
+                    description: whether the domain name has a correctly-configured A record pointing to the ip address
+                    example: false
+                  error:
+                    type: string
+                    description: if valid is false, this will contain details about why the domain's A record is incorrect
+                    example: No A record found
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - ip
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                ip:
+                  type: string
+                  description: a dedicated ip address
+                domain:
+                  type: string
+                  description: the domain name to test
+        required: true
+  /ips/set-custom-dns:
+    post:
+      x-custom-config:
+        methodNameCamel: setCustomDns
+        methodNameSnake: set_custom_dns
+      summary: Set custom dns
+      description: Configures the custom DNS name for a dedicated IP.
+      operationId: postIpsSetCustomDns
+      tags:
+      - IPs
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the dedicated IP's new configuration
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-30 12:00:00'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: false
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: No A record found
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-30 12:00:00'
+            application/x-php:
+              schema:
+                type: object
+                description: information about the dedicated IP's new configuration
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-30 12:00:00'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: false
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: No A record found
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-30 12:00:00'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the dedicated IP's new configuration
+                properties:
+                  ip:
+                    type: string
+                    description: the ip address
+                    example: 123.123.123.123
+                  created_at:
+                    type: string
+                    description: the date and time that the dedicated IP was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    format: date-time
+                    example: '2025-04-30 12:00:00'
+                  pool:
+                    type: string
+                    description: the name of the pool that this dedicated IP belongs to
+                    example: Main Pool
+                  domain:
+                    type: string
+                    description: the domain name (reverse dns) of this dedicated IP
+                    example: example.com
+                  custom_dns:
+                    type: object
+                    description: information about the ip's custom dns, if it has been configured
+                    properties:
+                      enabled:
+                        type: boolean
+                        description: a boolean indicating whether custom dns has been configured for this ip
+                        example: true
+                      valid:
+                        type: boolean
+                        description: whether the ip's custom dns is currently valid
+                        example: false
+                      error:
+                        type: string
+                        description: if the ip's custom dns is invalid, this will include details about the error
+                        example: No A record found
+                  warmup:
+                    type: object
+                    description: information about the ip's warmup status
+                    properties:
+                      warming_up:
+                        type: boolean
+                        description: whether the ip is currently in warmup mode
+                        example: false
+                      start_at:
+                        type: string
+                        format: date-time
+                        description: the start time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-25 12:00:00'
+                      end_at:
+                        type: string
+                        format: date-time
+                        description: the end date and time for the warmup process as a UTC string in YYYY-MM-DD HH:MM:SS format
+                        example: '2025-04-30 12:00:00'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - ip
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                ip:
+                  type: string
+                  description: a dedicated ip address
+                domain:
+                  type: string
+                  description: a domain name to set as the dedicated IP's custom dns name.
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

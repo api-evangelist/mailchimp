@@ -1,0 +1,3878 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Messages API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: Messages
+paths:
+  /messages/send-sms:
+    post:
+      x-custom-config:
+        methodNameCamel: sendSms
+        methodNameSnake: send_sms
+      summary: Send SMS message
+      description: Send a new SMS message through Mandrill
+      operationId: postMessagesSendSms
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: SMS sending results
+                items:
+                  type: object
+                  description: The sending results for a single SMS recipient
+                  properties:
+                    to:
+                      type: string
+                      description: the phone number of the recipient
+                      example: '+10000000000'
+                    from:
+                      type: string
+                      description: the phone number of the sender
+                      example: '+10000000000'
+                    status:
+                      type: string
+                      description: the sending status of the message
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queue_reason:
+                      type: string
+                      description: The reason for the queueing if the recipient status is queued
+                      enum:
+                      - multiple recipients
+                      - async requested by user
+                      example: multiple recipients
+                    _id:
+                      type: string
+                      description: The message's unique id
+                      example: abc123abc123abc123abc123abc123
+            application/x-php:
+              schema:
+                type: array
+                description: SMS sending results
+                items:
+                  type: object
+                  description: The sending results for a single SMS recipient
+                  properties:
+                    to:
+                      type: string
+                      description: the phone number of the recipient
+                      example: '+10000000000'
+                    from:
+                      type: string
+                      description: the phone number of the sender
+                      example: '+10000000000'
+                    status:
+                      type: string
+                      description: the sending status of the message
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queue_reason:
+                      type: string
+                      description: The reason for the queueing if the recipient status is queued
+                      enum:
+                      - multiple recipients
+                      - async requested by user
+                      example: multiple recipients
+                    _id:
+                      type: string
+                      description: The message's unique id
+                      example: abc123abc123abc123abc123abc123
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: SMS sending results
+                items:
+                  type: object
+                  description: The sending results for a single SMS recipient
+                  properties:
+                    to:
+                      type: string
+                      description: the phone number of the recipient
+                      example: '+10000000000'
+                    from:
+                      type: string
+                      description: the phone number of the sender
+                      example: '+10000000000'
+                    status:
+                      type: string
+                      description: the sending status of the message
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queue_reason:
+                      type: string
+                      description: The reason for the queueing if the recipient status is queued
+                      enum:
+                      - multiple recipients
+                      - async requested by user
+                      example: multiple recipients
+                    _id:
+                      type: string
+                      description: The message's unique id
+                      example: abc123abc123abc123abc123abc123
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - message
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                message:
+                  type: object
+                  properties:
+                    sms:
+                      type: object
+                      required:
+                      - text
+                      - to
+                      - consent
+                      - from
+                      properties:
+                        text:
+                          type: string
+                          description: the full SMS content to be sent
+                        to:
+                          type: array
+                          description: the phone numbers to send the SMS message to
+                          items:
+                            type: string
+                            description: a single recipient's phone number
+                            example: '+10000000000'
+                        from:
+                          type: string
+                          description: the phone number to send the SMS message from
+                        consent:
+                          type: string
+                          description: The consent type for the message
+                          enum:
+                          - onetime
+                          - recurring
+                          - recurring-no-confirm
+                        track_clicks:
+                          type: boolean
+                          description: whether or not to turn on click tracking for the message
+                async:
+                  type: boolean
+                  description: enable a background sending mode that is optimized for bulk sending. In async mode, messages/send-sms will immediately return a status of "queued" for every recipient. To handle rejections when sending in async mode, set up a webhook for the 'reject' event. Defaults to false for messages with no more than 10 recipients; messages with more than 10 recipients are always sent asynchronously, regardless of the value of async.
+        required: true
+  /messages/send:
+    post:
+      x-custom-config:
+        methodNameCamel: send
+        methodNameSnake: send
+      summary: Send new message
+      description: Send a new transactional message through the Transactional API.
+      operationId: postMessagesSend
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: hourly-quota-exhausted
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-php:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: hourly-quota-exhausted
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: hourly-quota-exhausted
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - message
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                message:
+                  type: object
+                  description: the information on the message to send
+                  properties:
+                    html:
+                      type: string
+                      description: the full HTML content to be sent
+                    text:
+                      type: string
+                      description: optional full text content to be sent
+                    subject:
+                      type: string
+                      description: the message subject
+                    from_email:
+                      type: string
+                      description: the sender email address
+                      format: email
+                    from_name:
+                      type: string
+                      description: optional from name to be used
+                    to:
+                      type: array
+                      description: an array of recipient information.
+                      items:
+                        type: object
+                        description: a single recipient's information
+                        required:
+                        - email
+                        properties:
+                          email:
+                            type: string
+                            description: the email address of the recipient
+                            format: email
+                          name:
+                            type: string
+                            description: the optional display name to use for the recipient
+                          type:
+                            type: string
+                            description: the header type to use for the recipient, defaults to "to" if not provided
+                            enum:
+                            - to
+                            - cc
+                            - bcc
+                    headers:
+                      type: object
+                      description: optional extra headers to add to the message (most headers are allowed)
+                    important:
+                      type: boolean
+                      description: whether or not this message is important, and should be delivered ahead of non-important messages
+                    track_opens:
+                      type: boolean
+                      description: whether or not to turn on open tracking for the message
+                    track_clicks:
+                      type: boolean
+                      description: whether or not to turn on click tracking for the message
+                    auto_text:
+                      type: boolean
+                      description: whether or not to automatically generate a text part for messages that are not given text
+                    auto_html:
+                      type: boolean
+                      description: whether or not to automatically generate an HTML part for messages that are not given HTML
+                    inline_css:
+                      type: boolean
+                      description: whether or not to automatically inline all CSS styles provided in the message HTML - only for HTML documents less than 256KB in size
+                    url_strip_qs:
+                      type: boolean
+                      description: whether or not to strip the query string from URLs when aggregating tracked URL data
+                    preserve_recipients:
+                      type: boolean
+                      description: whether or not to expose all recipients in to "To" header for each email
+                    view_content_link:
+                      type: boolean
+                      description: set to false to remove content logging for sensitive emails
+                    bcc_address:
+                      type: string
+                      description: an optional address to receive an exact copy of each recipient's email
+                      format: email
+                    tracking_domain:
+                      type: string
+                      description: a custom domain to use for tracking opens and clicks instead of mandrillapp.com
+                    signing_domain:
+                      type: string
+                      description: a custom domain to use for SPF/DKIM signing instead of mandrill (for "via" or "on behalf of" in email clients)
+                    return_path_domain:
+                      type: string
+                      description: a custom domain to use for the messages's return-path
+                    merge:
+                      type: boolean
+                      description: whether to evaluate merge tags in the message. Will automatically be set to true if either merge_vars or global_merge_vars are provided.
+                    merge_language:
+                      type: string
+                      description: the merge tag language to use when evaluating merge tags, either mailchimp or handlebars
+                      enum:
+                      - mailchimp
+                      - handlebars
+                    global_merge_vars:
+                      type: array
+                      description: global merge variables to use for all recipients. You can override these per recipient.
+                      items:
+                        type: object
+                        description: a single global merge variable
+                        properties:
+                          name:
+                            type: string
+                            description: the global merge variable's name. Merge variable names are case-insensitive and may not start with _
+                          content:
+                            type: string
+                            description: the global merge variable's content
+                    merge_vars:
+                      type: array
+                      description: per-recipient merge variables, which override global merge variables with the same name.
+                      items:
+                        type: object
+                        description: per-recipient merge variables
+                        required:
+                        - rcpt
+                        properties:
+                          rcpt:
+                            type: string
+                            description: the email address of the recipient that the merge variables should apply to
+                            format: email
+                          vars:
+                            type: array
+                            description: the recipient's merge variables
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: the merge variable's name. Merge variable names are case-insensitive and may not start with _
+                                content:
+                                  type: string
+                                  description: the merge variable's content
+                    tags:
+                      type: array
+                      description: an array of string to tag the message with. Stats are accumulated using tags, though we only store the first 100 we see, so this should not be unique or change frequently. Tags should be 50 characters or less. Any tags starting with an underscore are reserved for internal use and will cause errors.
+                      items:
+                        type: string
+                        description: a single tag - must not start with an underscore
+                    subaccount:
+                      type: string
+                      description: the unique id of a subaccount for this message - must already exist or will fail with an error
+                    google_analytics_domains:
+                      type: array
+                      description: an array of strings indicating for which any matching URLs will automatically have Google Analytics parameters appended to their query string automatically.
+                      items:
+                        type: string
+                    google_analytics_campaign:
+                      type: string
+                      description: optional string indicating the value to set for the utm_campaign tracking parameter. If this isn't provided the email's from address will be used instead.
+                      format: email
+                    metadata:
+                      type: object
+                      description: metadata an associative array of user metadata. Mandrill will store this metadata and make it available for retrieval. In addition, you can select up to 10 metadata fields to index and make searchable using the Mandrill search api.
+                      properties:
+                        website:
+                          type: string
+                          description: a valid website url
+                    recipient_metadata:
+                      type: array
+                      description: Per-recipient metadata that will override the global values specified in the metadata parameter.
+                      items:
+                        type: object
+                        description: metadata for a single recipient
+                        properties:
+                          rcpt:
+                            type: string
+                            description: the email address of the recipient that the metadata is associated with
+                            format: email
+                          values:
+                            type: object
+                            description: an associated array containing the recipient's unique metadata. If a key exists in both the per-recipient metadata and the global metadata, the per-recipient metadata will be used.
+                            properties:
+                              user_id:
+                                type: integer
+                                description: ''
+                    attachments:
+                      type: array
+                      description: an array of supported attachments to add to the message
+                      items:
+                        type: object
+                        description: a single supported attachment
+                        properties:
+                          type:
+                            type: string
+                            description: the MIME type of the attachment
+                          name:
+                            type: string
+                            description: the file name of the attachment
+                          content:
+                            type: string
+                            description: the content of the attachment as a base64-encoded string
+                    images:
+                      type: array
+                      description: an array of embedded images to add to the message
+                      items:
+                        type: object
+                        description: a single embedded image
+                        properties:
+                          type:
+                            type: string
+                            description: the MIME type of the image - must start with "image/"
+                          name:
+                            type: string
+                            description: the Content ID of the image - use <img src="cid:THIS_VALUE"> to reference the image in your HTML content
+                          content:
+                            type: string
+                            description: the content of the image as a base64-encoded string
+                async:
+                  type: boolean
+                  description: enable a background sending mode that is optimized for bulk sending. In async mode, messages/send will immediately return a status of "queued" for every recipient. To handle rejections when sending in async mode, set up a webhook for the 'reject' event. Defaults to false for messages with no more than 10 recipients; messages with more than 10 recipients are always sent asynchronously, regardless of the value of async.
+                ip_pool:
+                  type: string
+                  description: the name of the dedicated ip pool that should be used to send the message. If you do not have any dedicated IPs, this parameter has no effect. If you specify a pool that does not exist, your default pool will be used instead.
+                send_at:
+                  type: string
+                  description: when this message should be sent as a UTC timestamp in YYYY-MM-DD HH:MM:SS format. If you specify a time in the past, the message will be sent immediately; for future dates, you're limited to one year from the date of scheduling.
+                  format: date-time
+        required: true
+  /messages/send-template:
+    post:
+      x-custom-config:
+        methodNameCamel: sendTemplate
+        methodNameSnake: send_template
+      summary: Send using message template
+      description: Send a new transactional message through the Transactional API using a template.
+      operationId: postMessagesSendTemplate
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: attachments
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-php:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: attachments
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: attachments
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - template_name
+              - template_content
+              - message
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                template_name:
+                  type: string
+                  description: the immutable slug of a template that exists in the user's account. Make sure you don't use the template name as this one might change.
+                template_content:
+                  type: array
+                  description: 'an array of template content to send. Each item in the array should be a struct with two keys - name: the name of the content block to set the content for, and content: the actual content to put into the block'
+                  items:
+                    type: object
+                    description: the injection of a single piece of content into a single editable region
+                    properties:
+                      name:
+                        type: string
+                        description: the name of the mc:edit editable region to inject into
+                      content:
+                        type: string
+                        description: the content to inject
+                message:
+                  type: object
+                  description: the other information on the message to send - same as /messages/send, but without the html content
+                  properties:
+                    html:
+                      type: string
+                      description: optional full HTML content to be sent if not in template
+                    text:
+                      type: string
+                      description: optional full text content to be sent
+                    subject:
+                      type: string
+                      description: the message subject
+                    from_email:
+                      type: string
+                      description: the sender email address
+                      format: email
+                    from_name:
+                      type: string
+                      description: optional from name to be used
+                    to:
+                      type: array
+                      description: an array of recipient information.
+                      items:
+                        type: object
+                        description: a single recipient's information
+                        required:
+                        - email
+                        properties:
+                          email:
+                            type: string
+                            description: the email address of the recipient
+                            format: email
+                          name:
+                            type: string
+                            description: the optional display name to use for the recipient
+                          type:
+                            type: string
+                            description: the header type to use for the recipient, defaults to "to" if not provided
+                            enum:
+                            - to
+                            - cc
+                            - bcc
+                    headers:
+                      type: object
+                      description: optional extra headers to add to the message (most headers are allowed)
+                    important:
+                      type: boolean
+                      description: whether or not this message is important, and should be delivered ahead of non-important messages
+                    track_opens:
+                      type: boolean
+                      description: whether or not to turn on open tracking for the message
+                    track_clicks:
+                      type: boolean
+                      description: whether or not to turn on click tracking for the message
+                    auto_text:
+                      type: boolean
+                      description: whether or not to automatically generate a text part for messages that are not given text
+                    auto_html:
+                      type: boolean
+                      description: whether or not to automatically generate an HTML part for messages that are not given HTML
+                    inline_css:
+                      type: boolean
+                      description: whether or not to automatically inline all CSS styles provided in the message HTML - only for HTML documents less than 256KB in size
+                    url_strip_qs:
+                      type: boolean
+                      description: whether or not to strip the query string from URLs when aggregating tracked URL data
+                    preserve_recipients:
+                      type: boolean
+                      description: whether or not to expose all recipients in to "To" header for each email
+                    view_content_link:
+                      type: boolean
+                      description: set to false to remove content logging for sensitive emails
+                    bcc_address:
+                      type: string
+                      description: an optional address to receive an exact copy of each recipient's email
+                      format: email
+                    tracking_domain:
+                      type: string
+                      description: a custom domain to use for tracking opens and clicks instead of mandrillapp.com
+                    signing_domain:
+                      type: string
+                      description: a custom domain to use for SPF/DKIM signing instead of mandrill (for "via" or "on behalf of" in email clients)
+                    return_path_domain:
+                      type: string
+                      description: a custom domain to use for the messages's return-path
+                    merge:
+                      type: boolean
+                      description: whether to evaluate merge tags in the message. Will automatically be set to true if either merge_vars or global_merge_vars are provided.
+                    merge_language:
+                      type: string
+                      description: the merge tag language to use when evaluating merge tags, either mailchimp or handlebars
+                      enum:
+                      - mailchimp
+                      - handlebars
+                    global_merge_vars:
+                      type: array
+                      description: global merge variables to use for all recipients. You can override these per recipient.
+                      items:
+                        type: object
+                        description: a single global merge variable
+                        properties:
+                          name:
+                            type: string
+                            description: the global merge variable's name. Merge variable names are case-insensitive and may not start with _
+                          content:
+                            type: string
+                            description: the global merge variable's content
+                    merge_vars:
+                      type: array
+                      description: per-recipient merge variables, which override global merge variables with the same name.
+                      items:
+                        type: object
+                        description: per-recipient merge variables
+                        required:
+                        - rcpt
+                        properties:
+                          rcpt:
+                            type: string
+                            description: the email address of the recipient that the merge variables should apply to
+                            format: email
+                          vars:
+                            type: array
+                            description: the recipient's merge variables
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: the merge variable's name. Merge variable names are case-insensitive and may not start with _
+                                content:
+                                  type: string
+                                  description: the merge variable's content
+                    tags:
+                      type: array
+                      description: an array of string to tag the message with. Stats are accumulated using tags, though we only store the first 100 we see, so this should not be unique or change frequently. Tags should be 50 characters or less. Any tags starting with an underscore are reserved for internal use and will cause errors.
+                      items:
+                        type: string
+                        description: a single tag - must not start with an underscore
+                    subaccount:
+                      type: string
+                      description: the unique id of a subaccount for this message - must already exist or will fail with an error
+                    google_analytics_domains:
+                      type: array
+                      description: an array of strings indicating for which any matching URLs will automatically have Google Analytics parameters appended to their query string automatically.
+                      items:
+                        type: string
+                    google_analytics_campaign:
+                      type: string
+                      description: optional string indicating the value to set for the utm_campaign tracking parameter. If this isn't provided the email's from address will be used instead.
+                      format: email
+                    metadata:
+                      type: object
+                      description: metadata an associative array of user metadata. Mandrill will store this metadata and make it available for retrieval. In addition, you can select up to 10 metadata fields to index and make searchable using the Mandrill search api.
+                      properties:
+                        website:
+                          type: string
+                          description: a valid website url
+                    recipient_metadata:
+                      type: array
+                      description: Per-recipient metadata that will override the global values specified in the metadata parameter.
+                      items:
+                        type: object
+                        description: metadata for a single recipient
+                        properties:
+                          rcpt:
+                            type: string
+                            description: the email address of the recipient that the metadata is associated with
+                            format: email
+                          values:
+                            type: object
+                            description: an associated array containing the recipient's unique metadata. If a key exists in both the per-recipient metadata and the global metadata, the per-recipient metadata will be used.
+                            properties:
+                              user_id:
+                                type: integer
+                                description: ''
+                    attachments:
+                      type: array
+                      description: an array of supported attachments to add to the message
+                      items:
+                        type: object
+                        description: a single supported attachment
+                        properties:
+                          type:
+                            type: string
+                            description: the MIME type of the attachment
+                          name:
+                            type: string
+                            description: the file name of the attachment
+                          content:
+                            type: string
+                            description: the content of the attachment as a base64-encoded string
+                    images:
+                      type: array
+                      description: an array of embedded images to add to the message
+                      items:
+                        type: object
+                        description: a single embedded image
+                        properties:
+                          type:
+                            type: string
+                            description: the MIME type of the image - must start with "image/"
+                          name:
+                            type: string
+                            description: the Content ID of the image - use <img src="cid:THIS_VALUE"> to reference the image in your HTML content
+                          content:
+                            type: string
+                            description: the content of the image as a base64-encoded string
+                async:
+                  type: boolean
+                  description: enable a background sending mode that is optimized for bulk sending. In async mode, messages/send will immediately return a status of "queued" for every recipient. To handle rejections when sending in async mode, set up a webhook for the 'reject' event. Defaults to false for messages with no more than 10 recipients; messages with more than 10 recipients are always sent asynchronously, regardless of the value of async.
+                ip_pool:
+                  type: string
+                  description: the name of the dedicated ip pool that should be used to send the message. If you do not have any dedicated IPs, this parameter has no effect. If you specify a pool that does not exist, your default pool will be used instead.
+                send_at:
+                  type: string
+                  description: when this message should be sent as a UTC timestamp in YYYY-MM-DD HH:MM:SS format. If you specify a time in the past, the message will be sent immediately; for future dates, you're limited to one year from the date of scheduling.
+                  format: date-time
+        required: true
+  /messages/send-mc-template:
+    post:
+      x-custom-config:
+        methodNameCamel: sendMcTemplate
+        methodNameSnake: send_mc_template
+      summary: Send using Mailchimp template
+      description: Send a new transactional message through Mandrill using a Mailchimp Transactional template.
+      operationId: postMessagesSendMcTemplate
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: attachments
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-php:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: attachments
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: attachments
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - mc_template_id
+              - message
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                mc_template_id:
+                  type: integer
+                  description: the id of the Mailchimp template to send
+                mc_template_version:
+                  description: 'which version of the template to use - "draft" for draft content or "published" for published content. Defaults to "published". Note: requesting "published" when the template has not been published will return a 404 error.'
+                  type: string
+                  enum:
+                  - draft
+                  - published
+                  example: published
+                message:
+                  type: object
+                  description: the other information on the message to send - same as /messages/send
+                  properties:
+                    html:
+                      type: string
+                      description: optional full HTML content to be sent if not in template
+                    text:
+                      type: string
+                      description: optional full text content to be sent
+                    subject:
+                      type: string
+                      description: the message subject
+                    from_email:
+                      type: string
+                      description: the sender email address
+                      format: email
+                    from_name:
+                      type: string
+                      description: optional from name to be used
+                    to:
+                      type: array
+                      description: an array of recipient information.
+                      items:
+                        type: object
+                        description: a single recipient's information
+                        required:
+                        - email
+                        properties:
+                          email:
+                            type: string
+                            description: the email address of the recipient
+                            format: email
+                          name:
+                            type: string
+                            description: the optional display name to use for the recipient
+                          type:
+                            type: string
+                            description: the header type to use for the recipient, defaults to "to" if not provided
+                            enum:
+                            - to
+                            - cc
+                            - bcc
+                    headers:
+                      type: object
+                      description: optional extra headers to add to the message (most headers are allowed)
+                    important:
+                      type: boolean
+                      description: whether or not this message is important, and should be delivered ahead of non-important messages
+                    track_opens:
+                      type: boolean
+                      description: whether or not to turn on open tracking for the message
+                    track_clicks:
+                      type: boolean
+                      description: whether or not to turn on click tracking for the message
+                    auto_text:
+                      type: boolean
+                      description: whether or not to automatically generate a text part for messages that are not given text
+                    auto_html:
+                      type: boolean
+                      description: whether or not to automatically generate an HTML part for messages that are not given HTML
+                    inline_css:
+                      type: boolean
+                      description: whether or not to automatically inline all CSS styles provided in the message HTML - only for HTML documents less than 256KB in size
+                    url_strip_qs:
+                      type: boolean
+                      description: whether or not to strip the query string from URLs when aggregating tracked URL data
+                    preserve_recipients:
+                      type: boolean
+                      description: whether or not to expose all recipients in to "To" header for each email
+                    view_content_link:
+                      type: boolean
+                      description: set to false to remove content logging for sensitive emails
+                    bcc_address:
+                      type: string
+                      description: an optional address to receive an exact copy of each recipient's email
+                      format: email
+                    tracking_domain:
+                      type: string
+                      description: a custom domain to use for tracking opens and clicks instead of mandrillapp.com
+                    signing_domain:
+                      type: string
+                      description: a custom domain to use for SPF/DKIM signing instead of mandrill (for "via" or "on behalf of" in email clients)
+                    return_path_domain:
+                      type: string
+                      description: a custom domain to use for the messages's return-path
+                    merge:
+                      type: boolean
+                      description: whether to evaluate merge tags in the message. Will automatically be set to true if either merge_vars or global_merge_vars are provided.
+                    merge_language:
+                      type: string
+                      description: the merge tag language to use when evaluating merge tags, either mailchimp or handlebars
+                      enum:
+                      - mailchimp
+                      - handlebars
+                    global_merge_vars:
+                      type: array
+                      description: global merge variables to use for all recipients. You can override these per recipient.
+                      items:
+                        type: object
+                        description: a single global merge variable
+                        properties:
+                          name:
+                            type: string
+                            description: the global merge variable's name. Merge variable names are case-insensitive and may not start with _
+                          content:
+                            type: string
+                            description: the global merge variable's content
+                    merge_vars:
+                      type: array
+                      description: per-recipient merge variables, which override global merge variables with the same name.
+                      items:
+                        type: object
+                        description: per-recipient merge variables
+                        required:
+                        - rcpt
+                        properties:
+                          rcpt:
+                            type: string
+                            description: the email address of the recipient that the merge variables should apply to
+                            format: email
+                          vars:
+                            type: array
+                            description: the recipient's merge variables
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: the merge variable's name. Merge variable names are case-insensitive and may not start with _
+                                content:
+                                  type: string
+                                  description: the merge variable's content
+                    tags:
+                      type: array
+                      description: an array of string to tag the message with. Stats are accumulated using tags, though we only store the first 100 we see, so this should not be unique or change frequently. Tags should be 50 characters or less. Any tags starting with an underscore are reserved for internal use and will cause errors.
+                      items:
+                        type: string
+                        description: a single tag - must not start with an underscore
+                    subaccount:
+                      type: string
+                      description: the unique id of a subaccount for this message - must already exist or will fail with an error
+                    google_analytics_domains:
+                      type: array
+                      description: an array of strings indicating for which any matching URLs will automatically have Google Analytics parameters appended to their query string automatically.
+                      items:
+                        type: string
+                    google_analytics_campaign:
+                      type: string
+                      description: optional string indicating the value to set for the utm_campaign tracking parameter. If this isn't provided the email's from address will be used instead.
+                      format: email
+                    metadata:
+                      type: object
+                      description: metadata an associative array of user metadata. Mandrill will store this metadata and make it available for retrieval. In addition, you can select up to 10 metadata fields to index and make searchable using the Mandrill search api.
+                      properties:
+                        website:
+                          type: string
+                          description: a valid website url
+                    recipient_metadata:
+                      type: array
+                      description: Per-recipient metadata that will override the global values specified in the metadata parameter.
+                      items:
+                        type: object
+                        description: metadata for a single recipient
+                        properties:
+                          rcpt:
+                            type: string
+                            description: the email address of the recipient that the metadata is associated with
+                            format: email
+                          values:
+                            type: object
+                            description: an associated array containing the recipient's unique metadata. If a key exists in both the per-recipient metadata and the global metadata, the per-recipient metadata will be used.
+                            properties:
+                              user_id:
+                                type: integer
+                                description: ''
+                    attachments:
+                      type: array
+                      description: an array of supported attachments to add to the message
+                      items:
+                        type: object
+                        description: a single supported attachment
+                        properties:
+                          type:
+                            type: string
+                            description: the MIME type of the attachment
+                          name:
+                            type: string
+                            description: the file name of the attachment
+                          content:
+                            type: string
+                            description: the content of the attachment as a base64-encoded string
+                    images:
+                      type: array
+                      description: an array of embedded images to add to the message
+                      items:
+                        type: object
+                        description: a single embedded image
+                        properties:
+                          type:
+                            type: string
+                            description: the MIME type of the image - must start with "image/"
+                          name:
+                            type: string
+                            description: the Content ID of the image - use <img src="cid:THIS_VALUE"> to reference the image in your HTML content
+                          content:
+                            type: string
+                            description: the content of the image as a base64-encoded string
+                async:
+                  type: boolean
+                  description: enable a background sending mode that is optimized for bulk sending. In async mode, messages/send will immediately return a status of "queued" for every recipient. To handle rejections when sending in async mode, set up a webhook for the 'reject' event. Defaults to false for messages with no more than 10 recipients; messages with more than 10 recipients are always sent asynchronously, regardless of the value of async.
+                ip_pool:
+                  type: string
+                  description: the name of the dedicated ip pool that should be used to send the message. If you do not have any dedicated IPs, this parameter has no effect. If you specify a pool that does not exist, your default pool will be used instead.
+                send_at:
+                  type: string
+                  description: when this message should be sent as a UTC timestamp in YYYY-MM-DD HH:MM:SS format. If you specify a time in the past, the message will be sent immediately; for future dates, you're limited to one year from the date of scheduling.
+                  format: date-time
+        required: true
+  /messages/search:
+    post:
+      x-custom-config:
+        methodNameCamel: search
+        methodNameSnake: search
+      summary: Search messages by date
+      description: Search recently sent messages and optionally narrow by date range, tags, senders, and API keys. If no date range is specified, results within the last 7 days are returned. This method may be called up to 20 times per minute. If you need the data more often, you can use /messages/info.json to get the information for a single message, or webhooks to push activity to your own application for querying.
+      operationId: postMessagesSearch
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of objects for each matching message
+                items:
+                  type: object
+                  description: the information for a single matching message
+                  properties:
+                    ts:
+                      type: integer
+                      description: the Unix timestamp from when this message was sent
+                      example: 1756493251
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+                    sender:
+                      type: string
+                      format: email
+                      description: the email address of the sender
+                      example: from_address@example.com
+                    template:
+                      type: string
+                      description: the unique name of the template used, if any
+                      example: my_template
+                    subject:
+                      type: string
+                      description: the message's subject line
+                      example: This is an example subject
+                    email:
+                      type: string
+                      format: email
+                      description: the recipient email address
+                      example: to_address@example.com
+                    tags:
+                      type: array
+                      description: list of tags on this message
+                      items:
+                        type: string
+                        description: individual tag on this message
+                        example: my_tag
+                    opens:
+                      type: integer
+                      description: how many times has this message been opened
+                      example: 4
+                    opens_detail:
+                      type: array
+                      description: list of individual opens for the message
+                      items:
+                        type: object
+                        description: information on an individual open
+                        properties:
+                          ts:
+                            type: integer
+                            description: the unix timestamp from when the message was opened
+                            example: 1756494251
+                          ip:
+                            type: string
+                            description: the IP address that generated the open
+                            example: 123.123.123.123
+                          location:
+                            type: string
+                            description: the approximate region and country that the opening IP is located
+                            example: San Francisco, CA, USA
+                          ua:
+                            type: string
+                            description: the email client or browser data of the open
+                            example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                    clicks:
+                      type: integer
+                      description: how many times has a link been clicked in this message
+                      example: 2
+                    clicks_detail:
+                      type: array
+                      description: list of individual clicks for the message
+                      items:
+                        type: object
+                        description: information on an individual click
+                        properties:
+                          ts:
+                            type: integer
+                            description: the unix timestamp from when the message was clicked
+                            example: 1756495251
+                          url:
+                            type: string
+                            description: the URL that was clicked on
+                            example: http://example.com/some/path?with=params
+                          ip:
+                            type: string
+                            description: the IP address that generated the click
+                            example: 123.123.123.123
+                          location:
+                            type: string
+                            description: the approximate region and country that the clicking IP is located
+                            example: San Francisco, CA, USA
+                          ua:
+                            type: string
+                            description: the email client or browser data of the click
+                            example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                    state:
+                      type: string
+                      description: sending status of this message
+                      enum:
+                      - sent
+                      - bounced
+                      - rejected
+                      example: sent
+                    metadata:
+                      type: object
+                      description: any custom metadata provided when the message was sent
+                      example:
+                        website: www.example.com
+            application/x-php:
+              schema:
+                type: array
+                description: an array of objects for each matching message
+                items:
+                  type: object
+                  description: the information for a single matching message
+                  properties:
+                    ts:
+                      type: integer
+                      description: the Unix timestamp from when this message was sent
+                      example: 1756493251
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+                    sender:
+                      type: string
+                      format: email
+                      description: the email address of the sender
+                      example: from_address@example.com
+                    template:
+                      type: string
+                      description: the unique name of the template used, if any
+                      example: my_template
+                    subject:
+                      type: string
+                      description: the message's subject line
+                      example: This is an example subject
+                    email:
+                      type: string
+                      format: email
+                      description: the recipient email address
+                      example: to_address@example.com
+                    tags:
+                      type: array
+                      description: list of tags on this message
+                      items:
+                        type: string
+                        description: individual tag on this message
+                        example: my_tag
+                    opens:
+                      type: integer
+                      description: how many times has this message been opened
+                      example: 4
+                    opens_detail:
+                      type: array
+                      description: list of individual opens for the message
+                      items:
+                        type: object
+                        description: information on an individual open
+                        properties:
+                          ts:
+                            type: integer
+                            description: the unix timestamp from when the message was opened
+                            example: 1756494251
+                          ip:
+                            type: string
+                            description: the IP address that generated the open
+                            example: 123.123.123.123
+                          location:
+                            type: string
+                            description: the approximate region and country that the opening IP is located
+                            example: San Francisco, CA, USA
+                          ua:
+                            type: string
+                            description: the email client or browser data of the open
+                            example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                    clicks:
+                      type: integer
+                      description: how many times has a link been clicked in this message
+                      example: 2
+                    clicks_detail:
+                      type: array
+                      description: list of individual clicks for the message
+                      items:
+                        type: object
+                        description: information on an individual click
+                        properties:
+                          ts:
+                            type: integer
+                            description: the unix timestamp from when the message was clicked
+                            example: 1756495251
+                          url:
+                            type: string
+                            description: the URL that was clicked on
+                            example: http://example.com/some/path?with=params
+                          ip:
+                            type: string
+                            description: the IP address that generated the click
+                            example: 123.123.123.123
+                          location:
+                            type: string
+                            description: the approximate region and country that the clicking IP is located
+                            example: San Francisco, CA, USA
+                          ua:
+                            type: string
+                            description: the email client or browser data of the click
+                            example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                    state:
+                      type: string
+                      description: sending status of this message
+                      enum:
+                      - sent
+                      - bounced
+                      - rejected
+                      example: sent
+                    metadata:
+                      type: object
+                      description: any custom metadata provided when the message was sent
+                      example:
+                        website: www.example.com
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of objects for each matching message
+                items:
+                  type: object
+                  description: the information for a single matching message
+                  properties:
+                    ts:
+                      type: integer
+                      description: the Unix timestamp from when this message was sent
+                      example: 1756493251
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+                    sender:
+                      type: string
+                      format: email
+                      description: the email address of the sender
+                      example: from_address@example.com
+                    template:
+                      type: string
+                      description: the unique name of the template used, if any
+                      example: my_template
+                    subject:
+                      type: string
+                      description: the message's subject line
+                      example: This is an example subject
+                    email:
+                      type: string
+                      format: email
+                      description: the recipient email address
+                      example: to_address@example.com
+                    tags:
+                      type: array
+                      description: list of tags on this message
+                      items:
+                        type: string
+                        description: individual tag on this message
+                        example: my_tag
+                    opens:
+                      type: integer
+                      description: how many times has this message been opened
+                      example: 4
+                    opens_detail:
+                      type: array
+                      description: list of individual opens for the message
+                      items:
+                        type: object
+                        description: information on an individual open
+                        properties:
+                          ts:
+                            type: integer
+                            description: the unix timestamp from when the message was opened
+                            example: 1756494251
+                          ip:
+                            type: string
+                            description: the IP address that generated the open
+                            example: 123.123.123.123
+                          location:
+                            type: string
+                            description: the approximate region and country that the opening IP is located
+                            example: San Francisco, CA, USA
+                          ua:
+                            type: string
+                            description: the email client or browser data of the open
+                            example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                    clicks:
+                      type: integer
+                      description: how many times has a link been clicked in this message
+                      example: 2
+                    clicks_detail:
+                      type: array
+                      description: list of individual clicks for the message
+                      items:
+                        type: object
+                        description: information on an individual click
+                        properties:
+                          ts:
+                            type: integer
+                            description: the unix timestamp from when the message was clicked
+                            example: 1756495251
+                          url:
+                            type: string
+                            description: the URL that was clicked on
+                            example: http://example.com/some/path?with=params
+                          ip:
+                            type: string
+                            description: the IP address that generated the click
+                            example: 123.123.123.123
+                          location:
+                            type: string
+                            description: the approximate region and country that the clicking IP is located
+                            example: San Francisco, CA, USA
+                          ua:
+                            type: string
+                            description: the email client or browser data of the click
+                            example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                    state:
+                      type: string
+                      description: sending status of this message
+                      enum:
+                      - sent
+                      - bounced
+                      - rejected
+                      example: sent
+                    metadata:
+                      type: object
+                      description: any custom metadata provided when the message was sent
+                      example:
+                        website: www.example.com
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                query:
+                  type: string
+                  description: search terms to find matching messages
+                date_from:
+                  type: string
+                  description: start date
+                  format: date-time
+                date_to:
+                  type: string
+                  description: end date
+                  format: date-time
+                tags:
+                  type: array
+                  description: an array of tag names to narrow the search to, will return messages that contain ANY of the tags
+                  items:
+                    type: string
+                senders:
+                  type: array
+                  description: an array of sender addresses to narrow the search to, will return messages sent by ANY of the senders
+                  items:
+                    type: string
+                    description: a single sender email address
+                    format: email
+                api_keys:
+                  type: array
+                  description: an array of API keys to narrow the search to, will return messages sent by ANY of the keys
+                  items:
+                    type: string
+                    description: a single API key
+                limit:
+                  type: integer
+                  description: the maximum number of results to return, defaults to 100, 1000 is the maximum
+                  minimum: 100
+                  maximum: 1000
+        required: true
+  /messages/search-time-series:
+    post:
+      x-custom-config:
+        methodNameCamel: searchTimeSeries
+        methodNameSnake: search_time_series
+      summary: Search messages by hour
+      description: Search the content of recently sent messages and return the aggregated hourly stats for matching messages.
+      operationId: postMessagesSearchTimeSeries
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the array of history information
+                items:
+                  type: object
+                  description: the stats for a single hour
+                  properties:
+                    time:
+                      type: string
+                      format: date-time
+                      description: the hour as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    sent:
+                      type: integer
+                      description: the number of emails that were sent during the hour
+                      example: 100
+                    hard_bounces:
+                      type: integer
+                      description: the number of emails that hard bounced during the hour
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the number of emails that soft bounced during the hour
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the number of emails that were rejected during the hour
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the number of spam complaints received during the hour
+                      example: 0
+                    unsubs:
+                      type: integer
+                      description: the number of unsubscribes received during the hour
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the number of emails opened during the hour
+                      example: 50
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens generated by messages sent during the hour
+                      example: 40
+                    clicks:
+                      type: integer
+                      description: the number of tracked URLs clicked during the hour
+                      example: 30
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks generated by messages sent during the hour
+                      example: 25
+            application/x-php:
+              schema:
+                type: array
+                description: the array of history information
+                items:
+                  type: object
+                  description: the stats for a single hour
+                  properties:
+                    time:
+                      type: string
+                      format: date-time
+                      description: the hour as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    sent:
+                      type: integer
+                      description: the number of emails that were sent during the hour
+                      example: 100
+                    hard_bounces:
+                      type: integer
+                      description: the number of emails that hard bounced during the hour
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the number of emails that soft bounced during the hour
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the number of emails that were rejected during the hour
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the number of spam complaints received during the hour
+                      example: 0
+                    unsubs:
+                      type: integer
+                      description: the number of unsubscribes received during the hour
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the number of emails opened during the hour
+                      example: 50
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens generated by messages sent during the hour
+                      example: 40
+                    clicks:
+                      type: integer
+                      description: the number of tracked URLs clicked during the hour
+                      example: 30
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks generated by messages sent during the hour
+                      example: 25
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the array of history information
+                items:
+                  type: object
+                  description: the stats for a single hour
+                  properties:
+                    time:
+                      type: string
+                      format: date-time
+                      description: the hour as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    sent:
+                      type: integer
+                      description: the number of emails that were sent during the hour
+                      example: 100
+                    hard_bounces:
+                      type: integer
+                      description: the number of emails that hard bounced during the hour
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the number of emails that soft bounced during the hour
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the number of emails that were rejected during the hour
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the number of spam complaints received during the hour
+                      example: 0
+                    unsubs:
+                      type: integer
+                      description: the number of unsubscribes received during the hour
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the number of emails opened during the hour
+                      example: 50
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens generated by messages sent during the hour
+                      example: 40
+                    clicks:
+                      type: integer
+                      description: the number of tracked URLs clicked during the hour
+                      example: 30
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks generated by messages sent during the hour
+                      example: 25
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                query:
+                  type: string
+                  description: the search terms to find matching messages for
+                date_from:
+                  type: string
+                  description: start date
+                  format: date-time
+                date_to:
+                  type: string
+                  description: end date
+                  format: date-time
+                tags:
+                  type: array
+                  description: an array of tag names to narrow the search to, will return messages that contain ANY of the tags
+                  items:
+                    type: string
+                    description: a single tag name
+                senders:
+                  type: array
+                  description: an array of sender addresses to narrow the search to, will return messages sent by ANY of the senders
+                  items:
+                    type: string
+                    description: a single sender email address
+        required: true
+  /messages/info:
+    post:
+      x-custom-config:
+        methodNameCamel: info
+        methodNameSnake: info
+      summary: Get message info
+      description: Get the information for a single recently sent message.
+      operationId: postMessagesInfo
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the information for the message
+                properties:
+                  ts:
+                    type: integer
+                    description: the Unix timestamp from when this message was sent
+                    example: 1756493248
+                  _id:
+                    type: string
+                    description: the message's unique id
+                    example: a92c74e4c5d74998ba690cd535483bb7
+                  sender:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  template:
+                    type: string
+                    description: the unique name of the template used, if any
+                    example: my_template
+                  subject:
+                    type: string
+                    description: the message's subject line
+                    example: Hello World
+                  email:
+                    type: string
+                    format: email
+                    description: the recipient email address
+                    example: recipient@example.com
+                  tags:
+                    type: array
+                    description: list of tags on this message
+                    items:
+                      type: string
+                      description: individual tag on this message
+                      example: my_tag
+                  opens:
+                    type: integer
+                    description: how many times has this message been opened
+                    example: 5
+                  opens_detail:
+                    type: array
+                    description: list of individual opens for the message
+                    items:
+                      type: object
+                      description: information on an individual open
+                      properties:
+                        ts:
+                          type: integer
+                          description: the unix timestamp from when the message was opened
+                          example: 1756494248
+                        ip:
+                          type: string
+                          description: the IP address that generated the open
+                          example: 123.123.123.123
+                        location:
+                          type: string
+                          description: the approximate region and country that the opening IP is located
+                          example: San Francisco, CA, USA
+                        ua:
+                          type: string
+                          description: the email client or browser data of the open
+                          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                  clicks:
+                    type: integer
+                    description: how many times has a link been clicked in this message
+                  clicks_detail:
+                    type: array
+                    description: list of individual clicks for the message
+                    items:
+                      type: object
+                      description: information on an individual click
+                      properties:
+                        ts:
+                          type: integer
+                          description: the unix timestamp from when the message was clicked
+                          example: 1756495248
+                        url:
+                          type: string
+                          description: the URL that was clicked on
+                          example: http://example.com/some/path?with=params
+                        ip:
+                          type: string
+                          description: the IP address that generated the click
+                          example: 123.123.123.123
+                        location:
+                          type: string
+                          description: the approximate region and country that the clicking IP is located
+                          example: San Francisco, CA, USA
+                        ua:
+                          type: string
+                          description: the email client or browser data of the click
+                          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                  state:
+                    type: string
+                    description: sending status of this message
+                    enum:
+                    - sent
+                    - bounced
+                    - rejected
+                  metadata:
+                    type: object
+                    description: any custom metadata provided when the message was sent
+                  smtp_events:
+                    type: array
+                    description: a log of up to 3 smtp events for the message
+                    items:
+                      type: object
+                      description: information about a specific smtp event
+                      properties:
+                        ts:
+                          type: integer
+                          description: the Unix timestamp when the event occured
+                          example: 1756493251
+                        type:
+                          type: string
+                          description: the message's state as a result of this event
+                          example: sent
+                        diag:
+                          type: string
+                          description: the SMTP response from the recipient's server
+                          example: 250 2.0.0 OK  1758037166 00724157ae682-72f796974e3si65150137b3.535 - gsmtp
+            application/x-php:
+              schema:
+                type: object
+                description: the information for the message
+                properties:
+                  ts:
+                    type: integer
+                    description: the Unix timestamp from when this message was sent
+                    example: 1756493248
+                  _id:
+                    type: string
+                    description: the message's unique id
+                    example: a92c74e4c5d74998ba690cd535483bb7
+                  sender:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  template:
+                    type: string
+                    description: the unique name of the template used, if any
+                    example: my_template
+                  subject:
+                    type: string
+                    description: the message's subject line
+                    example: Hello World
+                  email:
+                    type: string
+                    format: email
+                    description: the recipient email address
+                    example: recipient@example.com
+                  tags:
+                    type: array
+                    description: list of tags on this message
+                    items:
+                      type: string
+                      description: individual tag on this message
+                      example: my_tag
+                  opens:
+                    type: integer
+                    description: how many times has this message been opened
+                    example: 5
+                  opens_detail:
+                    type: array
+                    description: list of individual opens for the message
+                    items:
+                      type: object
+                      description: information on an individual open
+                      properties:
+                        ts:
+                          type: integer
+                          description: the unix timestamp from when the message was opened
+                          example: 1756494248
+                        ip:
+                          type: string
+                          description: the IP address that generated the open
+                          example: 123.123.123.123
+                        location:
+                          type: string
+                          description: the approximate region and country that the opening IP is located
+                          example: San Francisco, CA, USA
+                        ua:
+                          type: string
+                          description: the email client or browser data of the open
+                          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                  clicks:
+                    type: integer
+                    description: how many times has a link been clicked in this message
+                  clicks_detail:
+                    type: array
+                    description: list of individual clicks for the message
+                    items:
+                      type: object
+                      description: information on an individual click
+                      properties:
+                        ts:
+                          type: integer
+                          description: the unix timestamp from when the message was clicked
+                          example: 1756495248
+                        url:
+                          type: string
+                          description: the URL that was clicked on
+                          example: http://example.com/some/path?with=params
+                        ip:
+                          type: string
+                          description: the IP address that generated the click
+                          example: 123.123.123.123
+                        location:
+                          type: string
+                          description: the approximate region and country that the clicking IP is located
+                          example: San Francisco, CA, USA
+                        ua:
+                          type: string
+                          description: the email client or browser data of the click
+                          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                  state:
+                    type: string
+                    description: sending status of this message
+                    enum:
+                    - sent
+                    - bounced
+                    - rejected
+                  metadata:
+                    type: object
+                    description: any custom metadata provided when the message was sent
+                  smtp_events:
+                    type: array
+                    description: a log of up to 3 smtp events for the message
+                    items:
+                      type: object
+                      description: information about a specific smtp event
+                      properties:
+                        ts:
+                          type: integer
+                          description: the Unix timestamp when the event occured
+                          example: 1756493251
+                        type:
+                          type: string
+                          description: the message's state as a result of this event
+                          example: sent
+                        diag:
+                          type: string
+                          description: the SMTP response from the recipient's server
+                          example: 250 2.0.0 OK  1758037166 00724157ae682-72f796974e3si65150137b3.535 - gsmtp
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the information for the message
+                properties:
+                  ts:
+                    type: integer
+                    description: the Unix timestamp from when this message was sent
+                    example: 1756493248
+                  _id:
+                    type: string
+                    description: the message's unique id
+                    example: a92c74e4c5d74998ba690cd535483bb7
+                  sender:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  template:
+                    type: string
+                    description: the unique name of the template used, if any
+                    example: my_template
+                  subject:
+                    type: string
+                    description: the message's subject line
+                    example: Hello World
+                  email:
+                    type: string
+                    format: email
+                    description: the recipient email address
+                    example: recipient@example.com
+                  tags:
+                    type: array
+                    description: list of tags on this message
+                    items:
+                      type: string
+                      description: individual tag on this message
+                      example: my_tag
+                  opens:
+                    type: integer
+                    description: how many times has this message been opened
+                    example: 5
+                  opens_detail:
+                    type: array
+                    description: list of individual opens for the message
+                    items:
+                      type: object
+                      description: information on an individual open
+                      properties:
+                        ts:
+                          type: integer
+                          description: the unix timestamp from when the message was opened
+                          example: 1756494248
+                        ip:
+                          type: string
+                          description: the IP address that generated the open
+                          example: 123.123.123.123
+                        location:
+                          type: string
+                          description: the approximate region and country that the opening IP is located
+                          example: San Francisco, CA, USA
+                        ua:
+                          type: string
+                          description: the email client or browser data of the open
+                          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                  clicks:
+                    type: integer
+                    description: how many times has a link been clicked in this message
+                  clicks_detail:
+                    type: array
+                    description: list of individual clicks for the message
+                    items:
+                      type: object
+                      description: information on an individual click
+                      properties:
+                        ts:
+                          type: integer
+                          description: the unix timestamp from when the message was clicked
+                          example: 1756495248
+                        url:
+                          type: string
+                          description: the URL that was clicked on
+                          example: http://example.com/some/path?with=params
+                        ip:
+                          type: string
+                          description: the IP address that generated the click
+                          example: 123.123.123.123
+                        location:
+                          type: string
+                          description: the approximate region and country that the clicking IP is located
+                          example: San Francisco, CA, USA
+                        ua:
+                          type: string
+                          description: the email client or browser data of the click
+                          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3
+                  state:
+                    type: string
+                    description: sending status of this message
+                    enum:
+                    - sent
+                    - bounced
+                    - rejected
+                  metadata:
+                    type: object
+                    description: any custom metadata provided when the message was sent
+                  smtp_events:
+                    type: array
+                    description: a log of up to 3 smtp events for the message
+                    items:
+                      type: object
+                      description: information about a specific smtp event
+                      properties:
+                        ts:
+                          type: integer
+                          description: the Unix timestamp when the event occured
+                          example: 1756493251
+                        type:
+                          type: string
+                          description: the message's state as a result of this event
+                          example: sent
+                        diag:
+                          type: string
+                          description: the SMTP response from the recipient's server
+                          example: 250 2.0.0 OK  1758037166 00724157ae682-72f796974e3si65150137b3.535 - gsmtp
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique id of the message to get - passed as the "_id" field in webhooks, send calls, or search calls
+        required: true
+  /messages/content:
+    post:
+      x-custom-config:
+        methodNameCamel: content
+        methodNameSnake: content
+      summary: Get message content
+      description: Get the full content of a recently sent message.
+      operationId: postMessagesContent
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the content of the message
+                properties:
+                  ts:
+                    type: integer
+                    description: the Unix timestamp from when this message was sent
+                    example: 1756493248
+                  _id:
+                    type: string
+                    description: the message's unique id
+                    example: a92c74e4c5d74998ba690cd535483bb7
+                  from_email:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  from_name:
+                    type: string
+                    description: the alias of the sender (if any)
+                    example: Sender Name
+                  subject:
+                    type: string
+                    description: the message's subject line
+                    example: Hello World
+                  to:
+                    type: object
+                    description: the message recipient's information
+                    properties:
+                      email:
+                        type: string
+                        format: email
+                        description: the email address of the recipient
+                        example: recipient@example.com
+                      name:
+                        type: string
+                        description: the alias of the recipient (if any)
+                        example: Recipient Name
+                  tags:
+                    type: array
+                    description: list of tags on this message
+                    items:
+                      type: string
+                      description: individual tag on this message
+                      example: my_tag
+                  headers:
+                    type: object
+                    description: the key-value pairs of the custom MIME headers for the message's main document
+                    example:
+                      X-Custom-Header: Custom Value
+                      X-Another-Header: Another Value
+                  text:
+                    type: string
+                    description: the text part of the message, if any
+                    example: This is the text part of the email message.
+                  html:
+                    type: string
+                    description: the HTML part of the message, if any
+                    example: <p>This is the HTML part of the email message.</p>
+                  attachments:
+                    type: array
+                    description: an array of any attachments that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual attachment
+                      properties:
+                        name:
+                          type: string
+                          description: the file name of the attachment
+                          example: document.pdf
+                        type:
+                          type: string
+                          description: the MIME type of the attachment
+                          example: application/pdf
+                        content:
+                          type: string
+                          description: the content of the attachment as a base64 encoded string
+                          example: JVBERi0xLjQKJcfs...
+            application/x-php:
+              schema:
+                type: object
+                description: the content of the message
+                properties:
+                  ts:
+                    type: integer
+                    description: the Unix timestamp from when this message was sent
+                    example: 1756493248
+                  _id:
+                    type: string
+                    description: the message's unique id
+                    example: a92c74e4c5d74998ba690cd535483bb7
+                  from_email:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  from_name:
+                    type: string
+                    description: the alias of the sender (if any)
+                    example: Sender Name
+                  subject:
+                    type: string
+                    description: the message's subject line
+                    example: Hello World
+                  to:
+                    type: object
+                    description: the message recipient's information
+                    properties:
+                      email:
+                        type: string
+                        format: email
+                        description: the email address of the recipient
+                        example: recipient@example.com
+                      name:
+                        type: string
+                        description: the alias of the recipient (if any)
+                        example: Recipient Name
+                  tags:
+                    type: array
+                    description: list of tags on this message
+                    items:
+                      type: string
+                      description: individual tag on this message
+                      example: my_tag
+                  headers:
+                    type: object
+                    description: the key-value pairs of the custom MIME headers for the message's main document
+                    example:
+                      X-Custom-Header: Custom Value
+                      X-Another-Header: Another Value
+                  text:
+                    type: string
+                    description: the text part of the message, if any
+                    example: This is the text part of the email message.
+                  html:
+                    type: string
+                    description: the HTML part of the message, if any
+                    example: <p>This is the HTML part of the email message.</p>
+                  attachments:
+                    type: array
+                    description: an array of any attachments that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual attachment
+                      properties:
+                        name:
+                          type: string
+                          description: the file name of the attachment
+                          example: document.pdf
+                        type:
+                          type: string
+                          description: the MIME type of the attachment
+                          example: application/pdf
+                        content:
+                          type: string
+                          description: the content of the attachment as a base64 encoded string
+                          example: JVBERi0xLjQKJcfs...
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the content of the message
+                properties:
+                  ts:
+                    type: integer
+                    description: the Unix timestamp from when this message was sent
+                    example: 1756493248
+                  _id:
+                    type: string
+                    description: the message's unique id
+                    example: a92c74e4c5d74998ba690cd535483bb7
+                  from_email:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  from_name:
+                    type: string
+                    description: the alias of the sender (if any)
+                    example: Sender Name
+                  subject:
+                    type: string
+                    description: the message's subject line
+                    example: Hello World
+                  to:
+                    type: object
+                    description: the message recipient's information
+                    properties:
+                      email:
+                        type: string
+                        format: email
+                        description: the email address of the recipient
+                        example: recipient@example.com
+                      name:
+                        type: string
+                        description: the alias of the recipient (if any)
+                        example: Recipient Name
+                  tags:
+                    type: array
+                    description: list of tags on this message
+                    items:
+                      type: string
+                      description: individual tag on this message
+                      example: my_tag
+                  headers:
+                    type: object
+                    description: the key-value pairs of the custom MIME headers for the message's main document
+                    example:
+                      X-Custom-Header: Custom Value
+                      X-Another-Header: Another Value
+                  text:
+                    type: string
+                    description: the text part of the message, if any
+                    example: This is the text part of the email message.
+                  html:
+                    type: string
+                    description: the HTML part of the message, if any
+                    example: <p>This is the HTML part of the email message.</p>
+                  attachments:
+                    type: array
+                    description: an array of any attachments that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual attachment
+                      properties:
+                        name:
+                          type: string
+                          description: the file name of the attachment
+                          example: document.pdf
+                        type:
+                          type: string
+                          description: the MIME type of the attachment
+                          example: application/pdf
+                        content:
+                          type: string
+                          description: the content of the attachment as a base64 encoded string
+                          example: JVBERi0xLjQKJcfs...
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: the unique id of the message to get - passed as the "_id" field in webhooks, send calls, or search calls
+        required: true
+  /messages/parse:
+    post:
+      x-custom-config:
+        methodNameCamel: parse
+        methodNameSnake: parse
+      summary: Parse mime document
+      description: Parse the full MIME document for an email message, returning the content of the message broken into its constituent pieces.
+      operationId: postMessagesParse
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the parsed message
+                properties:
+                  subject:
+                    type: string
+                    description: the subject of the message
+                    example: This is an example subject
+                  from_email:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  from_name:
+                    type: string
+                    description: the alias of the sender (if any)
+                    example: Sender Name
+                  to:
+                    type: array
+                    description: an array of any recipients in the message
+                    items:
+                      type: object
+                      description: the information on a single recipient
+                      properties:
+                        email:
+                          type: string
+                          description: the email address of the recipient
+                          example: recipient@example.com
+                        name:
+                          type: string
+                          description: the alias of the recipient (if any)
+                          example: Recipient Name
+                  headers:
+                    type: object
+                    description: the key-value pairs of the MIME headers for the message's main document
+                    example:
+                      To: recipient@example.com
+                  text:
+                    type: string
+                    description: the text part of the message, if any
+                    example: This is the text part of the email message.
+                  html:
+                    type: string
+                    description: the HTML part of the message, if any
+                    example: <p>This is the HTML part of the email message.</p>
+                  attachments:
+                    type: array
+                    description: an array of any attachments that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual attachment
+                      properties:
+                        name:
+                          type: string
+                          description: the file name of the attachment
+                          example: document.pdf
+                        type:
+                          type: string
+                          description: the MIME type of the attachment
+                          example: application/pdf
+                        binary:
+                          type: boolean
+                          description: if this is set to true, the attachment is not pure-text, and the content will be base64 encoded
+                          example: true
+                        content:
+                          type: string
+                          description: the content of the attachment as a base64 encoded string
+                          example: JVBERi0xLjQKJcfs...
+                  images:
+                    type: array
+                    description: an array of any embedded images that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual image
+                      properties:
+                        name:
+                          type: string
+                          description: the Content-ID of the embedded image
+                          example: image001.png
+                        type:
+                          type: string
+                          description: the MIME type of the image
+                          example: image/png
+                        content:
+                          type: string
+                          description: the content of the image as a base64 encoded string
+                          example: iVBORw0KGgoAAAANSUhEU...
+            application/x-php:
+              schema:
+                type: object
+                description: the parsed message
+                properties:
+                  subject:
+                    type: string
+                    description: the subject of the message
+                    example: This is an example subject
+                  from_email:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  from_name:
+                    type: string
+                    description: the alias of the sender (if any)
+                    example: Sender Name
+                  to:
+                    type: array
+                    description: an array of any recipients in the message
+                    items:
+                      type: object
+                      description: the information on a single recipient
+                      properties:
+                        email:
+                          type: string
+                          description: the email address of the recipient
+                          example: recipient@example.com
+                        name:
+                          type: string
+                          description: the alias of the recipient (if any)
+                          example: Recipient Name
+                  headers:
+                    type: object
+                    description: the key-value pairs of the MIME headers for the message's main document
+                    example:
+                      To: recipient@example.com
+                  text:
+                    type: string
+                    description: the text part of the message, if any
+                    example: This is the text part of the email message.
+                  html:
+                    type: string
+                    description: the HTML part of the message, if any
+                    example: <p>This is the HTML part of the email message.</p>
+                  attachments:
+                    type: array
+                    description: an array of any attachments that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual attachment
+                      properties:
+                        name:
+                          type: string
+                          description: the file name of the attachment
+                          example: document.pdf
+                        type:
+                          type: string
+                          description: the MIME type of the attachment
+                          example: application/pdf
+                        binary:
+                          type: boolean
+                          description: if this is set to true, the attachment is not pure-text, and the content will be base64 encoded
+                          example: true
+                        content:
+                          type: string
+                          description: the content of the attachment as a base64 encoded string
+                          example: JVBERi0xLjQKJcfs...
+                  images:
+                    type: array
+                    description: an array of any embedded images that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual image
+                      properties:
+                        name:
+                          type: string
+                          description: the Content-ID of the embedded image
+                          example: image001.png
+                        type:
+                          type: string
+                          description: the MIME type of the image
+                          example: image/png
+                        content:
+                          type: string
+                          description: the content of the image as a base64 encoded string
+                          example: iVBORw0KGgoAAAANSUhEU...
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the parsed message
+                properties:
+                  subject:
+                    type: string
+                    description: the subject of the message
+                    example: This is an example subject
+                  from_email:
+                    type: string
+                    format: email
+                    description: the email address of the sender
+                    example: sender@example.com
+                  from_name:
+                    type: string
+                    description: the alias of the sender (if any)
+                    example: Sender Name
+                  to:
+                    type: array
+                    description: an array of any recipients in the message
+                    items:
+                      type: object
+                      description: the information on a single recipient
+                      properties:
+                        email:
+                          type: string
+                          description: the email address of the recipient
+                          example: recipient@example.com
+                        name:
+                          type: string
+                          description: the alias of the recipient (if any)
+                          example: Recipient Name
+                  headers:
+                    type: object
+                    description: the key-value pairs of the MIME headers for the message's main document
+                    example:
+                      To: recipient@example.com
+                  text:
+                    type: string
+                    description: the text part of the message, if any
+                    example: This is the text part of the email message.
+                  html:
+                    type: string
+                    description: the HTML part of the message, if any
+                    example: <p>This is the HTML part of the email message.</p>
+                  attachments:
+                    type: array
+                    description: an array of any attachments that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual attachment
+                      properties:
+                        name:
+                          type: string
+                          description: the file name of the attachment
+                          example: document.pdf
+                        type:
+                          type: string
+                          description: the MIME type of the attachment
+                          example: application/pdf
+                        binary:
+                          type: boolean
+                          description: if this is set to true, the attachment is not pure-text, and the content will be base64 encoded
+                          example: true
+                        content:
+                          type: string
+                          description: the content of the attachment as a base64 encoded string
+                          example: JVBERi0xLjQKJcfs...
+                  images:
+                    type: array
+                    description: an array of any embedded images that can be found in the message
+                    items:
+                      type: object
+                      description: information about an individual image
+                      properties:
+                        name:
+                          type: string
+                          description: the Content-ID of the embedded image
+                          example: image001.png
+                        type:
+                          type: string
+                          description: the MIME type of the image
+                          example: image/png
+                        content:
+                          type: string
+                          description: the content of the image as a base64 encoded string
+                          example: iVBORw0KGgoAAAANSUhEU...
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - raw_message
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                raw_message:
+                  type: string
+                  description: the full MIME document of an email message
+        required: true
+  /messages/send-raw:
+    post:
+      x-custom-config:
+        methodNameCamel: sendRaw
+        methodNameSnake: send_raw
+      summary: Send mime document
+      description: Take a raw MIME document for a message, and send it exactly as if it were sent through the Transactional API's SMTP servers.
+      operationId: postMessagesSendRaw
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: hourly-quota-exhausted
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-php:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: hourly-quota-exhausted
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of objects for each recipient containing the key "email" with the email address, and details of the message status for that recipient
+                items:
+                  type: object
+                  description: the sending results for a single recipient
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email address of the recipient
+                      example: user@example.com
+                    status:
+                      type: string
+                      description: the sending status of the recipient
+                      enum:
+                      - sent
+                      - queued
+                      - scheduled
+                      - rejected
+                      - invalid
+                      example: sent
+                    reject_reason:
+                      type: string
+                      description: the reason for the rejection if the recipient status is "rejected"
+                      enum:
+                      - hard-bounce
+                      - soft-bounce
+                      - spam
+                      - unsub
+                      - custom
+                      - invalid-sender
+                      - invalid
+                      - test-mode-limit
+                      - unsigned
+                      - rule
+                      example: hard-bounce
+                    queued_reason:
+                      type: string
+                      description: the reason for the email being queued if the response status is "queued"
+                      enum:
+                      - attachments
+                      - multiple-recipients
+                      - free-trial-sends-exhausted
+                      - hourly-quota-exhausted
+                      - monthly-limit-reached
+                      - sending-paused
+                      - sending-suspended
+                      - account-suspended
+                      - sending-backlogged
+                      example: hourly-quota-exhausted
+                    _id:
+                      type: string
+                      description: the message's unique id
+                      example: a92c74e4c5d74998ba690cd535483bb7
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - raw_message
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                raw_message:
+                  type: string
+                  description: the full MIME document of an email message
+                from_email:
+                  type: string
+                  description: optionally define the sender address - otherwise we'll use the address found in the provided headers
+                  format: email
+                from_name:
+                  type: string
+                  description: optionally define the sender alias
+                to:
+                  type: array
+                  description: optionally define the recipient to receive the message - otherwise we'll use the To, Cc, and Bcc headers provided in the document
+                  items:
+                    type: string
+                    description: the email address of the recipient
+                async:
+                  type: boolean
+                  description: enable a background sending mode that is optimized for bulk sending. In async mode, messages/sendRaw will immediately return a status of "queued" for every recipient. To handle rejections when sending in async mode, set up a webhook for the 'reject' event. Defaults to false for messages with no more than 10 recipients; messages with more than 10 recipients are always sent asynchronously, regardless of the value of async.
+                ip_pool:
+                  type: string
+                  description: the name of the dedicated ip pool that should be used to send the message. If you do not have any dedicated IPs, this parameter has no effect. If you specify a pool that does not exist, your default pool will be used instead.
+                send_at:
+                  type: string
+                  description: when this message should be sent as a UTC timestamp in YYYY-MM-DD HH:MM:SS format. If you specify a time in the past, the message will be sent immediately; for future dates, you're limited to one year from the date of scheduling.
+                  format: date-time
+                return_path_domain:
+                  type: string
+                  description: a custom domain to use for the messages's return-path
+        required: true
+  /messages/list-scheduled:
+    post:
+      x-custom-config:
+        methodNameCamel: listScheduled
+        methodNameSnake: list_scheduled
+      summary: List scheduled emails
+      description: Queries your scheduled emails.
+      operationId: postMessagesListScheduled
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: a list of up to 1000 scheduled emails
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+            application/x-php:
+              schema:
+                type: array
+                description: a list of up to 1000 scheduled emails
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: a list of up to 1000 scheduled emails
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                to:
+                  type: string
+                  description: an optional recipient address to restrict results to
+                  format: email
+        required: true
+  /messages/cancel-scheduled:
+    post:
+      x-custom-config:
+        methodNameCamel: cancelScheduled
+        methodNameSnake: cancel_scheduled
+      summary: Cancel scheduled email
+      description: Cancels a scheduled email.
+      operationId: postMessagesCancelScheduled
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: information about the scheduled email that was cancelled.
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+            application/x-php:
+              schema:
+                type: array
+                description: information about the scheduled email that was cancelled.
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: information about the scheduled email that was cancelled.
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: a scheduled email id, as returned by any of the messages/send calls or messages/list-scheduled
+        required: true
+  /messages/reschedule:
+    post:
+      x-custom-config:
+        methodNameCamel: reschedule
+        methodNameSnake: reschedule
+      summary: Reschedule email
+      description: Reschedules a scheduled email.
+      operationId: postMessagesReschedule
+      tags:
+      - Messages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: information about the scheduled email that was rescheduled.
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+            application/x-php:
+              schema:
+                type: array
+                description: information about the scheduled email that was rescheduled.
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: information about the scheduled email that was rescheduled.
+                items:
+                  type: object
+                  description: a scheduled email
+                  properties:
+                    _id:
+                      type: string
+                      description: the scheduled message id
+                      example: 5a1b2c3d4e5f678901234567
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message was created, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00'
+                    send_at:
+                      type: string
+                      format: date-time
+                      description: the UTC timestamp when the message will be sent, in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    from_email:
+                      type: string
+                      format: email
+                      description: the email's sender address
+                      example: sender@example.com
+                    to:
+                      type: string
+                      format: email
+                      description: the email's recipient
+                      example: recipient@example.com
+                    subject:
+                      type: string
+                      description: the email's subject
+                      example: Hello World
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - id
+              - send_at
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                id:
+                  type: string
+                  description: a scheduled email id, as returned by any of the messages/send calls or messages/list-scheduled
+                send_at:
+                  type: string
+                  description: the new UTC timestamp when the message should sent. Mandrill can't time travel, so if you specify a time in past the message will be sent immediately; for future dates, you're limited to one year from the date of scheduling.
+                  format: date-time
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

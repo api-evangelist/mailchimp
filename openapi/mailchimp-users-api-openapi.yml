@@ -1,0 +1,1389 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Users API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: Users
+paths:
+  /users/info:
+    post:
+      x-custom-config:
+        methodNameCamel: info
+        methodNameSnake: info
+      summary: Get user info
+      description: Return the information about the API-connected user.
+      operationId: postUsersInfo
+      tags:
+      - Users
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the user information including username, key, reputation, quota, and historical sending stats
+                properties:
+                  username:
+                    type: string
+                    description: the username of the user (used for SMTP authentication)
+                    example: '31352262'
+                  created_at:
+                    type: string
+                    description: the date and time that the user's Mandrill account was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  public_id:
+                    type: string
+                    description: a unique, permanent identifier for this user
+                    example: pJ9CSLA-VC12xQ9UArlvXA
+                  reputation:
+                    type: integer
+                    description: the reputation of the user on a scale from 0 to 100, with 75 generally being a "good" reputation
+                    example: 85
+                  hourly_quota:
+                    type: integer
+                    description: the maximum number of emails Mandrill will deliver for this user each hour. Any emails beyond that will be accepted and queued for later delivery. Users with higher reputations will have higher hourly quotas
+                    example: 500
+                  backlog:
+                    type: integer
+                    description: the number of emails that are queued for delivery due to exceeding your monthly or hourly quotas
+                    example: 0
+                  stats:
+                    type: object
+                    description: an aggregate summary of the account's sending stats
+                    properties:
+                      today:
+                        type: object
+                        description: stats for this user so far today
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user so far today
+                            example: 100
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user so far today
+                            example: 2
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user so far today
+                            example: 1
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender so far today
+                            example: 0
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user so far today
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user so far today
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user so far today
+                            example: 10
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user so far today
+                            example: 7
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user so far today
+                            example: 8
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user so far today
+                            example: 5
+                      last_7_days:
+                        type: object
+                        description: stats for this user in the last 7 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 7 days
+                            example: 700
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 7 days
+                            example: 2
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 7 days
+                            example: 1
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 7 days
+                            example: 0
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 7 days
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 7 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 7 days
+                            example: 50
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 7 days
+                            example: 10
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 7 days
+                            example: 20
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 7 days
+                            example: 5
+                      last_30_days:
+                        type: object
+                        description: stats for this user in the last 30 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 30 days
+                            example: 3000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 30 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 30 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 30 days
+                            example: 5
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 30 days
+                            example: 10
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 30 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 30 days
+                            example: 500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 30 days
+                            example: 100
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 30 days
+                            example: 200
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 30 days
+                            example: 50
+                      last_60_days:
+                        type: object
+                        description: stats for this user in the last 60 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 60 days
+                            example: 6000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 60 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 60 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 60 days
+                            example: 10
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 60 days
+                            example: 5
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 60 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 60 days
+                            example: 300
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 60 days
+                            example: 250
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 60 days
+                            example: 400
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 60 days
+                            example: 350
+                      last_90_days:
+                        type: object
+                        description: stats for this user in the last 90 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 90 days
+                            example: 9000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 90 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 90 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 90 days
+                            example: 10
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 90 days
+                            example: 5
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 90 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 90 days
+                            example: 4500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 90 days
+                            example: 3000
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 90 days
+                            example: 1500
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 90 days
+                            example: 1000
+                      all_time:
+                        type: object
+                        description: tats for the lifetime of the user's account
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent in the lifetime of the user's account
+                            example: 12345
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced in the lifetime of the user's account
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced in the lifetime of the user's account
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this user so far today
+                            example: 5
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints in the lifetime of the user's account
+                            example: 10
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes in the lifetime of the user's account
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened in the lifetime of the user's account
+                            example: 4500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent in the lifetime of the user's account
+                            example: 3000
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked in the lifetime of the user's account
+                            example: 1500
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent in the lifetime of the user's account
+                            example: 1000
+            application/x-php:
+              schema:
+                type: object
+                description: the user information including username, key, reputation, quota, and historical sending stats
+                properties:
+                  username:
+                    type: string
+                    description: the username of the user (used for SMTP authentication)
+                    example: '31352262'
+                  created_at:
+                    type: string
+                    description: the date and time that the user's Mandrill account was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  public_id:
+                    type: string
+                    description: a unique, permanent identifier for this user
+                    example: pJ9CSLA-VC12xQ9UArlvXA
+                  reputation:
+                    type: integer
+                    description: the reputation of the user on a scale from 0 to 100, with 75 generally being a "good" reputation
+                    example: 85
+                  hourly_quota:
+                    type: integer
+                    description: the maximum number of emails Mandrill will deliver for this user each hour. Any emails beyond that will be accepted and queued for later delivery. Users with higher reputations will have higher hourly quotas
+                    example: 500
+                  backlog:
+                    type: integer
+                    description: the number of emails that are queued for delivery due to exceeding your monthly or hourly quotas
+                    example: 0
+                  stats:
+                    type: object
+                    description: an aggregate summary of the account's sending stats
+                    properties:
+                      today:
+                        type: object
+                        description: stats for this user so far today
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user so far today
+                            example: 100
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user so far today
+                            example: 2
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user so far today
+                            example: 1
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender so far today
+                            example: 0
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user so far today
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user so far today
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user so far today
+                            example: 10
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user so far today
+                            example: 7
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user so far today
+                            example: 8
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user so far today
+                            example: 5
+                      last_7_days:
+                        type: object
+                        description: stats for this user in the last 7 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 7 days
+                            example: 700
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 7 days
+                            example: 2
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 7 days
+                            example: 1
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 7 days
+                            example: 0
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 7 days
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 7 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 7 days
+                            example: 50
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 7 days
+                            example: 10
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 7 days
+                            example: 20
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 7 days
+                            example: 5
+                      last_30_days:
+                        type: object
+                        description: stats for this user in the last 30 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 30 days
+                            example: 3000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 30 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 30 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 30 days
+                            example: 5
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 30 days
+                            example: 10
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 30 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 30 days
+                            example: 500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 30 days
+                            example: 100
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 30 days
+                            example: 200
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 30 days
+                            example: 50
+                      last_60_days:
+                        type: object
+                        description: stats for this user in the last 60 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 60 days
+                            example: 6000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 60 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 60 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 60 days
+                            example: 10
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 60 days
+                            example: 5
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 60 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 60 days
+                            example: 300
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 60 days
+                            example: 250
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 60 days
+                            example: 400
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 60 days
+                            example: 350
+                      last_90_days:
+                        type: object
+                        description: stats for this user in the last 90 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 90 days
+                            example: 9000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 90 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 90 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 90 days
+                            example: 10
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 90 days
+                            example: 5
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 90 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 90 days
+                            example: 4500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 90 days
+                            example: 3000
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 90 days
+                            example: 1500
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 90 days
+                            example: 1000
+                      all_time:
+                        type: object
+                        description: tats for the lifetime of the user's account
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent in the lifetime of the user's account
+                            example: 12345
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced in the lifetime of the user's account
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced in the lifetime of the user's account
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this user so far today
+                            example: 5
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints in the lifetime of the user's account
+                            example: 10
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes in the lifetime of the user's account
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened in the lifetime of the user's account
+                            example: 4500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent in the lifetime of the user's account
+                            example: 3000
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked in the lifetime of the user's account
+                            example: 1500
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent in the lifetime of the user's account
+                            example: 1000
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the user information including username, key, reputation, quota, and historical sending stats
+                properties:
+                  username:
+                    type: string
+                    description: the username of the user (used for SMTP authentication)
+                    example: '31352262'
+                  created_at:
+                    type: string
+                    description: the date and time that the user's Mandrill account was created as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 12:00:00'
+                  public_id:
+                    type: string
+                    description: a unique, permanent identifier for this user
+                    example: pJ9CSLA-VC12xQ9UArlvXA
+                  reputation:
+                    type: integer
+                    description: the reputation of the user on a scale from 0 to 100, with 75 generally being a "good" reputation
+                    example: 85
+                  hourly_quota:
+                    type: integer
+                    description: the maximum number of emails Mandrill will deliver for this user each hour. Any emails beyond that will be accepted and queued for later delivery. Users with higher reputations will have higher hourly quotas
+                    example: 500
+                  backlog:
+                    type: integer
+                    description: the number of emails that are queued for delivery due to exceeding your monthly or hourly quotas
+                    example: 0
+                  stats:
+                    type: object
+                    description: an aggregate summary of the account's sending stats
+                    properties:
+                      today:
+                        type: object
+                        description: stats for this user so far today
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user so far today
+                            example: 100
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user so far today
+                            example: 2
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user so far today
+                            example: 1
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender so far today
+                            example: 0
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user so far today
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user so far today
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user so far today
+                            example: 10
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user so far today
+                            example: 7
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user so far today
+                            example: 8
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user so far today
+                            example: 5
+                      last_7_days:
+                        type: object
+                        description: stats for this user in the last 7 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 7 days
+                            example: 700
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 7 days
+                            example: 2
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 7 days
+                            example: 1
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 7 days
+                            example: 0
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 7 days
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 7 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 7 days
+                            example: 50
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 7 days
+                            example: 10
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 7 days
+                            example: 20
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 7 days
+                            example: 5
+                      last_30_days:
+                        type: object
+                        description: stats for this user in the last 30 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 30 days
+                            example: 3000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 30 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 30 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 30 days
+                            example: 5
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 30 days
+                            example: 10
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 30 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 30 days
+                            example: 500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 30 days
+                            example: 100
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 30 days
+                            example: 200
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 30 days
+                            example: 50
+                      last_60_days:
+                        type: object
+                        description: stats for this user in the last 60 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 60 days
+                            example: 6000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 60 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 60 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 60 days
+                            example: 10
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 60 days
+                            example: 5
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 60 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 60 days
+                            example: 300
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 60 days
+                            example: 250
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 60 days
+                            example: 400
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 60 days
+                            example: 350
+                      last_90_days:
+                        type: object
+                        description: stats for this user in the last 90 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this user in the last 90 days
+                            example: 9000
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this user in the last 90 days
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this user in the last 90 days
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 90 days
+                            example: 10
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this user in the last 90 days
+                            example: 5
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this user in the last 90 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this user in the last 90 days
+                            example: 4500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this user in the last 90 days
+                            example: 3000
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this user in the last 90 days
+                            example: 1500
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this user in the last 90 days
+                            example: 1000
+                      all_time:
+                        type: object
+                        description: tats for the lifetime of the user's account
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent in the lifetime of the user's account
+                            example: 12345
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced in the lifetime of the user's account
+                            example: 100
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced in the lifetime of the user's account
+                            example: 50
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this user so far today
+                            example: 5
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints in the lifetime of the user's account
+                            example: 10
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes in the lifetime of the user's account
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened in the lifetime of the user's account
+                            example: 4500
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent in the lifetime of the user's account
+                            example: 3000
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked in the lifetime of the user's account
+                            example: 1500
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent in the lifetime of the user's account
+                            example: 1000
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /users/ping:
+    post:
+      x-custom-config:
+        methodNameCamel: ping
+        methodNameSnake: ping
+      summary: Ping
+      description: Validate an API key and respond to a ping.
+      operationId: postUsersPing
+      tags:
+      - Users
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: string
+                description: the string "PONG!"
+                example: PONG!
+            application/x-php:
+              schema:
+                type: string
+                description: the string "PONG!"
+                example: PONG!
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: string
+                description: the string "PONG!"
+                example: PONG!
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /users/ping2:
+    post:
+      x-custom-config:
+        methodNameCamel: ping2
+        methodNameSnake: ping2
+      summary: Ping 2
+      description: Validate an API key and respond to a ping (JSON parser version).
+      operationId: postUsersPing2
+      tags:
+      - Users
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a struct with one key "PING" with a static value "PONG!"
+                properties:
+                  PING:
+                    type: string
+                    description: a simple pong response
+                    example: PONG!
+            application/x-php:
+              schema:
+                type: object
+                description: a struct with one key "PING" with a static value "PONG!"
+                properties:
+                  PING:
+                    type: string
+                    description: a simple pong response
+                    example: PONG!
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a struct with one key "PING" with a static value "PONG!"
+                properties:
+                  PING:
+                    type: string
+                    description: a simple pong response
+                    example: PONG!
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /users/senders:
+    post:
+      x-custom-config:
+        methodNameCamel: senders
+        methodNameSnake: senders
+      summary: List account senders
+      description: Return the senders that have tried to use this account, both verified and unverified.
+      operationId: postUsersSenders
+      tags:
+      - Users
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of sender data, one for each sending addresses used by the account
+                items:
+                  type: object
+                  description: the information on each sending address in the account
+                  properties:
+                    address:
+                      type: string
+                      format: email
+                      description: the sender's email address
+                      example: sender@example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 12:00:00'
+                    sent:
+                      type: integer
+                      description: the total number of messages sent by this sender
+                      example: 12135
+                    hard_bounces:
+                      type: integer
+                      description: the total number of hard bounces by messages by this sender
+                      example: 678
+                    soft_bounces:
+                      type: integer
+                      description: the total number of soft bounces by messages by this sender
+                      example: 123
+                    rejects:
+                      type: integer
+                      description: the total number of rejected messages by this sender
+                      example: 4
+                    complaints:
+                      type: integer
+                      description: the total number of spam complaints received for messages by this sender
+                      example: 2
+                    unsubs:
+                      type: integer
+                      description: the total number of unsubscribe requests received for messages by this sender
+                      example: 1
+                    opens:
+                      type: integer
+                      description: the total number of times messages by this sender have been opened
+                      example: 5678
+                    clicks:
+                      type: integer
+                      description: the total number of times tracked URLs in messages by this sender have been clicked
+                      example: 2435
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens for emails sent for this sender
+                      example: 4451
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks for emails sent for this sender
+                      example: 3416
+            application/x-php:
+              schema:
+                type: array
+                description: an array of sender data, one for each sending addresses used by the account
+                items:
+                  type: object
+                  description: the information on each sending address in the account
+                  properties:
+                    address:
+                      type: string
+                      format: email
+                      description: the sender's email address
+                      example: sender@example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 12:00:00'
+                    sent:
+                      type: integer
+                      description: the total number of messages sent by this sender
+                      example: 12135
+                    hard_bounces:
+                      type: integer
+                      description: the total number of hard bounces by messages by this sender
+                      example: 678
+                    soft_bounces:
+                      type: integer
+                      description: the total number of soft bounces by messages by this sender
+                      example: 123
+                    rejects:
+                      type: integer
+                      description: the total number of rejected messages by this sender
+                      example: 4
+                    complaints:
+                      type: integer
+                      description: the total number of spam complaints received for messages by this sender
+                      example: 2
+                    unsubs:
+                      type: integer
+                      description: the total number of unsubscribe requests received for messages by this sender
+                      example: 1
+                    opens:
+                      type: integer
+                      description: the total number of times messages by this sender have been opened
+                      example: 5678
+                    clicks:
+                      type: integer
+                      description: the total number of times tracked URLs in messages by this sender have been clicked
+                      example: 2435
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens for emails sent for this sender
+                      example: 4451
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks for emails sent for this sender
+                      example: 3416
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of sender data, one for each sending addresses used by the account
+                items:
+                  type: object
+                  description: the information on each sending address in the account
+                  properties:
+                    address:
+                      type: string
+                      format: email
+                      description: the sender's email address
+                      example: sender@example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 12:00:00'
+                    sent:
+                      type: integer
+                      description: the total number of messages sent by this sender
+                      example: 12135
+                    hard_bounces:
+                      type: integer
+                      description: the total number of hard bounces by messages by this sender
+                      example: 678
+                    soft_bounces:
+                      type: integer
+                      description: the total number of soft bounces by messages by this sender
+                      example: 123
+                    rejects:
+                      type: integer
+                      description: the total number of rejected messages by this sender
+                      example: 4
+                    complaints:
+                      type: integer
+                      description: the total number of spam complaints received for messages by this sender
+                      example: 2
+                    unsubs:
+                      type: integer
+                      description: the total number of unsubscribe requests received for messages by this sender
+                      example: 1
+                    opens:
+                      type: integer
+                      description: the total number of times messages by this sender have been opened
+                      example: 5678
+                    clicks:
+                      type: integer
+                      description: the total number of times tracked URLs in messages by this sender have been clicked
+                      example: 2435
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens for emails sent for this sender
+                      example: 4451
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks for emails sent for this sender
+                      example: 3416
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

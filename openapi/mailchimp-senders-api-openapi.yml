@@ -1,0 +1,2622 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Senders API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: Senders
+paths:
+  /senders/list:
+    post:
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+      summary: List account senders
+      description: Return the senders that have tried to use this account.
+      operationId: postSendersList
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of sender data, one for each sending addresses used by the account
+                items:
+                  type: object
+                  description: the information on each sending address in the account
+                  properties:
+                    address:
+                      type: string
+                      format: email
+                      description: the sender's email address
+                      example: user@example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00.18061'
+                    sent:
+                      type: integer
+                      description: the total number of messages sent by this sender
+                      example: 20
+                    hard_bounces:
+                      type: integer
+                      description: the total number of hard bounces by messages by this sender
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the total number of soft bounces by messages by this sender
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the total number of rejected messages by this sender
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the total number of spam complaints received for messages by this sender
+                      example: 0
+                    unsubs:
+                      type: integer
+                      description: the total number of unsubscribe requests received for messages by this sender
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the total number of times messages by this sender have been opened
+                      example: 10
+                    clicks:
+                      type: integer
+                      description: the total number of times tracked URLs in messages by this sender have been clicked
+                      example: 5
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens for emails sent for this sender
+                      example: 8
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks for emails sent for this sender
+                      example: 3
+            application/x-php:
+              schema:
+                type: array
+                description: an array of sender data, one for each sending addresses used by the account
+                items:
+                  type: object
+                  description: the information on each sending address in the account
+                  properties:
+                    address:
+                      type: string
+                      format: email
+                      description: the sender's email address
+                      example: user@example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00.18061'
+                    sent:
+                      type: integer
+                      description: the total number of messages sent by this sender
+                      example: 20
+                    hard_bounces:
+                      type: integer
+                      description: the total number of hard bounces by messages by this sender
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the total number of soft bounces by messages by this sender
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the total number of rejected messages by this sender
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the total number of spam complaints received for messages by this sender
+                      example: 0
+                    unsubs:
+                      type: integer
+                      description: the total number of unsubscribe requests received for messages by this sender
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the total number of times messages by this sender have been opened
+                      example: 10
+                    clicks:
+                      type: integer
+                      description: the total number of times tracked URLs in messages by this sender have been clicked
+                      example: 5
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens for emails sent for this sender
+                      example: 8
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks for emails sent for this sender
+                      example: 3
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of sender data, one for each sending addresses used by the account
+                items:
+                  type: object
+                  description: the information on each sending address in the account
+                  properties:
+                    address:
+                      type: string
+                      format: email
+                      description: the sender's email address
+                      example: user@example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:00:00.18061'
+                    sent:
+                      type: integer
+                      description: the total number of messages sent by this sender
+                      example: 20
+                    hard_bounces:
+                      type: integer
+                      description: the total number of hard bounces by messages by this sender
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the total number of soft bounces by messages by this sender
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the total number of rejected messages by this sender
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the total number of spam complaints received for messages by this sender
+                      example: 0
+                    unsubs:
+                      type: integer
+                      description: the total number of unsubscribe requests received for messages by this sender
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the total number of times messages by this sender have been opened
+                      example: 10
+                    clicks:
+                      type: integer
+                      description: the total number of times tracked URLs in messages by this sender have been clicked
+                      example: 5
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens for emails sent for this sender
+                      example: 8
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks for emails sent for this sender
+                      example: 3
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /senders/domains:
+    post:
+      x-custom-config:
+        methodNameCamel: domains
+        methodNameSnake: domains
+      summary: List sender domains
+      description: Returns the sender domains that have been added to this account.
+      operationId: postSendersDomains
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: an array of sender domain data, one for each sending domain used by the account
+                items:
+                  type: object
+                  description: the information on each sending domain for the account
+                  properties:
+                    domain:
+                      type: string
+                      description: the sender domain name
+                      example: example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:22:49'
+                    last_tested_at:
+                      type: string
+                      format: date-time
+                      description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    spf:
+                      type: object
+                      description: details about the domain's SPF record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's SPF record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-24 14:00:00'
+                        error:
+                          type: string
+                          description: an error describing the spf record, or null if the record is correct
+                          example: This domain has an SPF record, but it doesn't include Mandrill.
+                    dkim:
+                      type: object
+                      description: details about the domain's Legacy DKIM record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's Legacy DKIM record is valid for use with Mandrill
+                          example: false
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's Legacy DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-15 13:00:00'
+                        error:
+                          type: string
+                          description: an error describing the Legacy DKIM record, or null if the record is correct
+                          example: does not match the required CNAME target of dkim1.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                    dkim2:
+                      type: object
+                      description: details about the domain's rotatable 2048 bit DKIM record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's DKIM record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-15 13:00:00'
+                        error:
+                          type: string
+                          description: an error describing the DKIM record, or null if the record is correct
+                          example: does not match the required CNAME target of dkim2.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                    dmarc:
+                      type: object
+                      description: details about the domain's DMARC record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's DMARC record is valid for use with Mandrill
+                          example: false
+                        error:
+                          type: string
+                          description: an error describing the DMARC record, or null if the record is correct
+                          example: The record doesn't begin with a valid version tag.
+                    verified_at:
+                      type: string
+                      format: date-time
+                      description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-20 13:00:00'
+                    valid_signing:
+                      type: boolean
+                      description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                      example: false
+                    verify_txt_key:
+                      type: string
+                      description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                      example: wtwm-d3lEsGLX6yeb24weA
+            application/x-php:
+              schema:
+                type: array
+                description: an array of sender domain data, one for each sending domain used by the account
+                items:
+                  type: object
+                  description: the information on each sending domain for the account
+                  properties:
+                    domain:
+                      type: string
+                      description: the sender domain name
+                      example: example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:22:49'
+                    last_tested_at:
+                      type: string
+                      format: date-time
+                      description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    spf:
+                      type: object
+                      description: details about the domain's SPF record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's SPF record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-24 14:00:00'
+                        error:
+                          type: string
+                          description: an error describing the spf record, or null if the record is correct
+                          example: This domain has an SPF record, but it doesn't include Mandrill.
+                    dkim:
+                      type: object
+                      description: details about the domain's Legacy DKIM record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's Legacy DKIM record is valid for use with Mandrill
+                          example: false
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's Legacy DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-15 13:00:00'
+                        error:
+                          type: string
+                          description: an error describing the Legacy DKIM record, or null if the record is correct
+                          example: does not match the required CNAME target of dkim1.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                    dkim2:
+                      type: object
+                      description: details about the domain's rotatable 2048 bit DKIM record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's DKIM record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-15 13:00:00'
+                        error:
+                          type: string
+                          description: an error describing the DKIM record, or null if the record is correct
+                          example: does not match the required CNAME target of dkim2.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                    dmarc:
+                      type: object
+                      description: details about the domain's DMARC record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's DMARC record is valid for use with Mandrill
+                          example: false
+                        error:
+                          type: string
+                          description: an error describing the DMARC record, or null if the record is correct
+                          example: The record doesn't begin with a valid version tag.
+                    verified_at:
+                      type: string
+                      format: date-time
+                      description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-20 13:00:00'
+                    valid_signing:
+                      type: boolean
+                      description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                      example: false
+                    verify_txt_key:
+                      type: string
+                      description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                      example: wtwm-d3lEsGLX6yeb24weA
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: an array of sender domain data, one for each sending domain used by the account
+                items:
+                  type: object
+                  description: the information on each sending domain for the account
+                  properties:
+                    domain:
+                      type: string
+                      description: the sender domain name
+                      example: example.com
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-15 13:22:49'
+                    last_tested_at:
+                      type: string
+                      format: date-time
+                      description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-29 13:00:00'
+                    spf:
+                      type: object
+                      description: details about the domain's SPF record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's SPF record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-24 14:00:00'
+                        error:
+                          type: string
+                          description: an error describing the spf record, or null if the record is correct
+                          example: This domain has an SPF record, but it doesn't include Mandrill.
+                    dkim:
+                      type: object
+                      description: details about the domain's Legacy DKIM record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's Legacy DKIM record is valid for use with Mandrill
+                          example: false
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's Legacy DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-15 13:00:00'
+                        error:
+                          type: string
+                          description: an error describing the Legacy DKIM record, or null if the record is correct
+                          example: does not match the required CNAME target of dkim1.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                    dkim2:
+                      type: object
+                      description: details about the domain's rotatable 2048 bit DKIM record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's DKIM record is valid for use with Mandrill
+                          example: true
+                        valid_after:
+                          type: string
+                          format: date-time
+                          description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                          example: '2025-04-15 13:00:00'
+                        error:
+                          type: string
+                          description: an error describing the DKIM record, or null if the record is correct
+                          example: does not match the required CNAME target of dkim2.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                    dmarc:
+                      type: object
+                      description: details about the domain's DMARC record
+                      properties:
+                        valid:
+                          type: boolean
+                          description: whether the domain's DMARC record is valid for use with Mandrill
+                          example: false
+                        error:
+                          type: string
+                          description: an error describing the DMARC record, or null if the record is correct
+                          example: The record doesn't begin with a valid version tag.
+                    verified_at:
+                      type: string
+                      format: date-time
+                      description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                      example: '2025-04-20 13:00:00'
+                    valid_signing:
+                      type: boolean
+                      description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                      example: false
+                    verify_txt_key:
+                      type: string
+                      description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                      example: wtwm-d3lEsGLX6yeb24weA
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+        required: true
+  /senders/add-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: addDomain
+        methodNameSnake: add_domain
+      summary: Add sender domain
+      description: Adds a sender domain to your account. Sender domains are added automatically as you send, but you can use this call to add them ahead of time.
+      operationId: postSendersAddDomain
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the domain
+                properties:
+                  domain:
+                    type: string
+                    description: the sender domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 13:22:49'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  spf:
+                    type: object
+                    description: details about the domain's SPF record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's SPF record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-24 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the spf record, or null if the record is correct
+                        example: This domain has an SPF record, but it doesn't include Mandrill.
+                  dkim:
+                    type: object
+                    description: details about the domain's DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  verified_at:
+                    type: string
+                    format: date-time
+                    description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 13:00:00'
+                  valid_signing:
+                    type: boolean
+                    description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                    example: false
+                  verify_txt_key:
+                    type: string
+                    description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                    example: wtwm-d3lEsGLX6yeb24weA
+            application/x-php:
+              schema:
+                type: object
+                description: information about the domain
+                properties:
+                  domain:
+                    type: string
+                    description: the sender domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 13:22:49'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  spf:
+                    type: object
+                    description: details about the domain's SPF record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's SPF record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-24 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the spf record, or null if the record is correct
+                        example: This domain has an SPF record, but it doesn't include Mandrill.
+                  dkim:
+                    type: object
+                    description: details about the domain's DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  verified_at:
+                    type: string
+                    format: date-time
+                    description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 13:00:00'
+                  valid_signing:
+                    type: boolean
+                    description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                    example: false
+                  verify_txt_key:
+                    type: string
+                    description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                    example: wtwm-d3lEsGLX6yeb24weA
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the domain
+                properties:
+                  domain:
+                    type: string
+                    description: the sender domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 13:22:49'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  spf:
+                    type: object
+                    description: details about the domain's SPF record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's SPF record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-24 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the spf record, or null if the record is correct
+                        example: This domain has an SPF record, but it doesn't include Mandrill.
+                  dkim:
+                    type: object
+                    description: details about the domain's DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  verified_at:
+                    type: string
+                    format: date-time
+                    description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 13:00:00'
+                  valid_signing:
+                    type: boolean
+                    description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                    example: false
+                  verify_txt_key:
+                    type: string
+                    description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                    example: wtwm-d3lEsGLX6yeb24weA
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: a domain name
+        required: true
+  /senders/delete-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: deleteDomain
+        methodNameSnake: delete_domain
+      summary: Delete sender domain
+      description: Deletes an unverified sender domain from your account. Verified domains cannot be deleted via API and require login confirmation.
+      operationId: postSendersDeleteDomain
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Information about the deleted domain
+                properties:
+                  domain:
+                    type: string
+                    format: hostname
+                    example: example.com
+                  created_at:
+                    description: The date and time that the sending domain was first seen.
+                    type: string
+                    format: date-time
+                  last_tested_at:
+                    description: The date and time that the sending domain was last tested.
+                    type: string
+                    format: date-time
+                  spf:
+                    description: Details about the domain's SPF record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dkim:
+                    description: Details about the domain's DKIM record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dkim2:
+                    description: Details about the domain's second DKIM record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dmarc:
+                    description: Details about the domain's DMARC record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  verified_at:
+                    description: The date and time that the sending domain was verified.
+                    type: string
+                    format: date-time
+                  valid_signing:
+                    description: Whether this domain can be used to sign messages.
+                    type: boolean
+                  verify_txt_key:
+                    description: The key for the TXT record used to verify the domain.
+                    type: string
+            application/x-php:
+              schema:
+                type: object
+                description: Information about the deleted domain
+                properties:
+                  domain:
+                    type: string
+                    format: hostname
+                    example: example.com
+                  created_at:
+                    description: The date and time that the sending domain was first seen.
+                    type: string
+                    format: date-time
+                  last_tested_at:
+                    description: The date and time that the sending domain was last tested.
+                    type: string
+                    format: date-time
+                  spf:
+                    description: Details about the domain's SPF record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dkim:
+                    description: Details about the domain's DKIM record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dkim2:
+                    description: Details about the domain's second DKIM record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dmarc:
+                    description: Details about the domain's DMARC record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  verified_at:
+                    description: The date and time that the sending domain was verified.
+                    type: string
+                    format: date-time
+                  valid_signing:
+                    description: Whether this domain can be used to sign messages.
+                    type: boolean
+                  verify_txt_key:
+                    description: The key for the TXT record used to verify the domain.
+                    type: string
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: Information about the deleted domain
+                properties:
+                  domain:
+                    type: string
+                    format: hostname
+                    example: example.com
+                  created_at:
+                    description: The date and time that the sending domain was first seen.
+                    type: string
+                    format: date-time
+                  last_tested_at:
+                    description: The date and time that the sending domain was last tested.
+                    type: string
+                    format: date-time
+                  spf:
+                    description: Details about the domain's SPF record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dkim:
+                    description: Details about the domain's DKIM record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dkim2:
+                    description: Details about the domain's second DKIM record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      valid_after:
+                        description: The date and time that this verification was last tested.
+                        type: string
+                        format: date-time
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  dmarc:
+                    description: Details about the domain's DMARC record.
+                    properties:
+                      valid:
+                        description: Whether this verification is valid.
+                        type: boolean
+                      error:
+                        description: An error message indicating why the verification failed.
+                        type: string
+                    type: object
+                  verified_at:
+                    description: The date and time that the sending domain was verified.
+                    type: string
+                    format: date-time
+                  valid_signing:
+                    description: Whether this domain can be used to sign messages.
+                    type: boolean
+                  verify_txt_key:
+                    description: The key for the TXT record used to verify the domain.
+                    type: string
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: the domain name to delete
+        required: true
+  /senders/check-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: checkDomain
+        methodNameSnake: check_domain
+      summary: Check domain settings
+      description: Checks the SPF and DKIM settings for a domain, as well the domain verification. If you haven't already added this domain to your account, it will be added automatically.
+      operationId: postSendersCheckDomain
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the sender domain
+                properties:
+                  domain:
+                    type: string
+                    description: the sender domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 13:22:49'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  spf:
+                    type: object
+                    description: details about the domain's SPF record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's SPF record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-24 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the spf record, or null if the record is correct
+                        example: This domain has an SPF record, but it doesn't include Mandrill.
+                  dkim:
+                    type: object
+                    description: details about the domain's Legacy DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's Legacy DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's Legacy DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the Legacy DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim1.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  dkim2:
+                    type: object
+                    description: details about the domain's rotatable 2048 bit DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim2.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  dmarc:
+                    type: object
+                    description: details about the domain's DMARC record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DMARC record is valid for use with Mandrill
+                        example: false
+                      error:
+                        type: string
+                        description: an error describing the DMARC record, or null if the record is correct
+                        example: The record doesn't begin with a valid version tag.
+                  verified_at:
+                    type: string
+                    format: date-time
+                    description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 13:00:00'
+                  valid_signing:
+                    type: boolean
+                    description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                    example: false
+                  verify_txt_key:
+                    type: string
+                    description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                    example: wtwm-d3lEsGLX6yeb24weA
+            application/x-php:
+              schema:
+                type: object
+                description: information about the sender domain
+                properties:
+                  domain:
+                    type: string
+                    description: the sender domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 13:22:49'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  spf:
+                    type: object
+                    description: details about the domain's SPF record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's SPF record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-24 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the spf record, or null if the record is correct
+                        example: This domain has an SPF record, but it doesn't include Mandrill.
+                  dkim:
+                    type: object
+                    description: details about the domain's Legacy DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's Legacy DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's Legacy DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the Legacy DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim1.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  dkim2:
+                    type: object
+                    description: details about the domain's rotatable 2048 bit DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim2.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  dmarc:
+                    type: object
+                    description: details about the domain's DMARC record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DMARC record is valid for use with Mandrill
+                        example: false
+                      error:
+                        type: string
+                        description: an error describing the DMARC record, or null if the record is correct
+                        example: The record doesn't begin with a valid version tag.
+                  verified_at:
+                    type: string
+                    format: date-time
+                    description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 13:00:00'
+                  valid_signing:
+                    type: boolean
+                    description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                    example: false
+                  verify_txt_key:
+                    type: string
+                    description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                    example: wtwm-d3lEsGLX6yeb24weA
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the sender domain
+                properties:
+                  domain:
+                    type: string
+                    description: the sender domain name
+                    example: example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sending domain was first seen as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-15 13:22:49'
+                  last_tested_at:
+                    type: string
+                    format: date-time
+                    description: when the domain's DNS settings were last tested as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-29 13:00:00'
+                  spf:
+                    type: object
+                    description: details about the domain's SPF record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's SPF record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's SPF record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-24 14:00:00'
+                      error:
+                        type: string
+                        description: an error describing the spf record, or null if the record is correct
+                        example: This domain has an SPF record, but it doesn't include Mandrill.
+                  dkim:
+                    type: object
+                    description: details about the domain's Legacy DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's Legacy DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's Legacy DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the Legacy DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim1.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  dkim2:
+                    type: object
+                    description: details about the domain's rotatable 2048 bit DKIM record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DKIM record is valid for use with Mandrill
+                        example: true
+                      valid_after:
+                        type: string
+                        format: date-time
+                        description: when the domain's DKIM record will be considered valid for use with Mandrill as a UTC string in YYYY-MM-DD HH:MM:SS format. If set, this indicates that the record is valid now, but was previously invalid, and Mandrill will wait until the record's TTL elapses to start using it.
+                        example: '2025-04-15 13:00:00'
+                      error:
+                        type: string
+                        description: an error describing the DKIM record, or null if the record is correct
+                        example: does not match the required CNAME target of dkim2.mandrillapp.com. Please verify that the target was entered exactly as requested and try again.
+                  dmarc:
+                    type: object
+                    description: details about the domain's DMARC record
+                    properties:
+                      valid:
+                        type: boolean
+                        description: whether the domain's DMARC record is valid for use with Mandrill
+                        example: false
+                      error:
+                        type: string
+                        description: an error describing the DMARC record, or null if the record is correct
+                        example: The record doesn't begin with a valid version tag.
+                  verified_at:
+                    type: string
+                    format: date-time
+                    description: if the domain has been verified, this indicates when that verification occurred as a UTC string in YYYY-MM-DD HH:MM:SS format
+                    example: '2025-04-20 13:00:00'
+                  valid_signing:
+                    type: boolean
+                    description: whether this domain can be used to authenticate mail, either for itself or as a custom signing domain. If this is false but spf and dkim are both valid, you will need to verify the domain before using it to authenticate mail
+                    example: false
+                  verify_txt_key:
+                    type: string
+                    description: a unique key used to verify a domain by adding a TXT record. Append this key to 'mandrill_verify.' and add it to your domain's TXT records to verify
+                    example: wtwm-d3lEsGLX6yeb24weA
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: a domain name
+        required: true
+  /senders/verify-domain:
+    post:
+      x-custom-config:
+        methodNameCamel: verifyDomain
+        methodNameSnake: verify_domain
+      summary: Verify domain
+      description: Sends a verification email in order to verify ownership of a domain. Domain verification is a required step to confirm ownership of a domain. Once a domain has been verified in a Transactional API account, other accounts may not have their messages signed by that domain unless they also verify the domain. This prevents other Transactional API accounts from sending mail signed by your domain.
+      operationId: postSendersVerifyDomain
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: information about the verification that was sent
+                properties:
+                  status:
+                    type: string
+                    description: '"sent" indicates that the verification has been sent, "already_verified" indicates that the domain has already been verified with your account'
+                    example: sent
+                  domain:
+                    type: string
+                    description: the domain name you provided
+                    example: example.com
+                  email:
+                    type: string
+                    format: email
+                    description: the email address the verification email was sent to
+                    example: verify@example.com
+            application/x-php:
+              schema:
+                type: object
+                description: information about the verification that was sent
+                properties:
+                  status:
+                    type: string
+                    description: '"sent" indicates that the verification has been sent, "already_verified" indicates that the domain has already been verified with your account'
+                    example: sent
+                  domain:
+                    type: string
+                    description: the domain name you provided
+                    example: example.com
+                  email:
+                    type: string
+                    format: email
+                    description: the email address the verification email was sent to
+                    example: verify@example.com
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: information about the verification that was sent
+                properties:
+                  status:
+                    type: string
+                    description: '"sent" indicates that the verification has been sent, "already_verified" indicates that the domain has already been verified with your account'
+                    example: sent
+                  domain:
+                    type: string
+                    description: the domain name you provided
+                    example: example.com
+                  email:
+                    type: string
+                    format: email
+                    description: the email address the verification email was sent to
+                    example: verify@example.com
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - domain
+              - mailbox
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                domain:
+                  type: string
+                  description: domain name at which you can receive email
+                mailbox:
+                  type: string
+                  description: a mailbox at the domain where the verification email should be sent
+        required: true
+  /senders/info:
+    post:
+      x-custom-config:
+        methodNameCamel: info
+        methodNameSnake: info
+      summary: Get sender info
+      description: Return more detailed information about a single sender, including aggregates of recent stats.
+      operationId: postSendersInfo
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: the detailed information on the sender
+                properties:
+                  address:
+                    type: string
+                    format: email
+                    description: the sender's email address
+                    example: sender@example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                    example: '2023-01-01 12:00:00.12512'
+                  sent:
+                    type: integer
+                    description: the total number of messages sent by this sender
+                    example: 100
+                  hard_bounces:
+                    type: integer
+                    description: the total number of hard bounces by messages by this sender
+                    example: 5
+                  soft_bounces:
+                    type: integer
+                    description: the total number of soft bounces by messages by this sender
+                    example: 2
+                  rejects:
+                    type: integer
+                    description: the total number of rejected messages by this sender
+                    example: 1
+                  complaints:
+                    type: integer
+                    description: the total number of spam complaints received for messages by this sender
+                    example: 0
+                  unsubs:
+                    type: integer
+                    description: the total number of unsubscribe requests received for messages by this sender
+                    example: 0
+                  opens:
+                    type: integer
+                    description: the total number of times messages by this sender have been opened
+                    example: 10
+                  clicks:
+                    type: integer
+                    description: the total number of times tracked URLs in messages by this sender have been clicked
+                    example: 5
+                  stats:
+                    type: object
+                    description: an aggregate summary of the sender's sending stats
+                    properties:
+                      today:
+                        type: object
+                        description: stats for this sender so far today
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender so far today
+                            example: 10
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender so far today
+                            example: 1
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender so far today
+                            example: 2
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender so far today
+                            example: 1
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender so far today
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender so far today
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender so far today
+                            example: 10
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender so far today
+                            example: 5
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender so far today
+                            example: 2
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender so far today
+                            example: 1
+                      last_7_days:
+                        type: object
+                        description: stats for this sender in the last 7 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 7 days
+                            example: 70
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 7 days
+                            example: 10
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 7 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 7 days
+                            example: 3
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 7 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 7 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 7 days
+                            example: 30
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 7 days
+                            example: 15
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 7 days
+                            example: 5
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 7 days
+                            example: 3
+                      last_30_days:
+                        type: object
+                        description: stats for this sender in the last 30 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 30 days
+                            example: 300
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 30 days
+                            example: 15
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 30 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 30 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 30 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 30 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 30 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 30 days
+                            example: 75
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 30 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 30 days
+                            example: 30
+                      last_60_days:
+                        type: object
+                        description: stats for this sender in the last 60 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 60 days
+                            example: 600
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 60 days
+                            example: 15
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 60 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 60 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 60 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 60 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 60 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 60 days
+                            example: 75
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 60 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 60 days
+                            example: 30
+                      last_90_days:
+                        type: object
+                        description: stats for this sender in the last 90 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 90 days
+                            example: 900
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 90 days
+                            example: 5
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 90 days
+                            example: 10
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 90 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 90 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 90 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 90 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 90 days
+                            example: 80
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 90 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 90 days
+                            example: 30
+            application/x-php:
+              schema:
+                type: object
+                description: the detailed information on the sender
+                properties:
+                  address:
+                    type: string
+                    format: email
+                    description: the sender's email address
+                    example: sender@example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                    example: '2023-01-01 12:00:00.12512'
+                  sent:
+                    type: integer
+                    description: the total number of messages sent by this sender
+                    example: 100
+                  hard_bounces:
+                    type: integer
+                    description: the total number of hard bounces by messages by this sender
+                    example: 5
+                  soft_bounces:
+                    type: integer
+                    description: the total number of soft bounces by messages by this sender
+                    example: 2
+                  rejects:
+                    type: integer
+                    description: the total number of rejected messages by this sender
+                    example: 1
+                  complaints:
+                    type: integer
+                    description: the total number of spam complaints received for messages by this sender
+                    example: 0
+                  unsubs:
+                    type: integer
+                    description: the total number of unsubscribe requests received for messages by this sender
+                    example: 0
+                  opens:
+                    type: integer
+                    description: the total number of times messages by this sender have been opened
+                    example: 10
+                  clicks:
+                    type: integer
+                    description: the total number of times tracked URLs in messages by this sender have been clicked
+                    example: 5
+                  stats:
+                    type: object
+                    description: an aggregate summary of the sender's sending stats
+                    properties:
+                      today:
+                        type: object
+                        description: stats for this sender so far today
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender so far today
+                            example: 10
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender so far today
+                            example: 1
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender so far today
+                            example: 2
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender so far today
+                            example: 1
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender so far today
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender so far today
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender so far today
+                            example: 10
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender so far today
+                            example: 5
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender so far today
+                            example: 2
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender so far today
+                            example: 1
+                      last_7_days:
+                        type: object
+                        description: stats for this sender in the last 7 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 7 days
+                            example: 70
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 7 days
+                            example: 10
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 7 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 7 days
+                            example: 3
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 7 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 7 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 7 days
+                            example: 30
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 7 days
+                            example: 15
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 7 days
+                            example: 5
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 7 days
+                            example: 3
+                      last_30_days:
+                        type: object
+                        description: stats for this sender in the last 30 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 30 days
+                            example: 300
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 30 days
+                            example: 15
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 30 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 30 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 30 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 30 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 30 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 30 days
+                            example: 75
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 30 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 30 days
+                            example: 30
+                      last_60_days:
+                        type: object
+                        description: stats for this sender in the last 60 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 60 days
+                            example: 600
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 60 days
+                            example: 15
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 60 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 60 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 60 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 60 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 60 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 60 days
+                            example: 75
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 60 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 60 days
+                            example: 30
+                      last_90_days:
+                        type: object
+                        description: stats for this sender in the last 90 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 90 days
+                            example: 900
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 90 days
+                            example: 5
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 90 days
+                            example: 10
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 90 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 90 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 90 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 90 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 90 days
+                            example: 80
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 90 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 90 days
+                            example: 30
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: the detailed information on the sender
+                properties:
+                  address:
+                    type: string
+                    format: email
+                    description: the sender's email address
+                    example: sender@example.com
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: the date and time that the sender was first seen by Mandrill as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                    example: '2023-01-01 12:00:00.12512'
+                  sent:
+                    type: integer
+                    description: the total number of messages sent by this sender
+                    example: 100
+                  hard_bounces:
+                    type: integer
+                    description: the total number of hard bounces by messages by this sender
+                    example: 5
+                  soft_bounces:
+                    type: integer
+                    description: the total number of soft bounces by messages by this sender
+                    example: 2
+                  rejects:
+                    type: integer
+                    description: the total number of rejected messages by this sender
+                    example: 1
+                  complaints:
+                    type: integer
+                    description: the total number of spam complaints received for messages by this sender
+                    example: 0
+                  unsubs:
+                    type: integer
+                    description: the total number of unsubscribe requests received for messages by this sender
+                    example: 0
+                  opens:
+                    type: integer
+                    description: the total number of times messages by this sender have been opened
+                    example: 10
+                  clicks:
+                    type: integer
+                    description: the total number of times tracked URLs in messages by this sender have been clicked
+                    example: 5
+                  stats:
+                    type: object
+                    description: an aggregate summary of the sender's sending stats
+                    properties:
+                      today:
+                        type: object
+                        description: stats for this sender so far today
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender so far today
+                            example: 10
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender so far today
+                            example: 1
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender so far today
+                            example: 2
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender so far today
+                            example: 1
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender so far today
+                            example: 0
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender so far today
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender so far today
+                            example: 10
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender so far today
+                            example: 5
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender so far today
+                            example: 2
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender so far today
+                            example: 1
+                      last_7_days:
+                        type: object
+                        description: stats for this sender in the last 7 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 7 days
+                            example: 70
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 7 days
+                            example: 10
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 7 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 7 days
+                            example: 3
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 7 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 7 days
+                            example: 2
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 7 days
+                            example: 30
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 7 days
+                            example: 15
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 7 days
+                            example: 5
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 7 days
+                            example: 3
+                      last_30_days:
+                        type: object
+                        description: stats for this sender in the last 30 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 30 days
+                            example: 300
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 30 days
+                            example: 15
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 30 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 30 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 30 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 30 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 30 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 30 days
+                            example: 75
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 30 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 30 days
+                            example: 30
+                      last_60_days:
+                        type: object
+                        description: stats for this sender in the last 60 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 60 days
+                            example: 600
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 60 days
+                            example: 15
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 60 days
+                            example: 5
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 60 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 60 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 60 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 60 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 60 days
+                            example: 75
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 60 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 60 days
+                            example: 30
+                      last_90_days:
+                        type: object
+                        description: stats for this sender in the last 90 days
+                        properties:
+                          sent:
+                            type: integer
+                            description: the number of emails sent for this sender in the last 90 days
+                            example: 900
+                          hard_bounces:
+                            type: integer
+                            description: the number of emails hard bounced for this sender in the last 90 days
+                            example: 5
+                          soft_bounces:
+                            type: integer
+                            description: the number of emails soft bounced for this sender in the last 90 days
+                            example: 10
+                          rejects:
+                            type: integer
+                            description: the number of emails rejected for sending this sender in the last 90 days
+                            example: 2
+                          complaints:
+                            type: integer
+                            description: the number of spam complaints for this sender in the last 90 days
+                            example: 1
+                          unsubs:
+                            type: integer
+                            description: the number of unsubscribes for this sender in the last 90 days
+                            example: 0
+                          opens:
+                            type: integer
+                            description: the number of times emails have been opened for this sender in the last 90 days
+                            example: 100
+                          unique_opens:
+                            type: integer
+                            description: the number of unique opens for emails sent for this sender in the last 90 days
+                            example: 80
+                          clicks:
+                            type: integer
+                            description: the number of URLs that have been clicked for this sender in the last 90 days
+                            example: 50
+                          unique_clicks:
+                            type: integer
+                            description: the number of unique clicks for emails sent for this sender in the last 90 days
+                            example: 30
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - address
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                address:
+                  type: string
+                  description: the email address of the sender
+                  format: email
+        required: true
+  /senders/time-series:
+    post:
+      x-custom-config:
+        methodNameCamel: timeSeries
+        methodNameSnake: time_series
+      summary: View sender history
+      description: Return the recent history (hourly stats for the last 30 days) for a sender.
+      operationId: postSendersTimeSeries
+      tags:
+      - Senders
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: the array of history information
+                items:
+                  type: object
+                  description: the stats for a single hour
+                  properties:
+                    time:
+                      type: string
+                      format: date-time
+                      description: the hour as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2023-01-01 15:00:00'
+                    sent:
+                      type: integer
+                      description: the number of emails that were sent during the hour
+                      example: 100
+                    hard_bounces:
+                      type: integer
+                      description: the number of emails that hard bounced during the hour
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the number of emails that soft bounced during the hour
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the number of emails that were rejected during the hour
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the number of spam complaints received during the hour
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the number of emails opened during the hour
+                      example: 80
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens generated by messages sent during the hour
+                      example: 50
+                    clicks:
+                      type: integer
+                      description: the number of tracked URLs clicked during the hour
+                      example: 30
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks generated by messages sent during the hour
+                      example: 20
+            application/x-php:
+              schema:
+                type: array
+                description: the array of history information
+                items:
+                  type: object
+                  description: the stats for a single hour
+                  properties:
+                    time:
+                      type: string
+                      format: date-time
+                      description: the hour as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2023-01-01 15:00:00'
+                    sent:
+                      type: integer
+                      description: the number of emails that were sent during the hour
+                      example: 100
+                    hard_bounces:
+                      type: integer
+                      description: the number of emails that hard bounced during the hour
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the number of emails that soft bounced during the hour
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the number of emails that were rejected during the hour
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the number of spam complaints received during the hour
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the number of emails opened during the hour
+                      example: 80
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens generated by messages sent during the hour
+                      example: 50
+                    clicks:
+                      type: integer
+                      description: the number of tracked URLs clicked during the hour
+                      example: 30
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks generated by messages sent during the hour
+                      example: 20
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: the array of history information
+                items:
+                  type: object
+                  description: the stats for a single hour
+                  properties:
+                    time:
+                      type: string
+                      format: date-time
+                      description: the hour as a UTC date string in YYYY-MM-DD HH:MM:SS format
+                      example: '2023-01-01 15:00:00'
+                    sent:
+                      type: integer
+                      description: the number of emails that were sent during the hour
+                      example: 100
+                    hard_bounces:
+                      type: integer
+                      description: the number of emails that hard bounced during the hour
+                      example: 5
+                    soft_bounces:
+                      type: integer
+                      description: the number of emails that soft bounced during the hour
+                      example: 2
+                    rejects:
+                      type: integer
+                      description: the number of emails that were rejected during the hour
+                      example: 1
+                    complaints:
+                      type: integer
+                      description: the number of spam complaints received during the hour
+                      example: 0
+                    opens:
+                      type: integer
+                      description: the number of emails opened during the hour
+                      example: 80
+                    unique_opens:
+                      type: integer
+                      description: the number of unique opens generated by messages sent during the hour
+                      example: 50
+                    clicks:
+                      type: integer
+                      description: the number of tracked URLs clicked during the hour
+                      example: 30
+                    unique_clicks:
+                      type: integer
+                      description: the number of unique clicks generated by messages sent during the hour
+                      example: 20
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - address
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                address:
+                  type: string
+                  description: the email address of the sender
+                  format: email
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

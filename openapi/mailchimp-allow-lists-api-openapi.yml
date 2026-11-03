@@ -1,0 +1,417 @@
+openapi: 3.2.0
+info:
+  version: 1.4.1
+  title: Mailchimp Transactional Allowlists API
+  contact:
+    name: API Support
+    email: apihelp@mailchimp.com
+  x-permalink: https://github.com/mailchimp/mailchimp-client-lib-codegen/blob/main/spec/transactional.openapi.json
+servers:
+- url: https://mandrillapp.com/api/1.3
+tags:
+- name: Allow Lists
+paths:
+  /allowlists/add:
+    post:
+      x-custom-config:
+        methodNameCamel: add
+        methodNameSnake: add
+      summary: Add email to allowlist
+      description: Adds an email to your email rejection allowlist. If the address is currently on your denylist, that denylist entry will be removed automatically.
+      operationId: postAllowlistsAdd
+      tags:
+      - Allow Lists
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a status object containing the address and the result of the operation
+                properties:
+                  email:
+                    type: string
+                    description: the email address you provided
+                    example: user@example.com
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: a status object containing the address and the result of the operation
+                properties:
+                  email:
+                    type: string
+                    description: the email address you provided
+                    example: user@example.com
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a status object containing the address and the result of the operation
+                properties:
+                  email:
+                    type: string
+                    description: the email address you provided
+                    example: user@example.com
+                  added:
+                    type: boolean
+                    description: whether the operation succeeded
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - email
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                email:
+                  type: string
+                  description: an email address to add to the allowlist
+                  format: email
+                comment:
+                  type: string
+                  description: an optional description of why the email was added to the allowlist
+                  maxLength: 255
+        required: true
+  /allowlists/list:
+    post:
+      x-custom-config:
+        methodNameCamel: list
+        methodNameSnake: list
+      summary: List allowlisted emails
+      description: Retrieves your email rejection allowlist. You can provide an email address or search prefix to limit the results. Returns up to 1000 results.
+      operationId: postAllowlistsList
+      tags:
+      - Allow Lists
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                description: up to 1000 allowlist entries
+                items:
+                  type: object
+                  description: the information for each allowlist entry
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email that is allowlisted
+                      example: user@example.com
+                    detail:
+                      type: string
+                      description: a description of why the email was allowlisted
+                      example: Added manually via the API
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: when the email was added to the allowlist
+                      example: '2025-04-29 18:47:35'
+            application/x-php:
+              schema:
+                type: array
+                description: up to 1000 allowlist entries
+                items:
+                  type: object
+                  description: the information for each allowlist entry
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email that is allowlisted
+                      example: user@example.com
+                    detail:
+                      type: string
+                      description: a description of why the email was allowlisted
+                      example: Added manually via the API
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: when the email was added to the allowlist
+                      example: '2025-04-29 18:47:35'
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: array
+                description: up to 1000 allowlist entries
+                items:
+                  type: object
+                  description: the information for each allowlist entry
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      description: the email that is allowlisted
+                      example: user@example.com
+                    detail:
+                      type: string
+                      description: a description of why the email was allowlisted
+                      example: Added manually via the API
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: when the email was added to the allowlist
+                      example: '2025-04-29 18:47:35'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                email:
+                  type: string
+                  description: an optional email address or prefix to search by
+                  format: email
+        required: true
+  /allowlists/delete:
+    post:
+      x-custom-config:
+        methodNameCamel: delete
+        methodNameSnake: delete
+      summary: Remove email from allowlist
+      description: Removes an email address from the allowlist.
+      operationId: postAllowlistsDelete
+      tags:
+      - Allow Lists
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: a status object containing the address and whether the deletion succeeded
+                properties:
+                  email:
+                    type: string
+                    description: the email address that was removed from the denylist
+                    example: user@example.com
+                  deleted:
+                    type: boolean
+                    description: whether the address was deleted successfully
+                    example: true
+            application/x-php:
+              schema:
+                type: object
+                description: a status object containing the address and whether the deletion succeeded
+                properties:
+                  email:
+                    type: string
+                    description: the email address that was removed from the denylist
+                    example: user@example.com
+                  deleted:
+                    type: boolean
+                    description: whether the address was deleted successfully
+                    example: true
+            application/x-yaml; charset=utf-8:
+              schema:
+                type: object
+                description: a status object containing the address and whether the deletion succeeded
+                properties:
+                  email:
+                    type: string
+                    description: the email address that was removed from the denylist
+                    example: user@example.com
+                  deleted:
+                    type: boolean
+                    description: whether the address was deleted successfully
+                    example: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - key
+              - email
+              properties:
+                key:
+                  type: string
+                  description: a valid api key
+                email:
+                  type: string
+                  description: the email address to remove from the allowlist
+                  format: email
+        required: true
+x-doc-structure:
+  resources:
+    allowlists:
+      title: Allowlists
+      description: Add, list, or delete from your Rejection Allowlist.
+      paths:
+      - /allowlists/add
+      - /allowlists/list
+      - /allowlists/delete
+    exports:
+      title: Exports
+      description: Start an export, or get information on export jobs in progress.
+      paths:
+      - /exports/info
+      - /exports/list
+      - /exports/rejects
+      - /exports/whitelist
+      - /exports/allowlist
+      - /exports/activity
+    inbound:
+      title: Inbound
+      description: Manage your inbound domains and routes.
+      paths:
+      - /inbound/domains
+      - /inbound/add-domain
+      - /inbound/check-domain
+      - /inbound/delete-domain
+      - /inbound/routes
+      - /inbound/add-route
+      - /inbound/update-route
+      - /inbound/delete-route
+      - /inbound/send-raw
+    ips:
+      title: IPs
+      description: Request and manage Dedicated IPs for your account, and set up reverse DNS.
+      paths:
+      - /ips/list
+      - /ips/info
+      - /ips/provision
+      - /ips/start-warmup
+      - /ips/cancel-warmup
+      - /ips/set-pool
+      - /ips/delete
+      - /ips/list-pools
+      - /ips/pool-info
+      - /ips/create-pool
+      - /ips/delete-pool
+      - /ips/check-custom-dns
+      - /ips/set-custom-dns
+    messages:
+      title: Messages
+      description: Send, schedule, or get information on your emails.
+      paths:
+      - /messages/send
+      - /messages/send-sms
+      - /messages/send-template
+      - /messages/send-mc-template
+      - /messages/search
+      - /messages/search-time-series
+      - /messages/info
+      - /messages/content
+      - /messages/parse
+      - /messages/send-raw
+      - /messages/list-scheduled
+      - /messages/cancel-scheduled
+      - /messages/reschedule
+    metadata:
+      title: Metadata
+      description: Manage your custom metadata fields in your account.
+      paths:
+      - /metadata/list
+      - /metadata/add
+      - /metadata/update
+      - /metadata/delete
+    rejects:
+      title: Rejects
+      description: Add, list, or delete from your Rejection Denylist.
+      paths:
+      - /rejects/add
+      - /rejects/add-sms
+      - /rejects/delete
+      - /rejects/delete-sms
+      - /rejects/list
+      - /rejects/list-sms
+    senders:
+      title: Senders
+      description: Manage or get information about your sending domains.
+      paths:
+      - /senders/list
+      - /senders/domains
+      - /senders/add-domain
+      - /senders/delete-domain
+      - /senders/check-domain
+      - /senders/verify-domain
+      - /senders/info
+      - /senders/time-series
+    subaccounts:
+      title: Subaccounts
+      description: Manage your subaccounts, including the abilitiy to pause and resume sending.
+      paths:
+      - /subaccounts/list
+      - /subaccounts/add
+      - /subaccounts/info
+      - /subaccounts/update
+      - /subaccounts/delete
+      - /subaccounts/pause
+      - /subaccounts/resume
+    tags:
+      title: Tags
+      description: List, delete, or get information on your Tags and their sending statistics.
+      paths:
+      - /tags/list
+      - /tags/delete
+      - /tags/info
+      - /tags/time-series
+      - /tags/all-time-series
+    templates:
+      title: Templates
+      description: Manage templates created via the Mandrill UI or through the /templates endpoint.
+      paths:
+      - /templates/add
+      - /templates/info
+      - /templates/update
+      - /templates/publish
+      - /templates/delete
+      - /templates/list
+      - /templates/time-series
+      - /templates/render
+    mctemplates:
+      title: Templates (MC)
+      description: Manage templates created via the Mailchimp UI.
+      paths:
+      - /mctemplates/info
+      - /mctemplates/list
+      - /mctemplates/time-series
+      - /mctemplates/render
+    urls:
+      title: URLs
+      description: Manage your tracking domains.
+      paths:
+      - /urls/add-tracking-domain
+      - /urls/check-tracking-domain
+      - /urls/delete-tracking-domain
+      - /urls/tracking-domains
+    users:
+      title: Users
+      description: Get information about your account, or ping Transactional.
+      paths:
+      - /users/info
+      - /users/ping
+      - /users/ping2
+      - /users/senders
+    webhooks:
+      title: Webhooks
+      description: Manage the webhooks in your account.
+      paths:
+      - /webhooks/list
+      - /webhooks/add
+      - /webhooks/info
+      - /webhooks/update
+      - /webhooks/delete

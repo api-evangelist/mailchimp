@@ -1,0 +1,1241 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: apihelp@mailchimp.com
+    name: Mailchimp API Support
+  description: 'Whether you’re managing your own campaigns, providing Mailchimp services to your customers or clients, or writing a mobile app, the Mailchimp API has features to manage and sync your contact data.
+
+
+    Audiences are at the core of sending campaigns with Mailchimp. You can use the API to set up an audience and add contacts to that audience; you can then organize those contacts with tags or segment them by activity with events.
+
+
+    The API can also be a source of data for your application. Webhooks collect and transmit information about your audience to you in near real time. And if you’re selling products on an external store, you can integrate your audience behavior using Mailchimp’s E-commerce features.
+
+
+    You can also use the API to handle data in different ways for different purposes. If you are syncing a large amount of data with Mailchimp, you can use batches to avoid hitting the API request limits. For building integrations that let other users access data from their own Mailchimp accounts, you should authenticate with OAuth 2. And if you’re developing an app for iOS or Android, the Mobile SDK provides an easy way to work with a mobile-focused subset of the API’s functionality.'
+  summary: Manage audiences, integrate your data, and send timely, relevant email campaigns.
+  termsOfService: https://mailchimp.com/legal/api_use/
+  title: Mailchimp Account Exports API
+  version: 0.1.0-dev
+servers:
+- description: Mailchimp API
+  url: https://api.mailchimp.com
+security:
+- bearerToken: []
+- oauth2: []
+tags:
+- name: account-exports
+paths:
+  /3.0/account-exports:
+    get:
+      description: Get a list of account exports for a given account.
+      operationId: getAccountExports
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The number of records to return. Default value is 10. Maximum value is 1000
+        in: query
+        name: count
+        schema:
+          default: 10
+          maximum: 1000
+          type: integer
+          x-title: Count
+        x-title: Count
+      - description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this is the number of records from a collection to skip. Default value is 0.
+        in: query
+        name: offset
+        schema:
+          default: 0
+          type: integer
+          x-title: Offset
+        x-title: Offset
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: An array of objects, each representing an account export.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  exports:
+                    description: An array of objects, each representing an account export.
+                    items:
+                      description: An account export.
+                      properties:
+                        _links:
+                          description: A list of link types and descriptions for the API schema documents.
+                          items:
+                            description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                            properties:
+                              href:
+                                description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                                readOnly: true
+                                title: Href
+                                type: string
+                              method:
+                                description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                                enum:
+                                - GET
+                                - POST
+                                - PUT
+                                - PATCH
+                                - DELETE
+                                - OPTIONS
+                                - HEAD
+                                readOnly: true
+                                title: Method
+                                type: string
+                              rel:
+                                description: As with an HTML 'rel' attribute, this describes the type of link.
+                                readOnly: true
+                                title: Rel
+                                type: string
+                              schema:
+                                description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                                readOnly: true
+                                title: Schema
+                                type: string
+                              targetSchema:
+                                description: For GETs, this is a URL representing the schema that the response should conform to.
+                                readOnly: true
+                                title: Target Schema
+                                type: string
+                            title: Resource Link
+                            type: object
+                          readOnly: true
+                          title: Links
+                          type: array
+                        download_url:
+                          description: If the export is finished, the download URL for an export. URLs are only valid for 90 days after the export completes.
+                          title: Download URL
+                          type: string
+                        export_id:
+                          description: The ID for the export.
+                          title: Export ID
+                          type: integer
+                        finished:
+                          description: If finished, the finish time for the export.
+                          format: date-time
+                          title: Finish Time
+                          type: string
+                        size_in_bytes:
+                          description: The size of the uncompressed export in bytes.
+                          title: Export Size
+                          type: integer
+                        started:
+                          description: Start time for the export.
+                          format: date-time
+                          title: Start Time
+                          type: string
+                      type: object
+                    title: Account Exports
+                    type: array
+                  total_items:
+                    description: The total number of items matching the query regardless of pagination.
+                    readOnly: true
+                    title: Item Count
+                    type: integer
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: List account exports
+      tags:
+      - account-exports
+      x-custom-config:
+        methodNameCamel: listAccountExports
+        methodNameSnake: list_account_exports
+    post:
+      description: Create a new account export in your Mailchimp account.
+      operationId: postAccountExport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Creates an account export with the given parameters.
+              properties:
+                include_stages:
+                  description: The stages of an account export to include.
+                  examples:
+                  - - audiences
+                    - gallery_files
+                  - - events
+                    - reports
+                    - templates
+                  items:
+                    enum:
+                    - audiences
+                    - campaigns
+                    - events
+                    - gallery_files
+                    - reports
+                    - templates
+                    type: string
+                  title: Include Stages
+                  type: array
+                since_timestamp:
+                  description: An ISO 8601 date that will limit the export to only records created after a given time. For instance, the reports stage will contain any campaign sent after the given timestamp. Audiences, however, are excluded from this limit.
+                  examples:
+                  - '2021-08-23T14:15:09Z'
+                  format: date-time
+                  title: Since Timestamp
+                  type: string
+              required:
+              - include_stages
+              title: Create an account export
+              type: object
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: An account export.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  download_url:
+                    description: If the export is finished, the download URL for an export. URLs are only valid for 90 days after the export completes.
+                    title: Download URL
+                    type: string
+                  export_id:
+                    description: The ID for the export.
+                    title: Export ID
+                    type: integer
+                  finished:
+                    description: If finished, the finish time for the export.
+                    format: date-time
+                    title: Finish Time
+                    type: string
+                  size_in_bytes:
+                    description: The size of the uncompressed export in bytes.
+                    title: Export Size
+                    type: integer
+                  started:
+                    description: Start time for the export.
+                    format: date-time
+                    title: Start Time
+                    type: string
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Add export
+      tags:
+      - account-exports
+      x-custom-config:
+        methodNameCamel: createAccountExport
+        methodNameSnake: create_account_export
+  /3.0/account-exports/{export_id}:
+    get:
+      description: Get information about a specific account export.
+      operationId: getAccountExportId
+      parameters:
+      - description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Fields
+        style: form
+        x-title: Fields
+      - description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        explode: false
+        in: query
+        name: exclude_fields
+        schema:
+          items:
+            type: string
+          type: array
+          x-title: Exclude Fields
+        style: form
+        x-title: Exclude Fields
+      - description: The unique id for the account export.
+        in: path
+        name: export_id
+        required: true
+        schema:
+          type: string
+          x-title: Export ID
+        x-title: Export ID
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: An account export.
+                properties:
+                  _links:
+                    description: A list of link types and descriptions for the API schema documents.
+                    items:
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        href:
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                          title: Href
+                          type: string
+                        method:
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                          title: Method
+                          type: string
+                        rel:
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                          title: Rel
+                          type: string
+                        schema:
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                          title: Schema
+                          type: string
+                        targetSchema:
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                          title: Target Schema
+                          type: string
+                      title: Resource Link
+                      type: object
+                    readOnly: true
+                    title: Links
+                    type: array
+                  download_url:
+                    description: If the export is finished, the download URL for an export. URLs are only valid for 90 days after the export completes.
+                    title: Download URL
+                    type: string
+                  export_id:
+                    description: The ID for the export.
+                    title: Export ID
+                    type: integer
+                  finished:
+                    description: If finished, the finish time for the export.
+                    format: date-time
+                    title: Finish Time
+                    type: string
+                  size_in_bytes:
+                    description: The size of the uncompressed export in bytes.
+                    title: Export Size
+                    type: integer
+                  started:
+                    description: Start time for the export.
+                    format: date-time
+                    title: Start Time
+                    type: string
+                type: object
+          description: ''
+        default:
+          content:
+            application/problem+json:
+              schema:
+                description: 'An error generated by the Mailchimp API. The response conforms to [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457).'
+                properties:
+                  detail:
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    examples:
+                    - The requested resource could not be found.
+                    title: Error Message
+                    type: string
+                  instance:
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    examples:
+                    - 995c5cb0-3280-4a6e-808b-3b096d0bb219
+                    title: Instance ID
+                    type: string
+                  status:
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    examples:
+                    - 404
+                    title: HTTP Status Code
+                    type: integer
+                  title:
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    examples:
+                    - Resource Not Found
+                    title: Error Title
+                    type: string
+                  type:
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    examples:
+                    - https://mailchimp.com/developer/marketing/docs/errors/
+                    title: Problem Type
+                    type: string
+                required:
+                - detail
+                - instance
+                - status
+                - title
+                - type
+                title: Problem Detail Document
+                type: object
+          description: An error generated by the Mailchimp API.
+      summary: Get account export info
+      tags:
+      - account-exports
+      x-custom-config:
+        methodNameCamel: getAccountExports
+        methodNameSnake: get_account_exports
+  /account-exports:
+    get:
+      summary: List account exports
+      description: Get a list of account exports for a given account.
+      operationId: getAccountExports
+      parameters:
+      - name: fields
+        x-title: Fields
+        in: query
+        description: A comma-separated list of fields to return. Reference parameters of sub-objects with dot notation.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: exclude_fields
+        x-title: Exclude Fields
+        in: query
+        description: A comma-separated list of fields to exclude. Reference parameters of sub-objects with dot notation.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: count
+        x-title: Count
+        in: query
+        description: The number of records to return. Default value is 10. Maximum value is 1000
+        required: false
+        schema:
+          type: integer
+          default: 10
+          maximum: 1000
+      - name: offset
+        x-title: Offset
+        in: query
+        description: Used for [pagination](https://mailchimp.com/developer/marketing/docs/methods-parameters/#pagination), this is the number of records from a collection to skip. Default value is 0.
+        required: false
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: An array of objects, each representing an account export.
+                properties:
+                  exports:
+                    title: Account Exports
+                    description: An array of objects, each representing an account export.
+                    type: array
+                    items:
+                      type: object
+                      description: An account export.
+                      properties:
+                        export_id:
+                          type: integer
+                          title: Export ID
+                          description: The ID for the export.
+                        started:
+                          type: string
+                          format: date-time
+                          title: Start Time
+                          description: Start time for the export.
+                        finished:
+                          type: string
+                          format: date-time
+                          title: Finish Time
+                          description: If finished, the finish time for the export.
+                        size_in_bytes:
+                          type: integer
+                          title: Export Size
+                          description: The size of the uncompressed export in bytes.
+                        download_url:
+                          type: string
+                          title: Download URL
+                          description: If the export is finished, the download URL for an export. URLs are only valid for 90 days after the export completes.
+                        _links:
+                          title: Links
+                          description: A list of link types and descriptions for the API schema documents.
+                          type: array
+                          items:
+                            type: object
+                            title: Resource Link
+                            description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                            properties:
+                              rel:
+                                type: string
+                                title: Rel
+                                description: As with an HTML 'rel' attribute, this describes the type of link.
+                                readOnly: true
+                              href:
+                                type: string
+                                title: Href
+                                description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                                readOnly: true
+                              method:
+                                type: string
+                                title: Method
+                                description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                                enum:
+                                - GET
+                                - POST
+                                - PUT
+                                - PATCH
+                                - DELETE
+                                - OPTIONS
+                                - HEAD
+                                readOnly: true
+                              targetSchema:
+                                type: string
+                                title: Target Schema
+                                description: For GETs, this is a URL representing the schema that the response should conform to.
+                                readOnly: true
+                              schema:
+                                type: string
+                                title: Schema
+                                description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                                readOnly: true
+                          readOnly: true
+                  total_items:
+                    type: integer
+                    title: Item Count
+                    description: The total number of items matching the query regardless of pagination.
+                    readOnly: true
+                  _links:
+                    title: Links
+                    description: A list of link types and descriptions for the API schema documents.
+                    type: array
+                    items:
+                      type: object
+                      title: Resource Link
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        rel:
+                          type: string
+                          title: Rel
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                        href:
+                          type: string
+                          title: Href
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                        method:
+                          type: string
+                          title: Method
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                        targetSchema:
+                          type: string
+                          title: Target Schema
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                        schema:
+                          type: string
+                          title: Schema
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                    readOnly: true
+            application/problem+json:
+              schema:
+                type: object
+                description: An array of objects, each representing an account export.
+                properties:
+                  exports:
+                    title: Account Exports
+                    description: An array of objects, each representing an account export.
+                    type: array
+                    items:
+                      type: object
+                      description: An account export.
+                      properties:
+                        export_id:
+                          type: integer
+                          title: Export ID
+                          description: The ID for the export.
+                        started:
+                          type: string
+                          format: date-time
+                          title: Start Time
+                          description: Start time for the export.
+                        finished:
+                          type: string
+                          format: date-time
+                          title: Finish Time
+                          description: If finished, the finish time for the export.
+                        size_in_bytes:
+                          type: integer
+                          title: Export Size
+                          description: The size of the uncompressed export in bytes.
+                        download_url:
+                          type: string
+                          title: Download URL
+                          description: If the export is finished, the download URL for an export. URLs are only valid for 90 days after the export completes.
+                        _links:
+                          title: Links
+                          description: A list of link types and descriptions for the API schema documents.
+                          type: array
+                          items:
+                            type: object
+                            title: Resource Link
+                            description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                            properties:
+                              rel:
+                                type: string
+                                title: Rel
+                                description: As with an HTML 'rel' attribute, this describes the type of link.
+                                readOnly: true
+                              href:
+                                type: string
+                                title: Href
+                                description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                                readOnly: true
+                              method:
+                                type: string
+                                title: Method
+                                description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                                enum:
+                                - GET
+                                - POST
+                                - PUT
+                                - PATCH
+                                - DELETE
+                                - OPTIONS
+                                - HEAD
+                                readOnly: true
+                              targetSchema:
+                                type: string
+                                title: Target Schema
+                                description: For GETs, this is a URL representing the schema that the response should conform to.
+                                readOnly: true
+                              schema:
+                                type: string
+                                title: Schema
+                                description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                                readOnly: true
+                          readOnly: true
+                  total_items:
+                    type: integer
+                    title: Item Count
+                    description: The total number of items matching the query regardless of pagination.
+                    readOnly: true
+                  _links:
+                    title: Links
+                    description: A list of link types and descriptions for the API schema documents.
+                    type: array
+                    items:
+                      type: object
+                      title: Resource Link
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        rel:
+                          type: string
+                          title: Rel
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                        href:
+                          type: string
+                          title: Href
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                        method:
+                          type: string
+                          title: Method
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                        targetSchema:
+                          type: string
+                          title: Target Schema
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                        schema:
+                          type: string
+                          title: Schema
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                    readOnly: true
+        default:
+          description: An error generated by the Mailchimp API.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Problem Detail Document
+                description: An error generated by the Mailchimp API. Conforms to IETF draft 'draft-nottingham-http-problem-06'.
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - instance
+                properties:
+                  type:
+                    type: string
+                    title: Problem Type
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    example: https://mailchimp.com/developer/marketing/docs/errors/
+                  title:
+                    type: string
+                    title: Error Title
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    example: Resource Not Found
+                  status:
+                    type: integer
+                    title: HTTP Status Code
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    example: 404
+                  detail:
+                    type: string
+                    title: Error Message
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    example: The requested resource could not be found.
+                  instance:
+                    type: string
+                    title: Instance ID
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    example: 995c5cb0-3280-4a6e-808b-3b096d0bb219
+            application/problem+json:
+              schema:
+                type: object
+                title: Problem Detail Document
+                description: An error generated by the Mailchimp API. Conforms to IETF draft 'draft-nottingham-http-problem-06'.
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - instance
+                properties:
+                  type:
+                    type: string
+                    title: Problem Type
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    example: https://mailchimp.com/developer/marketing/docs/errors/
+                  title:
+                    type: string
+                    title: Error Title
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    example: Resource Not Found
+                  status:
+                    type: integer
+                    title: HTTP Status Code
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    example: 404
+                  detail:
+                    type: string
+                    title: Error Message
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    example: The requested resource could not be found.
+                  instance:
+                    type: string
+                    title: Instance ID
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    example: 995c5cb0-3280-4a6e-808b-3b096d0bb219
+      deprecated: false
+      tags:
+      - Account Exports
+      x-custom-config:
+        methodNameSnake: list_account_exports
+        methodNameCamel: listAccountExports
+    post:
+      summary: Add export
+      description: Create a new account export in your Mailchimp account.
+      operationId: postAccountExport
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: An account export.
+                properties:
+                  export_id:
+                    type: integer
+                    title: Export ID
+                    description: The ID for the export.
+                  started:
+                    type: string
+                    format: date-time
+                    title: Start Time
+                    description: Start time for the export.
+                  finished:
+                    type: string
+                    format: date-time
+                    title: Finish Time
+                    description: If finished, the finish time for the export.
+                  size_in_bytes:
+                    type: integer
+                    title: Export Size
+                    description: The size of the uncompressed export in bytes.
+                  download_url:
+                    type: string
+                    title: Download URL
+                    description: If the export is finished, the download URL for an export. URLs are only valid for 90 days after the export completes.
+                  _links:
+                    title: Links
+                    description: A list of link types and descriptions for the API schema documents.
+                    type: array
+                    items:
+                      type: object
+                      title: Resource Link
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        rel:
+                          type: string
+                          title: Rel
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                        href:
+                          type: string
+                          title: Href
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                        method:
+                          type: string
+                          title: Method
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                        targetSchema:
+                          type: string
+                          title: Target Schema
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                        schema:
+                          type: string
+                          title: Schema
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                    readOnly: true
+            application/problem+json:
+              schema:
+                type: object
+                description: An account export.
+                properties:
+                  export_id:
+                    type: integer
+                    title: Export ID
+                    description: The ID for the export.
+                  started:
+                    type: string
+                    format: date-time
+                    title: Start Time
+                    description: Start time for the export.
+                  finished:
+                    type: string
+                    format: date-time
+                    title: Finish Time
+                    description: If finished, the finish time for the export.
+                  size_in_bytes:
+                    type: integer
+                    title: Export Size
+                    description: The size of the uncompressed export in bytes.
+                  download_url:
+                    type: string
+                    title: Download URL
+                    description: If the export is finished, the download URL for an export. URLs are only valid for 90 days after the export completes.
+                  _links:
+                    title: Links
+                    description: A list of link types and descriptions for the API schema documents.
+                    type: array
+                    items:
+                      type: object
+                      title: Resource Link
+                      description: This object represents a link from the resource where it is found to another resource or action that may be performed.
+                      properties:
+                        rel:
+                          type: string
+                          title: Rel
+                          description: As with an HTML 'rel' attribute, this describes the type of link.
+                          readOnly: true
+                        href:
+                          type: string
+                          title: Href
+                          description: This property contains a fully-qualified URL that can be called to retrieve the linked resource or perform the linked action.
+                          readOnly: true
+                        method:
+                          type: string
+                          title: Method
+                          description: The HTTP method that should be used when accessing the URL defined in 'href'.
+                          enum:
+                          - GET
+                          - POST
+                          - PUT
+                          - PATCH
+                          - DELETE
+                          - OPTIONS
+                          - HEAD
+                          readOnly: true
+                        targetSchema:
+                          type: string
+                          title: Target Schema
+                          description: For GETs, this is a URL representing the schema that the response should conform to.
+                          readOnly: true
+                        schema:
+                          type: string
+                          title: Schema
+                          description: For HTTP methods that can receive bodies (POST and PUT), this is a URL representing the schema that the body should conform to.
+                          readOnly: true
+                    readOnly: true
+        default:
+          description: An error generated by the Mailchimp API.
+          content:
+            application/json:
+              schema:
+                type: object
+                title: Problem Detail Document
+                description: An error generated by the Mailchimp API. Conforms to IETF draft 'draft-nottingham-http-problem-06'.
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - instance
+                properties:
+                  type:
+                    type: string
+                    title: Problem Type
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    example: https://mailchimp.com/developer/marketing/docs/errors/
+                  title:
+                    type: string
+                    title: Error Title
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    example: Resource Not Found
+                  status:
+                    type: integer
+                    title: HTTP Status Code
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    example: 404
+                  detail:
+                    type: string
+                    title: Error Message
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    example: The requested resource could not be found.
+                  instance:
+                    type: string
+                    title: Instance ID
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    example: 995c5cb0-3280-4a6e-808b-3b096d0bb219
+            application/problem+json:
+              schema:
+                type: object
+                title: Problem Detail Document
+                description: An error generated by the Mailchimp API. Conforms to IETF draft 'draft-nottingham-http-problem-06'.
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - instance
+                properties:
+                  type:
+                    type: string
+                    title: Problem Type
+                    description: An absolute URI that identifies the problem type. When dereferenced, it should provide human-readable documentation for the problem type.
+                    example: https://mailchimp.com/developer/marketing/docs/errors/
+                  title:
+                    type: string
+                    title: Error Title
+                    description: A short, human-readable summary of the problem type. It shouldn't change based on the occurrence of the problem, except for purposes of localization.
+                    example: Resource Not Found
+                  status:
+                    type: integer
+                    title: HTTP Status Code
+                    description: The HTTP status code (RFC2616, Section 6) generated by the origin server for this occurrence of the problem.
+                    example: 404
+                  detail:
+                    type: string
+                    title: Error Message
+                    description: A human-readable explanation specific to this occurrence of the problem. [Learn more about errors](/developer/guides/get-started-with-mailchimp-api-3/#Errors).
+                    example: The requested resource could not be found.
+                  instance:
+                    type: string
+                    title: Instance ID
+                    description: A string that identifies this specific occurrence of the problem. Please provide this ID when contacting support.
+                    example: 995c5cb0-3280-4a6e-808b-3b096d0bb219
+      deprecated: false
+      tags:
+      - Account Exports
+      x-custom-config:
+        methodNameSnake: create_account_export
+        methodNameCamel: createAccountExport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              title: Create an account export
+              description: Creates an account export with the given parameters.
+              required:
+              - include_stages
+              properties:
+                include_stages:
+                  type: array
+                  title: Include Stages
+                  description: The stages of an account export to include.
+                  example: '["audiences", "gallery_files"]'
+                  items:
+                    type: string
+                    enum:
+                    - audiences
+                    - campaigns
+                    - events
+                    - gallery_files
+                    - reports
+                    - templates
+                since_timestamp:
+                  type: string
+                  title: Since Timestamp
+                  format: date-time
+                  description: An ISO 8601 date that will limit the export to only records created after a given time. For instance, the reports stage will contain any campaign sent after the given timestamp. Audiences, however, are excluded from this limit.
+                  example: '2021-08-23T14:15:09Z'
+        required: true
+components:
+  securitySchemes:
+    bearerToken:
+      description: Authorization using a Mailchimp API key (a.k.a. Bearer token)
+      scheme: Bearer
+      type: http
+    oauth2:
+      description: Authorization using OAuth
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.mailchimp.com/oauth2/authorize
+          scopes: {}
+          tokenUrl: https://login.mailchimp.com/oauth2/token
+      type: oauth2
+    basicAuth:
+      type: http
+      scheme: basic
