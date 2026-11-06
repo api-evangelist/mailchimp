@@ -66,19 +66,20 @@ rate_limit_statements:
 - Up to 4 flow steps
 geo_note: 'Re-check 2026-10-12 from this host: https://mailchimp.com/pricing/marketing/ served a geo-localised (SEK, kr) page, so the USD price_text quotes could not be re-matched verbatim; they were grounded against the USD render on the original fetch.'
 x-canonical:
-  generated: '2026-11-02'
+  generated: '2026-11-06'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
   - metered
-  units: []
+  units:
+  - period
   plans:
   - name: Premium
     access: other
     model: hybrid
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Standard
@@ -86,7 +87,7 @@ x-canonical:
     model: hybrid
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Essentials
@@ -94,7 +95,7 @@ x-canonical:
     model: hybrid
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Free
@@ -102,6 +103,6 @@ x-canonical:
     model: metered
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
